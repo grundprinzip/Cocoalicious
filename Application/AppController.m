@@ -56,12 +56,16 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	[self sizeBezelSubviews];
 	[self setupToolbar];
 	[self setupWebPreview];
+	[self setUpDockMenu];
 }
 
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
 	/* Support for NetNewsWire External Weblog Editor Interface */
 	[[NSAppleEventManager sharedAppleEventManager] setEventHandler: self andSelector: @selector(postNewNNWLink:withReplyEvent:) forEventClass: DCNNWPostAppleEventClass andEventID: DCNNWPostAppleEventID];
+
 	
+	[NSApp setServicesProvider:self];
+    
 	NSString *safariScriptPath = [[NSBundle mainBundle] pathForResource: kDCSafariScriptLibrary ofType: kDCScriptType];
 	NSURL *safariScriptURL = [NSURL fileURLWithPath: safariScriptPath];
 	NSDictionary *errorInfo = nil;
@@ -152,6 +156,18 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	[[toggleWebPreviewButton cell] setTrackingMode: NSSegmentSwitchTrackingMomentary];
 	[toggleWebPreviewButton setImage: toggleWebPreviewIcon forSegment: 0];
 	[toggleWebPreviewIcon release];
+}
+
+
+- (void) setUpDockMenu {
+    [NSApp setDelegate: self];
+	dockMenu = [[NSMenu alloc] init];
+	NSMenuItem *safariNewPostMenuItem = [dockMenu addItemWithTitle: @"New Post from Safari" action: @selector(postCurrentSafariURL:) keyEquivalent: @""];
+	[safariNewPostMenuItem setTarget: self];
+}
+
+- (NSMenu *) applicationDockMenu: (NSApplication *) sender {
+    return dockMenu;
 }
 
 - (void) setupPostlist {    
@@ -542,7 +558,6 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (void) endTagListEditing {
-	NSLog(@"abort editing");
 	[tagList abortEditing];
 }
 
@@ -558,6 +573,10 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 - (void) scrollWebViewDown {
 	//[webView pageDown: self];
+}
+
+- (IBAction) openMainWindow: (id) sender {
+	[mainWindow makeKeyAndOrderFront: self];
 }
 
 - (IBAction) toggleWebPreview: (id) sender {
@@ -1094,7 +1113,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 		}
 	}
 
-    [NSApp beginSheet: postingInterface modalForWindow: [NSApp mainWindow] modalDelegate: nil didEndSelector: nil contextInfo: nil];
+    [NSApp beginSheet: postingInterface modalForWindow: mainWindow modalDelegate: nil didEndSelector: nil contextInfo: nil];
 
     [NSApp runModalForWindow: postingInterface];
 
@@ -1187,6 +1206,38 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	
 	[self closePostingInterface: self];
 	[self refresh: self];
+}
+
+- (void)postNewLinkWithPasteboard:(NSPasteboard *)pboard userData:(NSString *)data error:(NSString **)error {
+    NSURL *url = nil;
+    NSArray *types = [pboard types];
+    
+    if ([types containsObject:NSURLPboardType])
+    {
+        url = [NSURL URLFromPasteboard:pboard];
+    }
+    else if ([types containsObject:NSStringPboardType])
+    {
+        url = [NSURL URLWithString:[pboard stringForType:NSStringPboardType]];
+    }
+	else {
+		return;
+	}
+    
+    NSString *urlString = [url absoluteString];
+    if (urlString != nil) {
+        [currentPostProperties setObject:urlString forKey: @"url"];
+        [self showPostingInterface:self];
+    }
+    else
+    {
+        // app window comes to front when service is triggered, but app does not become active.
+        // still need to activate app before alert is shown.  Very confusing if we leave it to the user.
+        [NSApp activateIgnoringOtherApps:YES]; 
+        (void)NSRunAlertPanel(NSLocalizedString(@"Post selection failed", @"Title of alert indicating error during Post via Cocoalicious service"),
+                              NSLocalizedString(@"Couldn't make selection into a URL.", @"Message indicating couldn't post selection during Post via Cocoalicious service"),
+                              NSLocalizedString(@"OK", @"OK"), nil, nil);
+    }
 }
 
 - (IBAction) postCurrentSafariURL: (id) sender {
@@ -1423,6 +1474,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     [textIndex release];
 #endif
 	[safariScript release];
+        [dockMenu release];
     [super dealloc];
 }
 

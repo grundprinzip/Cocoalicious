@@ -11,6 +11,7 @@
                 editSelectedLinks = id; 
                 indexAll = id; 
                 loginFromPanel = id; 
+                openMainWindow = id; 
                 openRegistrationURL = id; 
                 openSelected = id; 
                 postCurrentSafariURL = id; 

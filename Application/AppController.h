@@ -84,6 +84,7 @@
 	BOOL lastTextChangeWasCompletion;
     
 	NSAppleScript *safariScript;
+        NSMenu *dockMenu;
 	
 	NSTimer *autocompleteTimer;
 	
@@ -96,6 +97,7 @@
 - (void) setupTaglist;
 - (void) setupPostlist;
 - (void) setupToolbar;
+- (void) setUpDockMenu;
 - (void) sizeBezelSubviews;
 - (void) setupWebPreview;
 
@@ -135,6 +137,7 @@
 - (void) resetPostView;
 - (void) previewSelectedLinks;
 
+- (IBAction) openMainWindow: (id) sender;
 - (IBAction) loginFromPanel: (id) sender;
 - (IBAction) cancelLogin: (id) sender;
 - (IBAction) openRegistrationURL: (id) sender;

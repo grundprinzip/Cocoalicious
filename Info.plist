@@ -19,12 +19,37 @@
 	<key>CFBundleSignature</key>
 	<string>Lish</string>
 	<key>CFBundleVersion</key>
-	<string>31</string>
+	<string>32</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
+	<key>NSServices</key>
+	<array>
+		<dict>
+			<key>NSMenuItem</key>
+				<dict>
+					<key>default</key>
+					<string>Post URL via Cocoalicious</string>
+				</dict>
+			<key>NSMessage</key>
+				<string>postNewLinkWithPasteboard</string>
+			<key>NSPortName</key>
+				<string>Cocoalicious</string>
+			<key>NSSendTypes</key>
+				<array>
+					<string>NSURLPboardType</string>
+					<string>NSStringPboardType</string>
+				</array>
+			<key>NSKeyEquivalent</key>
+			<dict>
+			<key>default</key>
+				<string>^</string>
+			</dict>
+		</dict>
+	</array>
+
 </dict>
 </plist>
