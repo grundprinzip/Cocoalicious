@@ -15,6 +15,13 @@
 // - The View/Index menu item shouldn't be enabled until there's something to
 //   index on.
 // - I need to filter out the HTML in text given to addDocumentToIndex.
+// - I should not flush the index to disk after a document is added. I should
+//   probably add a "doFlush" parameter to the addDocumentToIndex selector so
+//   if a single doc is being added it's done so efficiently, and if I'm in
+//   index I can queue up the flushes and only do it every 10 docs or so.
+// - Similar to the search results callback, I should have a status callback
+//   which tells the main thread what I'm doing, with a textual description I
+//   can put in the status bar.
 
 #import <Foundation/Foundation.h>
 #import <CoreServices/CoreServices.h>
@@ -32,8 +39,8 @@
     // A lock on the index while searching or updating.
     NSLock *indexLock;
     
-    // The NSURL results array.
-    NSMutableArray *results;
+    // The NSURL results set.
+    NSMutableSet *results;
     // A lock on results.
     NSLock *resultsLock;
     
@@ -53,18 +60,20 @@
 - (NSString *) indexPath;
 
 // Accessor for the Search Kit result.
-- (NSMutableArray *)results;
+- (NSMutableSet *)results;
 - (BOOL)indexing;
 - (BOOL)searching;
 
 - (void) addDocumentToIndex:(NSURL *)url
-                withContent:(NSString *)content;
+                withContent:(NSString *)content
+                inBatchMode:(BOOL)batchMode;
 - (void) search: (NSDictionary *)searchDict;
 
 - (void) index: (NSDictionary *)indexDict;
 
-- (NSData *) sendRequestForURI: (NSURL *)apiURL 
+- (NSString *) sendRequestForURI: (NSURL *)apiURL 
               usingCachePolicy: (NSURLRequestCachePolicy)cachePolicy;
 
 - (void) logIndexInformation;
+- (NSString *)extractTextFromHTMLString: (NSString *)html;
 @end

@@ -20,7 +20,7 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
         searching = NO;
         indexing = NO;
         indexLock = [[NSLock alloc] init];
-        results = [[NSMutableArray alloc] init];
+        results = [[NSMutableSet alloc] init];
         resultsLock = [[NSLock alloc] init];
         searchLock = [[NSLock alloc] init];
         currentSearchID = 0;
@@ -107,7 +107,7 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
         stringByExpandingTildeInPath];
 }
 
-- (NSMutableArray *)results
+- (NSMutableSet *)results
 {
     // Since this can change at any time, return a copy.
     return [[results copy] autorelease];
@@ -141,13 +141,17 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
 #pragma mark Index Indexing
 - (void)addDocumentToIndex:(NSURL *)url
                withContent:(NSString *)content
+               inBatchMode:(BOOL)batchMode
 {
+    content = [self extractTextFromHTMLString: content];
     if (AWOOSTER_DEBUG) {
         NSLog(@"Adding %@", url);
         NSLog(@"With contents:");
         NSLog(@"%@", content);
     }
-    [self openIndex]; //!! is this necessary?
+    if (!batchMode) {
+        [self openIndex];
+    }
     if (textIndex == nil) {
         NSLog(@"textIndex is nil, not processing: %@", [url absoluteString]);
         return;
@@ -170,7 +174,9 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     
     indexing = NO;
     [indexLock unlock];
-    [self flushIndex]; //!! May want to move for efficiency.
+    if (!batchMode) {
+        [self flushIndex];
+    }
 }
 
 - (void) search:(NSDictionary *)searchDict
@@ -179,10 +185,18 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     [searchLock lock]; [searchLock unlock];
     
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    // Get the properties out of the search dictionary.
     id anObject = [searchDict objectForKey:@"anObject"];
     SEL aSelector = 
         NSSelectorFromString([searchDict objectForKey:@"aSelector"]);
     NSString *query = [searchDict objectForKey:@"query"];
+    NSMutableArray *postArray = [searchDict objectForKey:@"urlArray"];
+    
+    // These are for iterating through stuff (lame, I know).
+    NSMutableArray *postResults = [[NSMutableArray alloc] init];
+    NSEnumerator *postEnum = [postArray objectEnumerator];
+    NSObject *currentPost;
 
     if (!textIndex) {
         [self openIndex];
@@ -243,10 +257,22 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
             [resultsLock lock];
             [results addObject:[NSURL URLWithString: url]];
             [resultsLock unlock];
-            [anObject performSelectorOnMainThread: aSelector
-                                       withObject: [[results copy] autorelease]
-                                    waitUntilDone: NO];
         }
+        
+        // Do a set intersection.
+        [resultsLock lock];
+        while ((currentPost = [postEnum nextObject]) != nil) {
+            if ([results containsObject: currentPost]) {
+                [postResults addObject: currentPost];
+            }
+        }
+        [resultsLock unlock];
+        
+        [anObject performSelectorOnMainThread: aSelector
+                                   withObject: postResults
+                                waitUntilDone: NO];
+        postResults = [[NSMutableArray alloc] init];
+        postEnum = [postArray objectEnumerator];
     }
     CFRelease(searchArray);
     CFRelease(searchGroup);
@@ -254,8 +280,15 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     searching = NO;
     // Inefficient, I know, but I need to make the calling thread aware that
     // we're done searching.
+    [resultsLock lock];
+    while ((currentPost = [postEnum nextObject]) != nil) {
+        if ([results containsObject: currentPost]) {
+            [postResults addObject: currentPost];
+        }
+    }
+    [resultsLock unlock];
     [anObject performSelectorOnMainThread: aSelector
-                               withObject: [[results copy] autorelease]
+                               withObject: postResults
                             waitUntilDone: NO];
     [pool release];
     [searchLock unlock];
@@ -275,6 +308,7 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
         [pool release];
         return;
     }
+    [self openIndex];
     indexing = YES;
     [anObject performSelectorOnMainThread: aSelector
                                withObject: nil
@@ -282,21 +316,19 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     
     NSEnumerator *urlsEnum = [urls objectEnumerator];
     NSURL *currentURL;
+
     while ((currentURL = [urlsEnum nextObject]) != nil) {
-        //!! I'm not comfortable just assuming UTF-8 here. Unfortunately,
-        // NSURLResponse textEncoding: gets you an NSString rather than an
-        // NSStringEncoding. I don't know how to convert between the two yet.
-        NSData *returnData = 
+        NSString *contents = 
             [self sendRequestForURI: currentURL 
                    usingCachePolicy: NSURLRequestReloadIgnoringCacheData];
-        NSString *contents = 
-            [[NSString alloc] initWithData: returnData
-                                  encoding: NSUTF8StringEncoding];
-
+        contents = [self extractTextFromHTMLString: contents];
         [self addDocumentToIndex: currentURL
-                     withContent: contents];
+                     withContent: [[contents copy] autorelease]
+                     inBatchMode: YES];
+        [contents release];
     }
     indexing = NO;
+    [self flushIndex];
     [anObject performSelectorOnMainThread: aSelector
                                withObject: nil
                             waitUntilDone: NO];
@@ -304,8 +336,8 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
 }
 
 
-- (NSData *) sendRequestForURI: (NSURL *) apiURL 
-              usingCachePolicy: (NSURLRequestCachePolicy) cachePolicy 
+- (NSString *) sendRequestForURI: (NSURL *) apiURL 
+                usingCachePolicy: (NSURLRequestCachePolicy) cachePolicy 
 {
     NSMutableURLRequest *req = 
         [NSMutableURLRequest requestWithURL: apiURL 
@@ -320,11 +352,83 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
 	NSData *returnData = [NSURLConnection sendSynchronousRequest: req 
                                                returningResponse: &resp 
                                                            error: &error];
-	
-	if (error) { 
-		NSLog(@"%@", error);
+    // We need to make a copy here, in case the encoding conversion fails, in
+    // which case we need to try initing a string as a cstring from the data.
+    NSData *returnDataCopy = [NSData dataWithBytes: [returnData bytes] 
+                                            length: [returnData length]];
+    
+    if (AWOOSTER_DEBUG) {
+        NSLog(@"mime-type: %@\ntext-encoding:%@\nfilename: %@", [resp MIMEType],
+              [resp textEncodingName], 
+              [resp suggestedFilename]);
+        NSLog(@"length: %u", [returnData length]);
+    }
+
+#warning Need better determination if contents are text.
+#warning Also should be able to handle badly encoded files.
+    NSString *nsStrEncoding = [resp textEncodingName];
+    if (!nsStrEncoding) {
+        [nsStrEncoding release];
+        nsStrEncoding = @"ISO_8859-1"; // ISO Latin 1
+    }
+    CFStringEncoding cfEncoding = 
+        CFStringConvertIANACharSetNameToEncoding(
+            (CFStringRef)nsStrEncoding);
+    if (cfEncoding == kCFStringEncodingInvalidId) {
+        cfEncoding = kCFStringEncodingISOLatin1;
+    }
+
+    NSStringEncoding encoding = 
+        CFStringConvertEncodingToNSStringEncoding(cfEncoding);
+
+    NSString *contents = [[NSString alloc] initWithBytes: [returnData bytes]
+                                                  length: [returnData length]
+                                               encoding: encoding];
+
+    if (!contents) {
+        [contents release];
+        contents = [[NSString alloc] initWithCString: [returnDataCopy bytes]
+                                              length: [returnDataCopy length]];
+    }
+    
+    if (error) { 
+		NSLog(@"Error: %@", [error description]);
 	}
-	
-	return returnData;
+  
+	return contents;
+}
+
+#warning Also need to remove text from <script>...</script> tags.
+#warning And, I need to convert HTML entities to strings.
+- (NSString *)extractTextFromHTMLString: (NSString *)html
+{
+    NSMutableString *result = [[NSMutableString alloc] init];
+    // If we were given a nil string, return;
+    if (nil == html) {
+        return result;
+    }
+    NSString *tempString;
+    NSCharacterSet *leftBracketSet;
+    NSCharacterSet *rightBracketSet;
+    NSScanner *theScanner = [NSScanner scannerWithString:html];
+    
+    leftBracketSet = [NSCharacterSet
+        characterSetWithCharactersInString:@"<"];
+    rightBracketSet = [NSCharacterSet
+        characterSetWithCharactersInString:@">"];
+    
+    while ([theScanner isAtEnd] == NO) {
+        if ([theScanner scanUpToCharactersFromSet: leftBracketSet
+                                       intoString: &tempString]) {
+            [result appendString: tempString];
+            [result appendString: @"\n"];
+        }
+        if ([theScanner scanString:@"<" intoString: NULL] &&
+            [theScanner scanUpToCharactersFromSet:rightBracketSet
+                                       intoString: NULL] &&
+            [theScanner scanString:@">" intoString: NULL]) {
+        }
+    }
+    return result;
 }
 @end
