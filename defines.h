@@ -43,7 +43,7 @@
 #define kDELETE_POST_SEGMENT_TAG 1
 
 #define AWOOSTER_CHANGES 1
-#define AWOOSTER_DEBUG 0
+#define AWOOSTER_DEBUG 1
 #define kTEXT_INDEX_PATH @"~/Library/Caches/Cocoalicious"
 #define kTEXT_INDEX_NAME @"FullText v1.index"
 #define kTEXT_INDEX_VERSION @"HTML Text v1.0"

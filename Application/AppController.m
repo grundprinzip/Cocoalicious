@@ -304,7 +304,8 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     if (AWOOSTER_DEBUG) {
         NSLog(@"updatePostFilter:");
     }
-    [self setFilteredPosts: [results autorelease]];
+    
+	[self setFilteredPosts: results];
     
     if ([textIndex indexing] || [textIndex searching]) {
         [spinnyThing performSelectorOnMainThread: @selector(startAnimation:) 
@@ -313,40 +314,23 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
         [spinnyThing performSelectorOnMainThread: @selector(stopAnimation:) 
                                       withObject: self waitUntilDone: NO]; 
     }
-    [postList reloadData];
+    
+	[postList reloadData];
 }
 #endif
 
 - (NSArray *) filterPosts: (NSArray *) postArray forSearch: (NSString *) search tags: (NSArray *) matchTags {
     NSEnumerator *postEnum = [postArray objectEnumerator];
-    DCAPIPost *currentPost;
     NSMutableArray *filteredPostList = [[NSMutableArray alloc] init];
 	BOOL searchTags = NO;
 	BOOL searchURIs = NO;
     
-#ifdef AWOOSTER_CHANGES
-    if (useFullTextSearch && search) {
-        NSDictionary *searchDict = [NSDictionary dictionaryWithObjectsAndKeys:
-            self, @"anObject",
-            NSStringFromSelector(@selector(updatePostFilter:)), @"aSelector",
-            search, @"query",
-            posts, @"urlArray",
-            nil];
-        [NSThread detachNewThreadSelector:@selector(search:)
-                                 toTarget:textIndex
-                               withObject:searchDict];
-        [spinnyThing performSelectorOnMainThread: @selector(startAnimation:) 
-                                      withObject: self waitUntilDone: NO]; 
-
-        //!! uh, is this really what to do?
-        return [filteredPostList autorelease];
-    }
-#endif
-
 	if (useExtendedSearch) {
 		searchTags = YES;
 		searchURIs = YES;
 	}
+
+    DCAPIPost *currentPost;
 
     while ((currentPost = [postEnum nextObject]) != nil) {
 		if ([currentPost matchesSearch: search extended: YES tags: matchTags matchKeywordsAsTags: searchTags URIs: searchURIs]) {
@@ -494,7 +478,16 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
         [self setCurrentSearch: search];
     }
 
+#ifdef AWOOSTER_CHANGES
+	if (useFullTextSearch) {
+		[self beginFullTextSearchForQuery: [self currentSearch]];
+	}
+	else {
+		[self setFilteredPosts: [self filterPosts: [self posts] forSearch: [self currentSearch] tags: [self selectedTags]]];
+	}
+#else
 	[self setFilteredPosts: [self filterPosts: [self posts] forSearch: [self currentSearch] tags: [self selectedTags]]];
+#endif
 }
 
 - (void) makePostListFirstResponder {
@@ -574,14 +567,33 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	[[searchMenu itemWithTag: 1] setState: NSOffState];
 	[[searchMenu itemWithTag: 2] setState: NSOnState];
 	
-	[[searchField cell] setSearchMenuTemplate: 
-        [[searchField cell] searchMenuTemplate]];
+	[[searchField cell] setSearchMenuTemplate: [[searchField cell] searchMenuTemplate]];
 
 	useExtendedSearch = NO;
     useFullTextSearch = YES;
 	
 	[self doSearchForString: [searchField stringValue]];
     [postList reloadData];
+}
+
+- (void) beginFullTextSearchForQuery: (NSString *) query {
+    if (!query) {
+		return;
+	}
+        
+	NSDictionary *searchDict = [NSDictionary dictionaryWithObjectsAndKeys:
+		self, @"anObject",
+		NSStringFromSelector(@selector(updatePostFilter:)), @"aSelector",
+		query, @"query",
+		[self posts], @"urlArray",
+		nil];
+			
+	[NSThread detachNewThreadSelector:@selector(search:)
+		toTarget:textIndex
+		withObject:searchDict];
+							   
+	[spinnyThing performSelectorOnMainThread: @selector(startAnimation:) 
+                                      withObject: self waitUntilDone: NO];
 }
 
 - (IBAction) indexAll: (id) sender

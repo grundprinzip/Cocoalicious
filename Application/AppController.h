@@ -136,6 +136,7 @@
 - (IBAction) setSearchTypeToBasic: (id) sender;
 - (IBAction) setSearchTypeToExtended: (id) sender;
 #ifdef AWOOSTER_CHANGES
+- (void) beginFullTextSearchForQuery: (NSString *) query;
 - (void)updateIndexing: (id)anObject;
 - (IBAction) setSearchTypeToFullText: (id) sender;
 - (IBAction) indexAll: (id) sender;

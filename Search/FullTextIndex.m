@@ -216,14 +216,21 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     [searchLock lock];
     [results removeAllObjects];
     searching = YES;
+	
+	NSLog(@"ABOUT TO CREATE SEARCH GROUP");
+	
     // We need a search group.
     SKIndexRef indexArray[1];
     indexArray[0] = textIndex;
     CFArrayRef searchArray = CFArrayCreate(NULL,
-                                           (void *)indexArray,
+                                           (void *) indexArray,
                                            1,
                                            &kCFTypeArrayCallBacks);
+	
     SKSearchGroupRef searchGroup = SKSearchGroupCreate(searchArray);
+
+	NSLog(@"HERE");
+
     SKSearchResultsRef searchResults
         = SKSearchResultsCreateWithQuery(searchGroup,
                                          (CFStringRef)query,
@@ -231,6 +238,9 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
                                          kTEXT_SEARCH_MAX_RESULTS,
                                          NULL,
                                          NULL);
+										 
+	NSLog(@"CREATED SEARCH GROUP");
+
     SKDocumentRef outDocumentsArray[kTEXT_SEARCH_CHUNK_SIZE];
     int resultCount = 0;
     int location;
@@ -278,10 +288,12 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     CFRelease(searchGroup);
     CFRelease(searchResults);
     searching = NO;
-    // Inefficient, I know, but I need to make the calling thread aware that
+    
+	// Inefficient, I know, but I need to make the calling thread aware that
     // we're done searching.
     [resultsLock lock];
-    while ((currentPost = [postEnum nextObject]) != nil) {
+    
+	while ((currentPost = [postEnum nextObject]) != nil) {
         if ([results containsObject: currentPost]) {
             [postResults addObject: currentPost];
         }
@@ -318,14 +330,15 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     NSURL *currentURL;
 
     while ((currentURL = [urlsEnum nextObject]) != nil) {
-        NSString *contents = 
-            [self sendRequestForURI: currentURL 
+        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+		NSString *contents = [self sendRequestForURI: currentURL 
                    usingCachePolicy: NSURLRequestReloadIgnoringCacheData];
         contents = [self extractTextFromHTMLString: contents];
         [self addDocumentToIndex: currentURL
                      withContent: [[contents copy] autorelease]
                      inBatchMode: YES];
         [contents release];
+		[pool release];
     }
     indexing = NO;
     [self flushIndex];
