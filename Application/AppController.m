@@ -1007,7 +1007,10 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	if (type) {
 		NSString *pboardContents = [pboard stringForType: type];
 
-		if ([currentPostProperties objectForKey: @"description"]) {
+		if ([currentPostProperties objectForKey: @"extended"]) {
+			[[NSApp mainWindow] makeFirstResponder: postTagsField];
+		}
+		else if ([currentPostProperties objectForKey: @"description"]) {
 			[[NSApp mainWindow] makeFirstResponder: postExtendedField];
 		}
 		else if ([currentPostProperties objectForKey: @"url"]) {
@@ -1144,6 +1147,24 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	
 	if (description) {
 		[currentPostProperties setObject: description forKey: @"description"];
+	}
+
+	errorInfo = nil;
+
+	/* reuse args */
+	result = [safariScript callHandler: kDCSafariGetCurrentSelection withArguments: arguments errorInfo: &errorInfo];
+	scriptResult = [result stringValue];
+
+    if (errorInfo) {
+        [self handleScriptError: errorInfo];
+    }
+    /* Check the handler's return value */
+    else if ([scriptResult isEqualToString: kScriptError]) {
+		#warning Put error here
+	}
+	
+	if (scriptResult && ![scriptResult isEqualToString: [NSString string]]) {
+		[currentPostProperties setObject: scriptResult forKey: @"extended"];
 	}
 	
 	[self showPostingInterface: self];

@@ -9,7 +9,7 @@
 
 #define kDEFAULT_SECURITY_DOMAIN (@"del.icio.us API")
 
-#define kUSER_AGENT (@"Cocoal.icio.us/1.0 (v28) (Mac OS X; http://www.scifihifi.com/cocoalicious)")
+#define kUSER_AGENT (@"Cocoal.icio.us/1.0 (v29) (Mac OS X; http://www.scifihifi.com/cocoalicious)")
 
 #define kTAG_SEPARATOR (@" ")
 #define kHTTP_PROTOCOL_PREFIX (@"http://")
@@ -30,6 +30,7 @@
 #define kDCSafariScriptLibrary @"safari_script"
 #define kDCScriptType @"scpt"
 #define kDCSafariGetCurrentURL @"fetch_safari_url"
+#define kDCSafariGetCurrentSelection @"fetch_safari_selection"
 #define kScriptError @"ERROR"
 
 #define kREFRESH_BUTTON_IMAGE @"refresh_icon"
