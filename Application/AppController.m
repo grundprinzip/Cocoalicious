@@ -154,7 +154,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 		[spinnyThing performSelectorOnMainThread: @selector(startAnimation:) withObject: self waitUntilDone: YES];
 
-		[self refreshPosts];
+		[self refreshPostsWithDownload: YES];
 		[postList reloadData];
 
 		[spinnyThing performSelectorOnMainThread: @selector(stopAnimation:) withObject: self waitUntilDone: YES];
@@ -163,23 +163,56 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	}
 }
 
-- (void) refreshPosts {
+- (void) refreshPostsWithDownload: (BOOL) download {
 	DCAPITag *tagFilter = [self currentTagFilter];
 
-	NSArray *unfilteredPosts = [[self client] requestPostsFilteredByTag: tagFilter count: nil];
+	NSArray *unfilteredPosts;
+
+	if (download || ![self posts]) {
+		unfilteredPosts = [[self client] requestPostsFilteredByTag: tagFilter count: nil];
+	}
+	else {
+		unfilteredPosts = [self posts];
+	}
 	
 	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"date" ascending: NO selector: @selector(compare:)];
 	NSArray *resortedPosts = [unfilteredPosts sortedArrayUsingDescriptors: [NSArray arrayWithObjects: sortDescriptor, nil]];
 	
-	NSString *search = [self currentSearch];
 	[self setPosts: resortedPosts];
+
+	NSString *search = [self currentSearch];
 	
-	if (search) {
-		[self setFilteredPosts: [self filterPosts: [self posts] forSearch: search]];
+	NSArray *matchTags = nil;
+	
+	if (![tagList isRowSelected: 0]) {
+		matchTags = [self selectedTags];
+	}
+	
+	if (search || matchTags) {
+		[self setFilteredPosts: [self filterPosts: [self posts] forSearch: search tags: matchTags]];
 	}
 	else {
 		[self setFilteredPosts: nil];
 	}
+	
+	[postList reloadData];
+}
+
+- (NSArray *) selectedTags {
+	if ([tagList isRowSelected: 0]) {
+		return nil;
+	}
+	
+	NSIndexSet *selectedRows = [tagList selectedRowIndexes];
+	unsigned currentIndex = [selectedRows firstIndex];
+	NSMutableArray *selectedTags = [NSMutableArray array];
+	
+	while (currentIndex != NSNotFound) {
+		[selectedTags addObject: [[tags objectAtIndex: currentIndex - 1] name]];
+		currentIndex = [selectedRows indexGreaterThanIndex: currentIndex];
+	}
+	
+	return selectedTags;
 }
 
 #ifdef AWOOSTER_CHANGES
@@ -197,7 +230,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     }
 }
 
-- (void)updatePostFilter: (NSMutableArray *)results
+- (void) updatePostFilter: (NSMutableArray *) results
 {
     if (AWOOSTER_DEBUG) {
         NSLog(@"updatePostFilter:");
@@ -237,7 +270,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 #endif
 
-- (NSArray *) filterPosts: (NSArray *) postArray forSearch: (NSString *) search {
+- (NSArray *) filterPosts: (NSArray *) postArray forSearch: (NSString *) search tags: (NSArray *) matchTags {
     NSEnumerator *postEnum = [postArray objectEnumerator];
     DCAPIPost *currentPost;
     NSMutableArray *filteredPostList = [[NSMutableArray alloc] init];
@@ -286,7 +319,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	}
 
     while ((currentPost = [postEnum nextObject]) != nil) {
-		if ([currentPost matchesSearch: search extended: YES tags: searchTags URIs: searchURIs]) {
+		if ([currentPost matchesSearch: search extended: YES tags: matchTags matchKeywordsAsTags: searchTags URIs: searchURIs]) {
 			[filteredPostList addObject: currentPost];
         }
     }
@@ -300,7 +333,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 - (void) refreshAll {
     [self refreshTags];
-    [self refreshPosts];
+    [self refreshPostsWithDownload: YES];
     [self refreshDates];
 }
 
@@ -420,13 +453,13 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 - (void) doSearchForString: (NSString *) search {
     if (!search || [search isEqualToString: [NSString string]]) {
         [self setCurrentSearch: nil];
-        [self setFilteredPosts: [self posts]];
 		[postList deselectAll: self];
     }
     else {
         [self setCurrentSearch: search];
-        [self setFilteredPosts: [self filterPosts: [self posts] forSearch: search]];
     }
+
+	[self setFilteredPosts: [self filterPosts: [self posts] forSearch: [self currentSearch] tags: [self selectedTags]]];
 }
 
 - (void) makePostListFirstResponder {
@@ -632,6 +665,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 	NSPasteboard *pboard = [NSPasteboard generalPasteboard];
 	[pboard declareTypes: [NSArray arrayWithObjects:NSStringPboardType, nil] owner: self];
+	
 	[pboard setString: [NSString stringWithFormat: [[NSBundle mainBundle] objectForInfoDictionaryKey: @"DCHTMLTagFormat"], [currentURL absoluteString], [currentPost description]] forType: NSStringPboardType];
 }
 
@@ -656,9 +690,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     if (table == tagList) {
 		[self setCurrentSearch: nil];
 		[searchField setStringValue: [NSString string]];
-		[self resetPostView];
-		[self updateTagFilterFromSelection];
-        [NSThread detachNewThreadSelector: @selector(refreshPostView) toTarget: self withObject: nil];
+		[self refreshPostsWithDownload: NO];
     }
     else if (table == postList) {
         selectedRow = [postList selectedRow];

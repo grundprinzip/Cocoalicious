@@ -103,56 +103,77 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 	return [[hash retain] autorelease];
 }
 
-- (BOOL) matchesSearch: (NSString *) keyword extended: (BOOL) searchExtended tags: (BOOL) searchTags URIs: (BOOL) searchURIs {
-	if (!keyword) {
+- (BOOL) matchesSearch: (NSString *) keyword extended: (BOOL) searchExtended tags: (NSArray *) matchTags matchKeywordsAsTags: (BOOL) matchKeywordsAsTags URIs: (BOOL) searchURIs {
+	if (!keyword && !matchTags) {
 		return YES;
 	}
-	
-	NSString *keywordString = [keyword stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
-	NSArray *keywords = [keywordString componentsSeparatedByString: kSEARCH_SEPARATOR_STRING];
 
-    NSRange range = [[self description] rangeOfString: keywordString options: NSCaseInsensitiveSearch];
-    
-    if (range.location != NSNotFound) {
-		return YES;
+	if (matchTags) {
+		if ([self matchesTags: matchTags]) {
+			if (!keyword) {
+				return YES;
+			}
+		}
+		else {
+			return NO;
+		}
 	}
-	
-	if (searchExtended) {
-		range = [[self extended] rangeOfString: keywordString options: NSCaseInsensitiveSearch];
+		
+	if (keyword) {
+		NSString *keywordString = [keyword stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+		NSArray *keywords = [keywordString componentsSeparatedByString: kSEARCH_SEPARATOR_STRING];
 
+		NSRange range = [[self description] rangeOfString: keywordString options: NSCaseInsensitiveSearch];
+		
 		if (range.location != NSNotFound) {
 			return YES;
 		}
-	}
-
-	if (searchTags) {
-		NSEnumerator *tagList = [[self tags] objectEnumerator];
-		NSString *currentTag;
-
-		int foundCount = 0;
-
-		while ((currentTag = [tagList nextObject]) != nil) {
-			int i;
-			int max = [keywords count];
-			
-			for (i = 0; i < max; i++) {
-				NSString *currentKeyword = [keywords objectAtIndex: i];
-				
-				if ([currentTag isEqualToString: currentKeyword]) {
-					foundCount++;
-				}
+		
+		if (matchKeywordsAsTags) {
+			if ([self matchesTags: keywords]) {
+				return YES;
 			}
-			
-			if (foundCount == max) {
+		}
+		
+		if (searchExtended) {
+			range = [[self extended] rangeOfString: keywordString options: NSCaseInsensitiveSearch];
+
+			if (range.location != NSNotFound) {
+				return YES;
+			}
+		}
+
+		if (searchURIs) {
+			range = [[[self URL] absoluteString] rangeOfString: keywordString options: NSCaseInsensitiveSearch];
+					
+			if (range.location != NSNotFound) {
 				return YES;
 			}
 		}
 	}
+	
+	return NO;
+}
 
-	if (searchURIs) {
-		range = [[[self URL] absoluteString] rangeOfString: keywordString options: NSCaseInsensitiveSearch];
-				
-		if (range.location != NSNotFound) {
+- (BOOL) matchesTags: (NSArray *) matchTags {
+	NSEnumerator *tagList = [[self tags] objectEnumerator];
+	NSString *currentTag;
+
+	int foundCount = 0;
+
+	while ((currentTag = [tagList nextObject]) != nil) {
+		int i;
+		int max = [matchTags count];
+		
+		for (i = 0; i < max; i++) {
+			NSString *matchTag = [matchTags objectAtIndex: i];
+						
+			if ([currentTag isEqualToString: matchTag]) {
+				foundCount++;
+			}
+		}
+		
+		if (foundCount == max) {
 			return YES;
 		}
 	}

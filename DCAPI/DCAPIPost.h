@@ -34,6 +34,7 @@
 - (NSArray *) tags;
 - (void) setHash: (NSString *) newHash;
 - (NSString *) hash;
-- (BOOL) matchesSearch: (NSString *) keyword extended: (BOOL) searchExtended tags: (BOOL) searchTags URIs: (BOOL) searchURIs;
+- (BOOL) matchesSearch: (NSString *) keyword extended: (BOOL) searchExtended tags: (NSArray *) matchTags matchKeywordsAsTags: (BOOL) matchKeywordsAsTags URIs: (BOOL) searchURIs;
+- (BOOL) matchesTags: (NSArray *) matchTags;
 
 @end

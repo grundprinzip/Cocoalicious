@@ -70,12 +70,13 @@
 - (IBAction) openSelected: (id) sender;
 - (IBAction) refresh: (id) sender;
 - (void) refreshTags;
-- (void) refreshPosts;
+- (void) refreshPostsWithDownload: (BOOL) download;
 - (void) refreshDates;
 - (void) refreshAll;
 
 - (void) doSearchForString: (NSString *) string;
-- (NSArray *) filterPosts: (NSArray *) postList forSearch: (NSString *) search;
+//- (NSArray *) filterPosts: (NSArray *) postArray forTags: (NSArray *) matchTags;
+- (NSArray *) filterPosts: (NSArray *) postArray forSearch: (NSString *) search tags: (NSArray *) matchTags;
 
 - (void) login;
 - (void) loginWithUsername: (NSString *) username password: (NSString *) password APIURL: (NSURL *) APIURL;
@@ -95,6 +96,8 @@
 - (void) updateTagFilterFromSelection;
 - (void) setCurrentSearch: (NSString *) newCurrentSearch;
 - (NSString *) currentSearch;
+
+- (NSArray *) selectedTags;
 
 - (void) resetPostView;
 
