@@ -226,9 +226,7 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     
     [results removeAllObjects];
     searching = YES;
-	
-	NSLog(@"ABOUT TO CREATE SEARCH GROUP");
-	
+		
     // We need a search group.
     SKIndexRef indexArray[1];
     indexArray[0] = textIndex;
@@ -239,8 +237,6 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
 	
     SKSearchGroupRef searchGroup = SKSearchGroupCreate(searchArray);
 
-	NSLog(@"HERE");
-
     SKSearchResultsRef searchResults
         = SKSearchResultsCreateWithQuery(searchGroup,
                                          (CFStringRef)query,
@@ -248,8 +244,6 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
                                          kTEXT_SEARCH_MAX_RESULTS,
                                          NULL,
                                          NULL);
-										 
-	NSLog(@"CREATED SEARCH GROUP");
 
     SKDocumentRef outDocumentsArray[kTEXT_SEARCH_CHUNK_SIZE];
     int resultCount = 0;
@@ -272,10 +266,10 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
         for (i = 0; i < count; i++) {
             NSString *url = (NSString *)SKDocumentGetName(outDocumentsArray[i]);
             if (AWOOSTER_DEBUG) {
-                NSLog(@"  %@", [NSURL URLWithString: url]);
+                NSLog(@"  %@", url);
             }
             [resultsLock lock];
-            [results addObject:[NSURL URLWithString: url]];
+            [results addObject: url];
             [resultsLock unlock];
         }
         
@@ -289,7 +283,7 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
         [resultsLock unlock];
         
         [anObject performSelectorOnMainThread: aSelector
-                                   withObject: postResults
+                                   withObject: [postResults autorelease]
                                 waitUntilDone: NO];
         postResults = [[NSMutableArray alloc] init];
         postEnum = [postArray objectEnumerator];
@@ -310,7 +304,7 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
         }
         [resultsLock unlock];
         [anObject performSelectorOnMainThread: aSelector
-                                   withObject: postResults
+                                   withObject: [postResults autorelease]
                                 waitUntilDone: NO];
     }
     [pool release];
@@ -341,7 +335,7 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     NSURL *currentURL;
 
     while ((currentURL = [urlsEnum nextObject]) != nil) {
-        NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+        NSAutoreleasePool *whilePool = [[NSAutoreleasePool alloc] init];
 		NSString *contents = [self sendRequestForURI: currentURL 
                    usingCachePolicy: NSURLRequestReloadIgnoringCacheData];
         contents = [self extractTextFromHTMLString: contents];
@@ -349,7 +343,7 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
                      withContent: [[contents copy] autorelease]
                      inBatchMode: YES];
         [contents release];
-		[pool release];
+		[whilePool release];
     }
     indexing = NO;
     [self flushIndex];
