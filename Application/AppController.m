@@ -1043,20 +1043,20 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 		NSString *pboardContents = [pboard stringForType: type];
 
 		if ([currentPostProperties objectForKey: @"extended"]) {
-			[[NSApp mainWindow] makeFirstResponder: postTagsField];
+			[postingInterface makeFirstResponder: postTagsField];
 		}
 		else if ([currentPostProperties objectForKey: @"description"]) {
-			[[NSApp mainWindow] makeFirstResponder: postExtendedField];
+			[postingInterface makeFirstResponder: postExtendedField];
 		}
 		else if ([currentPostProperties objectForKey: @"url"]) {
-			[[NSApp mainWindow] makeFirstResponder: postDescriptionField];
+			[postingInterface makeFirstResponder: postDescriptionField];
 		}
 		else if (![currentPostProperties objectForKey: @"url"] && pboardContents && [pboardContents hasPrefix: kHTTP_PROTOCOL_PREFIX]) {
 			[currentPostProperties setObject: pboardContents forKey: @"url"];
-			[[NSApp mainWindow] makeFirstResponder: postDescriptionField];
+			[postingInterface makeFirstResponder: postDescriptionField];
 		}
 		else {
-			[[NSApp mainWindow] makeFirstResponder: postURLField];
+			[postingInterface makeFirstResponder: postURLField];
 		}
 	}
 
