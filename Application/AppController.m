@@ -561,6 +561,8 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (IBAction) setSearchTypeToBasic: (id) sender {
+	[[searchField cell] setPlaceholderString: NSLocalizedString(@"Basic Search", @"Search field placeholder text for basic search.")];
+
 	[[searchMenu itemWithTag: 0] setState: NSOnState];
 	[[searchMenu itemWithTag: 1] setState: NSOffState];
 	[[searchMenu itemWithTag: 2] setState: NSOffState];
@@ -577,6 +579,8 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (IBAction) setSearchTypeToExtended: (id) sender {
+	[[searchField cell] setPlaceholderString: NSLocalizedString(@"Extended Search", @"Search field placeholder text for extended search.")];
+
 	[[searchMenu itemWithTag: 0] setState: NSOffState];
 	[[searchMenu itemWithTag: 1] setState: NSOnState];
 	[[searchMenu itemWithTag: 2] setState: NSOffState];
@@ -594,8 +598,9 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 #pragma mark Full Text Search
 #ifdef AWOOSTER_CHANGES
-- (IBAction) setSearchTypeToFullText: (id) sender 
-{
+- (IBAction) setSearchTypeToFullText: (id) sender  {
+	[[searchField cell] setPlaceholderString: NSLocalizedString(@"Full Text Search", @"Search field placeholder text for full text search.")];
+	
 	[[searchMenu itemWithTag: 0] setState: NSOffState];
 	[[searchMenu itemWithTag: 1] setState: NSOffState];
 	[[searchMenu itemWithTag: 2] setState: NSOnState];
