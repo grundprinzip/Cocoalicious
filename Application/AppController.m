@@ -47,16 +47,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (void) awakeFromNib {
-	/* NSRect webViewBezelFrame = [webViewBezel frame];
-	[webView setFrame: NSInsetRect(webViewBezelFrame, 2, 2)];
-
-	NSRect postListBezelFrame = [[[postList enclosingScrollView] superview] frame];
-	[[postList enclosingScrollView] setFrame: NSMakeRect(postListBezelFrame.origin.x + 2, postListBezelFrame.origin.y + 2, postListBezelFrame.size.width - 4, postListBezelFrame.size.height - 3)];
-        
-	NSRect tagListBezelFrame = [[[tagList enclosingScrollView] superview] frame];
-	[[tagList enclosingScrollView] setFrame: NSMakeRect(tagListBezelFrame.origin.x + 2, tagListBezelFrame.origin.y + 2, tagListBezelFrame.size.width - 4, tagListBezelFrame.size.height - 3)];*/
-
-
+	[self sizeBezelSubviews];
 	[self setupToolbar];
 }
 
@@ -109,7 +100,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	[refreshButton setWidth: 22 forSegment: 0];
 	NSImage *refreshIcon = [[NSImage alloc] initWithContentsOfFile: [[NSBundle mainBundle] pathForResource: kREFRESH_BUTTON_IMAGE ofType: @"tif"]];
 	[[refreshButton cell] setTrackingMode: NSSegmentSwitchTrackingMomentary];
-	//[refreshButton setImage: refreshIcon forSegment: 0];
+	[refreshButton setImage: refreshIcon forSegment: 0];
 	[refreshIcon release];
 	
 	[addDeletePostButton setSegmentCount: 2];
@@ -161,6 +152,19 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] initWithDateFormat: dateFormatString allowNaturalLanguage: YES];
 	
 	[dateColumnCell setFormatter: dateFormatter];
+}
+
+- (void) sizeBezelSubviews {
+	NSRect webViewBezelFrame = [webViewBezel frame];
+	NSRect postListBezelFrame = [[[postList enclosingScrollView] superview] frame];
+	NSRect tagListBezelFrame = [[[tagList enclosingScrollView] superview] frame];
+
+	[webView setFrame: NSMakeRect(webViewBezelFrame.origin.x + 2, webViewBezelFrame.origin.y - (postListBezelFrame.size.height + ([previewSplitView dividerThickness] - 2)), webViewBezelFrame.size.width - 4, webViewBezelFrame.size.height - 4)];
+	
+	[[postList enclosingScrollView] setFrame: NSMakeRect(postListBezelFrame.origin.x + 2, postListBezelFrame.origin.y + 2, postListBezelFrame.size.width - 4, postListBezelFrame.size.height - 3)];
+        
+	[[tagList enclosingScrollView] setFrame: NSMakeRect(tagListBezelFrame.origin.x + 2, tagListBezelFrame.origin.y + 2, tagListBezelFrame.size.width - 4, tagListBezelFrame.size.height - 3)];
+
 }
 
 - (IBAction) refresh: (id) sender {

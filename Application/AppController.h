@@ -83,6 +83,7 @@
 - (void) setupTaglist;
 - (void) setupPostlist;
 - (void) setupToolbar;
+- (void) sizeBezelSubviews;
 
 - (IBAction) openSelected: (id) sender;
 - (IBAction) refresh: (id) sender;
