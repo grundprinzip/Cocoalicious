@@ -56,17 +56,15 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     NSFileManager *fm = [NSFileManager defaultManager];
     
     // Index file already exists.
+    [indexLock lock];
     if ([fm fileExistsAtPath: indexPath]) {
-        [indexLock lock];
         textIndex = SKIndexOpenWithURL((CFURLRef)indexFileUrl,
                                        (CFStringRef)kTEXT_INDEX_VERSION,
                                        true);
-        [indexLock unlock];
     }
     
     // Load existing index, if not already loaded.
     if (!textIndex) {
-        [indexLock lock];
         textIndex = SKIndexCreateWithURL((CFURLRef)indexFileUrl,
                                          // Actually index name.
                                          (CFStringRef)kTEXT_INDEX_VERSION,
@@ -74,8 +72,8 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
                                          kSKIndexInverted,
                                          // No need to set these options.
                                          NULL);
-        [indexLock unlock];
     }
+    [indexLock unlock];
     
     //!! Doesn't do anything unless we use SKIndexAddDocument.
     //SKLoadDefaultExtractorPlugIns();
