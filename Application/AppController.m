@@ -252,8 +252,6 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 - (void) refreshPostsWithDownload: (BOOL) download {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	DCAPITag *tagFilter = [self currentTagFilter];
-
 	NSArray *unfilteredPosts;
 
 	if (download || ![self posts]) {
@@ -331,8 +329,18 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     if (AWOOSTER_DEBUG) {
         NSLog(@"updatePostFilter:");
     }
-    
-	[self setFilteredPosts: results];
+	
+	NSArray *selectedTags = [self selectedTags];
+    NSArray *filteredResults;
+	
+	if (selectedTags) {
+		filteredResults = [self filterPosts: results forSearch: nil tags: selectedTags];
+	}
+	else {
+		filteredResults = results;
+	}
+	
+	[self setFilteredPosts: filteredResults];
     
     if ([textIndex indexing] || [textIndex searching]) {
         [spinnyThing performSelectorOnMainThread: @selector(startAnimation:) 
@@ -499,11 +507,11 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 - (void) doSearchForString: (NSString *) search {
     if (!search || [search isEqualToString: [NSString string]]) {
         [self setCurrentSearch: nil];
-		[postList deselectAll: self];
-    }
-    else {
-        [self setCurrentSearch: search];
-    }
+		[self refreshPostsWithDownload: NO];
+		return;
+	}
+	
+	[self setCurrentSearch: search];
 
 #ifdef AWOOSTER_CHANGES
 	if (useFullTextSearch) {
@@ -617,7 +625,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (void) beginFullTextSearchForQuery: (NSString *) query {
-    if (!query) {
+    if (!query || [query isEqualToString: [NSString string]]) {
 		return;
 	}
         
