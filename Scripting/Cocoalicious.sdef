@@ -39,7 +39,7 @@
 						<cocoa method="date"/>
 					</property>
 					<property name="id" code="ID  " type="string" access="r" description="The id of the post.">
-						<cocoa method="hash"/>
+						<cocoa method="urlHash"/>
 					</property>
 				</properties>
 			</class>
