@@ -254,7 +254,7 @@
 		3B3F0228073EF1A3003AB1C7 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.scpt;
+			lastKnownFileType = file;
 			name = safari_script.scpt;
 			path = Scripts/safari_script.scpt;
 			refType = 4;
