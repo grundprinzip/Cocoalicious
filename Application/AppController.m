@@ -80,6 +80,8 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	[tagList setAction: @selector(makePostListFirstResponder) forKey: NSRightArrowFunctionKey];
 
 	[tagList initializeColumnsUsingHeaderCellClass: [SFHFMetalTableHeaderCell class] formatterClass: [DCAPITagFormatter class]];
+	
+	[tagList registerForDraggedTypes: [NSArray arrayWithObject: DCAPIPostPboardType]];
 
     SFHFMetalTableHeaderCell *cornerCell = [[SFHFMetalTableHeaderCell alloc] initTextCell: @" "];
 	SFHFCornerView *cornerControl = [[SFHFCornerView alloc] init];
@@ -636,20 +638,71 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 - (BOOL) tableView: (NSTableView *) tableView writeRows: (NSArray *) rows toPasteboard: (NSPasteboard *) pboard {
 	if (tableView == postList) {
-		[pboard declareTypes: [NSArray arrayWithObjects: NSURLPboardType, NSStringPboardType, NSFilenamesPboardType, nil] owner: self];
+		[pboard declareTypes: [NSArray arrayWithObject: DCAPIPostPboardType] owner: self];
 		
 		NSNumber *currentPostIndex = [rows objectAtIndex: 0];
 		DCAPIPost *currentPost = [[self filteredPosts] objectAtIndex: [currentPostIndex unsignedIntValue]];
-
-		NSURL *currentURL = [currentPost URL];
-		[pboard setString: [currentURL absoluteString] forType: NSStringPboardType];
-		[currentURL writeToPasteboard: pboard];
-
+		
+		[pboard setData: [NSKeyedArchiver archivedDataWithRootObject: currentPost] forType: DCAPIPostPboardType];
+			
 		return YES;
 	}
 	
 	return NO;
 }
+
+- (NSDragOperation) tableView: (NSTableView *) tableView validateDrop: (id <NSDraggingInfo>) info proposedRow: (int) row proposedDropOperation: (NSTableViewDropOperation) operation {
+	if (tableView == tagList && postList == [info draggingSource] && operation == NSTableViewDropOn && row > 0 && row <= [[self tags] count]) {
+		return NSDragOperationLink;
+	}
+	
+	return NSDragOperationNone;
+}
+
+- (BOOL) tableView: (NSTableView *) tableView acceptDrop: (id <NSDraggingInfo>) info row: (int) row dropOperation: (NSTableViewDropOperation) operation {
+#warning modify if tableView:validateDrop:proposedRow:proposedOperation returns for more than just tag assignment
+	NSPasteboard *pboard = [info draggingPasteboard];
+	NSData *data = [pboard dataForType: DCAPIPostPboardType];
+	
+	DCAPIPost *post = [NSKeyedUnarchiver unarchiveObjectWithData: data];
+	NSString *postTags = [post tagsAsString];
+	postTags = [postTags stringByAppendingFormat: @" %@", [[[self tags] objectAtIndex: row - 1] name]];
+	[post setTagsFromString: postTags];
+	
+	[[self client] addPost: post];
+	
+	[self refresh: self];
+	
+	return YES;
+	
+	return NO;
+}
+
+
+// ----- beg implementation for postList tooltips -----
+- (NSString *)tableView:(SFHFTableView *)tableView tooltipForItem:(id)item {
+	if (tableView == postList) {
+		NSString *toolTip = [item extended];
+		if (toolTip) {
+			return toolTip;
+		} else {
+			return @"No extended description available";
+		}
+	}
+	return nil;
+}
+
+- (id)tableView:(SFHFTableView *)tableView itemAtRow:(int)row {	
+	if (tableView == postList) {
+		DCAPIPost *post = [[self filteredPosts] objectAtIndex: row];
+		if (post) {
+			return post;
+		}
+	}
+	
+	return nil;
+}
+// ----- end implementation for postList tooltips -----
 
 - (IBAction) copyAsTag: (id) sender {
 	NSIndexSet *rows = [postList selectedRowIndexes];

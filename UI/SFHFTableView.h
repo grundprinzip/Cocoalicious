@@ -20,3 +20,11 @@
 - (NSMutableDictionary *) keyActions;
 
 @end
+
+@interface NSObject (SFHFTableViewTooltipDataSource)
+
+// Implement these if you want tooltips.
+- (NSString *)tableView:(SFHFTableView *)tableView tooltipForItem:(id)item;
+- (id)tableView:(SFHFTableView *)tableView itemAtRow:(int)row;
+
+@end

@@ -10,7 +10,7 @@
 #import "defines.h"
 
 
-@interface DCAPIPost : NSObject {
+@interface DCAPIPost : NSObject <NSCoding> {
     NSURL *URL;
     NSString *description;
     NSString *extended;
@@ -36,5 +36,8 @@
 - (NSString *) hash;
 - (BOOL) matchesSearch: (NSString *) keyword extended: (BOOL) searchExtended tags: (NSArray *) matchTags matchKeywordsAsTags: (BOOL) matchKeywordsAsTags URIs: (BOOL) searchURIs;
 - (BOOL) matchesTags: (NSArray *) matchTags;
+
+- (id) initWithCoder:(NSCoder *) coder;
+- (void) encodeWithCoder:(NSCoder *) coder;
 
 @end

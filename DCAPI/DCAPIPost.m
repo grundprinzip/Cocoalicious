@@ -181,6 +181,26 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 	return NO;
 }
 
+- (id) initWithCoder:(NSCoder *) coder {
+	[super init];
+	[self setURL: [coder decodeObjectForKey: @"URL"]];
+	[self setDescription: [coder decodeObjectForKey: @"description"]];
+	[self setExtended: [coder decodeObjectForKey: @"extendend"]];
+	[self setDate: [coder decodeObjectForKey: @"date"]];
+	[self setTags: [coder decodeObjectForKey: @"tags"]];
+	[self setHash: [coder decodeObjectForKey: @"hash"]];
+	return self;
+}
+
+- (void) encodeWithCoder:(NSCoder *) coder {
+	[coder encodeObject: URL forKey: @"URL"];
+	[coder encodeObject: description forKey: @"description"];
+	[coder encodeObject: extended forKey: @"extended"];
+	[coder encodeObject: date forKey: @"date"];
+	[coder encodeObject: tags forKey: @"tags"];
+	[coder encodeObject: hash forKey: @"hash"];
+}
+
 - (void) dealloc {
     [URL release];
     [description release];

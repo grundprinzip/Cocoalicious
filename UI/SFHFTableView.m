@@ -118,6 +118,40 @@
 	[formatter release];
 }
 
+- (void)buildTooltips; {
+    NSRange range;
+    unsigned int index;
+    
+    if (![_dataSource respondsToSelector:@selector(tableView:tooltipForItem:)])
+        return;
+    
+    [self removeAllToolTips];
+    range = [self rowsInRect:[self visibleRect]];
+    for (index = range.location; index < NSMaxRange(range); index++) {
+        NSString *tooltip;
+        id item;
+        
+        item = [_dataSource tableView:self itemAtRow:index];
+        tooltip = [_dataSource tableView:self tooltipForItem:item];
+        if (tooltip)
+            [self addToolTipRect:[self rectOfRow:index] owner:self userData:NULL];
+    }
+}
+
+- (NSString *)view:(NSView *)view 
+  stringForToolTip:(NSToolTipTag)tag 
+             point:(NSPoint)point 
+          userData:(void *)data; {
+    int row;
+    
+    row = [self rowAtPoint:point];
+    return [_dataSource tableView:self tooltipForItem:[_dataSource tableView:self itemAtRow:row]];
+}
+
+- (void)resetCursorRects; {
+    [self buildTooltips];
+}
+
 - (void) setAction: (SEL) selector forKey: (unichar) key {
 	NSMutableDictionary *actions = [self keyActions];
 	
@@ -159,3 +193,4 @@
 }
 
 @end
+
