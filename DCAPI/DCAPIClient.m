@@ -139,7 +139,7 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/";
     }
     
     if (tag) {
-        [getDatesURIString appendFormat: @"%@=%@", kTAG_FILTER_PARAM, [[tag name] stringByAddingPercentEscapesUsingEncoding: NSUnicodeStringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
+        [getDatesURIString appendFormat: @"%@=%@", kTAG_FILTER_PARAM, [[tag name] stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
     }
     
     NSURL *apiURL = [NSURL URLWithString: getDatesURIString];
@@ -182,7 +182,7 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/";
 			[getPostsURIString appendString: @"&"];
 		}
 	
-        [getPostsURIString appendFormat: @"%@=%@", kTAG_FILTER_PARAM, [[tag name] stringByAddingPercentEscapesUsingEncoding: NSUnicodeStringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
+        [getPostsURIString appendFormat: @"%@=%@", kTAG_FILTER_PARAM, [[tag name] stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
     }
 
     NSURL *apiURL = [NSURL URLWithString: getPostsURIString];
@@ -213,7 +213,7 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/";
     }
     
     if (tag) {
-        [getPostsURIString appendFormat: @"&%@=%@", kTAG_FILTER_PARAM, [[tag name] stringByAddingPercentEscapesUsingEncoding: NSUnicodeStringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
+        [getPostsURIString appendFormat: @"&%@=%@", kTAG_FILTER_PARAM, [[tag name] stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
     }
     
     NSURL *apiURL = [NSURL URLWithString: getPostsURIString];
@@ -239,32 +239,32 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/";
 	NSString *URLString = [[newPost URL] absoluteString];
 	
     if (URLString) {
-        [addPostURIString appendFormat: @"%@=%@", kPOST_URL_PARAM, [URLString stringByAddingPercentEscapesUsingEncoding: NSUnicodeStringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
+        [addPostURIString appendFormat: @"%@=%@", kPOST_URL_PARAM, [URLString stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
     }
 	
 	NSString *description = [newPost description];
 	
 	if (description) {
-        [addPostURIString appendFormat: @"&%@=%@", kPOST_DESCRIPTION_PARAM, [description stringByAddingPercentEscapesUsingEncoding: NSUnicodeStringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];	
+        [addPostURIString appendFormat: @"&%@=%@", kPOST_DESCRIPTION_PARAM, [description stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];	
 	}
 	
 	NSString *extended = [newPost extended];
 	
 	if (extended) {
-        [addPostURIString appendFormat: @"&%@=%@", kPOST_EXTENDED_PARAM, [extended stringByAddingPercentEscapesUsingEncoding: NSUnicodeStringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];	
+        [addPostURIString appendFormat: @"&%@=%@", kPOST_EXTENDED_PARAM, [extended stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
 	}
 		
 	NSString *tags = [newPost tagsAsString];
 	
 	if (tags) {
-        [addPostURIString appendFormat: @"&%@=%@", kPOST_TAGS_PARAM, [tags stringByAddingPercentEscapesUsingEncoding: NSUnicodeStringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
+        [addPostURIString appendFormat: @"&%@=%@", kPOST_TAGS_PARAM, [tags stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
 	}
 
 	NSDate *postDate = [newPost date];
 
 	if (postDate) {
 		NSString *dateString = [postDate descriptionWithCalendarFormat: kPOSTING_DATE_TIME_FORMAT timeZone: [NSTimeZone timeZoneWithAbbreviation: kDEFAULT_TIME_ZONE_NAME] locale: nil];
-		[addPostURIString appendFormat: @"&%@=%@", kPOST_DATE_PARAM, [dateString stringByAddingPercentEscapesUsingEncoding: NSUnicodeStringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
+		[addPostURIString appendFormat: @"&%@=%@", kPOST_DATE_PARAM, [dateString stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
 	}
 
     NSURL *apiURL = [NSURL URLWithString: addPostURIString];
@@ -281,7 +281,7 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/";
 
     [self constructURIString: &addPostURIString forFunction: kDELETE_POST_RELATIVE_URI];
 	
-	[addPostURIString appendFormat: @"%@=%@", kPOST_URL_PARAM, [[url absoluteString] stringByAddingPercentEscapesUsingEncoding: NSUnicodeStringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
+	[addPostURIString appendFormat: @"%@=%@", kPOST_URL_PARAM, [[url absoluteString] stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
     
     NSURL *apiURL = [NSURL URLWithString: addPostURIString];
  
@@ -301,8 +301,8 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/";
         return;
     }
 	
-	[renameTagURIString appendFormat: @"%@=%@", kRENAME_TAG_OLD_PARAM, [oldName stringByAddingPercentEscapesUsingEncoding: NSUnicodeStringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
-	[renameTagURIString appendFormat: @"&%@=%@", kRENAME_TAG_NEW_PARAM, [newName stringByAddingPercentEscapesUsingEncoding: NSUnicodeStringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
+	[renameTagURIString appendFormat: @"%@=%@", kRENAME_TAG_OLD_PARAM, [oldName stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
+	[renameTagURIString appendFormat: @"&%@=%@", kRENAME_TAG_NEW_PARAM, [newName stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
 
     NSURL *apiURL = [NSURL URLWithString: renameTagURIString];
  
@@ -316,6 +316,8 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/";
 
     NSURLResponse *resp;
     NSError *error;
+	
+	NSLog([apiURL description]);
 	
 	NSData *returnData = [NSURLConnection sendSynchronousRequest: req returningResponse: &resp error: &error];
 	

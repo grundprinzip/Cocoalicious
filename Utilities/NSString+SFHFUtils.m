@@ -17,7 +17,7 @@
 }
 
 - (NSString *) stringByAddingPercentEscapesUsingEncoding: (NSStringEncoding) encoding legalURLCharactersToBeEscaped: (NSString *) legalCharacters {
-	NSString *escapedString = (NSString *) CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef) self, NULL, (CFStringRef) legalCharacters, CFStringConvertNSStringEncodingToEncoding(kCFStringEncodingUTF8));
+	NSString *escapedString = (NSString *) CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef) self, NULL, (CFStringRef) legalCharacters, CFStringConvertNSStringEncodingToEncoding(encoding));
 	return [escapedString autorelease];
 }
 

@@ -83,7 +83,7 @@ static NSString *kPOST_HASH_ATTRIBUTE = @"hash";
 }
 
 - (NSString *) XMLString {
-    NSString *string = [[NSString alloc] initWithData: XMLData encoding: NSUTF8StringEncoding];
+    NSString *string = [[NSString alloc] initWithData: XMLData encoding: NSUnicodeStringEncoding];
     return [string autorelease];
 }
 
@@ -99,6 +99,8 @@ static NSString *kPOST_HASH_ATTRIBUTE = @"hash";
         NSCalendarDate *postDate = [NSCalendarDate dateWithString: postDateString calendarFormat: kDEFAULT_DATE_TIME_FORMAT];
 	
 		NSString *tagString = [[attributeDict objectForKey: kPOST_TAGS_ATTRIBUTE] stringByUnescapingEntities: nil];
+		
+		NSLog(@"tagString: %@", tagString);
 
 		NSString *hashString = [[attributeDict objectForKey: kPOST_HASH_ATTRIBUTE] stringByUnescapingEntities: nil];
 	
@@ -124,6 +126,8 @@ static NSString *kPOST_HASH_ATTRIBUTE = @"hash";
     }
     else if (tags && [elementName isEqualToString: kTAG_ELEMENT]) {
         NSString *tagString = [[attributeDict objectForKey: kTAG_ATTRIBUTE] stringByUnescapingEntities: nil];
+		
+		NSLog(@"tag: %@", tagString);
         
         if (tagString) {
             NSNumber *count = [attributeDict objectForKey: kTAG_COUNT_ATTRIBUTE];
