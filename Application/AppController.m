@@ -169,7 +169,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	NSArray *unfilteredPosts;
 
 	if (download || ![self posts]) {
-		unfilteredPosts = [[self client] requestPostsFilteredByTag: tagFilter count: nil];
+		unfilteredPosts = [[self client] requestPostsFilteredByTag: nil count: nil];
 	}
 	else {
 		unfilteredPosts = [self posts];
@@ -629,7 +629,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 			// UPLOAD TAG RENAME HERE
 			[[self client] renameTag: originalName to: [object name]];
 			[self resortTags];
-			[NSThread detachNewThreadSelector: @selector(refreshPostView) toTarget: self withObject: nil];
+			[NSThread detachNewThreadSelector: @selector(refreshAll) toTarget: self withObject: nil];
 		}
 	}
 }
@@ -687,9 +687,10 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     
     int selectedRow = -1;
     
-    if (table == tagList) {
+    if (table == tagList) {	
 		[self setCurrentSearch: nil];
 		[searchField setStringValue: [NSString string]];
+		[self resetPostView];
 		[self refreshPostsWithDownload: NO];
     }
     else if (table == postList) {

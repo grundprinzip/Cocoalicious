@@ -126,6 +126,8 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/";
     [parser parseForPosts: nil dates: nil tags: &tags];
     [parser release];
     
+	NSLog(@"%@", tags);
+	
     return [tags autorelease];
 }
 
