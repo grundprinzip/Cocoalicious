@@ -100,8 +100,6 @@ static NSString *kPOST_HASH_ATTRIBUTE = @"hash";
 	
 		NSString *tagString = [[attributeDict objectForKey: kPOST_TAGS_ATTRIBUTE] stringByUnescapingEntities: nil];
 		
-		NSLog(@"tagString: %@", tagString);
-
 		NSString *hashString = [[attributeDict objectForKey: kPOST_HASH_ATTRIBUTE] stringByUnescapingEntities: nil];
 	
         DCAPIPost *post = [[DCAPIPost alloc] initWithURL: postURL description: postDescription extended: postExtended date: postDate tags: nil urlHash: hashString];
@@ -126,8 +124,6 @@ static NSString *kPOST_HASH_ATTRIBUTE = @"hash";
     }
     else if (tags && [elementName isEqualToString: kTAG_ELEMENT]) {
         NSString *tagString = [[attributeDict objectForKey: kTAG_ATTRIBUTE] stringByUnescapingEntities: nil];
-		
-		NSLog(@"tag: %@", tagString);
         
         if (tagString) {
             NSNumber *count = [attributeDict objectForKey: kTAG_COUNT_ATTRIBUTE];
