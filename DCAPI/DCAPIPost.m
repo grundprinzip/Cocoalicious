@@ -12,7 +12,7 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 
 @implementation DCAPIPost
 
-- initWithURL: (NSURL *) newURL description: (NSString *) newDescription extended: (NSString *) newExtended date: (NSDate *) newDate tags: (NSArray *) newTags hash: (NSString *) newHash {
+- initWithURL: (NSURL *) newURL description: (NSString *) newDescription extended: (NSString *) newExtended date: (NSDate *) newDate tags: (NSArray *) newTags urlHash: (NSString *) newHash {
     [super init];
     
     [self setURL: newURL];
@@ -20,7 +20,7 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
     [self setExtended: newExtended];
     [self setDate: newDate];
 	[self setTags: newTags];
-	[self setHash: newHash];
+	[self setURLHash: newHash];
     
     return self;
 }
@@ -92,15 +92,15 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 	return [[tags retain] autorelease];
 }
 
-- (void) setHash: (NSString *) newHash {
-    if (hash != newHash) {
-        [hash release];
-        hash = [newHash copy];
+- (void) setURLHash: (NSString *) newHash {
+    if (urlHash != newHash) {
+        [urlHash release];
+        urlHash = [newHash copy];
     }
 }
 
-- (NSString *) hash {
-	return [[hash retain] autorelease];
+- (NSString *) urlHash {
+	return [[urlHash retain] autorelease];
 }
 
 - (BOOL) matchesSearch: (NSString *) keyword extended: (BOOL) searchExtended tags: (NSArray *) matchTags matchKeywordsAsTags: (BOOL) matchKeywordsAsTags URIs: (BOOL) searchURIs {
@@ -188,7 +188,7 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 	[self setExtended: [coder decodeObjectForKey: @"extended"]];
 	[self setDate: [coder decodeObjectForKey: @"date"]];
 	[self setTags: [coder decodeObjectForKey: @"tags"]];
-	[self setHash: [coder decodeObjectForKey: @"hash"]];
+	[self setURLHash: [coder decodeObjectForKey: @"urlHash"]];
 	return self;
 }
 
@@ -198,7 +198,7 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 	[coder encodeObject: extended forKey: @"extended"];
 	[coder encodeObject: date forKey: @"date"];
 	[coder encodeObject: tags forKey: @"tags"];
-	[coder encodeObject: hash forKey: @"hash"];
+	[coder encodeObject: urlHash forKey: @"urlHash"];
 }
 
 - (void) dealloc {
@@ -207,8 +207,24 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
     [extended release];
     [date release];
 	[tags release];
-	[hash release];
+	[urlHash release];
     [super dealloc];
+}
+
+// Overriden methods to support NSSet.
+- (unsigned) hash
+{
+    return [URL hash];
+}
+
+- (BOOL)isEqual: (id)anObject
+{
+    //!! Include respondsToSelector hash?
+    if ([anObject hash] == [self hash]) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 @end

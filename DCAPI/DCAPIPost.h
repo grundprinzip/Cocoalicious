@@ -16,10 +16,10 @@
     NSString *extended;
     NSDate *date;
 	NSArray *tags;
-	NSString *hash;
+	NSString *urlHash;
 }
 
-- initWithURL: (NSURL *) newURL description: (NSString *) newDescription extended: (NSString *) newExtended date: (NSDate *) newDate tags: (NSArray *) newTags hash: (NSString *) newHash;
+- initWithURL: (NSURL *) newURL description: (NSString *) newDescription extended: (NSString *) newExtended date: (NSDate *) newDate tags: (NSArray *) newTags urlHash: (NSString *) newHash;
 - (void) setDescription: (NSString *) description;
 - (NSString *) description;
 - (void) setDate: (NSDate *) newDate;
@@ -32,8 +32,8 @@
 - (NSString *) tagsAsString;
 - (void) setTags: (NSArray *) newTags;
 - (NSArray *) tags;
-- (void) setHash: (NSString *) newHash;
-- (NSString *) hash;
+- (void) setURLHash: (NSString *) newHash;
+- (NSString *) urlHash;
 - (BOOL) matchesSearch: (NSString *) keyword extended: (BOOL) searchExtended tags: (NSArray *) matchTags matchKeywordsAsTags: (BOOL) matchKeywordsAsTags URIs: (BOOL) searchURIs;
 - (BOOL) matchesTags: (NSArray *) matchTags;
 

@@ -102,7 +102,7 @@ static NSString *kPOST_HASH_ATTRIBUTE = @"hash";
 
 		NSString *hashString = [[attributeDict objectForKey: kPOST_HASH_ATTRIBUTE] stringByUnescapingEntities: nil];
 	
-        DCAPIPost *post = [[DCAPIPost alloc] initWithURL: postURL description: postDescription extended: postExtended date: postDate tags: nil hash: hashString];
+        DCAPIPost *post = [[DCAPIPost alloc] initWithURL: postURL description: postDescription extended: postExtended date: postDate tags: nil urlHash: hashString];
 		[post setTagsFromString: tagString];
         
         [posts addObject: post];
