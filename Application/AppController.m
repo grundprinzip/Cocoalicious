@@ -264,7 +264,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 		unfilteredPosts = [self posts];
 	}
 	
-	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"date" ascending: NO selector: @selector(compare:)];
+	NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey: @"date" ascending: NO selector: @selector(compare:)] autorelease];
 	NSArray *resortedPosts = [unfilteredPosts sortedArrayUsingDescriptors: [NSArray arrayWithObjects: sortDescriptor, nil]];
 	
 	[self setPosts: resortedPosts];
