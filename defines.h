@@ -32,7 +32,7 @@
 #define kDCSafariGetCurrentURL @"fetch_safari_url"
 #define kScriptError @"ERROR"
 
-#define AWOOSTER_CHANGES 0
+#define AWOOSTER_CHANGES 1
 #define AWOOSTER_DEBUG 0
 #define kTEXT_INDEX_PATH @"~/Library/Caches/Cocoalicious"
 #define kTEXT_INDEX_NAME @"FullText v1.index"
