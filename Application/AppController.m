@@ -32,6 +32,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	[dictionary setObject: [NSNumber numberWithBool: NO] forKey: kOPEN_URLS_IN_BACKGROUND_DEFAULTS_KEY];
 	[dictionary setObject: [NSNumber numberWithFloat: 1.0] forKey: kDEACTIVATE_ALPHA_DEFAULTS_KEY];
 	[dictionary setObject: [NSNumber numberWithBool: YES] forKey: kSHOW_WEB_PREVIEW_DEFAULTS_KEY];
+	[dictionary setObject: [NSNumber numberWithInt: DCBasicSearchType] forKey: kSEARCH_TYPE_DEFAULTS_KEY];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues: dictionary];
 }
 
@@ -75,6 +76,22 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     
     [self setupTaglist];
 	[self setupPostlist];
+
+	DCSearchType defaultSearchType = [(NSNumber *) [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kSEARCH_TYPE_DEFAULTS_KEY] intValue];
+	
+	switch (defaultSearchType) {
+		case DCExtendedSearchType:
+			[self setSearchTypeToExtended: self];
+			break;
+#ifdef AWOOSTER_CHANGES
+		case DCFullTextSearchType:
+			[self setSearchTypeToFullText: self];
+			break;
+#endif
+		default:
+			[self setSearchTypeToBasic: self];
+			break;
+	}
     
     [[NSUserDefaultsController sharedUserDefaultsController] setAppliesImmediately: YES];
 	
@@ -555,6 +572,8 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 	[self doSearchForString: [searchField stringValue]];
     [postList reloadData];
+
+	[[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: [NSNumber numberWithInt: DCBasicSearchType] forKey: kSEARCH_TYPE_DEFAULTS_KEY];
 }
 
 - (IBAction) setSearchTypeToExtended: (id) sender {
@@ -569,6 +588,8 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	
 	[self doSearchForString: [searchField stringValue]];
     [postList reloadData];
+
+	[[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: [NSNumber numberWithInt: DCExtendedSearchType] forKey: kSEARCH_TYPE_DEFAULTS_KEY];
 }
 
 #pragma mark Full Text Search
@@ -586,6 +607,8 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	
 	[self doSearchForString: [searchField stringValue]];
     [postList reloadData];
+	
+	[[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: [NSNumber numberWithInt: DCFullTextSearchType] forKey: kSEARCH_TYPE_DEFAULTS_KEY];
 }
 
 - (void) beginFullTextSearchForQuery: (NSString *) query {

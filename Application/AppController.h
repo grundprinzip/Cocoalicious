@@ -21,6 +21,8 @@
 #import "SFHFiTunesTableHeaderCell.h"
 #import "SFHFMetalTableHeaderCell.h"
 #import "SFHFCornerView.h"
+#import "defines.h"
+#import "DCTypes.h"
 
 #ifdef AWOOSTER_CHANGES
 #import "FullTextIndex.h"

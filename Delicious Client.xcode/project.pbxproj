@@ -139,6 +139,7 @@
 		29B97315FDCFA39411CA2CEA = {
 			children = (
 				6B698143065346D6000649B0,
+				6BF00A8F077B0D340036723E,
 				32CA4F630368D1EE00C91783,
 				29B97316FDCFA39411CA2CEA,
 			);
@@ -1147,6 +1148,20 @@
 			settings = {
 			};
 		};
+		6BF00A8F077B0D340036723E = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = DCTypes.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6BF00A90077B0D340036723E = {
+			fileRef = 6BF00A8F077B0D340036723E;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		6BF88AE305C4D56000D7EDBB = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -1282,6 +1297,7 @@
 				6BD81880075AFB740088A2CF,
 				6BD818EE075AFCE60088A2CF,
 				6BD818F0075AFCE60088A2CF,
+				6BF00A90077B0D340036723E,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
