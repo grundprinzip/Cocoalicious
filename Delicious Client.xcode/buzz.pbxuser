@@ -1207,6 +1207,21 @@
 			6B65541E07B5B9D8005C0F74 = 6B65541E07B5B9D8005C0F74;
 			6B65541F07B5B9D8005C0F74 = 6B65541F07B5B9D8005C0F74;
 			6B65542007B5B9D8005C0F74 = 6B65542007B5B9D8005C0F74;
+			6B65542307B6011A005C0F74 = 6B65542307B6011A005C0F74;
+			6B65542407B6011B005C0F74 = 6B65542407B6011B005C0F74;
+			6B65542507B6011D005C0F74 = 6B65542507B6011D005C0F74;
+			6B65542607B6011D005C0F74 = 6B65542607B6011D005C0F74;
+			6B65542707B6011D005C0F74 = 6B65542707B6011D005C0F74;
+			6B65542807B6011F005C0F74 = 6B65542807B6011F005C0F74;
+			6B65542907B6011F005C0F74 = 6B65542907B6011F005C0F74;
+			6B65542A07B6011F005C0F74 = 6B65542A07B6011F005C0F74;
+			6B65542B07B6011F005C0F74 = 6B65542B07B6011F005C0F74;
+			6B65542C07B60263005C0F74 = 6B65542C07B60263005C0F74;
+			6B65542D07B60275005C0F74 = 6B65542D07B60275005C0F74;
+			6B65542E07B6833B005C0F74 = 6B65542E07B6833B005C0F74;
+			6B65542F07B6833C005C0F74 = 6B65542F07B6833C005C0F74;
+			6B65543007B6833E005C0F74 = 6B65543007B6833E005C0F74;
+			6B65543107B6833F005C0F74 = 6B65543107B6833F005C0F74;
 			6B68FA50076194DB00F15949 = 6B68FA50076194DB00F15949;
 			6B68FA58076194E100F15949 = 6B68FA58076194E100F15949;
 			6B68FA5C076194E200F15949 = 6B68FA5C076194E200F15949;
@@ -4623,6 +4638,156 @@
 		vrLen = 896;
 		vrLoc = 11984;
 	};
+	6B65542307B6011A005C0F74 = {
+		fRef = 6BF88AE405C4D56000D7EDBB;
+		isa = PBXTextBookmark;
+		name = "- (void) fullTextIndexBeganIndexingDocumentList: (NSArray *) documentList {\n\t[self toggleStatusViewToIndexing];\n\t[indexingProgressBar setMaxValue: [documentList count]];\n}\n\n- (void) fullTextIndexIndexedDocumentWithURL: (NSURL *) url {\n\t[indexingProgressBar incrementBy: 1];\n} \n\n- (void) fullTextIndexFinishedIndexingDocumentList: (NSArray *) documentList {";
+		rLen = 356;
+		rLoc = 23899;
+		rType = 0;
+		vrLen = 859;
+		vrLoc = 23445;
+	};
+	6B65542407B6011B005C0F74 = {
+		fRef = 6BF88AE405C4D56000D7EDBB;
+		isa = PBXTextBookmark;
+		name = "- (void) fullTextIndexBeganIndexingDocumentList: (NSArray *) documentList {\n\t[self toggleStatusViewToIndexing];\n\t[indexingProgressBar setMaxValue: [documentList count]];\n}\n\n- (void) fullTextIndexIndexedDocumentWithURL: (NSURL *) url {\n\t[indexingProgressBar incrementBy: 1];\n} \n\n- (void) fullTextIndexFinishedIndexingDocumentList: (NSArray *) documentList {";
+		rLen = 356;
+		rLoc = 23899;
+		rType = 0;
+		vrLen = 859;
+		vrLoc = 23445;
+	};
+	6B65542507B6011D005C0F74 = {
+		fRef = 6BF88AE405C4D56000D7EDBB;
+		isa = PBXTextBookmark;
+		name = "- (void) fullTextIndexBeganIndexingDocumentList: (NSArray *) documentList {\n\t[self toggleStatusViewToIndexing];\n\t[indexingProgressBar setMaxValue: [documentList count]];\n}\n\n- (void) fullTextIndexIndexedDocumentWithURL: (NSURL *) url {\n\t[indexingProgressBar incrementBy: 1];\n} \n\n- (void) fullTextIndexFinishedIndexingDocumentList: (NSArray *) documentList {";
+		rLen = 356;
+		rLoc = 23899;
+		rType = 0;
+		vrLen = 859;
+		vrLoc = 23445;
+	};
+	6B65542607B6011D005C0F74 = {
+		fRef = 6BF88AE405C4D56000D7EDBB;
+		isa = PBXTextBookmark;
+		name = "- (void) fullTextIndexBeganIndexingDocumentList: (NSArray *) documentList {\n\t[self toggleStatusViewToIndexing];\n\t[indexingProgressBar setMaxValue: [documentList count]];\n}\n\n- (void) fullTextIndexIndexedDocumentWithURL: (NSURL *) url {\n\t[indexingProgressBar incrementBy: 1];\n} \n\n- (void) fullTextIndexFinishedIndexingDocumentList: (NSArray *) documentList {";
+		rLen = 356;
+		rLoc = 23899;
+		rType = 0;
+		vrLen = 859;
+		vrLoc = 23445;
+	};
+	6B65542707B6011D005C0F74 = {
+		fRef = 6BF00A8F077B0D340036723E;
+		isa = PBXTextBookmark;
+		name = "DCTypes.h: DCBasicSearchType";
+		rLen = 0;
+		rLoc = 253;
+		rType = 0;
+		vrLen = 271;
+		vrLoc = 0;
+	};
+	6B65542807B6011F005C0F74 = {
+		fRef = 6BF00A8F077B0D340036723E;
+		isa = PBXTextBookmark;
+		name = "DCTypes.h: DCBasicSearchType";
+		rLen = 0;
+		rLoc = 253;
+		rType = 0;
+		vrLen = 271;
+		vrLoc = 0;
+	};
+	6B65542907B6011F005C0F74 = {
+		fRef = 6BF00A8F077B0D340036723E;
+		isa = PBXTextBookmark;
+		name = "DCTypes.h: DCBasicSearchType";
+		rLen = 0;
+		rLoc = 253;
+		rType = 0;
+		vrLen = 271;
+		vrLoc = 0;
+	};
+	6B65542A07B6011F005C0F74 = {
+		fRef = 6BF00A8F077B0D340036723E;
+		isa = PBXTextBookmark;
+		name = "DCTypes.h: DCBasicSearchType";
+		rLen = 0;
+		rLoc = 253;
+		rType = 0;
+		vrLen = 271;
+		vrLoc = 0;
+	};
+	6B65542B07B6011F005C0F74 = {
+		fRef = 6B698143065346D6000649B0;
+		isa = PBXTextBookmark;
+		name = "defines.h: kDCSafariGetCurrentSelection";
+		rLen = 0;
+		rLoc = 1537;
+		rType = 0;
+		vrLen = 953;
+		vrLoc = 1228;
+	};
+	6B65542C07B60263005C0F74 = {
+		fRef = 6B698143065346D6000649B0;
+		isa = PBXTextBookmark;
+		name = "defines.h: AWOOSTER_DEBUG";
+		rLen = 0;
+		rLoc = 1955;
+		rType = 0;
+		vrLen = 916;
+		vrLoc = 1265;
+	};
+	6B65542D07B60275005C0F74 = {
+		fRef = 6B698143065346D6000649B0;
+		isa = PBXTextBookmark;
+		name = "defines.h: AWOOSTER_DEBUG";
+		rLen = 0;
+		rLoc = 1955;
+		rType = 0;
+		vrLen = 916;
+		vrLoc = 1265;
+	};
+	6B65542E07B6833B005C0F74 = {
+		fRef = 6B698143065346D6000649B0;
+		isa = PBXTextBookmark;
+		name = "defines.h: AWOOSTER_DEBUG";
+		rLen = 0;
+		rLoc = 1955;
+		rType = 0;
+		vrLen = 916;
+		vrLoc = 1265;
+	};
+	6B65542F07B6833C005C0F74 = {
+		fRef = 6B698143065346D6000649B0;
+		isa = PBXTextBookmark;
+		name = "defines.h: AWOOSTER_DEBUG";
+		rLen = 0;
+		rLoc = 1955;
+		rType = 0;
+		vrLen = 916;
+		vrLoc = 1265;
+	};
+	6B65543007B6833E005C0F74 = {
+		fRef = 6B698143065346D6000649B0;
+		isa = PBXTextBookmark;
+		name = "defines.h: AWOOSTER_DEBUG";
+		rLen = 0;
+		rLoc = 1955;
+		rType = 0;
+		vrLen = 916;
+		vrLoc = 1265;
+	};
+	6B65543107B6833F005C0F74 = {
+		fRef = 6B698143065346D6000649B0;
+		isa = PBXTextBookmark;
+		name = "defines.h: AWOOSTER_DEBUG";
+		rLen = 0;
+		rLoc = 1955;
+		rType = 0;
+		vrLen = 916;
+		vrLoc = 1265;
+	};
 	6B68FA50076194DB00F15949 = {
 		fRef = 6BD8187D075AFB740088A2CF;
 		isa = PBXTextBookmark;
@@ -4866,7 +5031,7 @@
 	6B698143065346D6000649B0 = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {705, 811}}";
-			sepNavSelRange = "{1537, 0}";
+			sepNavSelRange = "{1955, 0}";
 			sepNavVisRect = "{{0, 437}, {705, 374}}";
 		};
 	};
@@ -5337,9 +5502,9 @@
 	};
 	6BF00A8F077B0D340036723E = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {719, 384}}";
+			sepNavIntBoundsRect = "{{0, 0}, {705, 374}}";
 			sepNavSelRange = "{253, 0}";
-			sepNavVisRect = "{{0, 0}, {719, 384}}";
+			sepNavVisRect = "{{0, 0}, {705, 374}}";
 		};
 	};
 	6BF00A9C077B0D510036723E = {
@@ -5413,8 +5578,8 @@
 	6BF88AE405C4D56000D7EDBB = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {705, 20929}}";
-			sepNavSelRange = "{12489, 0}";
-			sepNavVisRect = "{{0, 4531}, {705, 374}}";
+			sepNavSelRange = "{23899, 356}";
+			sepNavVisRect = "{{0, 10054}, {705, 374}}";
 			sepNavWindowFrame = "{{15, 269}, {750, 558}}";
 		};
 	};
