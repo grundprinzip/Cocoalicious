@@ -26,6 +26,9 @@
             LANGUAGE = ObjC; 
             OUTLETS = {
                 addDeletePostButton = NSSegmentedControl; 
+                indexingProgressBar = NSProgressIndicator; 
+                indexingProgressView = NSView; 
+                indexingStatusText = NSTextField; 
                 loginController = NSController; 
                 loginPanel = NSPanel; 
                 mainWindow = NSWindow; 
@@ -45,6 +48,8 @@
                 showInfoButton = NSSegmentedControl; 
                 spinnyThing = NSProgressIndicator; 
                 statusText = NSTextField; 
+                statusTextView = NSView; 
+                statusView = NSView; 
                 tagList = SFHFTableView; 
                 toggleWebPreviewButton = NSSegmentedControl; 
                 webView = WebView; 

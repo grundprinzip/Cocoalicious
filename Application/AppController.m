@@ -52,6 +52,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 - (void) awakeFromNib {
 	[postTagsField setFieldEditor: YES];
+	[statusView addSubview: statusTextView];
 	[self sizeBezelSubviews];
 	[self setupToolbar];
 	[self setupWebPreview];
@@ -318,13 +319,13 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     if (AWOOSTER_DEBUG)
         NSLog(@"updateIndex:");
     
-    if ([textIndex indexing] || [textIndex searching]) {
+    /*if ([textIndex indexing] || [textIndex searching]) {
         [spinnyThing performSelectorOnMainThread: @selector(startAnimation:) 
                                       withObject: self waitUntilDone: NO]; 
     } else {
         [spinnyThing performSelectorOnMainThread: @selector(stopAnimation:) 
                                       withObject: self waitUntilDone: NO]; 
-    }
+    }*/
 }
 
 - (void) updatePostFilter: (NSMutableArray *) results
@@ -545,6 +546,16 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	[tagList abortEditing];
 }
 
+- (IBAction) toggleStatusViewToIndexing { 	
+	[statusTextView removeFromSuperview];
+	[statusView addSubview: indexingProgressView];
+}
+
+- (IBAction) toggleStatusViewToStatusText  { 	
+	[indexingProgressView removeFromSuperview];
+	[statusView addSubview: statusTextView];
+}
+
 - (void) scrollWebViewDown {
 	//[webView pageDown: self];
 }
@@ -658,6 +669,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
         NSStringFromSelector(@selector(updateIndexing:)), @"aSelector",
         postURLs, @"urls",
         nil];
+		
     [NSThread detachNewThreadSelector:@selector(index:)
                              toTarget:textIndex
                            withObject:searchDict];
@@ -681,6 +693,19 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     [NSThread detachNewThreadSelector:@selector(index:)
                              toTarget:textIndex
                            withObject:[[searchDict copy] autorelease]];
+}
+
+- (void) fullTextIndexBeganIndexingDocumentList: (NSArray *) documentList {
+	[self toggleStatusViewToIndexing];
+	[indexingProgressBar setMaxValue: [documentList count]];
+}
+
+- (void) fullTextIndexIndexedDocumentWithURL: (NSURL *) url {
+	[indexingProgressBar incrementBy: 1];
+} 
+
+- (void) fullTextIndexFinishedIndexingDocumentList: (NSArray *) documentList {
+	[self toggleStatusViewToStatusText];
 }
 
 #endif

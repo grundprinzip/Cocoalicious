@@ -60,6 +60,12 @@
     IBOutlet NSWindow *postingInterface;
     IBOutlet NSWindow *preferencesWindow;
 	IBOutlet SFHFSplitView *previewSplitView;
+	
+	IBOutlet NSView *statusView;
+	IBOutlet NSView *statusTextView;
+	IBOutlet NSView *indexingProgressView;
+	IBOutlet NSProgressIndicator *indexingProgressBar;
+	IBOutlet NSTextField *indexingStatusText;
     
     NSArray *tags;
     NSArray *dates;
@@ -134,6 +140,8 @@
 - (IBAction) openRegistrationURL: (id) sender;
 - (IBAction) addOrDeleteLinks: (id) sender;
 - (IBAction) toggleWebPreview: (id) sender;
+- (IBAction) toggleStatusViewToIndexing;
+- (IBAction) toggleStatusViewToStatusText;
 - (IBAction) showPostingInterface: (id) sender;
 - (IBAction) closePostingInterface: (id) sender;
 - (IBAction) postNewLink: (id) sender;

@@ -321,13 +321,18 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
         NSSelectorFromString([indexDict objectForKey:@"aSelector"]);
     NSArray *urls = [indexDict objectForKey:@"urls"];
     
+	if ([anObject respondsToSelector: @selector(fullTextIndexBeganIndexingDocumentList:)]) {
+		[anObject performSelectorOnMainThread: @selector(fullTextIndexBeganIndexingDocumentList:) withObject: urls  waitUntilDone: NO];
+	}
+	
     if (!urls) {
         [pool release];
         return;
     }
     [self openIndex];
     indexing = YES;
-    [anObject performSelectorOnMainThread: aSelector
+    
+	[anObject performSelectorOnMainThread: aSelector
                                withObject: nil
                             waitUntilDone: NO];
     
@@ -343,6 +348,11 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
                      withContent: [[contents copy] autorelease]
                      inBatchMode: YES];
         [contents release];
+		
+		if ([anObject respondsToSelector: @selector(fullTextIndexIndexedDocumentWithURL:)]) {
+			[anObject performSelectorOnMainThread: @selector(fullTextIndexIndexedDocumentWithURL:) withObject: currentURL waitUntilDone: NO];
+		}
+		
 		[whilePool release];
     }
     indexing = NO;
@@ -350,6 +360,11 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     [anObject performSelectorOnMainThread: aSelector
                                withObject: nil
                             waitUntilDone: NO];
+
+	if ([anObject respondsToSelector: @selector(fullTextIndexFinishedIndexingDocumentList:)]) {
+		[anObject performSelectorOnMainThread: @selector(fullTextIndexFinishedIndexingDocumentList:) withObject: urls waitUntilDone: NO];
+	}
+
     [pool release];
 }
 
