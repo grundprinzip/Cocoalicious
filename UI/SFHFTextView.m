@@ -13,7 +13,7 @@
 
 - (void) insertCompletion: (NSString *) word forPartialWordRange: (NSRange) charRange movement: (int) movement isFinal: (BOOL) isFinal {
 	id delegate = [self delegate];
-
+	
 	if (movement == NSCancelTextMovement && [delegate respondsToSelector:@selector(textViewCancelledCompletion:)]) {
 		[delegate textViewCancelledCompletion: self];
 	}

@@ -1323,22 +1323,24 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (void) textDidChange: (NSNotification *) aNotification {
-	BOOL shouldAutocomplete = [(NSNumber *) [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kAUTOMATICALLY_COMPLETE_TAGS_DEFAULTS_KEY] boolValue];
-
-	if (!shouldAutocomplete) {
-		return;
-	}
-
-	NSTimeInterval autocompleteDelay = (NSTimeInterval) [(NSNumber *) [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kTAG_AUTOCOMPLETION_DELAY_DEFAULTS_KEY] floatValue];
-
 	if ([aNotification object] == postTagsField) {
+		BOOL shouldAutocomplete = [(NSNumber *) [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kAUTOMATICALLY_COMPLETE_TAGS_DEFAULTS_KEY] boolValue];
+
+		if (!shouldAutocomplete) {
+			return;
+		}
+
+		NSTimeInterval autocompleteDelay = (NSTimeInterval) [(NSNumber *) [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kTAG_AUTOCOMPLETION_DELAY_DEFAULTS_KEY] floatValue];
+
 		if (autocompleteTimer) {
 			[autocompleteTimer invalidate];
 			[autocompleteTimer release];
 			autocompleteTimer = nil;
 		}
 
-		if (lastTextChangeWasCompletion) {
+		unichar currentEventChar = [[[NSApp currentEvent] charactersIgnoringModifiers] characterAtIndex: 0];
+
+		if (lastTextChangeWasCompletion || currentEventChar == NSDeleteCharacter || currentEventChar == NSDeleteFunctionKey) {
 			lastTextChangeWasCompletion = NO;
 		}
 		else {
