@@ -648,11 +648,15 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 - (BOOL) tableView: (NSTableView *) tableView writeRows: (NSArray *) rows toPasteboard: (NSPasteboard *) pboard {
 	if (tableView == postList) {
-		[pboard declareTypes: [NSArray arrayWithObject: kDCAPIPostPboardType] owner: self];
+		[pboard declareTypes: [NSArray arrayWithObjects: kDCAPIPostPboardType, NSURLPboardType, NSStringPboardType, nil] owner: self];
 		
 		NSNumber *currentPostIndex = [rows objectAtIndex: 0];
 		DCAPIPost *currentPost = [[self filteredPosts] objectAtIndex: [currentPostIndex unsignedIntValue]];
 		[pboard setData: [NSKeyedArchiver archivedDataWithRootObject: currentPost] forType: kDCAPIPostPboardType];
+		
+		NSURL *currentURL = [currentPost URL];
+		[pboard setString: [currentURL absoluteString] forType: NSStringPboardType];
+		[currentURL writeToPasteboard: pboard];
 			
 		return YES;
 	}
@@ -896,7 +900,10 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	if (type) {
 		NSString *pboardContents = [pboard stringForType: type];
 
-		if ([currentPostProperties objectForKey: @"url"]) {
+		if ([currentPostProperties objectForKey: @"description"]) {
+			[[NSApp mainWindow] makeFirstResponder: postExtendedField];
+		}
+		else if ([currentPostProperties objectForKey: @"url"]) {
 			[[NSApp mainWindow] makeFirstResponder: postDescriptionField];
 		}
 		else if (![currentPostProperties objectForKey: @"url"] && pboardContents && [pboardContents hasPrefix: kHTTP_PROTOCOL_PREFIX]) {

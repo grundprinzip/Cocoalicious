@@ -122,7 +122,9 @@
     NSRange range;
     unsigned int index;
     
-    if (![_dataSource respondsToSelector:@selector(tableView:tooltipForItem:)])
+	id source = [self dataSource];
+	
+    if (![source respondsToSelector:@selector(tableView:tooltipForItem:)])
         return;
     
     [self removeAllToolTips];
@@ -131,8 +133,8 @@
         NSString *tooltip;
         id item;
         
-        item = [_dataSource tableView:self itemAtRow:index];
-        tooltip = [_dataSource tableView:self tooltipForItem:item];
+        item = [source tableView:self itemAtRow:index];
+        tooltip = [source tableView:self tooltipForItem:item];
         if (tooltip)
             [self addToolTipRect:[self rectOfRow:index] owner:self userData:NULL];
     }
@@ -145,7 +147,7 @@
     int row;
     
     row = [self rowAtPoint:point];
-    return [_dataSource tableView:self tooltipForItem:[_dataSource tableView:self itemAtRow:row]];
+    return [[self dataSource] tableView:self tooltipForItem:[[self dataSource] tableView:self itemAtRow:row]];
 }
 
 - (void)resetCursorRects; {

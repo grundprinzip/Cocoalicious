@@ -27,6 +27,7 @@
                 mainWindow = NSWindow; 
                 metadataDrawer = NSDrawer; 
                 postDescriptionField = NSTextField; 
+                postExtendedField = NSTextField; 
                 postList = SFHFTableView; 
                 postURLField = NSTextField; 
                 postingInterface = NSWindow; 
