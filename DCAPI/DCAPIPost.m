@@ -185,7 +185,7 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 	[super init];
 	[self setURL: [coder decodeObjectForKey: @"URL"]];
 	[self setDescription: [coder decodeObjectForKey: @"description"]];
-	[self setExtended: [coder decodeObjectForKey: @"extendend"]];
+	[self setExtended: [coder decodeObjectForKey: @"extended"]];
 	[self setDate: [coder decodeObjectForKey: @"date"]];
 	[self setTags: [coder decodeObjectForKey: @"tags"]];
 	[self setHash: [coder decodeObjectForKey: @"hash"]];
