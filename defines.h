@@ -25,7 +25,12 @@
 #define kEXTENDED_COLUMN @"extended"
 #define kURL_COLUMN @"url"
 
-#define DCAPIPostPboardType @"kDCAPIPostPboardType"
+#define kDCAPIPostPboardType @"DCAPIPostPboardType"
+
+#define kDCSafariScriptLibrary @"safari_script"
+#define kDCScriptType @"scpt"
+#define kDCSafariGetCurrentURL @"fetch_safari_url"
+#define kScriptError @"ERROR"
 
 #define AWOOSTER_CHANGES 1
 #define AWOOSTER_DEBUG 0

@@ -55,8 +55,7 @@
 			sourceTree = "<group>";
 		};
 		1058C7A1FEA54F0111CA2CBB = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = Cocoa.framework;
 			path = /System/Library/Frameworks/Cocoa.framework;
@@ -123,6 +122,7 @@
 				6BD8D4C407205239008CA80A,
 				6BD8D4B607205221008CA80A,
 				49FE4954073A0868004027E5,
+				3B3F0225073EF17A003AB1C7,
 				6BD8D4A707205205008CA80A,
 				29B97315FDCFA39411CA2CEA,
 				29B97317FDCFA39411CA2CEA,
@@ -199,8 +199,7 @@
 			sourceTree = "<group>";
 		};
 		29B97324FDCFA39411CA2CEA = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = AppKit.framework;
 			path = /System/Library/Frameworks/AppKit.framework;
@@ -208,8 +207,7 @@
 			sourceTree = "<absolute>";
 		};
 		29B97325FDCFA39411CA2CEA = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = Foundation.framework;
 			path = /System/Library/Frameworks/Foundation.framework;
@@ -239,6 +237,70 @@
 //322
 //323
 //324
+//3B0
+//3B1
+//3B2
+//3B3
+//3B4
+		3B3F0225073EF17A003AB1C7 = {
+			children = (
+				3B3F0228073EF1A3003AB1C7,
+			);
+			isa = PBXGroup;
+			name = Scripts;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		3B3F0228073EF1A3003AB1C7 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.scpt;
+			name = safari_script.scpt;
+			path = Scripts/safari_script.scpt;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		3B3F0229073EF1A3003AB1C7 = {
+			fileRef = 3B3F0228073EF1A3003AB1C7;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3B3F0249073EF405003AB1C7 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "NSAppleScript+HandlerCalls.h";
+			path = "Utilities/NSAppleScript+HandlerCalls.h";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		3B3F024A073EF405003AB1C7 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = "NSAppleScript+HandlerCalls.m";
+			path = "Utilities/NSAppleScript+HandlerCalls.m";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		3B3F024B073EF405003AB1C7 = {
+			fileRef = 3B3F0249073EF405003AB1C7;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		3B3F024C073EF405003AB1C7 = {
+			fileRef = 3B3F024A073EF405003AB1C7;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+//3B0
+//3B1
+//3B2
+//3B3
+//3B4
 //490
 //491
 //492
@@ -293,8 +355,6 @@
 //4A3
 //4A4
 		4A9504CCFFE6A4B311CA0CBA = {
-			buildRules = (
-			);
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
@@ -310,8 +370,6 @@
 			name = Development;
 		};
 		4A9504CDFFE6A4B311CA0CBA = {
-			buildRules = (
-			);
 			buildSettings = {
 				COPYING_PRESERVES_HFS_DATA = NO;
 				COPY_PHASE_STRIP = YES;
@@ -802,6 +860,8 @@
 		};
 		6BD8D4A707205205008CA80A = {
 			children = (
+				3B3F0249073EF405003AB1C7,
+				3B3F024A073EF405003AB1C7,
 				6BA936C20655EEC400AE7890,
 				6BA936C30655EEC400AE7890,
 				6B212599071D935F0044339D,
@@ -1014,6 +1074,7 @@
 				6B34D116072A2CBA00D08DB1,
 				6B34D18F072A2E7400D08DB1,
 				49FE4957073A0868004027E5,
+				3B3F024B073EF405003AB1C7,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1031,6 +1092,7 @@
 				8D11072B0486CEB800E47090,
 				6BA939AE065692DC00AE7890,
 				6B0D0363072EC7B6009A7725,
+				3B3F0229073EF1A3003AB1C7,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1068,6 +1130,7 @@
 				6B34D117072A2CBA00D08DB1,
 				6B34D190072A2E7400D08DB1,
 				49FE4958073A0868004027E5,
+				3B3F024C073EF405003AB1C7,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

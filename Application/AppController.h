@@ -13,6 +13,7 @@
 #import "DCAPIParser.h"
 #import "DCAPITagFormatter.h"
 #import "NSString+SFHFUtils.h"
+#import "NSAppleScript+HandlerCalls.h"
 #import "SFHFKeychainUtils.h"
 #import "SFHFTableView.h"
 #import "SFHFiTunesTableHeaderCell.h"
@@ -58,6 +59,8 @@
 
 	BOOL useExtendedSearch;
     
+	NSAppleScript *safariScript;
+	
 #ifdef AWOOSTER_CHANGES
     FullTextIndex *textIndex;
     BOOL useFullTextSearch;
@@ -107,8 +110,10 @@
 - (IBAction) showPostingInterface: (id) sender;
 - (IBAction) closePostingInterface: (id) sender;
 - (IBAction) postNewLink: (id) sender;
+- (IBAction) postCurrentSafariURL: (id) sender;
 - (IBAction) editSelectedLinks: (id) sender;
 - (IBAction) deleteSelectedLinks: (id) sender;
+- (void) handleScriptError: (NSDictionary *) errorInfo;
 - (IBAction) setSearchTypeToBasic: (id) sender;
 - (IBAction) setSearchTypeToExtended: (id) sender;
 #ifdef AWOOSTER_CHANGES

@@ -61,7 +61,17 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
 	/* Support for NetNewsWire External Weblog Editor Interface */
 	[[NSAppleEventManager sharedAppleEventManager] setEventHandler: self andSelector: @selector(postNewNNWLink:withReplyEvent:) forEventClass: DCNNWPostAppleEventClass andEventID: DCNNWPostAppleEventID];
-
+	
+	NSString *safariScriptPath = [[NSBundle mainBundle] pathForResource: kDCSafariScriptLibrary ofType: kDCScriptType];
+	NSURL *safariScriptURL = [NSURL fileURLWithPath: safariScriptPath];
+	NSDictionary *errorInfo = nil;
+	
+	safariScript = [[NSAppleScript alloc] initWithContentsOfURL: safariScriptURL error: &errorInfo];
+	
+	if (!safariScript || errorInfo) {
+        [self handleScriptError: errorInfo];
+    }
+	
 	[postList setDoubleAction: @selector(openSelected:)];
     
     [self setPosts: [NSArray array]];
@@ -81,7 +91,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 	[tagList initializeColumnsUsingHeaderCellClass: [SFHFMetalTableHeaderCell class] formatterClass: [DCAPITagFormatter class]];
 	
-	[tagList registerForDraggedTypes: [NSArray arrayWithObject: DCAPIPostPboardType]];
+	[tagList registerForDraggedTypes: [NSArray arrayWithObject: kDCAPIPostPboardType]];
 
     SFHFMetalTableHeaderCell *cornerCell = [[SFHFMetalTableHeaderCell alloc] initTextCell: @" "];
 	SFHFCornerView *cornerControl = [[SFHFCornerView alloc] init];
@@ -638,12 +648,11 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 - (BOOL) tableView: (NSTableView *) tableView writeRows: (NSArray *) rows toPasteboard: (NSPasteboard *) pboard {
 	if (tableView == postList) {
-		[pboard declareTypes: [NSArray arrayWithObject: DCAPIPostPboardType] owner: self];
+		[pboard declareTypes: [NSArray arrayWithObject: kDCAPIPostPboardType] owner: self];
 		
 		NSNumber *currentPostIndex = [rows objectAtIndex: 0];
 		DCAPIPost *currentPost = [[self filteredPosts] objectAtIndex: [currentPostIndex unsignedIntValue]];
-		
-		[pboard setData: [NSKeyedArchiver archivedDataWithRootObject: currentPost] forType: DCAPIPostPboardType];
+		[pboard setData: [NSKeyedArchiver archivedDataWithRootObject: currentPost] forType: kDCAPIPostPboardType];
 			
 		return YES;
 	}
@@ -662,7 +671,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 - (BOOL) tableView: (NSTableView *) tableView acceptDrop: (id <NSDraggingInfo>) info row: (int) row dropOperation: (NSTableViewDropOperation) operation {
 #warning modify if tableView:validateDrop:proposedRow:proposedOperation returns for more than just tag assignment
 	NSPasteboard *pboard = [info draggingPasteboard];
-	NSData *data = [pboard dataForType: DCAPIPostPboardType];
+	NSData *data = [pboard dataForType: kDCAPIPostPboardType];
 	
 	DCAPIPost *post = [NSKeyedUnarchiver unarchiveObjectWithData: data];
 	NSString *postTags = [post tagsAsString];
@@ -998,6 +1007,40 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	[self refresh: self];
 }
 
+- (IBAction) postCurrentSafariURL: (id) sender {
+	NSDictionary *errorInfo = nil;
+	NSAppleEventDescriptor *arguments = [[NSAppleEventDescriptor alloc] initListDescriptor];
+	
+	NSAppleEventDescriptor *result = [safariScript callHandler: kDCSafariGetCurrentURL withArguments: arguments errorInfo: &errorInfo];
+	
+	NSString *scriptResult = [result stringValue];
+	
+	/* Check for errors in running the handler */
+    if (errorInfo) {
+        [self handleScriptError: errorInfo];
+    }
+    /* Check the handler's return value */
+    else if ([scriptResult isEqualToString: kScriptError]) {
+        NSRunAlertPanel(NSLocalizedString(@"Script Failure", @"Title on script failure window."), [NSString stringWithFormat: @"%@ %d", NSLocalizedString(@"The script failed:", @"Message on script failure window."), scriptResult], NSLocalizedString(@"OK", @""), nil, nil);
+    }
+	
+	NSString *URLString = [[scriptResult componentsSeparatedByString: @"***"] objectAtIndex: 1];
+	
+	if (URLString) {
+		[currentPostProperties setObject: URLString forKey: @"url"];
+	}
+	
+	NSString *description = [[scriptResult componentsSeparatedByString: @"***"] objectAtIndex: 0];
+	
+	if (description) {
+		[currentPostProperties setObject: description forKey: @"description"];
+	}
+	
+	[self showPostingInterface: self];
+	
+	[arguments release];
+}
+
 - (IBAction) editSelectedLinks: (id) sender {
     int selectedRow = [postList selectedRow];
 
@@ -1046,6 +1089,14 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 		[[self client] deletePostWithURL: [selectedPost URL]];
 		[self refresh: self];
 	}
+}
+
+- (void) handleScriptError: (NSDictionary *) errorInfo {
+#warning if safariScript = nil disable menu item
+    NSString *errorMessage = [errorInfo objectForKey: NSAppleScriptErrorBriefMessage];
+    NSNumber *errorNumber = [errorInfo objectForKey: NSAppleScriptErrorNumber];
+	
+    NSRunAlertPanel(NSLocalizedString(@"Script Error", @"Title on script error window."), [NSString stringWithFormat: @"%@: %@", NSLocalizedString(@"The script produced an error", @"Message on script error window."), errorNumber, errorMessage], NSLocalizedString(@"OK", @""), nil, nil);
 }
 
 - (void) windowWillClose: (NSNotification *) aNotification {
@@ -1097,6 +1148,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 #ifdef AWOOSTER_CHANGES
     [textIndex release];
 #endif
+	[safariScript release];
     [super dealloc];
 }
 
