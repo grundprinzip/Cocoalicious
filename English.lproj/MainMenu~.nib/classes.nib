@@ -1,0 +1,49 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                cancelLogin = id; 
+                closePostingInterface = id; 
+                copyAsTag = id; 
+                deleteSelectedLinks = id; 
+                editSelectedLinks = id; 
+                loginFromPanel = id; 
+                openRegistrationURL = id; 
+                openSelected = id; 
+                postNewLink = id; 
+                refresh = id; 
+                setSearchTypeToBasic = id; 
+                setSearchTypeToExtended = id; 
+                showPostingInterface = id; 
+            }; 
+            CLASS = AppController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                loginController = NSController; 
+                loginPanel = NSPanel; 
+                mainWindow = NSWindow; 
+                metadataDrawer = NSDrawer; 
+                postDescriptionField = NSTextField; 
+                postList = SFHFTableView; 
+                postURLField = NSTextField; 
+                postingInterface = NSWindow; 
+                preferencesWindow = NSWindow; 
+                searchField = NSTextField; 
+                searchMenu = NSMenu; 
+                spinnyThing = NSProgressIndicator; 
+                statusText = NSTextField; 
+                tagList = SFHFTableView; 
+                webView = WebView; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = DCAPIPost; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = DCAPITagFormatter; LANGUAGE = ObjC; SUPERCLASS = NSFormatter; }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = SFHFBezelView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {CLASS = SFHFScrollView; LANGUAGE = ObjC; SUPERCLASS = NSScrollView; }, 
+        {CLASS = SFHFSplitView; LANGUAGE = ObjC; SUPERCLASS = NSSplitView; }, 
+        {CLASS = SFHFTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }
+    ); 
+    IBVersion = 1; 
+}

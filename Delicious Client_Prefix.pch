@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Delicious Client' target in the 'Delicious Client' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
