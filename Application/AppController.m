@@ -33,6 +33,8 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	[dictionary setObject: [NSNumber numberWithFloat: 1.0] forKey: kDEACTIVATE_ALPHA_DEFAULTS_KEY];
 	[dictionary setObject: [NSNumber numberWithBool: YES] forKey: kSHOW_WEB_PREVIEW_DEFAULTS_KEY];
 	[dictionary setObject: [NSNumber numberWithInt: DCBasicSearchType] forKey: kSEARCH_TYPE_DEFAULTS_KEY];
+	[dictionary setObject: [NSNumber numberWithBool: NO] forKey: kAUTOMATICALLY_COMPLETE_TAGS_DEFAULTS_KEY];
+	[dictionary setObject: [NSNumber numberWithFloat: kDEFAULT_TAG_AUTOCOMPLETION_DELAY] forKey: kTAG_AUTOCOMPLETION_DELAY_DEFAULTS_KEY];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues: dictionary];
 }
 
@@ -49,6 +51,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (void) awakeFromNib {
+	[postTagsField setFieldEditor: YES];
 	[self sizeBezelSubviews];
 	[self setupToolbar];
 	[self setupWebPreview];
@@ -490,13 +493,11 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     return [[currentSearch retain] autorelease];
 }
 
-- (void) controlTextDidChange: (NSNotification *) aNotification {
-    if ([aNotification object] == searchField) {
+- (IBAction) doSearch: (id) sender {
+    if (sender == searchField) {
 		[self resetPostView];
 		
-		NSText *fieldEditor = [[aNotification userInfo] objectForKey: @"NSFieldEditor"];
-			
-		NSString *search = [fieldEditor string];
+		NSString *search = [sender stringValue];
 		
 		[self doSearchForString: search];
 
@@ -1315,6 +1316,49 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	}
 	
 	return NO;
+}
+
+- (void) textDidBeginEditing: (NSNotification *) aNotification {
+	lastTextChangeWasCompletion = NO;
+}
+
+- (void) textDidChange: (NSNotification *) aNotification {
+	BOOL shouldAutocomplete = [(NSNumber *) [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kAUTOMATICALLY_COMPLETE_TAGS_DEFAULTS_KEY] boolValue];
+
+	if (!shouldAutocomplete) {
+		return;
+	}
+
+	NSTimeInterval autocompleteDelay = (NSTimeInterval) [(NSNumber *) [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kTAG_AUTOCOMPLETION_DELAY_DEFAULTS_KEY] floatValue];
+
+	if ([aNotification object] == postTagsField) {
+		if (autocompleteTimer) {
+			[autocompleteTimer invalidate];
+			[autocompleteTimer release];
+			autocompleteTimer = nil;
+		}
+
+		if (lastTextChangeWasCompletion) {
+			lastTextChangeWasCompletion = NO;
+		}
+		else {
+			autocompleteTimer = [NSTimer timerWithTimeInterval: (NSTimeInterval) autocompleteDelay target: self selector: @selector(doTimedAutocomplete:) userInfo: nil repeats: NO];
+			[autocompleteTimer retain];
+			[[NSRunLoop currentRunLoop] addTimer: autocompleteTimer forMode: NSModalPanelRunLoopMode];
+		}
+	}
+}
+
+- (void) doTimedAutocomplete: (NSTimer *) timer {
+	[postTagsField complete: self];
+}
+
+- (void) textViewFinishedCompletion: (NSTextView *) textView {
+	lastTextChangeWasCompletion = YES;
+}
+
+- (void) textViewCancelledCompletion: (NSTextView *) textView {
+	lastTextChangeWasCompletion = YES;
 }
 
 // Delegate for post sheet's tags text view

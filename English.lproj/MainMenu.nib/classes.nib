@@ -7,6 +7,7 @@
                 closePostingInterface = id; 
                 copyAsTag = id; 
                 deleteSelectedLinks = id; 
+                doSearch = id; 
                 editSelectedLinks = id; 
                 indexAll = id; 
                 loginFromPanel = id; 
@@ -54,11 +55,13 @@
         {CLASS = DCAPIPost; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {CLASS = DCAPITagFormatter; LANGUAGE = ObjC; SUPERCLASS = NSFormatter; }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = NSObject; LANGUAGE = ObjC; }, 
         {CLASS = NSSegmentedControl; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
         {CLASS = SFHFBezelView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
         {CLASS = SFHFScrollView; LANGUAGE = ObjC; SUPERCLASS = NSScrollView; }, 
         {CLASS = SFHFSplitView; LANGUAGE = ObjC; SUPERCLASS = NSSplitView; }, 
-        {CLASS = SFHFTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }
+        {CLASS = SFHFTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }, 
+        {CLASS = SFHFTextView; LANGUAGE = ObjC; SUPERCLASS = NSTextView; }
     ); 
     IBVersion = 1; 
 }

@@ -9,7 +9,7 @@
 
 #define kDEFAULT_SECURITY_DOMAIN (@"del.icio.us API")
 
-#define kUSER_AGENT (@"Cocoal.icio.us/1.0 (v30) (Mac OS X; http://www.scifihifi.com/cocoalicious)")
+#define kUSER_AGENT (@"Cocoal.icio.us/1.0 (v31) (Mac OS X; http://www.scifihifi.com/cocoalicious)")
 
 #define kTAG_SEPARATOR (@" ")
 #define kHTTP_PROTOCOL_PREFIX (@"http://")
@@ -22,6 +22,10 @@
 #define kDEACTIVATE_ALPHA_DEFAULTS_KEY @"deactiveAlphaValue"
 #define kSHOW_WEB_PREVIEW_DEFAULTS_KEY @"showWebPreview"
 #define kSEARCH_TYPE_DEFAULTS_KEY @"searchType"
+#define kAUTOMATICALLY_COMPLETE_TAGS_DEFAULTS_KEY @"automaticallyCompleteTags"
+#define kTAG_AUTOCOMPLETION_DELAY_DEFAULTS_KEY @"tagAutocompletionDelay"
+
+#define kDEFAULT_TAG_AUTOCOMPLETION_DELAY 2.0
 
 #define kDESCRIPTION_COLUMN @"description"
 #define kEXTENDED_COLUMN @"extended"

@@ -74,8 +74,12 @@
 	NSMutableDictionary *loginProperties;
 
 	BOOL useExtendedSearch;
+	
+	BOOL lastTextChangeWasCompletion;
     
 	NSAppleScript *safariScript;
+	
+	NSTimer *autocompleteTimer;
 	
 #ifdef AWOOSTER_CHANGES
     FullTextIndex *textIndex;
@@ -96,6 +100,7 @@
 - (void) refreshDates;
 - (void) refreshAll;
 
+- (IBAction) doSearch: (id) sender;
 - (void) doSearchForString: (NSString *) string;
 //- (NSArray *) filterPosts: (NSArray *) postArray forTags: (NSArray *) matchTags;
 - (NSArray *) filterPosts: (NSArray *) postArray forSearch: (NSString *) search tags: (NSArray *) matchTags;
