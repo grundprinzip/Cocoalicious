@@ -15,5 +15,6 @@
 - (void) setURLAsString: (NSString *) newURLString;
 - (NSString *) URLAsString;
 
+- (void) setTagsAsString: (NSString *)newString;
 
 @end

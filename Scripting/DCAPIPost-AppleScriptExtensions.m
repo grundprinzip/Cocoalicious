@@ -29,4 +29,8 @@
 	return [[self URL] absoluteString];
 }
 
+- (void) setTagsAsString: (NSString *)newString {
+	[self setTagsFromString: newString];
+}
+
 @end
