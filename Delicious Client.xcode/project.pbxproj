@@ -158,6 +158,7 @@
 		};
 		29B97317FDCFA39411CA2CEA = {
 			children = (
+				6BF009AD077B05B30036723E,
 				6B0D0362072EC7B6009A7725,
 				6BA939AD065692DC00AE7890,
 				6BB0A8E8074FF64B008FDDCC,
@@ -1132,6 +1133,20 @@
 			settings = {
 			};
 		};
+		6BF009AD077B05B30036723E = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.tiff;
+			name = toggle_web_preview_icon.tif;
+			path = Art/toggle_web_preview_icon.tif;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6BF009AE077B05B30036723E = {
+			fileRef = 6BF009AD077B05B30036723E;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		6BF88AE305C4D56000D7EDBB = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -1289,6 +1304,7 @@
 				6B3AC8840759162F00F20C1F,
 				6B3AC8850759162F00F20C1F,
 				6B3AC8860759162F00F20C1F,
+				6BF009AE077B05B30036723E,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
