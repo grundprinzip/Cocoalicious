@@ -33,7 +33,7 @@
                 postExtendedField = NSTextField; 
                 postList = SFHFTableView; 
                 postListBezel = SFHFBezelView; 
-                postTagsField = NSTextField; 
+                postTagsField = NSTextView; 
                 postURLField = NSTextField; 
                 postingInterface = NSWindow; 
                 preferencesWindow = NSWindow; 

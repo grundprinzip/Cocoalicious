@@ -1309,6 +1309,27 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	return NO;
 }
 
+// Delegate for post sheet's tags text view
+- (NSArray *)textView:(NSTextView *)textView
+		  completions:(NSArray *)words
+  forPartialWordRange:(NSRange)charRange
+  indexOfSelectedItem:(int *)index
+{
+#warning [FS] For accounts with massive numbers of tags, this naive implementation may prove slow.
+	// However, it would be wise to profile first.
+	
+	NSString *prefix = [[[textView string] substringWithRange: charRange] lowercaseString];
+	NSMutableArray *completions = [NSMutableArray array];
+	
+	NSEnumerator *tagEnumerator = [[self tags] objectEnumerator];
+	DCAPITag *tag;
+	while(tag = [tagEnumerator nextObject]) {
+		if([[[tag name] lowercaseString] hasPrefix: prefix])
+			[completions addObject: [[tag name] copy]];
+	}
+	return completions;
+}
+
 - (void) dealloc {
     [client release];
     [tags release];
