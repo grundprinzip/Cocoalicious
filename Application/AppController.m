@@ -694,8 +694,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
                            withObject:searchDict];
 }
 
-- (IBAction) indexSelected: (id) sender
-{
+- (IBAction) indexSelected: (id) sender {
     NSMutableArray *postURLs = [[NSMutableArray alloc] init];
     NSArray *postArray = [self filteredPosts];
     
@@ -725,6 +724,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 - (void) fullTextIndexFinishedIndexingDocumentList: (NSArray *) documentList {
 	[self toggleStatusViewToStatusText];
+	[indexingProgressBar setDoubleValue: 0.0];
 }
 
 #endif

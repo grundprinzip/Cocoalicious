@@ -317,8 +317,6 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/";
     NSURLResponse *resp;
     NSError *error;
 	
-	NSLog([apiURL description]);
-	
 	NSData *returnData = [NSURLConnection sendSynchronousRequest: req returningResponse: &resp error: &error];
 	
 	if (error) { 

@@ -159,6 +159,7 @@
 - (void)updateIndexing: (id)anObject;
 - (IBAction) setSearchTypeToFullText: (id) sender;
 - (IBAction) indexAll: (id) sender;
+- (IBAction) indexSelected: (id) sender;
 #endif
 - (IBAction) copyAsTag: (id) sender;
 
