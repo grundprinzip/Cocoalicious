@@ -2,6 +2,7 @@
     IBClasses = (
         {
             ACTIONS = {
+                addOrDeleteLinks = id; 
                 cancelLogin = id; 
                 closePostingInterface = id; 
                 copyAsTag = id; 
@@ -18,10 +19,12 @@
                 setSearchTypeToExtended = id; 
                 setSearchTypeToFullText = id; 
                 showPostingInterface = id; 
+                toggleWebPreview = id; 
             }; 
             CLASS = AppController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
+                addDeletePostButton = NSSegmentedControl; 
                 loginController = NSController; 
                 loginPanel = NSPanel; 
                 mainWindow = NSWindow; 
@@ -29,21 +32,28 @@
                 postDescriptionField = NSTextField; 
                 postExtendedField = NSTextField; 
                 postList = SFHFTableView; 
+                postListBezel = SFHFBezelView; 
                 postURLField = NSTextField; 
                 postingInterface = NSWindow; 
                 preferencesWindow = NSWindow; 
+                previewSplitView = SFHFSplitView; 
+                refreshButton = NSSegmentedControl; 
                 searchField = NSTextField; 
                 searchMenu = NSMenu; 
+                showInfoButton = NSSegmentedControl; 
                 spinnyThing = NSProgressIndicator; 
                 statusText = NSTextField; 
                 tagList = SFHFTableView; 
+                toggleWebPreviewButton = NSSegmentedControl; 
                 webView = WebView; 
+                webViewBezel = SFHFBezelView; 
             }; 
             SUPERCLASS = NSObject; 
         }, 
         {CLASS = DCAPIPost; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {CLASS = DCAPITagFormatter; LANGUAGE = ObjC; SUPERCLASS = NSFormatter; }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {CLASS = NSSegmentedControl; LANGUAGE = ObjC; SUPERCLASS = NSControl; }, 
         {CLASS = SFHFBezelView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
         {CLASS = SFHFScrollView; LANGUAGE = ObjC; SUPERCLASS = NSScrollView; }, 
         {CLASS = SFHFSplitView; LANGUAGE = ObjC; SUPERCLASS = NSSplitView; }, 

@@ -123,6 +123,7 @@
 				6BD8D4B607205221008CA80A,
 				49FE4954073A0868004027E5,
 				3B3F0225073EF17A003AB1C7,
+				6BD81875075AFB510088A2CF,
 				6BD8D4A707205205008CA80A,
 				29B97315FDCFA39411CA2CEA,
 				29B97317FDCFA39411CA2CEA,
@@ -159,6 +160,10 @@
 			children = (
 				6B0D0362072EC7B6009A7725,
 				6BA939AD065692DC00AE7890,
+				6BB0A8E8074FF64B008FDDCC,
+				6B3AC8810759162F00F20C1F,
+				6B3AC8820759162F00F20C1F,
+				6B3AC8830759162F00F20C1F,
 				8D1107310486CEB800E47090,
 				089C165CFE840E0CC02AAC07,
 				29B97318FDCFA39411CA2CEA,
@@ -702,6 +707,48 @@
 			settings = {
 			};
 		};
+		6B3AC8810759162F00F20C1F = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.tiff;
+			name = add_post_icon.tif;
+			path = Art/add_post_icon.tif;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B3AC8820759162F00F20C1F = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.tiff;
+			name = delete_post_icon.tif;
+			path = Art/delete_post_icon.tif;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B3AC8830759162F00F20C1F = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.tiff;
+			name = show_info_icon.tif;
+			path = Art/show_info_icon.tif;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B3AC8840759162F00F20C1F = {
+			fileRef = 6B3AC8810759162F00F20C1F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B3AC8850759162F00F20C1F = {
+			fileRef = 6B3AC8820759162F00F20C1F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B3AC8860759162F00F20C1F = {
+			fileRef = 6B3AC8830759162F00F20C1F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		6B5A44BC06D1CFB6007C405C = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -857,6 +904,147 @@
 			path = Cocoalicious.app;
 			refType = 3;
 			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6BB0A8E8074FF64B008FDDCC = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.tiff;
+			name = refresh_icon.tif;
+			path = Art/refresh_icon.tif;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6BB0A8E9074FF64B008FDDCC = {
+			fileRef = 6BB0A8E8074FF64B008FDDCC;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6BD81875075AFB510088A2CF = {
+			children = (
+				6BD8187D075AFB740088A2CF,
+				6BD8187E075AFB740088A2CF,
+				6BD818EA075AFCE50088A2CF,
+				6BD818EB075AFCE50088A2CF,
+				6BD818EC075AFCE50088A2CF,
+				6BD818ED075AFCE50088A2CF,
+				6BD8187F075AFB740088A2CF,
+			);
+			isa = PBXGroup;
+			name = "AppleScript Support";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6BD8187D075AFB740088A2CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "AppController-AppleScriptExtensions.h";
+			path = "Scripting/AppController-AppleScriptExtensions.h";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6BD8187E075AFB740088A2CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = "AppController-AppleScriptExtensions.m";
+			path = "Scripting/AppController-AppleScriptExtensions.m";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6BD8187F075AFB740088A2CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			name = Cocoalicious.sdef;
+			path = Scripting/Cocoalicious.sdef;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6BD81880075AFB740088A2CF = {
+			fileRef = 6BD8187D075AFB740088A2CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6BD81881075AFB740088A2CF = {
+			fileRef = 6BD8187E075AFB740088A2CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6BD818EA075AFCE50088A2CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "DCAPIPost-AppleScriptExtensions.h";
+			path = "Scripting/DCAPIPost-AppleScriptExtensions.h";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6BD818EB075AFCE50088A2CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = "DCAPIPost-AppleScriptExtensions.m";
+			path = "Scripting/DCAPIPost-AppleScriptExtensions.m";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6BD818EC075AFCE50088A2CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "DCAPITag-AppleScriptExtensions.h";
+			path = "Scripting/DCAPITag-AppleScriptExtensions.h";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6BD818ED075AFCE50088A2CF = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = "DCAPITag-AppleScriptExtensions.m";
+			path = "Scripting/DCAPITag-AppleScriptExtensions.m";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6BD818EE075AFCE60088A2CF = {
+			fileRef = 6BD818EA075AFCE50088A2CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6BD818EF075AFCE60088A2CF = {
+			fileRef = 6BD818EB075AFCE50088A2CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6BD818F0075AFCE60088A2CF = {
+			fileRef = 6BD818EC075AFCE50088A2CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6BD818F1075AFCE60088A2CF = {
+			fileRef = 6BD818ED075AFCE50088A2CF;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6BD8194B075AFD9C0088A2CF = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			isa = PBXShellScriptBuildPhase;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/Developer/Tools/sdp -f st -o \"$BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources\" \"$SOURCE_ROOT/Scripting/Cocoalicious.sdef\"\n";
 		};
 		6BD8D4A707205205008CA80A = {
 			children = (
@@ -1020,6 +1208,7 @@
 				8D1107290486CEB800E47090,
 				8D11072C0486CEB800E47090,
 				8D11072E0486CEB800E47090,
+				6BD8194B075AFD9C0088A2CF,
 			);
 			buildRules = (
 			);
@@ -1075,6 +1264,9 @@
 				6B34D18F072A2E7400D08DB1,
 				49FE4957073A0868004027E5,
 				3B3F024B073EF405003AB1C7,
+				6BD81880075AFB740088A2CF,
+				6BD818EE075AFCE60088A2CF,
+				6BD818F0075AFCE60088A2CF,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1093,6 +1285,10 @@
 				6BA939AE065692DC00AE7890,
 				6B0D0363072EC7B6009A7725,
 				3B3F0229073EF1A3003AB1C7,
+				6BB0A8E9074FF64B008FDDCC,
+				6B3AC8840759162F00F20C1F,
+				6B3AC8850759162F00F20C1F,
+				6B3AC8860759162F00F20C1F,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1131,6 +1327,9 @@
 				6B34D190072A2E7400D08DB1,
 				49FE4958073A0868004027E5,
 				3B3F024C073EF405003AB1C7,
+				6BD81881075AFB740088A2CF,
+				6BD818EF075AFCE60088A2CF,
+				6BD818F1075AFCE60088A2CF,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

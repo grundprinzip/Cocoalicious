@@ -46,11 +46,8 @@
 	if (movement == NSReturnTextMovement) {
 		doEdit = NO;
 	}
-	else if (movement == NSReturnTextMovement) {
-		doEdit = YES;
-	}
 	else if (movement == NSTabTextMovement) {
-		doEdit = YES;
+		doEdit = NO;
 	}
 
 	if (!doEdit) {

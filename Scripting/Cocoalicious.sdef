@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+
+<!--
+	Cocoalicious Scripting Definition
+	Made in 2004 by Armin Briegel
+-->
+
+<dictionary title="">
+	<suite name="Cocoalicious" code="Lish">
+		<classes>
+			<class name="application" code="capp" inherits="NSCoreSuite.NSApplication" description="The Cocoalicious application.">
+				<cocoa class="NSApplication"/>
+				<elements>
+					<element type="post" access="r">
+						<cocoa method="orderedPosts"/>
+					</element>
+					<element type="tag" access="r">
+						<cocoa method="orderedTags"/>
+					</element>
+				</elements>
+			</class>
+			<class name="post" code="POST" inherits="NSCoreSuite.AbstractObject" description="A del.icio.us post.">
+				<cocoa class="DCAPIPost"/>
+				<properties>
+					<property name="description" code="DESC" type="string" access="r" description="The description od the post.">
+						<cocoa method="description"/>
+					</property>
+					<property name="url" code="URL " type="string" access="r" description="The url of the post.">
+						<cocoa method="URLAsString"/>
+					</property>
+					<property name="extended" code="EXTN" type="string" access="r" description="The extended description of the post.">
+						<cocoa method="extended"/>
+					</property>
+					<property name="tag string" code="TSTR" type="string" access="r" description="The tags of the post as aspace delimited string.">
+						<cocoa method="tagsAsString"/>
+					</property>
+					<property name="timestamp" code="STMP" type="date" access="r" description="The date of the post.">
+						<cocoa method="date"/>
+					</property>
+					<property name="id" code="ID  " type="string" access="r" description="The id of the post.">
+						<cocoa method="hash"/>
+					</property>
+				</properties>
+			</class>
+			<class name="tag" code="TAG " inherits="NSCoreSuite.AbstractObject" description="A del.icio.us tag.">
+				<cocoa class="DCAPITag"/>
+				<properties>
+					<property name="name" code="pnam" type="string" access="r" description="The name of the tag.">
+						<cocoa method="name"/>
+					</property>
+				</properties>
+			</class>
+		</classes>
+		<commands>
+		</commands>
+	</suite>
+</dictionary>

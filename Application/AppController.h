@@ -16,6 +16,8 @@
 #import "NSAppleScript+HandlerCalls.h"
 #import "SFHFKeychainUtils.h"
 #import "SFHFTableView.h"
+#import "SFHFBezelView.h"
+#import "SFHFSplitView.h"
 #import "SFHFiTunesTableHeaderCell.h"
 #import "SFHFMetalTableHeaderCell.h"
 #import "SFHFCornerView.h"
@@ -30,11 +32,20 @@
     IBOutlet NSProgressIndicator *spinnyThing;
     IBOutlet NSTextField *statusText;
     IBOutlet SFHFTableView *postList;
+	IBOutlet SFHFBezelView *postListBezel;
     IBOutlet SFHFTableView *tagList;
     IBOutlet NSDrawer *metadataDrawer;
+	IBOutlet SFHFBezelView *webViewBezel;
     IBOutlet WebView *webView;
     IBOutlet NSTextField *searchField;
     IBOutlet NSMenu *searchMenu;
+	
+	NSRect lastPostListBezelFrame;
+	
+	IBOutlet NSSegmentedControl *refreshButton;
+	IBOutlet NSSegmentedControl *addDeletePostButton;
+	IBOutlet NSSegmentedControl *showInfoButton;
+	IBOutlet NSSegmentedControl *toggleWebPreviewButton;
 	
 	IBOutlet NSTextField *postDescriptionField;
 	IBOutlet NSTextField *postURLField;
@@ -45,6 +56,7 @@
     IBOutlet NSPanel *loginPanel;
     IBOutlet NSWindow *postingInterface;
     IBOutlet NSWindow *preferencesWindow;
+	IBOutlet SFHFSplitView *previewSplitView;
     
     NSArray *tags;
     NSArray *dates;
@@ -70,6 +82,7 @@
 
 - (void) setupTaglist;
 - (void) setupPostlist;
+- (void) setupToolbar;
 
 - (IBAction) openSelected: (id) sender;
 - (IBAction) refresh: (id) sender;
@@ -104,10 +117,13 @@
 - (NSArray *) selectedTags;
 
 - (void) resetPostView;
+- (void) previewSelectedLinks;
 
 - (IBAction) loginFromPanel: (id) sender;
 - (IBAction) cancelLogin: (id) sender;
 - (IBAction) openRegistrationURL: (id) sender;
+- (IBAction) addOrDeleteLinks: (id) sender;
+- (IBAction) toggleWebPreview: (id) sender;
 - (IBAction) showPostingInterface: (id) sender;
 - (IBAction) closePostingInterface: (id) sender;
 - (IBAction) postNewLink: (id) sender;

@@ -47,15 +47,17 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (void) awakeFromNib {
-	NSRect webViewBezelFrame = [[webView superview] frame];
+	/* NSRect webViewBezelFrame = [webViewBezel frame];
 	[webView setFrame: NSInsetRect(webViewBezelFrame, 2, 2)];
-	[webView display];
 
 	NSRect postListBezelFrame = [[[postList enclosingScrollView] superview] frame];
 	[[postList enclosingScrollView] setFrame: NSMakeRect(postListBezelFrame.origin.x + 2, postListBezelFrame.origin.y + 2, postListBezelFrame.size.width - 4, postListBezelFrame.size.height - 3)];
-	
+        
 	NSRect tagListBezelFrame = [[[tagList enclosingScrollView] superview] frame];
-	[[tagList enclosingScrollView] setFrame: NSMakeRect(tagListBezelFrame.origin.x + 2, tagListBezelFrame.origin.y + 2, tagListBezelFrame.size.width - 4, tagListBezelFrame.size.height - 3)];
+	[[tagList enclosingScrollView] setFrame: NSMakeRect(tagListBezelFrame.origin.x + 2, tagListBezelFrame.origin.y + 2, tagListBezelFrame.size.width - 4, tagListBezelFrame.size.height - 3)];*/
+
+
+	[self setupToolbar];
 }
 
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
@@ -88,6 +90,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 - (void) setupTaglist {
 	[tagList setAction: @selector(makePostListFirstResponder) forKey: NSRightArrowFunctionKey];
+	[tagList setAction: @selector(endTagListEditing) forKey: 27];
 
 	[tagList initializeColumnsUsingHeaderCellClass: [SFHFMetalTableHeaderCell class] formatterClass: [DCAPITagFormatter class]];
 	
@@ -99,6 +102,42 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     [tagList setCornerView: cornerControl];
     [cornerControl release];
 	[cornerCell release];
+}
+
+- (void) setupToolbar {
+	[refreshButton setSegmentCount: 1];
+	[refreshButton setWidth: 22 forSegment: 0];
+	NSImage *refreshIcon = [[NSImage alloc] initWithContentsOfFile: [[NSBundle mainBundle] pathForResource: kREFRESH_BUTTON_IMAGE ofType: @"tif"]];
+	[[refreshButton cell] setTrackingMode: NSSegmentSwitchTrackingMomentary];
+	//[refreshButton setImage: refreshIcon forSegment: 0];
+	[refreshIcon release];
+	
+	[addDeletePostButton setSegmentCount: 2];
+	[addDeletePostButton setWidth: 22 forSegment: 0];
+	[addDeletePostButton setWidth: 22 forSegment: 1];
+	NSImage *addPostIcon = [[NSImage alloc] initWithContentsOfFile: [[NSBundle mainBundle] pathForResource: kADD_POST_BUTTON_IMAGE ofType: @"tif"]];
+	NSImage *deletePostIcon = [[NSImage alloc] initWithContentsOfFile: [[NSBundle mainBundle] pathForResource: kDELETE_POST_BUTTON_IMAGE ofType: @"tif"]];
+	[[addDeletePostButton cell] setTrackingMode: NSSegmentSwitchTrackingMomentary];
+	[addDeletePostButton setImage: addPostIcon forSegment: 0];
+	[addDeletePostButton setImage: deletePostIcon forSegment: 1];
+	[[addDeletePostButton cell] setTag: kADD_POST_SEGMENT_TAG forSegment: 0];
+	[[addDeletePostButton cell] setTag: kDELETE_POST_SEGMENT_TAG forSegment: 1];
+	[addPostIcon release];
+	[deletePostIcon release];
+		
+	[showInfoButton setSegmentCount: 1];
+	[showInfoButton setWidth: 22 forSegment: 0];
+	NSImage *showInfoIcon = [[NSImage alloc] initWithContentsOfFile: [[NSBundle mainBundle] pathForResource: kSHOW_INFO_BUTTON_IMAGE ofType: @"tif"]];
+	[[showInfoButton cell] setTrackingMode: NSSegmentSwitchTrackingMomentary];
+	[showInfoButton setImage: showInfoIcon forSegment: 0];
+	[showInfoIcon release];
+	
+	[toggleWebPreviewButton setSegmentCount: 1];
+	[toggleWebPreviewButton setWidth: 22 forSegment: 0];
+	NSImage *toggleWebPreviewIcon = [[NSImage alloc] initWithContentsOfFile: [[NSBundle mainBundle] pathForResource: kTOGGLE_WEB_PREVIEW_BUTTON_IMAGE ofType: @"tif"]];
+	[[toggleWebPreviewButton cell] setTrackingMode: NSSegmentSwitchTrackingMomentary];
+	[toggleWebPreviewButton setImage: toggleWebPreviewIcon forSegment: 0];
+	[toggleWebPreviewIcon release];
 }
 
 - (void) setupPostlist {    
@@ -157,7 +196,11 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (void) refreshTags {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
 	[self setTags: [[self client] requestTagsFilteredByDate: nil]];
+	
+	[pool release];
 }
 
 - (void) refreshPostView {
@@ -176,6 +219,8 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (void) refreshPostsWithDownload: (BOOL) download {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
 	DCAPITag *tagFilter = [self currentTagFilter];
 
 	NSArray *unfilteredPosts;
@@ -206,8 +251,16 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	else {
 		[self setFilteredPosts: nil];
 	}
+
+	/* Dummy code for working without a network connection */
+
+	/* DCAPIPost *testPost = [[DCAPIPost alloc] initWithURL: [NSURL URLWithString: @"http://www.scifihifi.com"] description: @"Test" extended: @"Test" date: [NSDate date] tags: [NSArray arrayWithObject: @"test"] hash: @"sdfasd"];
+	[self setPosts: [NSArray arrayWithObject: testPost]];
+	[testPost release]; */
 	
 	[postList reloadData];
+	
+	[pool release];
 }
 
 - (NSArray *) selectedTags {
@@ -340,11 +393,15 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (void) refreshDates {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
 	[self setDates: [[self client] requestDatesFilteredByTag: nil]];
+	
+	[pool release];
 }
 
 - (void) refreshAll {
-    [self refreshTags];
+	[self refreshTags];
     [self refreshPostsWithDownload: YES];
     [self refreshDates];
 }
@@ -378,6 +435,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	[sortDescriptor release];
 	[self setTags: resortedTags];
 	[self updateTagFilterFromSelection];
+	NSLog(@"about to reload tag list");
 	[tagList reloadData];
 }
 
@@ -488,8 +546,31 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	}	
 }
 
+- (void) endTagListEditing {
+	NSLog(@"abort editing");
+	[tagList abortEditing];
+}
+
 - (void) scrollWebViewDown {
 	//[webView pageDown: self];
+}
+
+- (IBAction) toggleWebPreview: (id) sender {
+	if ([webViewBezel superview]) {
+		lastPostListBezelFrame = [postListBezel frame];
+		[[webViewBezel retain] removeFromSuperview];
+		[[webView mainFrame] loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: kBLANK_URL]]];
+	}
+	else {
+		[previewSplitView addSubview: [webViewBezel autorelease]];
+		[postListBezel setFrameSize: lastPostListBezelFrame.size];
+		[previewSplitView adjustSubviews];
+		[self previewSelectedLinks];
+	}
+}
+
+- (void) splitView: (NSSplitView *) sender resizeSubviewsWithOldSize: (NSSize) oldSize {
+	[previewSplitView adjustSubviews];
 }
 
 - (IBAction) setSearchTypeToBasic: (id) sender {
@@ -640,8 +721,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 			
 			// UPLOAD TAG RENAME HERE
 			[[self client] renameTag: originalName to: [object name]];
-			[self resortTags];
-			[NSThread detachNewThreadSelector: @selector(refreshAll) toTarget: self withObject: nil];
+			[NSThread detachNewThreadSelector: @selector(refreshView) toTarget: self withObject: nil];
 		}
 	}
 }
@@ -751,8 +831,6 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 - (void) tableViewSelectionDidChange: (NSNotification *) aNotification {
     id table = [aNotification object];
     
-    int selectedRow = -1;
-    
     if (table == tagList) {	
 		[self setCurrentSearch: nil];
 		[searchField setStringValue: [NSString string]];
@@ -760,27 +838,36 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 		[self refreshPostsWithDownload: NO];
     }
     else if (table == postList) {
-        selectedRow = [postList selectedRow];
-        
-        NSArray *postArray = [self filteredPosts];
-        
-        if (selectedRow > -1 && selectedRow < [postArray count]) {
-            DCAPIPost *post = [postArray objectAtIndex: selectedRow];
-            NSURL *url = [post URL];
-            
-            if (url == nil) {
-                NSLog(@"ERROR: nil URL for post: %@", [post description]);
-                return;
-            }
-            
-            [statusText setStringValue: [url description]];
-            
-            [[webView mainFrame] loadRequest: [NSURLRequest requestWithURL: url]];
-        }
-        else {
-			[self resetPostView];
-        }
+		[self previewSelectedLinks];
     }
+}
+
+- (void) previewSelectedLinks {
+	#warning Is this the best way to determine if the web view is visible or not?
+	if (![webViewBezel superview]) {
+		return;
+	}
+	
+	int selectedRow = [postList selectedRow];
+	
+	NSArray *postArray = [self filteredPosts];
+	
+	if (selectedRow > -1 && selectedRow < [postArray count]) {
+		DCAPIPost *post = [postArray objectAtIndex: selectedRow];
+		NSURL *url = [post URL];
+		
+		if (url == nil) {
+			NSLog(@"ERROR: nil URL for post: %@", [post description]);
+			return;
+		}
+		
+		[statusText setStringValue: [url description]];
+		
+		[[webView mainFrame] loadRequest: [NSURLRequest requestWithURL: url]];
+	}
+	else {
+		[self resetPostView];
+	}
 }
 
 - (void) resetPostView {
@@ -891,6 +978,22 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     [[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: kREGISTRATION_URL]];
 }
 
+- (IBAction) addOrDeleteLinks: (id) sender {
+	int clickedSegment = [sender selectedSegment];
+    int clickedSegmentTag = [[sender cell] tagForSegment: clickedSegment];
+	
+	switch (clickedSegmentTag) {
+		case kADD_POST_SEGMENT_TAG:
+			[self showPostingInterface: self];
+			break;
+		case kDELETE_POST_SEGMENT_TAG:
+			[self deleteSelectedLinks: self];
+			break;
+		default:
+			break;
+	}
+}
+
 - (IBAction) showPostingInterface: (id) sender {
 	[NSApp activateIgnoringOtherApps: YES];
 	
@@ -924,10 +1027,6 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     [NSApp endSheet: postingInterface];
 
     [postingInterface orderOut: self];	
-}
-
-- (IBAction) togglePreviewPane: (id) sender {
-
 }
 
 - (BOOL) splitView: (NSSplitView *) sender canCollapseSubview: (NSView *) subview {
@@ -1130,7 +1229,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (BOOL) applicationShouldTerminateAfterLastWindowClosed: (NSApplication *) theApplication {
-	return YES;
+	return NO;
 }
 
 - (void) applicationDidResignActive: (NSNotification *) aNotification {
@@ -1140,6 +1239,14 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 - (void) applicationDidBecomeActive: (NSNotification *) aNotification {
 	[mainWindow setAlphaValue: 1.0];
+}
+
+- (BOOL) applicationShouldHandleReopen: (NSApplication *) theApplication hasVisibleWindows: (BOOL) visibleWindows {
+	if (![mainWindow isVisible]) {
+		[mainWindow makeKeyAndOrderFront: self];
+	}
+	
+	return NO;
 }
 
 - (void) dealloc {

@@ -14,6 +14,8 @@
 - (void) drawRect: (NSRect) rect {
 	[super drawRect: rect];
 	
+	[self lockFocus];
+	
 	NSRect frame = [self bounds];
 
 	/* Turn off anti-aliasing */
@@ -43,6 +45,8 @@
 	[NSBezierPath strokeLineFromPoint: NSMakePoint(frame.size.width - 2, frame.origin.y + 1) toPoint: NSMakePoint(frame.origin.x + 1, frame.origin.y + 1)];
 		
 	[[NSGraphicsContext currentContext] setShouldAntialias: YES];
+	
+	[self unlockFocus];
 }
 
 @end

@@ -32,6 +32,15 @@
 #define kDCSafariGetCurrentURL @"fetch_safari_url"
 #define kScriptError @"ERROR"
 
+#define kREFRESH_BUTTON_IMAGE @"refresh_icon"
+#define kADD_POST_BUTTON_IMAGE @"add_post_icon"
+#define kDELETE_POST_BUTTON_IMAGE @"delete_post_icon"
+#define kSHOW_INFO_BUTTON_IMAGE @"show_info_icon"
+#define kTOGGLE_WEB_PREVIEW_BUTTON_IMAGE @"toggle_web_preview_icon"
+
+#define kADD_POST_SEGMENT_TAG 0
+#define kDELETE_POST_SEGMENT_TAG 1
+
 #define AWOOSTER_CHANGES 1
 #define AWOOSTER_DEBUG 0
 #define kTEXT_INDEX_PATH @"~/Library/Caches/Cocoalicious"
