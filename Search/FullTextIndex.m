@@ -181,6 +181,9 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
 
 - (void) search:(NSDictionary *)searchDict
 {
+    currentSearchID++;
+    int thisSearchID = currentSearchID;
+    
     // Wait for the current search to end.
     [searchLock lock]; [searchLock unlock];
     
@@ -214,6 +217,13 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     }
     
     [searchLock lock];
+    
+    if (thisSearchID != currentSearchID) {
+        [searchLock unlock];
+        [pool release];
+        return;
+    }
+    
     [results removeAllObjects];
     searching = YES;
 	
@@ -289,19 +299,20 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     CFRelease(searchResults);
     searching = NO;
     
-	// Inefficient, I know, but I need to make the calling thread aware that
-    // we're done searching.
-    [resultsLock lock];
-    
-	while ((currentPost = [postEnum nextObject]) != nil) {
-        if ([results containsObject: currentPost]) {
-            [postResults addObject: currentPost];
+    if (thisSearchID == currentSearchID) {
+        // Inefficient, I know, but I need to make the calling thread aware that
+        // we're done searching.
+        [resultsLock lock];
+        while ((currentPost = [postEnum nextObject]) != nil) {
+            if ([results containsObject: currentPost]) {
+                [postResults addObject: currentPost];
+            }
         }
+        [resultsLock unlock];
+        [anObject performSelectorOnMainThread: aSelector
+                                   withObject: postResults
+                                waitUntilDone: NO];
     }
-    [resultsLock unlock];
-    [anObject performSelectorOnMainThread: aSelector
-                               withObject: postResults
-                            waitUntilDone: NO];
     [pool release];
     [searchLock unlock];
 }
