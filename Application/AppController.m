@@ -105,18 +105,18 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	[refreshButton setImage: refreshIcon forSegment: 0];
 	[refreshIcon release];
 	
-	[addDeletePostButton setSegmentCount: 2];
+	[addDeletePostButton setSegmentCount: 1];
 	[addDeletePostButton setWidth: 22 forSegment: 0];
-	[addDeletePostButton setWidth: 22 forSegment: 1];
+	/*[addDeletePostButton setWidth: 22 forSegment: 1]; */
 	NSImage *addPostIcon = [[NSImage alloc] initWithContentsOfFile: [[NSBundle mainBundle] pathForResource: kADD_POST_BUTTON_IMAGE ofType: @"tif"]];
-	NSImage *deletePostIcon = [[NSImage alloc] initWithContentsOfFile: [[NSBundle mainBundle] pathForResource: kDELETE_POST_BUTTON_IMAGE ofType: @"tif"]];
+	/* NSImage *deletePostIcon = [[NSImage alloc] initWithContentsOfFile: [[NSBundle mainBundle] pathForResource: kDELETE_POST_BUTTON_IMAGE ofType: @"tif"]]; */
 	[[addDeletePostButton cell] setTrackingMode: NSSegmentSwitchTrackingMomentary];
 	[addDeletePostButton setImage: addPostIcon forSegment: 0];
-	[addDeletePostButton setImage: deletePostIcon forSegment: 1];
+	/* [addDeletePostButton setImage: deletePostIcon forSegment: 1]; */
 	[[addDeletePostButton cell] setTag: kADD_POST_SEGMENT_TAG forSegment: 0];
-	[[addDeletePostButton cell] setTag: kDELETE_POST_SEGMENT_TAG forSegment: 1];
+	/* [[addDeletePostButton cell] setTag: kDELETE_POST_SEGMENT_TAG forSegment: 1]; */
 	[addPostIcon release];
-	[deletePostIcon release];
+	/* [deletePostIcon release]; */
 		
 	[showInfoButton setSegmentCount: 1];
 	[showInfoButton setWidth: 22 forSegment: 0];
