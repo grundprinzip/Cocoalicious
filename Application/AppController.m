@@ -38,6 +38,9 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	if (self = [super init]) {
 		currentPostProperties = [[NSMutableDictionary alloc] init];
 		loginProperties = [[NSMutableDictionary alloc] init];
+#ifdef AWOOSTER_CHANGES
+        textIndex = [[FullTextIndex alloc] init];
+#endif
 	}     
 	
 	return self;
@@ -179,12 +182,103 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	}
 }
 
+#ifdef AWOOSTER_CHANGES
+- (void)updateIndexing: (id)anObject
+{
+    if (AWOOSTER_DEBUG)
+        NSLog(@"updateIndex:");
+    
+    if ([textIndex indexing] || [textIndex searching]) {
+        [spinnyThing performSelectorOnMainThread: @selector(startAnimation:) 
+                                      withObject: self waitUntilDone: NO]; 
+    } else {
+        [spinnyThing performSelectorOnMainThread: @selector(stopAnimation:) 
+                                      withObject: self waitUntilDone: NO]; 
+    }
+}
+
+- (void)updatePostFilter: (NSMutableArray *)results
+{
+    if (AWOOSTER_DEBUG) {
+        NSLog(@"updatePostFilter:");
+    }
+    NSEnumerator *postEnum = [[self posts] objectEnumerator];
+    DCAPIPost *currentPost;
+    NSMutableArray *filteredPostList = [[NSMutableArray alloc] init];
+    NSEnumerator *ftResultsEnum = [results objectEnumerator];
+    NSURL *currentURL;
+    BOOL addedPost = NO;
+    while ((currentPost = [postEnum nextObject]) != nil) {
+        addedPost = NO;
+        while ((currentURL = [ftResultsEnum nextObject]) != nil) {
+            if (AWOOSTER_DEBUG) 
+                NSLog(@"- %@", [currentURL description]);
+            if ([[[currentPost URL] description] isEqualToString:
+                  [currentURL description]] && !addedPost) {
+                if (AWOOSTER_DEBUG)
+                    NSLog(@"YES");
+                [filteredPostList addObject: currentPost];
+                addedPost = YES;
+            }
+        }
+        ftResultsEnum = [results objectEnumerator];
+    }
+    if (AWOOSTER_DEBUG)
+        NSLog(@"calling setFilteredPosts count(%u)", [filteredPostList count]);
+    [self setFilteredPosts: [filteredPostList autorelease]];
+    if ([textIndex indexing] || [textIndex searching]) {
+        [spinnyThing performSelectorOnMainThread: @selector(startAnimation:) 
+                                      withObject: self waitUntilDone: NO]; 
+    } else {
+        [spinnyThing performSelectorOnMainThread: @selector(stopAnimation:) 
+                                      withObject: self waitUntilDone: NO]; 
+    }
+    [postList reloadData];
+}
+#endif
+
 - (NSArray *) filterPosts: (NSArray *) postArray forSearch: (NSString *) search {
     NSEnumerator *postEnum = [postArray objectEnumerator];
     DCAPIPost *currentPost;
     NSMutableArray *filteredPostList = [[NSMutableArray alloc] init];
 	BOOL searchTags = NO;
 	BOOL searchURIs = NO;
+#ifdef AWOOSTER_CHANGES
+    if (useFullTextSearch) {
+        NSDictionary *searchDict = [NSDictionary dictionaryWithObjectsAndKeys:
+            self, @"anObject",
+            NSStringFromSelector(@selector(updatePostFilter:)), @"aSelector",
+            search, @"query",
+            nil];
+        [NSThread detachNewThreadSelector:@selector(search:)
+                                 toTarget:textIndex
+                               withObject:searchDict];
+        [spinnyThing performSelectorOnMainThread: @selector(startAnimation:) 
+                                      withObject: self waitUntilDone: NO]; 
+
+        //!! uh, is this really what to do?
+        return [filteredPostList autorelease];
+        /* old
+        NSMutableArray *ftResults = 
+            [textIndex searchResultsAsUrlsForSearch: search];
+        NSEnumerator *ftResultsEnum = [ftResults objectEnumerator];
+        NSURL *currentURL;
+        BOOL addedPost = NO;
+        while ((currentPost = [postEnum nextObject]) != nil) {
+            addedPost = NO;
+            while ((currentURL = [ftResultsEnum nextObject]) != nil) {
+                if ([[[currentPost URL] description] isEqualToString: 
+                      [currentURL description]] && !addedPost) {
+                    [filteredPostList addObject: currentPost];
+                    addedPost = YES;
+                }
+            }
+            ftResultsEnum = [ftResults objectEnumerator];
+        }
+        return [filteredPostList autorelease];
+        */
+    }
+#endif
 
 	if (useExtendedSearch) {
 		searchTags = YES;
@@ -356,10 +450,12 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 - (IBAction) setSearchTypeToBasic: (id) sender {
 	[[searchMenu itemWithTag: 0] setState: NSOnState];
 	[[searchMenu itemWithTag: 1] setState: NSOffState];
+	[[searchMenu itemWithTag: 2] setState: NSOffState];
 	
 	[[searchField cell] setSearchMenuTemplate: [[searchField cell] searchMenuTemplate]];
 
 	useExtendedSearch = NO;
+    useFullTextSearch = NO;
 
 	[self doSearchForString: [searchField stringValue]];
     [postList reloadData];
@@ -368,14 +464,54 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 - (IBAction) setSearchTypeToExtended: (id) sender {
 	[[searchMenu itemWithTag: 0] setState: NSOffState];
 	[[searchMenu itemWithTag: 1] setState: NSOnState];
+	[[searchMenu itemWithTag: 2] setState: NSOffState];
 	
 	[[searchField cell] setSearchMenuTemplate: [[searchField cell] searchMenuTemplate]];
 
 	useExtendedSearch = YES;
+    useFullTextSearch = NO;
 	
 	[self doSearchForString: [searchField stringValue]];
     [postList reloadData];
 }
+
+#pragma mark Full Text Search
+#ifdef AWOOSTER_CHANGES
+- (IBAction) setSearchTypeToFullText: (id) sender 
+{
+	[[searchMenu itemWithTag: 0] setState: NSOffState];
+	[[searchMenu itemWithTag: 1] setState: NSOffState];
+	[[searchMenu itemWithTag: 2] setState: NSOnState];
+	
+	[[searchField cell] setSearchMenuTemplate: 
+        [[searchField cell] searchMenuTemplate]];
+
+	useExtendedSearch = NO;
+    useFullTextSearch = YES;
+	
+	[self doSearchForString: [searchField stringValue]];
+    [postList reloadData];
+}
+
+- (IBAction) indexAll: (id) sender
+{
+    NSEnumerator *postEnum = [[self posts] objectEnumerator];
+    DCAPIPost *currentPost;
+    NSMutableArray *postURLs = [[NSMutableArray alloc] init];
+    while ((currentPost = [postEnum nextObject]) != nil) {
+        [postURLs addObject: [[currentPost URL] copy]];
+    }
+    NSDictionary *searchDict = [NSDictionary dictionaryWithObjectsAndKeys:
+        self, @"anObject",
+        NSStringFromSelector(@selector(updateIndexing:)), @"aSelector",
+        postURLs, @"urls",
+        nil];
+    [NSThread detachNewThreadSelector:@selector(index:)
+                             toTarget:textIndex
+                           withObject:searchDict];
+}
+
+#endif
 
 - (IBAction) openSelected: (id) sender {
     int selectedRow = [postList selectedRow];
@@ -557,6 +693,20 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 - (void) webView: (WebView *) sender didFinishLoadForFrame: (WebFrame *) frame {
     if (frame == [sender mainFrame]){
 		[spinnyThing performSelectorOnMainThread: @selector(stopAnimation:) withObject: self waitUntilDone: YES];
+#ifdef AWOOSTER_CHANGES
+        // Check if the WebDocumentView supports the WebDocumentText protocol.
+        if ([[[frame frameView] documentView] 
+             respondsToSelector:@selector(string)]) {
+            NSURL *url = [[[frame dataSource] request] URL];
+            if ([[[frame dataSource] representation] 
+                canProvideDocumentSource]) {
+                NSString *contents = [[NSString alloc] initWithString: 
+                    [[[frame dataSource] representation] documentSource]];
+                [textIndex addDocumentToIndex: url
+                                  withContent: contents];
+            }
+        }
+#endif
     }
 }
 
@@ -858,6 +1008,9 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	[currentPostProperties release];
 	[loginProperties release];
     [currentSearch release];
+#ifdef AWOOSTER_CHANGES
+    [textIndex release];
+#endif
     [super dealloc];
 }
 

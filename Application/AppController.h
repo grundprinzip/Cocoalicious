@@ -19,6 +19,9 @@
 #import "SFHFMetalTableHeaderCell.h"
 #import "SFHFCornerView.h"
 
+#ifdef AWOOSTER_CHANGES
+#import "FullTextIndex.h"
+#endif
 
 @interface AppController : NSObject {
     DCAPIClient *client;
@@ -54,6 +57,11 @@
 	NSMutableDictionary *loginProperties;
 
 	BOOL useExtendedSearch;
+    
+#ifdef AWOOSTER_CHANGES
+    FullTextIndex *textIndex;
+    BOOL useFullTextSearch;
+#endif
 }
 
 - (void) setupTaglist;
@@ -100,6 +108,11 @@
 - (IBAction) deleteSelectedLinks: (id) sender;
 - (IBAction) setSearchTypeToBasic: (id) sender;
 - (IBAction) setSearchTypeToExtended: (id) sender;
+#ifdef AWOOSTER_CHANGES
+- (void)updateIndexing: (id)anObject;
+- (IBAction) setSearchTypeToFullText: (id) sender;
+- (IBAction) indexAll: (id) sender;
+#endif
 - (IBAction) copyAsTag: (id) sender;
 
 @end
