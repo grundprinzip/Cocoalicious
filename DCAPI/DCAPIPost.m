@@ -214,13 +214,24 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 // Overriden methods to support NSSet.
 - (unsigned) hash
 {
-    return [URL hash];
+    return [[URL description] hash];
 }
 
 - (BOOL)isEqual: (id)anObject
 {
     //!! Include respondsToSelector hash?
     if ([anObject hash] == [self hash]) {
+        /* We need to special case here, because it's possible that two URL's
+         * may have the same hash, but not actually be equal. The other 
+         * direction (two URL's having different hashes, but actually being
+         * equal) isn't possible, as far as I know. So, we check to see if
+         * their description, which should be the full URL, is the same.
+         * This also makes this test fairly safe if we get thrown objects
+         * which aren't what we're expecting.
+         */
+        if (![[anObject description] isEqualToString: [URL description]]) {
+            return NO;
+        }
         return YES;
     } else {
         return NO;
