@@ -258,7 +258,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 	/* Dummy code for working without a network connection */
 
-	/* DCAPIPost *testPost = [[DCAPIPost alloc] initWithURL: [NSURL URLWithString: @"http://www.scifihifi.com"] description: @"Test" extended: @"Test" date: [NSDate date] tags: [NSArray arrayWithObject: @"test"] hash: @"sdfasd"];
+	/* DCAPIPost *testPost = [[DCAPIPost alloc] initWithURL: [NSURL URLWithString: @"http://www.scifihifi.com"] description: @"Test" extended: @"Test" date: [NSDate date] tags: [NSArray arrayWithObject: @"test"] urlHash: @"sdfasd"];
 	[self setPosts: [NSArray arrayWithObject: testPost]];
 	[testPost release]; */
 	
@@ -304,30 +304,8 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     if (AWOOSTER_DEBUG) {
         NSLog(@"updatePostFilter:");
     }
-    NSEnumerator *postEnum = [[self posts] objectEnumerator];
-    DCAPIPost *currentPost;
-    NSMutableArray *filteredPostList = [[NSMutableArray alloc] init];
-    NSEnumerator *ftResultsEnum = [results objectEnumerator];
-    NSURL *currentURL;
-    BOOL addedPost = NO;
-    while ((currentPost = [postEnum nextObject]) != nil) {
-        addedPost = NO;
-        while ((currentURL = [ftResultsEnum nextObject]) != nil) {
-            if (AWOOSTER_DEBUG) 
-                NSLog(@"- %@", [currentURL description]);
-            if ([[[currentPost URL] description] isEqualToString:
-                  [currentURL description]] && !addedPost) {
-                if (AWOOSTER_DEBUG)
-                    NSLog(@"YES");
-                [filteredPostList addObject: currentPost];
-                addedPost = YES;
-            }
-        }
-        ftResultsEnum = [results objectEnumerator];
-    }
-    if (AWOOSTER_DEBUG)
-        NSLog(@"calling setFilteredPosts count(%u)", [filteredPostList count]);
-    [self setFilteredPosts: [filteredPostList autorelease]];
+    [self setFilteredPosts: [results autorelease]];
+    
     if ([textIndex indexing] || [textIndex searching]) {
         [spinnyThing performSelectorOnMainThread: @selector(startAnimation:) 
                                       withObject: self waitUntilDone: NO]; 
@@ -345,12 +323,14 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     NSMutableArray *filteredPostList = [[NSMutableArray alloc] init];
 	BOOL searchTags = NO;
 	BOOL searchURIs = NO;
+    
 #ifdef AWOOSTER_CHANGES
-    if (useFullTextSearch) {
+    if (useFullTextSearch && search) {
         NSDictionary *searchDict = [NSDictionary dictionaryWithObjectsAndKeys:
             self, @"anObject",
             NSStringFromSelector(@selector(updatePostFilter:)), @"aSelector",
             search, @"query",
+            posts, @"urlArray",
             nil];
         [NSThread detachNewThreadSelector:@selector(search:)
                                  toTarget:textIndex
@@ -360,25 +340,6 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
         //!! uh, is this really what to do?
         return [filteredPostList autorelease];
-        /* old
-        NSMutableArray *ftResults = 
-            [textIndex searchResultsAsUrlsForSearch: search];
-        NSEnumerator *ftResultsEnum = [ftResults objectEnumerator];
-        NSURL *currentURL;
-        BOOL addedPost = NO;
-        while ((currentPost = [postEnum nextObject]) != nil) {
-            addedPost = NO;
-            while ((currentURL = [ftResultsEnum nextObject]) != nil) {
-                if ([[[currentPost URL] description] isEqualToString: 
-                      [currentURL description]] && !addedPost) {
-                    [filteredPostList addObject: currentPost];
-                    addedPost = YES;
-                }
-            }
-            ftResultsEnum = [ftResults objectEnumerator];
-        }
-        return [filteredPostList autorelease];
-        */
     }
 #endif
 
@@ -641,6 +602,26 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
                            withObject:searchDict];
 }
 
+- (IBAction) indexSelected: (id) sender
+{
+    NSMutableArray *postURLs = [[NSMutableArray alloc] init];
+    NSArray *postArray = [self filteredPosts];
+    
+    if ([postList selectedRow] > -1 && [postList selectedRow] < [postArray count]) {
+        DCAPIPost *post = [postArray objectAtIndex: [postList selectedRow]];
+        [postURLs addObject: [[post URL] copy]];
+    }
+    
+    NSDictionary *searchDict = [NSDictionary dictionaryWithObjectsAndKeys:
+        self, @"anObject",
+        NSStringFromSelector(@selector(updateIndexing:)), @"aSelector",
+        postURLs, @"urls",
+        nil];
+    [NSThread detachNewThreadSelector:@selector(index:)
+                             toTarget:textIndex
+                           withObject:[[searchDict copy] autorelease]];
+}
+
 #endif
 
 - (IBAction) openSelected: (id) sender {
@@ -889,11 +870,13 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
              respondsToSelector:@selector(string)]) {
             NSURL *url = [[[frame dataSource] request] URL];
             if ([[[frame dataSource] representation] 
-                canProvideDocumentSource]) {
+                canProvideDocumentSource] &&
+                [url description] != @"about:blank") {
                 NSString *contents = [[NSString alloc] initWithString: 
                     [[[frame dataSource] representation] documentSource]];
                 [textIndex addDocumentToIndex: url
-                                  withContent: contents];
+                                  withContent: contents
+                                  inBatchMode: NO];
             }
         }
 #endif
@@ -1111,7 +1094,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 		postDate = [NSCalendarDate date];
 	}
 	
-	DCAPIPost *newPost = [[DCAPIPost alloc] initWithURL: postURL description: postDescription extended: postExtended date: postDate tags: nil hash: nil];
+	DCAPIPost *newPost = [[DCAPIPost alloc] initWithURL: postURL description: postDescription extended: postExtended date: postDate tags: nil urlHash: nil];
 	[newPost setTagsFromString: postTags];
 	
 	[[self client] addPost: newPost];
