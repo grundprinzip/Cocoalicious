@@ -31,6 +31,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     [dictionary setObject: kDEFAULT_API_URL forKey: kAPI_URL_DEFAULTS_KEY];
 	[dictionary setObject: [NSNumber numberWithBool: NO] forKey: kOPEN_URLS_IN_BACKGROUND_DEFAULTS_KEY];
 	[dictionary setObject: [NSNumber numberWithFloat: 1.0] forKey: kDEACTIVATE_ALPHA_DEFAULTS_KEY];
+	[dictionary setObject: [NSNumber numberWithBool: YES] forKey: kSHOW_WEB_PREVIEW_DEFAULTS_KEY];
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues: dictionary];
 }
 
@@ -49,6 +50,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 - (void) awakeFromNib {
 	[self sizeBezelSubviews];
 	[self setupToolbar];
+	[self setupWebPreview];
 }
 
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
@@ -165,6 +167,14 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
         
 	[[tagList enclosingScrollView] setFrame: NSMakeRect(tagListBezelFrame.origin.x + 2, tagListBezelFrame.origin.y + 2, tagListBezelFrame.size.width - 4, tagListBezelFrame.size.height - 3)];
 
+}
+
+- (void) setupWebPreview {
+	BOOL displayPreview = [(NSNumber *) [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kSHOW_WEB_PREVIEW_DEFAULTS_KEY] boolValue];
+	
+	if (!displayPreview) {
+		[self toggleWebPreview: self];
+	}
 }
 
 - (IBAction) refresh: (id) sender {
@@ -518,12 +528,14 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 		lastPostListBezelFrame = [postListBezel frame];
 		[[webViewBezel retain] removeFromSuperview];
 		[[webView mainFrame] loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: kBLANK_URL]]];
+		[[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: [NSNumber numberWithBool: NO] forKey: kSHOW_WEB_PREVIEW_DEFAULTS_KEY];
 	}
 	else {
 		[previewSplitView addSubview: [webViewBezel autorelease]];
 		[postListBezel setFrameSize: lastPostListBezelFrame.size];
 		[previewSplitView adjustSubviews];
 		[self previewSelectedLinks];
+		[[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: [NSNumber numberWithBool: YES] forKey: kSHOW_WEB_PREVIEW_DEFAULTS_KEY];
 	}
 }
 

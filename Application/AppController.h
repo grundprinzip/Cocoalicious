@@ -85,6 +85,7 @@
 - (void) setupPostlist;
 - (void) setupToolbar;
 - (void) sizeBezelSubviews;
+- (void) setupWebPreview;
 
 - (IBAction) openSelected: (id) sender;
 - (IBAction) refresh: (id) sender;

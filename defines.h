@@ -20,6 +20,7 @@
 #define kAUTOLOGIN_DEFAULTS_KEY @"autologin"
 #define kOPEN_URLS_IN_BACKGROUND_DEFAULTS_KEY @"openURLsInBackground"
 #define kDEACTIVATE_ALPHA_DEFAULTS_KEY @"deactiveAlphaValue"
+#define kSHOW_WEB_PREVIEW_DEFAULTS_KEY @"showWebPreview"
 
 #define kDESCRIPTION_COLUMN @"description"
 #define kEXTENDED_COLUMN @"extended"
