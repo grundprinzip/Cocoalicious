@@ -43,9 +43,9 @@
 #define kDELETE_POST_SEGMENT_TAG 1
 
 #define AWOOSTER_CHANGES 1
-#define AWOOSTER_DEBUG 1
+#define AWOOSTER_DEBUG 0
 #define kTEXT_INDEX_PATH @"~/Library/Caches/Cocoalicious"
 #define kTEXT_INDEX_NAME @"FullText v1.index"
 #define kTEXT_INDEX_VERSION @"HTML Text v1.0"
 #define kTEXT_SEARCH_MAX_RESULTS 100000
-#define kTEXT_SEARCH_CHUNK_SIZE 20
+#define kTEXT_SEARCH_CHUNK_SIZE 30
