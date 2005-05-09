@@ -1405,8 +1405,8 @@
 	6BF88AE405C4D56000D7EDBB = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1736, 20622}}";
-			sepNavSelRange = "{46989, 78}";
-			sepNavVisRect = "{{0, 18786}, {459, 186}}";
+			sepNavSelRange = "{47231, 0}";
+			sepNavVisRect = "{{0, 0}, {711, 429}}";
 			sepNavWindowFrame = "{{15, 269}, {750, 558}}";
 		};
 	};

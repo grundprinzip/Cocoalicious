@@ -889,7 +889,8 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = "NSDictionary+SFHFUtils.h";
+			name = "NSDictionary+SFHFUtils.h";
+			path = "Utilities/NSDictionary+SFHFUtils.h";
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -897,7 +898,8 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.objc;
-			path = "NSDictionary+SFHFUtils.m";
+			name = "NSDictionary+SFHFUtils.m";
+			path = "Utilities/NSDictionary+SFHFUtils.m";
 			refType = 4;
 			sourceTree = "<group>";
 		};
