@@ -13,6 +13,7 @@
 #import "DCAPIParser.h"
 #import "DCAPITagFormatter.h"
 #import "NSString+SFHFUtils.h"
+#import "NSDictionary+SFHFUtils.h"
 #import "NSAppleScript+HandlerCalls.h"
 #import "SFHFKeychainUtils.h"
 #import "SFHFTableView.h"
@@ -68,8 +69,7 @@
 	IBOutlet NSTextField *indexingStatusText;
     
     NSArray *tags;
-    NSArray *dates;
-    NSArray *posts;
+    NSMutableDictionary *posts;
 	NSArray *filteredPosts;
     
     NSString *currentSearch;
@@ -84,7 +84,7 @@
 	BOOL lastTextChangeWasCompletion;
     
 	NSAppleScript *safariScript;
-        NSMenu *dockMenu;
+	NSMenu *dockMenu;
 	
 	NSTimer *autocompleteTimer;
 	
@@ -94,6 +94,47 @@
 #endif
 }
 
+/* del.icio.us API interaction */
+- (void) setClient: (DCAPIClient *) newClient;
+- (DCAPIClient *) client;
+- (void) login;
+- (void) loginWithUsername: (NSString *) username password: (NSString *) password APIURL: (NSURL *) APIURL;
+- (IBAction) refresh: (id) sender;
+- (void) refreshAll;
+- (void) refreshTags;
+- (void) refreshPostsWithDownload: (BOOL) download;
+
+/* Search/Tag Filtering */
+- (IBAction) doSearch: (id) sender;
+- (void) doSearchForString: (NSString *) string;
+- (NSArray *) filterPosts: (NSArray *) postArray forSearch: (NSString *) search tags: (NSArray *) matchTags;
+- (void) setCurrentSearch: (NSString *) newCurrentSearch;
+- (NSString *) currentSearch;
+- (void) setCurrentTagFilter: (DCAPITag *) newTagFilter;
+- (DCAPITag *) currentTagFilter;
+- (void) updateTagFilterFromSelection;
+- (NSArray *) selectedTags;
+#ifdef AWOOSTER_CHANGES
+- (void) beginFullTextSearchForQuery: (NSString *) query;
+- (void)updateIndexing: (id)anObject;
+- (IBAction) setSearchTypeToFullText: (id) sender;
+- (IBAction) indexAll: (id) sender;
+- (IBAction) indexSelected: (id) sender;
+#endif
+
+/* Model */
+- (void) insertPost: (DCAPIPost *) newPost;
+- (void) setPosts: (NSDictionary *) newPosts;
+- (void) setPostsWithArray: (NSArray *) newPosts;
+- (NSMutableDictionary *) posts;
+- (NSArray *) postsArray;
+- (NSArray *) urlsArray;
+- (void) setFilteredPosts: (NSArray *) newFilteredPosts;
+- (NSArray *) filteredPosts;
+- (void) setTags: (NSArray *) newTags;
+- (NSArray *) tags;
+
+/* UI setup */
 - (void) setupTaglist;
 - (void) setupPostlist;
 - (void) setupToolbar;
@@ -101,42 +142,8 @@
 - (void) sizeBezelSubviews;
 - (void) setupWebPreview;
 
+/* UI Actions */
 - (IBAction) openSelected: (id) sender;
-- (IBAction) refresh: (id) sender;
-- (void) refreshTags;
-- (void) refreshPostsWithDownload: (BOOL) download;
-- (void) refreshDates;
-- (void) refreshAll;
-
-- (IBAction) doSearch: (id) sender;
-- (void) doSearchForString: (NSString *) string;
-//- (NSArray *) filterPosts: (NSArray *) postArray forTags: (NSArray *) matchTags;
-- (NSArray *) filterPosts: (NSArray *) postArray forSearch: (NSString *) search tags: (NSArray *) matchTags;
-
-- (void) login;
-- (void) loginWithUsername: (NSString *) username password: (NSString *) password APIURL: (NSURL *) APIURL;
-
-- (void) setClient: (DCAPIClient *) newClient;
-- (DCAPIClient *) client;
-- (void) setTags: (NSArray *) newTags;
-- (NSArray *) tags;
-- (void) setDates: (NSArray *) newDates;
-- (NSArray *) dates;
-- (void) setPosts: (NSArray *) newPosts;
-- (NSArray *) posts;
-- (void) setFilteredPosts: (NSArray *) newFilteredPosts;
-- (NSArray *) filteredPosts;
-- (void) setCurrentTagFilter: (DCAPITag *) newTagFilter;
-- (DCAPITag *) currentTagFilter;
-- (void) updateTagFilterFromSelection;
-- (void) setCurrentSearch: (NSString *) newCurrentSearch;
-- (NSString *) currentSearch;
-
-- (NSArray *) selectedTags;
-
-- (void) resetPostView;
-- (void) previewSelectedLinks;
-
 - (IBAction) openMainWindow: (id) sender;
 - (IBAction) loginFromPanel: (id) sender;
 - (IBAction) cancelLogin: (id) sender;
@@ -151,16 +158,13 @@
 - (IBAction) postCurrentSafariURL: (id) sender;
 - (IBAction) editSelectedLinks: (id) sender;
 - (IBAction) deleteSelectedLinks: (id) sender;
-- (void) handleScriptError: (NSDictionary *) errorInfo;
 - (IBAction) setSearchTypeToBasic: (id) sender;
 - (IBAction) setSearchTypeToExtended: (id) sender;
-#ifdef AWOOSTER_CHANGES
-- (void) beginFullTextSearchForQuery: (NSString *) query;
-- (void)updateIndexing: (id)anObject;
-- (IBAction) setSearchTypeToFullText: (id) sender;
-- (IBAction) indexAll: (id) sender;
-- (IBAction) indexSelected: (id) sender;
-#endif
 - (IBAction) copyAsTag: (id) sender;
+
+/* Misc. */
+- (void) handleScriptError: (NSDictionary *) errorInfo;
+- (void) resetPostView;
+- (void) previewSelectedLinks;
 
 @end

@@ -9,7 +9,7 @@
 
 #define kDEFAULT_SECURITY_DOMAIN (@"del.icio.us API")
 
-#define kUSER_AGENT (@"Cocoal.icio.us/1.0 (v31) (Mac OS X; http://www.scifihifi.com/cocoalicious)")
+#define kUSER_AGENT (@"Cocoal.icio.us/1.0 (v32) (Mac OS X; http://www.scifihifi.com/cocoalicious)")
 
 #define kTAG_SEPARATOR (@" ")
 #define kHTTP_PROTOCOL_PREFIX (@"http://")
@@ -47,6 +47,8 @@
 
 #define kADD_POST_SEGMENT_TAG 0
 #define kDELETE_POST_SEGMENT_TAG 1
+
+#define kPOST_DICTIONARY_KEY_NAME @"URL"
 
 #define AWOOSTER_CHANGES 1
 #define AWOOSTER_DEBUG 0

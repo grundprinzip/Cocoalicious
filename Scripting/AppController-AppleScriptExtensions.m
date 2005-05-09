@@ -20,12 +20,12 @@ This also should make it easier to change storage method in the future. */
 }
 
 - (int) indexOfObjectInOrderedPosts: (id) object {
-	return [[self posts] indexOfObject: object];
+	return [[self postsArray] indexOfObject: object];
 }
 
 - (id) valueInOrderedPostsAtIndex: (int) index {
 	if (index < [self countOfOrderedPosts]) {
-		return [[self posts] objectAtIndex: index];
+		return [[self postsArray] objectAtIndex: index];
 	} else {
 		return nil;
 	}

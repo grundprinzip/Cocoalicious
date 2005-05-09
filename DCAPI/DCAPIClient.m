@@ -228,6 +228,7 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/";
 }
 
 - (void) addPost: (DCAPIPost *) newPost {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     NSMutableString *addPostURIString;
     
     [self constructURIString: &addPostURIString forFunction: kADD_POST_RELATIVE_URI];
@@ -270,10 +271,14 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/";
     NSURL *apiURL = [NSURL URLWithString: addPostURIString];
  
     NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestReloadIgnoringCacheData];
+
+	[pool release];
 }
 
 - (void) deletePostWithURL: (NSURL *) url {
-    NSMutableString *addPostURIString;
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
+	NSMutableString *addPostURIString;
 
 	if (!url) {
 		return;
@@ -286,6 +291,7 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/";
     NSURL *apiURL = [NSURL URLWithString: addPostURIString];
  
     NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestReloadIgnoringCacheData];	
+	[pool release];
 }
 
 - (void) renameTag: (NSString *) oldName to: (NSString *) newName {
@@ -311,7 +317,7 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/";
 
 - (NSData *) sendRequestForURI: (NSURL *) apiURL usingCachePolicy: (NSURLRequestCachePolicy) cachePolicy {
     NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL: apiURL cachePolicy: cachePolicy timeoutInterval: kREQUEST_TIMEOUT_INTERVAL];
-	
+		
     [req setValue: kUSER_AGENT forHTTPHeaderField: kUSER_AGENT_HTTP_HEADER];
 
     NSURLResponse *resp;

@@ -177,8 +177,7 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     }
 }
 
-- (void) search:(NSDictionary *)searchDict
-{
+- (void) search: (NSDictionary *) searchDict {
     currentSearchID++;
     int thisSearchID = currentSearchID;
     

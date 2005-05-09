@@ -62,7 +62,6 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
 	/* Support for NetNewsWire External Weblog Editor Interface */
 	[[NSAppleEventManager sharedAppleEventManager] setEventHandler: self andSelector: @selector(postNewNNWLink:withReplyEvent:) forEventClass: DCNNWPostAppleEventClass andEventID: DCNNWPostAppleEventID];
-
 	
 	[NSApp setServicesProvider:self];
     
@@ -78,9 +77,8 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	
 	[postList setDoubleAction: @selector(openSelected:)];
     
-    [self setPosts: [NSArray array]];
+    [self setPosts: [NSMutableDictionary dictionaryWithCapacity: 0]];
     [self setTags: [NSArray array]];
-    [self setDates: [NSArray array]];
     
     [self setupTaglist];
 	[self setupPostlist];
@@ -162,6 +160,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 - (void) setUpDockMenu {
     [NSApp setDelegate: self];
 	dockMenu = [[NSMenu alloc] init];
+	NSMenuItem *newPostMenuItem = [dockMenu addItemWithTitle: @"New Post" action: @selector(showPostingInterface:) keyEquivalent: @""];
 	NSMenuItem *safariNewPostMenuItem = [dockMenu addItemWithTitle: @"New Post from Safari" action: @selector(postCurrentSafariURL:) keyEquivalent: @""];
 	[safariNewPostMenuItem setTarget: self];
 }
@@ -274,20 +273,18 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	
 	NSArray *unfilteredPosts;
 
-	if (download || ![self posts]) {
+	if (download || ![self postsArray]) {
 		unfilteredPosts = [[self client] requestPostsFilteredByTag: nil count: nil];
+		[self setPostsWithArray: unfilteredPosts];
 	}
 	else {
-		unfilteredPosts = [self posts];
+		unfilteredPosts = [self postsArray];
 	}
 	
 	NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey: @"date" ascending: NO selector: @selector(compare:)] autorelease];
 	NSArray *resortedPosts = [unfilteredPosts sortedArrayUsingDescriptors: [NSArray arrayWithObjects: sortDescriptor, nil]];
 	
-	[self setPosts: resortedPosts];
-
 	NSString *search = [self currentSearch];
-	
 	NSArray *matchTags = nil;
 	
 	if (![tagList isRowSelected: 0]) {
@@ -295,17 +292,11 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	}
 	
 	if (search || matchTags) {
-		[self setFilteredPosts: [self filterPosts: [self posts] forSearch: search tags: matchTags]];
+		[self setFilteredPosts: [self filterPosts: resortedPosts forSearch: search tags: matchTags]];
 	}
 	else {
-		[self setFilteredPosts: nil];
+		[self setFilteredPosts: resortedPosts];
 	}
-
-	/* Dummy code for working without a network connection */
-
-	/* DCAPIPost *testPost = [[DCAPIPost alloc] initWithURL: [NSURL URLWithString: @"http://www.scifihifi.com"] description: @"Test" extended: @"Test" date: [NSDate date] tags: [NSArray arrayWithObject: @"test"] urlHash: @"sdfasd"];
-	[self setPosts: [NSArray arrayWithObject: testPost]];
-	[testPost release]; */
 	
 	[postList reloadData];
 	
@@ -396,18 +387,9 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     return [filteredPostList autorelease];
 }
 
-- (void) refreshDates {
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	
-	[self setDates: [[self client] requestDatesFilteredByTag: nil]];
-	
-	[pool release];
-}
-
 - (void) refreshAll {
 	[self refreshTags];
     [self refreshPostsWithDownload: YES];
-    [self refreshDates];
 }
 
 - (void) setClient: (DCAPIClient *) newClient {
@@ -439,30 +421,32 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	[sortDescriptor release];
 	[self setTags: resortedTags];
 	[self updateTagFilterFromSelection];
-	NSLog(@"about to reload tag list");
 	[tagList reloadData];
 }
 
-- (void) setDates: (NSArray *) newDates {
-    if (dates != newDates) {
-        [dates release];
-        dates = [newDates copy];
-    }
+- (void) setPostsWithArray: (NSArray *) newPosts {
+	NSMutableDictionary *newPostDict = [[NSMutableDictionary alloc] initWithObjects: newPosts keyName: kPOST_DICTIONARY_KEY_NAME];
+	[posts release];
+	posts = newPostDict;
 }
 
-- (NSArray *) dates {
-    return [[dates retain] autorelease];
-}
-
-- (void) setPosts: (NSArray *) newPosts {
+- (void) setPosts: (NSDictionary *) newPosts {
 	if (posts != newPosts) {
         [posts release];
-        posts = [newPosts copy];
+        posts = [newPosts mutableCopy];
     }
 }
 
-- (NSArray *) posts {
+- (NSMutableDictionary *) posts {
     return [[posts retain] autorelease];
+}
+
+- (NSArray *) postsArray {
+	return [[self posts] allValues];
+}
+
+- (NSArray *) urlsArray {
+	return [[self posts] allKeys];
 }
 
 - (void) setFilteredPosts: (NSArray *) newFilteredPosts {
@@ -478,7 +462,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 - (NSArray *) filteredPosts {
     if (!filteredPosts) {
-		return [self posts];
+		return [self postsArray];
 	}
 	
 	return [[filteredPosts retain] autorelease];
@@ -517,7 +501,6 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 		NSString *search = [sender stringValue];
 		
 		[self doSearchForString: search];
-
 		[postList reloadData];
 	}
 }
@@ -536,10 +519,12 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 		[self beginFullTextSearchForQuery: [self currentSearch]];
 	}
 	else {
-		[self setFilteredPosts: [self filterPosts: [self posts] forSearch: [self currentSearch] tags: [self selectedTags]]];
+		[self setFilteredPosts: [self filterPosts: [self filteredPosts] forSearch: [self currentSearch] tags: [self selectedTags]]];
+		[self refreshPostsWithDownload: NO];
 	}
 #else
-	[self setFilteredPosts: [self filterPosts: [self posts] forSearch: [self currentSearch] tags: [self selectedTags]]];
+	[self setFilteredPosts: [self filterPosts: [self filteredPosts] forSearch: [self currentSearch] tags: [self selectedTags]]];
+	[self refreshPostsWithDownload: NO];
 #endif
 }
 
@@ -664,7 +649,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 		self, @"anObject",
 		NSStringFromSelector(@selector(updatePostFilter:)), @"aSelector",
 		query, @"query",
-		[self posts], @"urlArray",
+		[self urlsArray], @"urlArray",
 		nil];
 			
 	[NSThread detachNewThreadSelector:@selector(search:)
@@ -677,7 +662,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 - (IBAction) indexAll: (id) sender
 {
-    NSEnumerator *postEnum = [[self posts] objectEnumerator];
+    NSEnumerator *postEnum = [[self postsArray] objectEnumerator];
     DCAPIPost *currentPost;
     NSMutableArray *postURLs = [[NSMutableArray alloc] init];
     while ((currentPost = [postEnum nextObject]) != nil) {
@@ -1187,6 +1172,11 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     //[self postNewLink: self];
 }
 
+- (void) insertPost: (DCAPIPost *) newPost {
+	[[self posts] setValue: newPost forKey: [newPost valueForKey: kPOST_DICTIONARY_KEY_NAME]];	
+	[self refreshPostsWithDownload: NO];
+}
+
 - (IBAction) postNewLink: (id) sender {
 	NSURL *postURL = [NSURL URLWithString: [currentPostProperties objectForKey: @"url"]];
 	NSString *postDescription = [currentPostProperties objectForKey: @"description"];
@@ -1202,10 +1192,11 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	DCAPIPost *newPost = [[DCAPIPost alloc] initWithURL: postURL description: postDescription extended: postExtended date: postDate tags: nil urlHash: nil];
 	[newPost setTagsFromString: postTags];
 	
-	[[self client] addPost: newPost];
+	[NSThread detachNewThreadSelector: @selector(addPost:) toTarget: [self client] withObject: newPost];
 	
 	[self closePostingInterface: self];
-	[self refresh: self];
+	[self insertPost: newPost];
+	[newPost release];
 }
 
 - (void)postNewLinkWithPasteboard:(NSPasteboard *)pboard userData:(NSString *)data error:(NSString **)error {
@@ -1336,9 +1327,10 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	int selectedRow = [postList selectedRow];
 
 	if (selectedRow > -1) {
-		DCAPIPost *selectedPost = [[self filteredPosts] objectAtIndex: selectedRow];		
-		[[self client] deletePostWithURL: [selectedPost URL]];
-		[self refresh: self];
+		DCAPIPost *selectedPost = [[self filteredPosts] objectAtIndex: selectedRow];
+		[[self posts] removeObjectForKey: [selectedPost valueForKey: kPOST_DICTIONARY_KEY_NAME]];
+		[NSThread detachNewThreadSelector: @selector(deletePostWithURL:) toTarget: [self client] withObject: [selectedPost URL]];
+		[self refreshPostsWithDownload: NO];
 	}
 }
 
@@ -1463,7 +1455,6 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 - (void) dealloc {
     [client release];
     [tags release];
-    [dates release];
     [posts release];
 	[filteredPosts release];
     [currentTagFilter release];
@@ -1474,7 +1465,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     [textIndex release];
 #endif
 	[safariScript release];
-        [dockMenu release];
+	[dockMenu release];
     [super dealloc];
 }
 

@@ -261,7 +261,7 @@
 		3B3F0228073EF1A3003AB1C7 = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			lastKnownFileType = file;
+			lastKnownFileType = sourcecode.scpt;
 			name = safari_script.scpt;
 			path = Scripts/safari_script.scpt;
 			refType = 4;
@@ -885,6 +885,34 @@
 			settings = {
 			};
 		};
+		6B6B69DE082B3C97003DFA07 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = "NSDictionary+SFHFUtils.h";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B6B69DF082B3C97003DFA07 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			path = "NSDictionary+SFHFUtils.m";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B6B69E0082B3C97003DFA07 = {
+			fileRef = 6B6B69DE082B3C97003DFA07;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B6B69E1082B3C97003DFA07 = {
+			fileRef = 6B6B69DF082B3C97003DFA07;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		6BA936C20655EEC400AE7890 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -987,7 +1015,7 @@
 		6BD8187F075AFB740088A2CF = {
 			fileEncoding = 30;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.sdef;
 			name = Cocoalicious.sdef;
 			path = Scripting/Cocoalicious.sdef;
 			refType = 4;
@@ -1076,12 +1104,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/Developer/Tools/sdp -f st -o \"$BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources\" \"$SOURCE_ROOT/Scripting/Cocoalicious.sdef\"\n";
+			shellScript = "#!/bin/sh\n\nif [ -x /usr/bin/sdp ]; then\n\tsdp=\"/usr/bin/sdp\" \nelif [ -x /Developer/Tools/sdp ]; then\n\t$sdp=\"/Developer/Tools/sdp\"\nelse\n\techo \"Unable to find sdp command\"\n\texit 1;\nfi\n\n${sdp} -f st -o \"$BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources\" \"$SOURCE_ROOT/Scripting/Cocoalicious.sdef\"";
 		};
 		6BD8D4A707205205008CA80A = {
 			children = (
 				3B3F0249073EF405003AB1C7,
 				3B3F024A073EF405003AB1C7,
+				6B6B69DE082B3C97003DFA07,
+				6B6B69DF082B3C97003DFA07,
 				6BA936C20655EEC400AE7890,
 				6BA936C30655EEC400AE7890,
 				6B212599071D935F0044339D,
@@ -1331,6 +1361,7 @@
 				6BD818F0075AFCE60088A2CF,
 				6BF00A90077B0D340036723E,
 				6B45F6C707B4934D0007FA1E,
+				6B6B69E0082B3C97003DFA07,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1396,6 +1427,7 @@
 				6BD818EF075AFCE60088A2CF,
 				6BD818F1075AFCE60088A2CF,
 				6B45F6C807B4934D0007FA1E,
+				6B6B69E1082B3C97003DFA07,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
