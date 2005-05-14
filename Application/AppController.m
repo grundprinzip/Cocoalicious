@@ -78,7 +78,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	[postList setDoubleAction: @selector(openSelected:)];
     
     [self setPosts: [NSMutableDictionary dictionaryWithCapacity: 0]];
-    [self setTags: [NSArray array]];
+    [self setTags: [NSMutableDictionary dictionaryWithCapacity: 0]];
     
     [self setupTaglist];
 	[self setupPostlist];
@@ -214,58 +214,48 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (IBAction) refresh: (id) sender {
-    [NSThread detachNewThreadSelector: @selector(refreshView) toTarget: self withObject: nil];
+    [NSThread detachNewThreadSelector: @selector(refreshAll) toTarget: self withObject: nil];
 }
 
-- (void) refreshView {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-
-    [spinnyThing performSelectorOnMainThread: @selector(startAnimation:) withObject: self waitUntilDone: NO]; 
-    [self refreshAll];
-    [spinnyThing performSelectorOnMainThread: @selector(stopAnimation:) withObject: self waitUntilDone: NO];
-    
-    [tagList performSelectorOnMainThread: @selector(reloadData) withObject: nil waitUntilDone: YES];
-    [postList performSelectorOnMainThread: @selector(reloadData) withObject: nil waitUntilDone: YES];
-
-    [pool release];
-}
-
-- (void) refreshTagView {
-	@synchronized (self) {
-		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-
-		[spinnyThing performSelectorOnMainThread: @selector(startAnimation:) withObject: self waitUntilDone: YES];
-
-		[self refreshTags];
-		[tagList reloadData];
-		
-		[spinnyThing performSelectorOnMainThread: @selector(stopAnimation:) withObject: self waitUntilDone: YES];
-
-		[pool release];
-	}
-}
-
-- (void) refreshTags {
+- (void) refreshAll {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	[self setTags: [[self client] requestTagsFilteredByDate: nil]];
+	[spinnyThing startAnimation: self];
+    [self refreshPostsWithDownload: YES];
+	[self refreshTags];
+	[spinnyThing stopAnimation: self];
 	
 	[pool release];
 }
 
-- (void) refreshPostView {
-    @synchronized (self) {
-		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+- (void) refreshTags {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-		[spinnyThing performSelectorOnMainThread: @selector(startAnimation:) withObject: self waitUntilDone: YES];
+	NSMutableDictionary *newTags = [[NSMutableDictionary alloc] init];
 
-		[self refreshPostsWithDownload: YES];
-		[postList reloadData];
-
-		[spinnyThing performSelectorOnMainThread: @selector(stopAnimation:) withObject: self waitUntilDone: YES];
-
-		[pool release];
+	NSEnumerator *postEnum = [[self postsArray] objectEnumerator];
+	DCAPIPost *currentPost;
+		
+	while ((currentPost = (DCAPIPost *) [postEnum nextObject]) != nil) {
+		NSEnumerator *postTags = [[currentPost tags] objectEnumerator];
+		NSString *currentTagString;
+		
+		while ((currentTagString = [postTags nextObject]) != nil) {
+			DCAPITag *currentTag = [newTags objectForKey: currentTagString];
+			
+			if (currentTag) {
+				[currentTag incrementCount];
+			}
+			else {
+				[newTags setObject: [[DCAPITag alloc] initWithName: currentTagString count: [NSNumber numberWithInt: 1]] forKey: currentTagString];
+			}
+		}
 	}
+	
+	[self setTags: [newTags autorelease]];
+	[self resortTags];
+	
+	[pool release];
 }
 
 - (void) refreshPostsWithDownload: (BOOL) download {
@@ -298,7 +288,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 		[self setFilteredPosts: resortedPosts];
 	}
 	
-	[postList reloadData];
+	[postList performSelectorOnMainThread: @selector(reloadData) withObject: nil waitUntilDone: NO];
 	
 	[pool release];
 }
@@ -313,7 +303,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	NSMutableArray *selectedTags = [NSMutableArray array];
 	
 	while (currentIndex != NSNotFound) {
-		[selectedTags addObject: [[tags objectAtIndex: currentIndex - 1] name]];
+		[selectedTags addObject: [[[self filteredTags] objectAtIndex: currentIndex - 1] name]];
 		currentIndex = [selectedRows indexGreaterThanIndex: currentIndex];
 	}
 	
@@ -341,17 +331,27 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
         NSLog(@"updatePostFilter:");
     }
 	
+	NSEnumerator *resultEnum = [results objectEnumerator];
+	NSString *currentURL;
+	NSMutableArray *postResults = [[NSMutableArray alloc] init];
+	NSDictionary *postsDictionary = [self posts];
+	
+	while ((currentURL = [resultEnum nextObject]) != nil) {
+		DCAPIPost *currentPost = (DCAPIPost *) [postsDictionary objectForKey: currentURL];
+			
+		if (currentPost) {
+			[postResults addObject: currentPost];
+		}
+	}
+	
 	NSArray *selectedTags = [self selectedTags];
-    NSArray *filteredResults;
 	
 	if (selectedTags) {
-		filteredResults = [self filterPosts: results forSearch: nil tags: selectedTags];
+		[self setFilteredPosts: [self filterPosts: postResults forSearch: nil tags: selectedTags]];
 	}
 	else {
-		filteredResults = results;
+		[self setFilteredPosts: postResults];
 	}
-	
-	[self setFilteredPosts: filteredResults];
     
     if ([textIndex indexing] || [textIndex searching]) {
         [spinnyThing performSelectorOnMainThread: @selector(startAnimation:) 
@@ -362,11 +362,12 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     }
     
 	[postList reloadData];
+	[postResults release];
 }
 #endif
 
 - (NSArray *) filterPosts: (NSArray *) postArray forSearch: (NSString *) search tags: (NSArray *) matchTags {
-    NSEnumerator *postEnum = [postArray objectEnumerator];
+	NSEnumerator *postEnum = [postArray objectEnumerator];
     NSMutableArray *filteredPostList = [[NSMutableArray alloc] init];
 	BOOL searchTags = NO;
 	BOOL searchURIs = NO;
@@ -387,11 +388,6 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     return [filteredPostList autorelease];
 }
 
-- (void) refreshAll {
-	[self refreshTags];
-    [self refreshPostsWithDownload: YES];
-}
-
 - (void) setClient: (DCAPIClient *) newClient {
     if (client != newClient) {
         [newClient retain];
@@ -404,24 +400,57 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     return [[client retain] autorelease];
 }
 
-- (void) setTags: (NSArray *) newTags {
+- (void) setTags: (NSDictionary *) newTags {
     if (tags != newTags) {
         [tags release];
-        tags = [newTags copy];
+        tags = [newTags mutableCopy];
     }
 }
 
-- (NSArray *) tags {
+- (NSMutableDictionary *) tags {
     return [[tags retain] autorelease];
+}
+
+- (void) setFilteredTags: (NSArray *) newFilteredTags {
+	if (filteredTags != newFilteredTags) {
+		[filteredTags release];
+		filteredTags = [newFilteredTags copy];
+	}
+}
+
+- (NSArray *) filteredTags {
+	return [[filteredTags retain] autorelease];
+}
+
+- (NSArray *) tagsArray {
+	return [[self tags] allValues];
 }
 
 - (void) resortTags {
 	NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"name" ascending: YES selector: @selector(caseInsensitiveCompare:)];
-	NSArray *resortedTags = [[self tags] sortedArrayUsingDescriptors: [NSArray arrayWithObjects: sortDescriptor, nil]];
+	NSArray *resortedTags = [[self tagsArray] sortedArrayUsingDescriptors: [NSArray arrayWithObjects: sortDescriptor, nil]];
 	[sortDescriptor release];
-	[self setTags: resortedTags];
-	[self updateTagFilterFromSelection];
-	[tagList reloadData];
+	[self setFilteredTags: resortedTags];
+	//[self updateTagFilterFromSelection];
+	[tagList performSelectorOnMainThread: @selector(reloadData) withObject: nil waitUntilDone: NO];
+}
+
+- (void) renameTag: (NSString *) originalName to: (NSString *) newName withUpload: (BOOL) upload {
+	NSEnumerator *postEnum = [[self postsArray] objectEnumerator];
+	DCAPIPost *currentPost;
+	
+	while ((currentPost = (DCAPIPost *) [postEnum nextObject]) != nil) {
+		[currentPost renameTag: originalName to: newName];
+	}
+
+	if (upload) {
+		// UPLOAD TAG RENAME HERE
+		NSDictionary *renameDict = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: originalName, newName, nil] forKeys: [NSArray arrayWithObjects: kDCAPITagRenameFromKey, kDCAPITagRenameToKey, nil]];
+		[NSThread detachNewThreadSelector: @selector(renameTag:) toTarget: [self client] withObject: renameDict];
+	}
+	
+	[self refreshTags];
+	[postList reloadData];
 }
 
 - (void) setPostsWithArray: (NSArray *) newPosts {
@@ -520,11 +549,11 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	}
 	else {
 		[self setFilteredPosts: [self filterPosts: [self filteredPosts] forSearch: [self currentSearch] tags: [self selectedTags]]];
-		[self refreshPostsWithDownload: NO];
+		[postList reloadData];
 	}
 #else
 	[self setFilteredPosts: [self filterPosts: [self filteredPosts] forSearch: [self currentSearch] tags: [self selectedTags]]];
-	[self refreshPostsWithDownload: NO];
+	[postList reloadData];
 #endif
 }
 
@@ -536,7 +565,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (void) makeTagListFirstResponder {
-	if ([[self tags] count] > 0) {
+	if ([[self filteredTags] count] > 0) {
 		[[NSApp mainWindow] makeFirstResponder: tagList];
 		[postList selectRow: 0 byExtendingSelection: NO];
 	}	
@@ -751,7 +780,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
         count = [[self filteredPosts] count];
     }
     else if (view == tagList) {
-        count = [[self tags] count] + 1;
+        count = [[self filteredTags] count] + 1;
     }
     
     return count;
@@ -769,10 +798,10 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     }
     else if (view == tagList) {
         if (row == 0) {
-			return [NSString stringWithFormat: NSLocalizedString(@"All (%d Tags)", @"Text for 'all tags' option in tag list"), [[self tags] count]];
+			return [NSString stringWithFormat: NSLocalizedString(@"All (%d Tags)", @"Text for 'all tags' option in tag list"), [[self filteredTags] count]];
         }
         
-        return [[self tags] objectAtIndex: row - 1];
+        return [[self filteredTags] objectAtIndex: row - 1];
     }
     
     return nil;
@@ -788,15 +817,12 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 - (void) tableView: (NSTableView *) view setObjectValue: (id) object forTableColumn: (NSTableColumn *) col row: (int) row {
 	if (view == tagList) {
-		DCAPITag *tag = [[self tags] objectAtIndex: row - 1];
-		NSString *originalName = [tag name];
-		
+		DCAPITag *changedTag = [[self filteredTags] objectAtIndex: row - 1];
+		DCAPITag *originalTag = [[self tags] objectForKey: [changedTag name]];
+		NSString *originalName = [originalTag name];
+				
 		if (![originalName isEqualToString: [object name]]) {
-			[tag setName: [object name]];
-			
-			// UPLOAD TAG RENAME HERE
-			[[self client] renameTag: originalName to: [object name]];
-			[NSThread detachNewThreadSelector: @selector(refreshView) toTarget: self withObject: nil];
+			[self renameTag: originalName to: [object name] withUpload: YES];
 		}
 	}
 }
@@ -820,7 +846,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (NSDragOperation) tableView: (NSTableView *) tableView validateDrop: (id <NSDraggingInfo>) info proposedRow: (int) row proposedDropOperation: (NSTableViewDropOperation) operation {
-	if (tableView == tagList && postList == [info draggingSource] && operation == NSTableViewDropOn && row > 0 && row <= [[self tags] count]) {
+	if (tableView == tagList && postList == [info draggingSource] && operation == NSTableViewDropOn && row > 0 && row <= [[self filteredTags] count]) {
 		return NSDragOperationLink;
 	}
 	
@@ -834,7 +860,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	
 	DCAPIPost *post = [NSKeyedUnarchiver unarchiveObjectWithData: data];
 	NSString *postTags = [post tagsAsString];
-	postTags = [postTags stringByAppendingFormat: @" %@", [[[self tags] objectAtIndex: row - 1] name]];
+	postTags = [postTags stringByAppendingFormat: @" %@", [[[self filteredTags] objectAtIndex: row - 1] name]];
 	[post setTagsFromString: postTags];
 	
 	[[self client] addPost: post];
@@ -892,7 +918,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 - (void) updateTagFilterFromSelection {
     int selectedRow = [tagList selectedRow];
-	NSArray *tagArray = [self tags];
+	NSArray *tagArray = [self tagsArray];
 	
 	if (selectedRow > 0 && selectedRow <= [tagArray count]) {
 		DCAPITag *tag = [tagArray objectAtIndex: selectedRow - 1];
@@ -1043,7 +1069,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 	[mainWindow makeKeyAndOrderFront: self];
 	[mainWindow setTitle: [NSString stringWithFormat: [[NSBundle mainBundle] objectForInfoDictionaryKey: @"DCWindowTitleFormat"], username]];
-	[NSThread detachNewThreadSelector: @selector(refreshView) toTarget: self withObject: nil];
+	[NSThread detachNewThreadSelector: @selector(refreshAll) toTarget: self withObject: nil];
 }
 
 - (IBAction) cancelLogin: (id) sender {
@@ -1169,12 +1195,12 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     }
     
 	[self showPostingInterface: self];
-    //[self postNewLink: self];
 }
 
 - (void) insertPost: (DCAPIPost *) newPost {
 	[[self posts] setValue: newPost forKey: [newPost valueForKey: kPOST_DICTIONARY_KEY_NAME]];	
 	[self refreshPostsWithDownload: NO];
+	[self refreshTags];
 }
 
 - (IBAction) postNewLink: (id) sender {
@@ -1331,6 +1357,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 		[[self posts] removeObjectForKey: [selectedPost valueForKey: kPOST_DICTIONARY_KEY_NAME]];
 		[NSThread detachNewThreadSelector: @selector(deletePostWithURL:) toTarget: [self client] withObject: [selectedPost URL]];
 		[self refreshPostsWithDownload: NO];
+		[self refreshTags];
 	}
 }
 
@@ -1443,7 +1470,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	NSString *prefix = [[[textView string] substringWithRange: charRange] lowercaseString];
 	NSMutableArray *completions = [NSMutableArray array];
 	
-	NSEnumerator *tagEnumerator = [[self tags] objectEnumerator];
+	NSEnumerator *tagEnumerator = [[self tagsArray] objectEnumerator];
 	DCAPITag *tag;
 	while(tag = [tagEnumerator nextObject]) {
 		if([[[tag name] lowercaseString] hasPrefix: prefix])

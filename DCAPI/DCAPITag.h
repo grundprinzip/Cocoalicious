@@ -19,4 +19,7 @@
 - (NSString *) name;
 - (void) setCount: (NSNumber *) newCount;
 - (NSNumber *) count;
+- (void) incrementCount;
+- (void) decrementCount;
+
 @end

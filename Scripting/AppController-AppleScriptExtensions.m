@@ -59,12 +59,12 @@ This also should make it easier to change storage method in the future. */
 }
 
 - (int) indexOfObjectInOrderedTags: (id) object {
-	return [[self tags] indexOfObject: object];
+	return [[self tagsArray] indexOfObject: object];
 }
 
 - (id) valueInOrderedTagsAtIndex: (int) index {
 	if (index < [self countOfOrderedTags]) {
-		return [[self tags] objectAtIndex: index];
+		return [[self tagsArray] objectAtIndex: index];
 	} else {
 		return nil;
 	}

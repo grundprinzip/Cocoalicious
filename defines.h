@@ -32,6 +32,8 @@
 #define kURL_COLUMN @"url"
 
 #define kDCAPIPostPboardType @"DCAPIPostPboardType"
+#define kDCAPITagRenameFromKey @"from"
+#define kDCAPITagRenameToKey @"to"
 
 #define kDCSafariScriptLibrary @"safari_script"
 #define kDCScriptType @"scpt"
@@ -48,7 +50,7 @@
 #define kADD_POST_SEGMENT_TAG 0
 #define kDELETE_POST_SEGMENT_TAG 1
 
-#define kPOST_DICTIONARY_KEY_NAME @"URL"
+#define kPOST_DICTIONARY_KEY_NAME @"URLString"
 
 #define AWOOSTER_CHANGES 1
 #define AWOOSTER_DEBUG 0

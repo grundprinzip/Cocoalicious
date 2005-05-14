@@ -294,6 +294,12 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/";
 	[pool release];
 }
 
+- (void) renameTag: (NSDictionary *) renameInfo {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	[self renameTag: [renameInfo objectForKey: kDCAPITagRenameFromKey] to: [renameInfo objectForKey: kDCAPITagRenameToKey]];
+	[pool release];
+}
+
 - (void) renameTag: (NSString *) oldName to: (NSString *) newName {
     NSMutableString *renameTagURIString;
     

@@ -68,8 +68,9 @@
 	IBOutlet NSProgressIndicator *indexingProgressBar;
 	IBOutlet NSTextField *indexingStatusText;
     
-    NSArray *tags;
+    NSMutableDictionary *tags;
     NSMutableDictionary *posts;
+	NSArray *filteredTags;
 	NSArray *filteredPosts;
     
     NSString *currentSearch;
@@ -131,8 +132,13 @@
 - (NSArray *) urlsArray;
 - (void) setFilteredPosts: (NSArray *) newFilteredPosts;
 - (NSArray *) filteredPosts;
-- (void) setTags: (NSArray *) newTags;
-- (NSArray *) tags;
+- (void) setTags: (NSDictionary *) newTags;
+- (NSMutableDictionary *) tags;
+- (void) setFilteredTags: (NSArray *) newFilteredTags;
+- (NSArray *) filteredTags;
+- (NSArray *) tagsArray;
+- (void) resortTags;
+- (void) renameTag: (NSString *) originalName to: (NSString *) newName withUpload: (BOOL) upload;
 
 /* UI setup */
 - (void) setupTaglist;

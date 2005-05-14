@@ -36,6 +36,7 @@
 - (NSArray *) requestPostsForDate: (NSDate *) date tag: (DCAPITag *) tag;
 - (void) addPost: (DCAPIPost *) newPost;
 - (void) deletePostWithURL: (NSURL *) url;
+- (void) renameTag: (NSDictionary *) renameInfo;
 - (void) renameTag: (NSString *) oldName to: (NSString *) newName;
 - (NSData *) sendRequestForURI: (NSURL *) apiURL usingCachePolicy: (NSURLRequestCachePolicy) cachePolicy;
 

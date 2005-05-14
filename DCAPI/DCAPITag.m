@@ -53,6 +53,22 @@
     return [[count retain] autorelease];
 }
 
+- (void) incrementCount {
+	if (!count) {
+		[self setCount: [NSNumber numberWithInt: 1]];
+	}
+
+	[self setCount: [NSNumber numberWithInt: [count intValue] + 1]];
+}
+
+- (void) decrementCount {
+	if (!count) {
+		return;
+	}
+	
+	[self setCount: [NSNumber numberWithInt: [count intValue] - 1]];
+}
+
 - (NSString *) description {
     return [NSString stringWithFormat: @"%@ (%@)", [self name], [self count]];
 }

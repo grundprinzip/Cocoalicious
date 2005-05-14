@@ -58,6 +58,10 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
     return [[URL retain] autorelease];
 }
 
+- (NSString *) URLString {
+	return [URL absoluteString];
+}
+
 - (void) setExtended: (NSString *) newExtended {
     if (extended != newExtended) {
         [extended release];
@@ -84,12 +88,31 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 - (void) setTags: (NSArray *) newTags {
     if (tags != newTags) {
         [tags release];
-        tags = [newTags copy];
+        tags = [newTags mutableCopy];
     }	
 }
 
 - (NSArray *) tags {
 	return [[tags retain] autorelease];
+}
+
+- (void) renameTag: (NSString *) oldTagName to: (NSString *) newTagName {
+	if ([tags containsObject: oldTagName]) {
+		[self addTagNamed: newTagName];
+		[self removeTagNamed: oldTagName];
+	}
+}
+
+- (void) addTagNamed: (NSString *) newTagName {
+	if (newTagName) {
+		[tags addObject: newTagName];
+	}
+}
+
+- (void) removeTagNamed: (NSString *) removeTagName {
+	if (removeTagName) {
+		[tags removeObject: removeTagName];
+	}
 }
 
 - (void) setURLHash: (NSString *) newHash {
@@ -135,7 +158,7 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 			}
 		}
 		
-		if (searchExtended) {
+		if ([self extended] && searchExtended) {
 			range = [[self extended] rangeOfString: keywordString options: NSCaseInsensitiveSearch];
 
 			if (range.location != NSNotFound) {
@@ -143,7 +166,7 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 			}
 		}
 
-		if (searchURIs) {
+		if ([self URL] && searchURIs) {
 			range = [[[self URL] absoluteString] rangeOfString: keywordString options: NSCaseInsensitiveSearch];
 					
 			if (range.location != NSNotFound) {
@@ -151,7 +174,7 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 			}
 		}
 	}
-	
+
 	return NO;
 }
 

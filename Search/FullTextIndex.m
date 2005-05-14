@@ -35,6 +35,7 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     [resultsLock release];
     [searchLock release];
     [self closeIndex];
+	[super dealloc];
 }
 
 - (SKIndexRef)textIndex
@@ -191,12 +192,6 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     SEL aSelector = 
         NSSelectorFromString([searchDict objectForKey:@"aSelector"]);
     NSString *query = [searchDict objectForKey:@"query"];
-    NSMutableArray *postArray = [searchDict objectForKey:@"urlArray"];
-    
-    // These are for iterating through stuff (lame, I know).
-    NSMutableArray *postResults = [[NSMutableArray alloc] init];
-    NSEnumerator *postEnum = [postArray objectEnumerator];
-    NSObject *currentPost;
 
     if (!textIndex) {
         [self openIndex];
@@ -263,28 +258,18 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
         for (i = 0; i < count; i++) {
             NSString *url = (NSString *)SKDocumentGetName(outDocumentsArray[i]);
             if (AWOOSTER_DEBUG) {
-                NSLog(@"  %@", url);
+                NSLog(@"Matched document:  %@", url);
             }
             [resultsLock lock];
             [results addObject: url];
             [resultsLock unlock];
         }
         
-        // Do a set intersection.
-        [resultsLock lock];
-        while ((currentPost = [postEnum nextObject]) != nil) {
-            if ([results containsObject: currentPost]) {
-                [postResults addObject: currentPost];
-            }
-        }
-        [resultsLock unlock];
-        
         [anObject performSelectorOnMainThread: aSelector
-                                   withObject: [postResults autorelease]
+                                   withObject: [results copy]
                                 waitUntilDone: NO];
-        postResults = [[NSMutableArray alloc] init];
-        postEnum = [postArray objectEnumerator];
     }
+	
     CFRelease(searchArray);
     CFRelease(searchGroup);
     CFRelease(searchResults);
@@ -293,15 +278,8 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     if (thisSearchID == currentSearchID) {
         // Inefficient, I know, but I need to make the calling thread aware that
         // we're done searching.
-        [resultsLock lock];
-        while ((currentPost = [postEnum nextObject]) != nil) {
-            if ([results containsObject: currentPost]) {
-                [postResults addObject: currentPost];
-            }
-        }
-        [resultsLock unlock];
         [anObject performSelectorOnMainThread: aSelector
-                                   withObject: [postResults autorelease]
+                                   withObject: [results copy]
                                 waitUntilDone: NO];
     }
     [pool release];
