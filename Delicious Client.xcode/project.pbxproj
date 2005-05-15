@@ -1106,7 +1106,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/sh\n\nif [ -x /usr/bin/sdp ]; then\n\tsdp=\"/usr/bin/sdp\" \nelif [ -x /Developer/Tools/sdp ]; then\n\t$sdp=\"/Developer/Tools/sdp\"\nelse\n\techo \"Unable to find sdp command\"\n\texit 1;\nfi\n\n${sdp} -f st -o \"$BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources\" \"$SOURCE_ROOT/Scripting/Cocoalicious.sdef\"";
+			shellScript = "if [ -x /usr/bin/sdp ]; then\n\tsdp=\"/usr/bin/sdp\" \nelif [ -x /Developer/Tools/sdp ]; then\n\tsdp=\"/Developer/Tools/sdp\"\nelse\n\techo \"Unable to find sdp command\"\n\texit 1;\nfi\n\n${sdp} -f st -o \"$BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources\" \"$SOURCE_ROOT/Scripting/Cocoalicious.sdef\"";
 		};
 		6BD8D4A707205205008CA80A = {
 			children = (

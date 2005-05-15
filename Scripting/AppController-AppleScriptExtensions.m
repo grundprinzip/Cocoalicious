@@ -49,7 +49,7 @@ This also should make it easier to change storage method in the future. */
 
 - (void) removeFromOrderedPostsAtIndex: (int) index {
 	DCAPIPost *post = (DCAPIPost *)[self valueInOrderedPostsAtIndex: index];
-	[[self client] deletePostWithURL:[post URL]];
+	[[self client] deletePostWithURL: [post URL]];
 	[self refresh: self];
 }
 
