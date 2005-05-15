@@ -401,10 +401,12 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (void) setTags: (NSDictionary *) newTags {
-    if (tags != newTags) {
-        [tags release];
-        tags = [newTags mutableCopy];
-    }
+    @synchronized(tags) { 
+		if (tags != newTags) {
+			[tags release];
+			tags = [newTags mutableCopy];
+		}
+	}
 }
 
 - (NSMutableDictionary *) tags {
@@ -412,9 +414,11 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (void) setFilteredTags: (NSArray *) newFilteredTags {
-	if (filteredTags != newFilteredTags) {
-		[filteredTags release];
-		filteredTags = [newFilteredTags copy];
+    @synchronized(filteredTags) { 
+		if (filteredTags != newFilteredTags) {
+			[filteredTags release];
+			filteredTags = [newFilteredTags copy];
+		}
 	}
 }
 
@@ -454,16 +458,20 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (void) setPostsWithArray: (NSArray *) newPosts {
-	NSMutableDictionary *newPostDict = [[NSMutableDictionary alloc] initWithObjects: newPosts keyName: kPOST_DICTIONARY_KEY_NAME];
-	[posts release];
-	posts = newPostDict;
+	@synchronized(posts) { 
+		NSMutableDictionary *newPostDict = [[NSMutableDictionary alloc] initWithObjects: newPosts keyName: kPOST_DICTIONARY_KEY_NAME];
+		[posts release];
+		posts = newPostDict;
+	}
 }
 
 - (void) setPosts: (NSDictionary *) newPosts {
-	if (posts != newPosts) {
-        [posts release];
-        posts = [newPosts mutableCopy];
-    }
+	@synchronized (posts) {
+		if (posts != newPosts) {
+			[posts release];
+			posts = [newPosts mutableCopy];
+		}
+	}
 }
 
 - (NSMutableDictionary *) posts {
@@ -479,14 +487,16 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (void) setFilteredPosts: (NSArray *) newFilteredPosts {
-	if (!newFilteredPosts) {
-        [filteredPosts release];
-		filteredPosts = nil;
+	@synchronized (filteredPosts) {
+		if (!newFilteredPosts) {
+			[filteredPosts release];
+			filteredPosts = nil;
+		}
+		else if (filteredPosts != newFilteredPosts) {
+			[filteredPosts release];
+			filteredPosts = [newFilteredPosts copy];
+		}
 	}
-    else if (filteredPosts != newFilteredPosts) {
-        [filteredPosts release];
-        filteredPosts = [newFilteredPosts copy];
-    }
 }
 
 - (NSArray *) filteredPosts {
