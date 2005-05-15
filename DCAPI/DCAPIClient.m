@@ -29,7 +29,7 @@ static NSString *kRENAME_TAG_OLD_PARAM = @"old";
 static NSString *kRENAME_TAG_NEW_PARAM = @"new";
 static double kREQUEST_TIMEOUT_INTERVAL = 30.0;
 static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
-static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/";
+static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
 
 #warning Need better error handling across the board for failed requests (esp. 503s).
 #warning Might want to have configurable request timeout.

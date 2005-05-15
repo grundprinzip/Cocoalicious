@@ -325,10 +325,10 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     }*/
 }
 
-- (void) updatePostFilter: (NSMutableArray *) results
+- (void) filterPostsForFullTextSearchResult: (NSMutableArray *) results
 {
     if (AWOOSTER_DEBUG) {
-        NSLog(@"updatePostFilter:");
+        NSLog(@"filterPostsForFullTextSearchResult:");
     }
 	
 	NSEnumerator *resultEnum = [results objectEnumerator];
@@ -345,12 +345,15 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	}
 	
 	NSArray *selectedTags = [self selectedTags];
+
+	NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey: @"date" ascending: NO selector: @selector(compare:)] autorelease];
+	NSArray *resortedPosts = [postResults sortedArrayUsingDescriptors: [NSArray arrayWithObjects: sortDescriptor, nil]];
 	
 	if (selectedTags) {
-		[self setFilteredPosts: [self filterPosts: postResults forSearch: nil tags: selectedTags]];
+		[self setFilteredPosts: [self filterPosts: resortedPosts forSearch: nil tags: selectedTags]];
 	}
 	else {
-		[self setFilteredPosts: postResults];
+		[self setFilteredPosts: resortedPosts];
 	}
     
     if ([textIndex indexing] || [textIndex searching]) {
@@ -519,14 +522,16 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (void) setCurrentSearch: (NSString *) newCurrentSearch {
-	if (!newCurrentSearch) {
-        [currentSearch release];
-		currentSearch = nil;
+	@synchronized(currentSearch) {
+		if (!newCurrentSearch) {
+			[currentSearch release];
+			currentSearch = nil;
+		}
+		else if (newCurrentSearch != currentSearch) {
+			[currentSearch release];
+			currentSearch = [newCurrentSearch copy];
+		}
 	}
-	else if (newCurrentSearch != currentSearch) {
-        [currentSearch release];
-        currentSearch = [newCurrentSearch copy];
-    }
 }
 
 - (NSString *) currentSearch {
@@ -544,8 +549,8 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	}
 }
 
-- (void) doSearchForString: (NSString *) search {
-    if (!search || [search isEqualToString: [NSString string]]) {
+- (void) doSearchForString: (NSString *) search {	
+	if (!search || [search isEqualToString: [NSString string]]) {
         [self setCurrentSearch: nil];
 		[self refreshPostsWithDownload: NO];
 		return;
@@ -558,12 +563,12 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 		[self beginFullTextSearchForQuery: [self currentSearch]];
 	}
 	else {
-		[self setFilteredPosts: [self filterPosts: [self filteredPosts] forSearch: [self currentSearch] tags: [self selectedTags]]];
-		[postList reloadData];
+		[self refreshPostsWithDownload: NO];
 	}
 #else
-	[self setFilteredPosts: [self filterPosts: [self filteredPosts] forSearch: [self currentSearch] tags: [self selectedTags]]];
-	[postList reloadData];
+	/*[self setFilteredPosts: [self filterPosts: [self postsArray] forSearch: [self currentSearch] tags: [self selectedTags]]];
+	[postList reloadData];*/
+	[self refreshPostsWithDownload: NO];
 #endif
 }
 
@@ -686,7 +691,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
         
 	NSDictionary *searchDict = [NSDictionary dictionaryWithObjectsAndKeys:
 		self, @"anObject",
-		NSStringFromSelector(@selector(updatePostFilter:)), @"aSelector",
+		NSStringFromSelector(@selector(filterPostsForFullTextSearchResult:)), @"aSelector",
 		query, @"query",
 		[self urlsArray], @"urlArray",
 		nil];
