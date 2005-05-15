@@ -1031,6 +1031,10 @@
 			6B4CB23708372EA6003F7293 = 6B4CB23708372EA6003F7293;
 			6B4CB24008372EA7003F7293 = 6B4CB24008372EA7003F7293;
 			6B4CB24108372EBC003F7293 = 6B4CB24108372EBC003F7293;
+			6B4CB24208372FE0003F7293 = 6B4CB24208372FE0003F7293;
+			6B4CB24E0837317D003F7293 = 6B4CB24E0837317D003F7293;
+			6B4CB24F0837317D003F7293 = 6B4CB24F0837317D003F7293;
+			6B4CB25408373219003F7293 = 6B4CB25408373219003F7293;
 			6BB637920836A94E008CCB54 = 6BB637920836A94E008CCB54;
 			6BF3BC4B0836C6D40021314C = 6BF3BC4B0836C6D40021314C;
 		};
@@ -1192,8 +1196,8 @@
 	6B37C94E05C8D5BB00A005A7 = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1154, 672}}";
-			sepNavSelRange = "{862, 0}";
-			sepNavVisRect = "{{0, 206}, {711, 429}}";
+			sepNavSelRange = "{1002, 0}";
+			sepNavVisRect = "{{0, 229}, {711, 429}}";
 			sepNavWindowFrame = "{{15, 269}, {750, 558}}";
 		};
 	};
@@ -1315,6 +1319,44 @@
 		vrLen = 1106;
 		vrLoc = 8807;
 	};
+	6B4CB24208372FE0003F7293 = {
+		fRef = 6BF88AE405C4D56000D7EDBB;
+		isa = PBXTextBookmark;
+		name = "NSMenuItem *newPostMenuItem = [dockMenu addItemWithTitle: @\"New Post\" action: @selector(showPostingInterface:) keyEquivalent: @\"\"];";
+		rLen = 133;
+		rLoc = 6761;
+		rType = 0;
+		vrLen = 506;
+		vrLoc = 6666;
+	};
+	6B4CB24E0837317D003F7293 = {
+		comments = "warning: assignment makes integer from pointer without a cast";
+		fRef = 6BF88AE405C4D56000D7EDBB;
+		isa = PBXTextBookmark;
+		rLen = 1;
+		rLoc = 767;
+		rType = 1;
+	};
+	6B4CB24F0837317D003F7293 = {
+		fRef = 6BF88AE405C4D56000D7EDBB;
+		isa = PBXTextBookmark;
+		name = "openURLSpec.launchFlags = NULL;";
+		rLen = 34;
+		rLoc = 26268;
+		rType = 0;
+		vrLen = 604;
+		vrLoc = 26068;
+	};
+	6B4CB25408373219003F7293 = {
+		fRef = 6BF88AE405C4D56000D7EDBB;
+		isa = PBXTextBookmark;
+		name = "openURLSpec.launchFlags = NULL;";
+		rLen = 34;
+		rLoc = 26268;
+		rType = 0;
+		vrLen = 604;
+		vrLoc = 26068;
+	};
 	6B4EEBA2076D7E3A008398A3 = {
 		isa = PBXSymbolicBreakpoint;
 		state = 1;
@@ -1338,7 +1380,7 @@
 	6B698143065346D6000649B0 = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {711, 868}}";
-			sepNavSelRange = "{2077, 0}";
+			sepNavSelRange = "{1986, 25}";
 			sepNavVisRect = "{{0, 439}, {711, 429}}";
 			sepNavWindowFrame = "{{84, 206}, {750, 558}}";
 		};
@@ -2040,9 +2082,9 @@
 	};
 	6BF88AE405C4D56000D7EDBB = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1736, 21140}}";
-			sepNavSelRange = "{9503, 15}";
-			sepNavVisRect = "{{0, 2817}, {711, 429}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1736, 21112}}";
+			sepNavSelRange = "{30333, 0}";
+			sepNavVisRect = "{{0, 11994}, {711, 429}}";
 			sepNavWindowFrame = "{{338, 160}, {750, 558}}";
 		};
 	};

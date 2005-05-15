@@ -868,17 +868,17 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	NSPasteboard *pboard = [info draggingPasteboard];
 	NSData *data = [pboard dataForType: kDCAPIPostPboardType];
 	
-	DCAPIPost *post = [NSKeyedUnarchiver unarchiveObjectWithData: data];
-	NSString *postTags = [post tagsAsString];
-	postTags = [postTags stringByAppendingFormat: @" %@", [[[self filteredTags] objectAtIndex: row - 1] name]];
-	[post setTagsFromString: postTags];
+	DCAPIPost *unarchivedPost = [NSKeyedUnarchiver unarchiveObjectWithData: data];
+	NSString *newTag = [[[self filteredTags] objectAtIndex: row - 1] name];
+	DCAPIPost *post = [[self posts] objectForKey: [unarchivedPost valueForKey: kPOST_DICTIONARY_KEY_NAME]];
 	
-	[[self client] addPost: post];
-	
-	[self refresh: self];
-	
-	return YES;
-	
+	if (post) {
+		[post addTagNamed: newTag];
+		[self refreshTags];
+		[NSThread detachNewThreadSelector: @selector(addPost:) toTarget: [self client] withObject: post];
+		return YES;
+	}
+		
 	return NO;
 }
 
