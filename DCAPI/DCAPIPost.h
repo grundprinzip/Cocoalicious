@@ -17,6 +17,7 @@
     NSDate *date;
 	NSMutableArray *tags;
 	NSString *urlHash;
+	NSNumber *rating;
 }
 
 - initWithURL: (NSURL *) newURL description: (NSString *) newDescription extended: (NSString *) newExtended date: (NSDate *) newDate tags: (NSArray *) newTags urlHash: (NSString *) newHash;
@@ -40,6 +41,9 @@
 - (NSString *) urlHash;
 - (BOOL) matchesSearch: (NSString *) keyword extended: (BOOL) searchExtended tags: (NSArray *) matchTags matchKeywordsAsTags: (BOOL) matchKeywordsAsTags URIs: (BOOL) searchURIs;
 - (BOOL) matchesTags: (NSArray *) matchTags;
+- (NSNumber *) rating;
+- (void) setRating: (NSNumber *) rating;
+- (NSNumber *) calculateRatingFromTags: (NSArray *) tagArray;
 
 - (id) initWithCoder:(NSCoder *) coder;
 - (void) encodeWithCoder:(NSCoder *) coder;

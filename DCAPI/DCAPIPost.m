@@ -89,7 +89,33 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
     if (tags != newTags) {
         [tags release];
         tags = [newTags mutableCopy];
-    }	
+		
+		/* Figure out the post's rating based on the tags */
+		[self setRating: [self calculateRatingFromTags: tags]];
+	}	
+}
+
+- (NSNumber *) calculateRatingFromTags: (NSArray *) tagArray {
+	NSEnumerator *tagEnum = [tagArray objectEnumerator];
+	NSString *currentTag;
+	NSCharacterSet *nonRatingCharSet = [[NSCharacterSet characterSetWithCharactersInString: kRATING_TAG_CHARACTER] invertedSet];
+	
+	unsigned int currentRating = 0;
+	
+	while ((currentTag = (NSString *) [tagEnum nextObject]) != nil) {
+		NSScanner *scanner = [NSScanner scannerWithString: currentTag];
+		NSString *ratingTag;
+		
+		if ([scanner scanUpToCharactersFromSet: nonRatingCharSet intoString: &ratingTag]) {				
+			unsigned int numberOfStars;
+			
+			if (ratingTag && ((numberOfStars = [ratingTag length]) == [currentTag length]) && numberOfStars > currentRating) {
+				currentRating = numberOfStars;
+			}
+		}
+	}
+	
+	return [NSNumber numberWithUnsignedInt: currentRating];
 }
 
 - (NSArray *) tags {
@@ -124,6 +150,21 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 
 - (NSString *) urlHash {
 	return [[urlHash retain] autorelease];
+}
+
+- (NSNumber *) rating {
+	if (!rating) {
+		return [NSNumber numberWithInt: 0];
+	}
+
+	return [[rating retain] autorelease];
+}
+
+- (void) setRating: (NSNumber *) newRating {
+	if (newRating != rating) {
+		[rating release];
+		rating = newRating;
+	}
 }
 
 - (BOOL) matchesSearch: (NSString *) keyword extended: (BOOL) searchExtended tags: (NSArray *) matchTags matchKeywordsAsTags: (BOOL) matchKeywordsAsTags URIs: (BOOL) searchURIs {

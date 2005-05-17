@@ -156,7 +156,6 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	[toggleWebPreviewIcon release];
 }
 
-
 - (void) setUpDockMenu {
     [NSApp setDelegate: self];
 	dockMenu = [[NSMenu alloc] init];
@@ -184,8 +183,20 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     [cornerView release];
 	[cornerCell release];
 	
+	SFHFRatingCell *starCell = [[SFHFRatingCell alloc] initImageCell: [NSImage imageNamed: kRATING_IMAGE_NAME]];
+	[starCell setContinuous: YES];
+	[starCell setHighlightedImage: [NSImage imageNamed: kRATING_HIGHLIGHTED_IMAGE_NAME]];
+	[starCell setMaximumRating: [NSNumber numberWithInt: kMAXIMUM_STAR_RATING]];
+	[[postList tableColumnWithIdentifier: kRATING_COLUMN_IDENTIFIER] setDataCell: starCell];
+	[starCell release];
+	
+	NSTableColumn *descriptionColumn = [postList tableColumnWithIdentifier: @"description"];
+	NSCell *descriptionColumnCell = [descriptionColumn dataCell];
+	[descriptionColumnCell setWraps: YES];
+
 	NSTableColumn *dateColumn = [postList tableColumnWithIdentifier: @"date"];
 	NSCell *dateColumnCell = [dateColumn dataCell];
+	[dateColumnCell setWraps: YES];
 	NSString *dateFormatString = [[NSUserDefaults standardUserDefaults] stringForKey: NSDateFormatString];
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] initWithDateFormat: dateFormatString allowNaturalLanguage: YES];
 	
@@ -802,12 +813,26 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (id) tableView: (NSTableView *) view objectValueForTableColumn: (NSTableColumn *) col row: (int) row {
+    static NSDictionary *info = nil;
+    
+    if (nil == info) {
+        NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        [style setLineBreakMode:NSLineBreakByTruncatingTail];
+        info = [[NSDictionary alloc] initWithObjectsAndKeys:style, NSParagraphStyleAttributeName, nil];
+        [style release];
+    }
+
 	if (view == postList) {
         DCAPIPost *post = [[self filteredPosts] objectAtIndex: row];
         NSString *identifier = [col identifier];
         
         if (post) {
             id value = [post valueForKey: identifier];
+			
+			if ([value isKindOfClass: [NSString class]]) {
+				return [[[NSAttributedString alloc] initWithString: value attributes: info] autorelease];
+			}
+			
             return value;
         }
     }

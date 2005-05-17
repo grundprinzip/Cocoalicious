@@ -21,6 +21,7 @@
 #import "SFHFSplitView.h"
 #import "SFHFiTunesTableHeaderCell.h"
 #import "SFHFMetalTableHeaderCell.h"
+#import "SFHFRatingCell.h"
 #import "SFHFCornerView.h"
 #import "defines.h"
 #import "DCTypes.h"

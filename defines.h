@@ -59,3 +59,9 @@
 #define kTEXT_INDEX_VERSION @"HTML Text v1.0"
 #define kTEXT_SEARCH_MAX_RESULTS 100000
 #define kTEXT_SEARCH_CHUNK_SIZE 30
+
+#define kRATING_IMAGE_NAME @"star.tif"
+#define kRATING_HIGHLIGHTED_IMAGE_NAME @"star_highlighted.tif"
+#define kMAXIMUM_STAR_RATING 5
+#define kRATING_COLUMN_IDENTIFIER @"rating"
+#define kRATING_TAG_CHARACTER @"*"
