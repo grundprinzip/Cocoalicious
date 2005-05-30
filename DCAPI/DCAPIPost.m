@@ -219,7 +219,7 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 - (void) setRating: (NSNumber *) newRating {
 	if (newRating != rating) {
 		[rating release];
-		rating = newRating;
+		rating = [newRating copy];
 		
 		[self addTagsFromRating: rating];
 	}
