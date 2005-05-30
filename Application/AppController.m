@@ -36,7 +36,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	[dictionary setObject: [NSNumber numberWithBool: NO] forKey: kAUTOMATICALLY_COMPLETE_TAGS_DEFAULTS_KEY];
 	[dictionary setObject: [NSNumber numberWithFloat: kDEFAULT_TAG_AUTOCOMPLETION_DELAY] forKey: kTAG_AUTOCOMPLETION_DELAY_DEFAULTS_KEY];
 	
-	NSArray *descriptors = [NSArray arrayWithObject: [[NSSortDescriptor alloc] initWithKey: kDATE_SORT_DESCRIPTOR ascending: NO]];
+	NSArray *descriptors = [NSArray arrayWithObject: [[[NSSortDescriptor alloc] initWithKey: kDATE_SORT_DESCRIPTOR ascending: NO] autorelease]];
 	NSData *descriptorData = [NSArchiver archivedDataWithRootObject: descriptors];
 	[dictionary setObject: descriptorData forKey: kPOST_LIST_SORT_DEFAULTS_KEY];
 	
@@ -1035,6 +1035,14 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     else if (table == postList) {
 		[self previewSelectedLinks];
     }
+}
+
+- (BOOL) typeSelectTableView: (id) tableView shouldPerformSearch: (NSString *) search {
+	if (tableView == postList) {
+		return NO;
+	}
+	
+	return YES;
 }
 
 - (void) previewSelectedLinks {

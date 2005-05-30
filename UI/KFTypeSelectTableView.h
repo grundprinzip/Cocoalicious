@@ -114,6 +114,7 @@ typedef enum KFTypeSelectMatchAlgorithm {
 //    when a search begins or is modified
 //    when a search is canceled
 //    x seconds after a search either succeeds or fails, where x is a timeout period
+- (BOOL)typeSelectTableView:(id)tableView shouldPerformSearch:(NSString *)search; 
 - (void)typeSelectTableViewPatternDidChange:(NSNotification *)aNotification; 
 - (void)typeSelectTableView:(id)tableView didFindMatch:(NSString *)match range:(NSRange)matchedRange forPattern:(NSString *)pattern;
 - (void)typeSelectTableView:(id)tableView didFailToFindMatchForPattern:(NSString *)pattern; // fallback is a beep if delegate does not implement

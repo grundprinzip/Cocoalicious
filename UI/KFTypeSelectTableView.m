@@ -150,8 +150,8 @@ static BOOL KFKeyEventIsCancelEvent(NSEvent *keyEvent);
 {
     // Will we drop this event to super? 
     BOOL eatEvent = NO;
-    
-    if ([self kfCanPerformTypeSelect] && ([[self window] firstResponder] == self))
+
+	if ([self kfCanPerformTypeSelect] && ([[self window] firstResponder] == self))
     { 
         BOOL canExtendFind = [self kfCanExtendFind];
                 
@@ -160,11 +160,13 @@ static BOOL KFKeyEventIsCancelEvent(NSEvent *keyEvent);
             NSText *fieldEditor = [[self window] fieldEditor:YES forObject:self];
             [fieldEditor interpretKeyEvents:[NSArray arrayWithObject:keyEvent]];
 
-            [self kfFindPattern:[fieldEditor string]
-                     initialRow:[self kfSavedRowForExtensionSearch]
-                    topToBottom:[self kfSearchTopToBottom]
-                 allowExtension:YES];            
-            eatEvent = YES;
+			if (![[self delegate] respondsToSelector: @selector(typeSelectTableView:shouldPerformSearch:)] || [[self delegate] typeSelectTableView: self shouldPerformSearch: [fieldEditor string]]) {
+				[self kfFindPattern:[fieldEditor string]
+						 initialRow:[self kfSavedRowForExtensionSearch]
+						topToBottom:[self kfSearchTopToBottom]
+					 allowExtension:YES];            
+				eatEvent = YES;
+			}
         }
         else if (KFKeyEventIsBeginFindEvent(keyEvent))
         {
@@ -174,7 +176,7 @@ static BOOL KFKeyEventIsCancelEvent(NSEvent *keyEvent);
             
             NSString *newPattern = [fieldEditor string];
             
-            if (![newPattern isEqualToString:@""])
+            if (![newPattern isEqualToString:@""] && (![[self delegate] respondsToSelector: @selector(typeSelectTableView:shouldPerformSearch:)] || [[self delegate] typeSelectTableView: self shouldPerformSearch: [fieldEditor string]]))
             {
                 [self kfFindPattern:[fieldEditor string]
                          initialRow:[self kfInitialRowForNewSearch]
