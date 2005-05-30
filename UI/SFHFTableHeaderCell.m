@@ -80,7 +80,7 @@
 		/* Turn on anti-aliasing */
 		[[NSGraphicsContext currentContext] setShouldAntialias: YES];
 	}
-	
+
 	if (![self stringValue] || [[self stringValue] length] < 1) {
 		return;
 	}

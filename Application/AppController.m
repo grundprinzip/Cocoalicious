@@ -35,6 +35,11 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	[dictionary setObject: [NSNumber numberWithInt: DCBasicSearchType] forKey: kSEARCH_TYPE_DEFAULTS_KEY];
 	[dictionary setObject: [NSNumber numberWithBool: NO] forKey: kAUTOMATICALLY_COMPLETE_TAGS_DEFAULTS_KEY];
 	[dictionary setObject: [NSNumber numberWithFloat: kDEFAULT_TAG_AUTOCOMPLETION_DELAY] forKey: kTAG_AUTOCOMPLETION_DELAY_DEFAULTS_KEY];
+	
+	NSArray *descriptors = [NSArray arrayWithObject: [[NSSortDescriptor alloc] initWithKey: kDATE_SORT_DESCRIPTOR ascending: NO]];
+	NSData *descriptorData = [NSArchiver archivedDataWithRootObject: descriptors];
+	[dictionary setObject: descriptorData forKey: kPOST_LIST_SORT_DEFAULTS_KEY];
+	
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues: dictionary];
 }
 
@@ -188,6 +193,13 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	[postList setAction: @selector(makeTagListFirstResponder) forKey: NSLeftArrowFunctionKey];
 	[postList setAction: @selector(scrollWebViewDown) forKey: ' '];
 	[postList setAction: @selector(deleteSelectedLinks:) forKey: NSDeleteCharacter];
+
+	NSArray *descriptors = nil;
+	NSData *descriptorData = [[[NSUserDefaultsController sharedUserDefaultsController] defaults] dataForKey: kPOST_LIST_SORT_DEFAULTS_KEY];
+	if (descriptorData) {
+		descriptors = (NSArray *) [NSUnarchiver unarchiveObjectWithData: descriptorData];
+		[postList setSortDescriptors: descriptors];
+	}
 	
 	[postList disableDraggingForColumnWithIdentifier: kRATING_COLUMN_IDENTIFIER];
 	
@@ -298,9 +310,8 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	else {
 		unfilteredPosts = [self postsArray];
 	}
-	
-	NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey: @"date" ascending: NO selector: @selector(compare:)] autorelease];
-	NSArray *resortedPosts = [unfilteredPosts sortedArrayUsingDescriptors: [NSArray arrayWithObjects: sortDescriptor, nil]];
+
+	NSArray *resortedPosts = [unfilteredPosts sortedArrayUsingDescriptors: [postList sortDescriptors]];
 	
 	NSString *search = [self currentSearch];
 	NSArray *matchTags = nil;
@@ -845,7 +856,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	if (view == postList) {
         DCAPIPost *post = [[self filteredPosts] objectAtIndex: row];
         NSString *identifier = [col identifier];
-        
+        		
         if (post) {
             id value = [post valueForKey: identifier];
 			
@@ -945,6 +956,15 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	return NO;
 }
 
+- (void) tableView: (NSTableView *) tableView didClickTableColumn: (NSTableColumn *) tableColumn {
+	if (tableView == postList) {
+		[self refreshPostsWithDownload: NO];
+
+		NSArray *descriptors = [postList sortDescriptors];
+		NSData *descriptorData = [NSArchiver archivedDataWithRootObject: descriptors];
+		[[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: descriptorData forKey: kPOST_LIST_SORT_DEFAULTS_KEY];
+	}
+}
 
 // ----- beg implementation for postList tooltips -----
 - (NSString *)tableView:(SFHFTableView *)tableView tooltipForItem:(id)item {
@@ -969,6 +989,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	
 	return nil;
 }
+
 // ----- end implementation for postList tooltips -----
 
 - (IBAction) copyAsTag: (id) sender {

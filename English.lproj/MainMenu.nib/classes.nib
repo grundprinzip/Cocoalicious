@@ -67,6 +67,11 @@
         {CLASS = SFHFBezelView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
         {CLASS = SFHFScrollView; LANGUAGE = ObjC; SUPERCLASS = NSScrollView; }, 
         {CLASS = SFHFSplitView; LANGUAGE = ObjC; SUPERCLASS = NSSplitView; }, 
+        {
+            CLASS = SFHFTableHeaderCell; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSTableHeaderCell; 
+        }, 
         {CLASS = SFHFTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }, 
         {CLASS = SFHFTextView; LANGUAGE = ObjC; SUPERCLASS = NSTextView; }
     ); 

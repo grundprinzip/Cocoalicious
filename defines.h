@@ -24,6 +24,9 @@
 #define kSEARCH_TYPE_DEFAULTS_KEY @"searchType"
 #define kAUTOMATICALLY_COMPLETE_TAGS_DEFAULTS_KEY @"automaticallyCompleteTags"
 #define kTAG_AUTOCOMPLETION_DELAY_DEFAULTS_KEY @"tagAutocompletionDelay"
+#define kPOST_LIST_SORT_DEFAULTS_KEY @"postListSortKey"
+
+#define kDATE_SORT_DESCRIPTOR @"date"
 
 #define kDEFAULT_TAG_AUTOCOMPLETION_DELAY 2.0
 
