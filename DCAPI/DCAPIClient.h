@@ -16,6 +16,7 @@
     NSString *username;
     NSString *password;
     id delegate;
+	NSLock *HTTPlock;
 }
 
 - initWithAPIURL: (NSURL *) newAPIURL username: (NSString *) newUsername password: (NSString *) newPassword delegate: (id) newDelegate;

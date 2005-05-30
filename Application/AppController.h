@@ -22,6 +22,7 @@
 #import "SFHFiTunesTableHeaderCell.h"
 #import "SFHFMetalTableHeaderCell.h"
 #import "SFHFRatingCell.h"
+#import "SFHFCircularCounterCell.h"
 #import "SFHFCornerView.h"
 #import "defines.h"
 #import "DCTypes.h"
@@ -82,7 +83,6 @@
 	NSMutableDictionary *loginProperties;
 
 	BOOL useExtendedSearch;
-	
 	BOOL lastTextChangeWasCompletion;
     
 	NSAppleScript *safariScript;

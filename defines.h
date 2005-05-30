@@ -9,7 +9,7 @@
 
 #define kDEFAULT_SECURITY_DOMAIN (@"del.icio.us API")
 
-#define kUSER_AGENT (@"Cocoal.icio.us/1.0 (v34) (Mac OS X; http://www.scifihifi.com/cocoalicious)")
+#define kUSER_AGENT (@"Cocoal.icio.us/1.0 (v35) (Mac OS X; http://www.scifihifi.com/cocoalicious)")
 
 #define kTAG_SEPARATOR (@" ")
 #define kHTTP_PROTOCOL_PREFIX (@"http://")
@@ -65,3 +65,6 @@
 #define kMAXIMUM_STAR_RATING 5
 #define kRATING_COLUMN_IDENTIFIER @"rating"
 #define kRATING_TAG_CHARACTER @"*"
+#define kTAGLIST_TAG_COLUMN_IDENTIFIER @"tags"
+
+#define kSAFARI_HISTORY_PATH @"~/Library/Safari/History.plist"

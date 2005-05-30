@@ -21,6 +21,8 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
     [self setDate: newDate];
 	[self setTags: newTags];
 	[self setURLHash: newHash];
+	
+	[self setVisitCount: [NSNumber numberWithInt: 0]];
     
     return self;
 }
@@ -78,7 +80,7 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 		[self setTags: nil];
 	}
 
-	[self setTags: [tagString componentsSeparatedByString: kTAG_SEPARATOR]];
+	[self setTags: [[tagString stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByString: kTAG_SEPARATOR]];
 }
 
 - (NSString *) tagsAsString {
@@ -90,32 +92,86 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
         [tags release];
         tags = [newTags mutableCopy];
 		
-		/* Figure out the post's rating based on the tags */
-		[self setRating: [self calculateRatingFromTags: tags]];
+		[self calculateRatingFromTags];
 	}	
 }
 
-- (NSNumber *) calculateRatingFromTags: (NSArray *) tagArray {
-	NSEnumerator *tagEnum = [tagArray objectEnumerator];
-	NSString *currentTag;
-	NSCharacterSet *nonRatingCharSet = [[NSCharacterSet characterSetWithCharactersInString: kRATING_TAG_CHARACTER] invertedSet];
+- (void) calculateRatingFromTags {
+	int lastRatingTagIndex = 0;
+	NSMutableArray *tagArray = [self tags];
+	int currentRating = 0;
 	
-	unsigned int currentRating = 0;
+	while ((lastRatingTagIndex = [self findIndexOfNextRatingTagAfterIndex: lastRatingTagIndex]) > -1) {		
+		NSString *currentRatingTag = [tagArray objectAtIndex: lastRatingTagIndex];
+		
+		int numberOfStars = [currentRatingTag length];
+		
+		if (numberOfStars > currentRating) {
+			currentRating = numberOfStars;
+		}
+		
+		lastRatingTagIndex++;
+	}
+
+	[self setRating: [NSNumber numberWithInt: currentRating]];
+}
+
+- (void) addTagsFromRating: (NSNumber *) ratingNumber {
+	[self clearRatingTags];
+
+	if (!ratingNumber || [ratingNumber intValue] == 0) {
+		return;
+	}
 	
-	while ((currentTag = (NSString *) [tagEnum nextObject]) != nil) {
+	NSMutableString *ratingTag = [[NSMutableString alloc] init];
+	int ratingCount = [ratingNumber intValue];
+	int i;
+	
+	for (i = 0; i < ratingCount; i++) {
+		[ratingTag appendString: kRATING_TAG_CHARACTER];
+	}
+
+	[self addTagNamed: ratingTag];
+	[ratingTag release];
+}
+
+- (void) clearRatingTags {
+	int lastRatingTagIndex = 0;
+	NSMutableArray *tagArray = [self tags];
+	NSMutableArray *deletions = [NSMutableArray arrayWithCapacity: [tagArray count]];
+	
+	while ((lastRatingTagIndex = [self findIndexOfNextRatingTagAfterIndex: lastRatingTagIndex]) > -1) {
+		[deletions addObject: [tagArray objectAtIndex: lastRatingTagIndex]];
+		lastRatingTagIndex++;
+	}
+	
+	[tagArray removeObjectsInArray: deletions];
+}
+
+- (int) findIndexOfNextRatingTagAfterIndex: (int) index {
+	NSArray *tagArray = [self tags];
+	
+	if (!tagArray || index > [tagArray count]) {
+		return -1;
+	}
+
+	NSCharacterSet *nonRatingCharSet = [[NSCharacterSet characterSetWithCharactersInString: kRATING_TAG_CHARACTER] invertedSet];	
+	
+	int i;
+	
+	for (i = index; i < [tagArray count]; i++) {
+		NSString *currentTag = [tagArray objectAtIndex: i];
 		NSScanner *scanner = [NSScanner scannerWithString: currentTag];
 		NSString *ratingTag;
 		
 		if ([scanner scanUpToCharactersFromSet: nonRatingCharSet intoString: &ratingTag]) {				
-			unsigned int numberOfStars;
-			
-			if (ratingTag && ((numberOfStars = [ratingTag length]) == [currentTag length]) && numberOfStars > currentRating) {
-				currentRating = numberOfStars;
+			if (ratingTag && [ratingTag length] == [currentTag length]) {
+				return i;
 			}
 		}
 	}
 	
-	return [NSNumber numberWithUnsignedInt: currentRating];
+	return -1;
 }
 
 - (NSArray *) tags {
@@ -164,6 +220,31 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 	if (newRating != rating) {
 		[rating release];
 		rating = newRating;
+		
+		[self addTagsFromRating: rating];
+	}
+}
+
+- (void) setVisitCount: (NSNumber *) newVisitCount {
+	if (newVisitCount != visitCount) {
+		[visitCount release];
+		visitCount = newVisitCount;
+	}
+}
+
+- (NSNumber *) visitCount {
+	return [[visitCount retain] autorelease];
+}
+
+- (void) incrementVisitCount {
+	NSNumber *currentCount = [self visitCount];
+
+	if (![self visitCount]) {
+		[self setVisitCount: [NSNumber numberWithInt: 1]];
+	}
+	else {
+		int visits = [currentCount intValue];
+		[self setVisitCount: [NSNumber numberWithInt: ++visits]];
 	}
 }
 
@@ -272,6 +353,8 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
     [date release];
 	[tags release];
 	[urlHash release];
+	[rating release];
+	[visitCount release];
     [super dealloc];
 }
 

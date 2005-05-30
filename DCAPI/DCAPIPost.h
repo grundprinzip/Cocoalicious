@@ -18,6 +18,7 @@
 	NSMutableArray *tags;
 	NSString *urlHash;
 	NSNumber *rating;
+	NSNumber *visitCount;
 }
 
 - initWithURL: (NSURL *) newURL description: (NSString *) newDescription extended: (NSString *) newExtended date: (NSDate *) newDate tags: (NSArray *) newTags urlHash: (NSString *) newHash;
@@ -33,6 +34,7 @@
 - (void) setTagsFromString: (NSString *) tagString;
 - (NSString *) tagsAsString;
 - (void) setTags: (NSArray *) newTags;
+- (void) addTagsFromRating: (NSNumber *) rating;
 - (NSArray *) tags;
 - (void) addTagNamed: (NSString *) newTagName;
 - (void) removeTagNamed: (NSString *) removeTagName;
@@ -43,7 +45,12 @@
 - (BOOL) matchesTags: (NSArray *) matchTags;
 - (NSNumber *) rating;
 - (void) setRating: (NSNumber *) rating;
-- (NSNumber *) calculateRatingFromTags: (NSArray *) tagArray;
+- (void) calculateRatingFromTags;
+- (void) clearRatingTags;
+- (int) findIndexOfNextRatingTagAfterIndex: (int) index;
+- (void) setVisitCount: (NSNumber *) newVisitCount;
+- (NSNumber *) visitCount;
+- (void) incrementVisitCount;
 
 - (id) initWithCoder:(NSCoder *) coder;
 - (void) encodeWithCoder:(NSCoder *) coder;

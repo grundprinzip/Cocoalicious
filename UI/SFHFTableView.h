@@ -7,10 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "KFTypeSelectTableView.h"
 
 
-@interface SFHFTableView : NSTableView <NSCoding> {
+@interface SFHFTableView : KFTypeSelectTableView <NSCoding> {
 	NSMutableDictionary *keyActions;
+	NSMutableArray *draggingDisabledColumns;
+	BOOL lastClickWasInDisabledColumn;
 }
 
 - (void) initializeColumnsUsingHeaderCellClass: (Class) cellClass formatterClass: (Class) formatterClass;
@@ -18,6 +21,12 @@
 - (SEL) actionForKey: (unichar) key;
 - (void) setKeyActions: (NSMutableDictionary *) newKeyActions;
 - (NSMutableDictionary *) keyActions;
+- (NSMutableArray *) draggingDisabledColumns;
+- (void) setDraggingDisabledColumns: (NSArray *) newDraggingDisabledColumns;
+- (void) enableDraggingForColumnWithIdentifier: (NSString *) identifier;
+- (void) disableDraggingForColumnWithIdentifier: (NSString *) identifier;
+- (BOOL) draggingIsDisabledForColumnWithIdentifier: (NSString *) identifier;
+- (BOOL) lastClickWasInDisabledColumn;
 
 @end
 

@@ -50,6 +50,8 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
     else {
         [self setAPIURL: newAPIURL];
     }
+	
+	HTTPlock = [[NSLock alloc] init];
     
     return self;
 }
@@ -122,11 +124,11 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
 
     DCAPIParser *parser = [[DCAPIParser alloc] initWithXMLData: responseData];
     
-    NSMutableArray *tags = [[NSMutableArray alloc] init];
+    NSMutableArray *tags;
     [parser parseForPosts: nil dates: nil tags: &tags];
     [parser release];
     	
-    return [tags autorelease];
+    return tags;
 }
 
 - (NSArray *) requestDatesFilteredByTag: (DCAPITag *) tag {
@@ -148,10 +150,11 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
 
     DCAPIParser *parser = [[DCAPIParser alloc] initWithXMLData: responseData];
     
-    NSMutableArray *dates = [[NSMutableArray alloc] init];
+    NSMutableArray *dates;
     [parser parseForPosts: nil dates: &dates tags: nil];
     [parser release];
-    return [dates autorelease];
+    
+	return dates;
 }
 
 - (NSArray *) requestPostsFilteredByTag: (DCAPITag *) tag count: (NSNumber *) count {
@@ -191,12 +194,11 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
 
     DCAPIParser *parser = [[DCAPIParser alloc] initWithXMLData: responseData];
     
-    NSMutableArray *posts = [[NSMutableArray alloc] init];
-	
+    NSMutableArray *posts;
     [parser parseForPosts: &posts dates: nil tags: nil];
     [parser release];
 	
-    return [posts autorelease];
+    return posts;
 }
 
 - (NSArray *) requestPostsForDate: (NSDate *) date tag: (DCAPITag *) tag {
@@ -221,10 +223,12 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
     NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestUseProtocolCachePolicy];
 
     DCAPIParser *parser = [[DCAPIParser alloc] initWithXMLData: responseData];
-    NSMutableArray *posts = [[NSMutableArray alloc] init];
+    
+	NSMutableArray *posts;
     [parser parseForPosts: &posts dates: nil tags: nil];
     [parser release];
-    return [posts autorelease];
+   
+	 return posts;
 }
 
 - (void) addPost: (DCAPIPost *) newPost {
@@ -322,7 +326,8 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
 }
 
 - (NSData *) sendRequestForURI: (NSURL *) apiURL usingCachePolicy: (NSURLRequestCachePolicy) cachePolicy {
-    NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL: apiURL cachePolicy: cachePolicy timeoutInterval: kREQUEST_TIMEOUT_INTERVAL];
+	
+	NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL: apiURL cachePolicy: cachePolicy timeoutInterval: kREQUEST_TIMEOUT_INTERVAL];
 		
     [req setValue: kUSER_AGENT forHTTPHeaderField: kUSER_AGENT_HTTP_HEADER];
 
@@ -330,7 +335,7 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
     NSError *error;
 	
 	NSData *returnData = [NSURLConnection sendSynchronousRequest: req returningResponse: &resp error: &error];
-	
+		
 	if (error) { 
 		NSLog(@"%@", error);
 	}
@@ -342,6 +347,7 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
     [username release];
     [password release];
     [APIURL release];
+	[HTTPlock release];
     [super dealloc];
 }
 

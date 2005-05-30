@@ -871,6 +871,36 @@
 			settings = {
 			};
 		};
+		6B61ACDA0846382500A27692 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = KFTypeSelectTableView.m;
+			path = UI/KFTypeSelectTableView.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B61ACDB0846382500A27692 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = KFTypeSelectTableView.h;
+			path = UI/KFTypeSelectTableView.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B61ACDC0846382500A27692 = {
+			fileRef = 6B61ACDA0846382500A27692;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B61ACDD0846382500A27692 = {
+			fileRef = 6B61ACDB0846382500A27692;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		6B698143065346D6000649B0 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -941,6 +971,36 @@
 		};
 		6B69829406534D8F000649B0 = {
 			fileRef = 6B69829206534D8F000649B0;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B6AA441084A7B0F00FDB683 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = SFHFCircularCounterCell.h;
+			path = UI/SFHFCircularCounterCell.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B6AA442084A7B0F00FDB683 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = SFHFCircularCounterCell.m;
+			path = UI/SFHFCircularCounterCell.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B6AA443084A7B0F00FDB683 = {
+			fileRef = 6B6AA441084A7B0F00FDB683;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B6AA444084A7B0F00FDB683 = {
+			fileRef = 6B6AA442084A7B0F00FDB683;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -1186,6 +1246,8 @@
 		};
 		6BD8D4B607205221008CA80A = {
 			children = (
+				6B61ACDB0846382500A27692,
+				6B61ACDA0846382500A27692,
 				6B13FAE406E10A6F007B4E5F,
 				6B13FAE506E10A6F007B4E5F,
 				6BE6C20106C9FE1100E90B12,
@@ -1204,6 +1266,8 @@
 				6B45F6C607B4934D0007FA1E,
 				6B0896D50838FD090057A654,
 				6B0896D60838FD090057A654,
+				6B6AA441084A7B0F00FDB683,
+				6B6AA442084A7B0F00FDB683,
 			);
 			isa = PBXGroup;
 			name = "Custom UI";
@@ -1427,6 +1491,8 @@
 				6B45F6C707B4934D0007FA1E,
 				6B6B69E0082B3C97003DFA07,
 				6B0896D70838FD090057A654,
+				6B61ACDD0846382500A27692,
+				6B6AA443084A7B0F00FDB683,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1496,6 +1562,8 @@
 				6B45F6C807B4934D0007FA1E,
 				6B6B69E1082B3C97003DFA07,
 				6B0896D80838FD090057A654,
+				6B61ACDC0846382500A27692,
+				6B6AA444084A7B0F00FDB683,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

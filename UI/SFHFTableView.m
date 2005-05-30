@@ -186,6 +186,73 @@
 	return [[keyActions retain] autorelease];
 }
 
+- (NSMutableArray *) draggingDisabledColumns {
+	return [[draggingDisabledColumns retain] autorelease];
+}
+
+- (void) setDraggingDisabledColumns: (NSArray *) newDraggingDisabledColumns {
+	if (draggingDisabledColumns != newDraggingDisabledColumns) {
+		[draggingDisabledColumns release];
+		draggingDisabledColumns = [newDraggingDisabledColumns mutableCopy];
+	}
+}
+
+- (void) enableDraggingForColumnWithIdentifier: (NSString *) identifier {
+	if (!identifier) {
+		return;
+	}
+	
+	NSMutableArray *disabledColumns = [self draggingDisabledColumns];
+	
+	if (disabledColumns && [draggingDisabledColumns count] > 0) {
+		[disabledColumns removeObject: identifier];
+	}
+}
+
+- (void) disableDraggingForColumnWithIdentifier: (NSString *) identifier {
+	if (!identifier) {
+		return;
+	}
+	
+	NSMutableArray *disabledColumns = [self draggingDisabledColumns];
+	
+	if (!disabledColumns) {
+		[self setDraggingDisabledColumns: [NSMutableArray arrayWithCapacity: 1]];
+	}
+	
+	[[self draggingDisabledColumns] addObject: identifier];
+}
+
+- (BOOL) draggingIsDisabledForColumnWithIdentifier: (NSString *) identifier {	
+	if (identifier && [[self draggingDisabledColumns] containsObject: identifier]) {
+		return YES;
+	}
+	
+	return NO;
+}
+
+- (BOOL) lastClickWasInDisabledColumn {
+	return lastClickWasInDisabledColumn;
+}
+
+- (void) mouseDown: (NSEvent *) theEvent {
+	NSPoint mouseLocationInWindow = [theEvent locationInWindow];
+	NSPoint mouseLocationInTable = [self convertPoint: mouseLocationInWindow fromView: [[self window] contentView]];
+
+	int columnIndex = [self columnAtPoint: mouseLocationInTable];
+	int rowIndex = [self rowAtPoint: mouseLocationInTable];
+	NSTableColumn *column = [[self tableColumns] objectAtIndex: columnIndex];
+
+	if ([self draggingIsDisabledForColumnWithIdentifier: [column identifier]]) {
+		lastClickWasInDisabledColumn = YES;
+	}
+	else {
+		lastClickWasInDisabledColumn = NO;
+	}
+
+	[super mouseDown: theEvent];
+}
+
 - (void) dealloc {
 	[keyActions release];
 	[super dealloc];

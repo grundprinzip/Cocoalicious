@@ -63,8 +63,19 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	/* Support for NetNewsWire External Weblog Editor Interface */
 	[[NSAppleEventManager sharedAppleEventManager] setEventHandler: self andSelector: @selector(postNewNNWLink:withReplyEvent:) forEventClass: DCNNWPostAppleEventClass andEventID: DCNNWPostAppleEventID];
 	
-	[NSApp setServicesProvider:self];
-    
+	[NSApp setServicesProvider: self];
+	
+	NSError *historyLoadError;
+	WebHistory *sharedHistory = [[WebHistory alloc] init];
+	[sharedHistory loadFromURL: [NSURL fileURLWithPath: [kSAFARI_HISTORY_PATH stringByExpandingTildeInPath]] error: &historyLoadError];
+	
+	if (historyLoadError) {
+		NSLog(@"%@", historyLoadError);
+	}
+	else {
+		[WebHistory setOptionalSharedHistory: [sharedHistory autorelease]];
+	}
+				
 	NSString *safariScriptPath = [[NSBundle mainBundle] pathForResource: kDCSafariScriptLibrary ofType: kDCScriptType];
 	NSURL *safariScriptURL = [NSURL fileURLWithPath: safariScriptPath];
 	NSDictionary *errorInfo = nil;
@@ -118,6 +129,10 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     [tagList setCornerView: cornerControl];
     [cornerControl release];
 	[cornerCell release];
+
+	/*SFHFCircularCounterCell *counterCell = [[SFHFCircularCounterCell alloc] init];
+	[[tagList tableColumnWithIdentifier: kTAGLIST_TAG_COLUMN_IDENTIFIER] setDataCell: counterCell];
+	[counterCell release];*/
 }
 
 - (void) setupToolbar {
@@ -168,11 +183,13 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     return dockMenu;
 }
 
-- (void) setupPostlist {    
+- (void) setupPostlist {
 	[postList setAction: @selector(openSelected:) forKey: NSRightArrowFunctionKey];
 	[postList setAction: @selector(makeTagListFirstResponder) forKey: NSLeftArrowFunctionKey];
 	[postList setAction: @selector(scrollWebViewDown) forKey: ' '];
 	[postList setAction: @selector(deleteSelectedLinks:) forKey: NSDeleteCharacter];
+	
+	[postList disableDraggingForColumnWithIdentifier: kRATING_COLUMN_IDENTIFIER];
 	
 	[postList initializeColumnsUsingHeaderCellClass: [SFHFiTunesTableHeaderCell class] formatterClass: nil];
 
@@ -475,7 +492,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 	@synchronized(posts) { 
 		NSMutableDictionary *newPostDict = [[NSMutableDictionary alloc] initWithObjects: newPosts keyName: kPOST_DICTIONARY_KEY_NAME];
 		[posts release];
-		posts = newPostDict;
+		posts = [newPostDict mutableCopy];
 	}
 }
 
@@ -625,6 +642,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 		[[webViewBezel retain] removeFromSuperview];
 		[[webView mainFrame] loadRequest: [NSURLRequest requestWithURL: [NSURL URLWithString: kBLANK_URL]]];
 		[[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: [NSNumber numberWithBool: NO] forKey: kSHOW_WEB_PREVIEW_DEFAULTS_KEY];
+		[statusText setStringValue: [NSString string]];
 	}
 	else {
 		[previewSplitView addSubview: [webViewBezel autorelease]];
@@ -796,6 +814,8 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 		openURLSpec.itemURLs = (CFArrayRef) [NSArray arrayWithObjects: [post URL], nil];
 		
 		LSOpenFromURLSpec(&openURLSpec, NULL);
+		
+		[post incrementVisitCount];
     }
 }
 
@@ -814,7 +834,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 - (id) tableView: (NSTableView *) view objectValueForTableColumn: (NSTableColumn *) col row: (int) row {
     static NSDictionary *info = nil;
-    
+	
     if (nil == info) {
         NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
         [style setLineBreakMode:NSLineBreakByTruncatingTail];
@@ -865,9 +885,22 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 			[self renameTag: originalName to: [object name] withUpload: YES];
 		}
 	}
+	else if (view == postList) {
+		DCAPIPost *changedPost = [[self filteredPosts] objectAtIndex: row];
+		[changedPost setRating: object];
+		
+		[self refreshPostsWithDownload: NO];
+		[self refreshTags];
+		
+		[NSThread detachNewThreadSelector: @selector(addPost:) toTarget: [self client] withObject: changedPost];
+	}
 }
 
-- (BOOL) tableView: (NSTableView *) tableView writeRows: (NSArray *) rows toPasteboard: (NSPasteboard *) pboard {
+- (BOOL) tableView: (NSTableView *) tableView writeRows: (NSArray *) rows toPasteboard: (NSPasteboard *) pboard {	
+	if ([tableView respondsToSelector: @selector(lastClickWasInDisabledColumn)] && [(SFHFTableView *) tableView lastClickWasInDisabledColumn]) {
+		return NO;
+	}
+	
 	if (tableView == postList) {
 		[pboard declareTypes: [NSArray arrayWithObjects: kDCAPIPostPboardType, NSURLPboardType, NSStringPboardType, nil] owner: self];
 		

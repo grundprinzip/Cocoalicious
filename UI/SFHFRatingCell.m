@@ -129,8 +129,7 @@
 }
 
 - (void) stopTracking: (NSPoint) lastPoint at: (NSPoint) stopPoint inView: (NSView *) controlView mouseIsUp: (BOOL) flag {
-    [self setObjectValue: [self calculateRatingForPoint: stopPoint inView: controlView]];
-    
+    [self setObjectValue: [self calculateRatingForPoint: stopPoint inView: controlView]];	
     [super stopTracking: lastPoint at: stopPoint inView: controlView mouseIsUp: flag];
 }
 

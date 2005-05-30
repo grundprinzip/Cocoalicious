@@ -48,6 +48,7 @@ static NSString *kPOST_HASH_ATTRIBUTE = @"hash";
     }
     
     if (postList) {
+		*postList = [NSMutableArray arrayWithCapacity: 1];
         posts = *postList;
     }
     else {
@@ -55,6 +56,7 @@ static NSString *kPOST_HASH_ATTRIBUTE = @"hash";
     }
     
     if (dateList) {
+		*dateList = [NSMutableArray arrayWithCapacity: 1];
         dates = *dateList;
     }
     else {
@@ -62,6 +64,7 @@ static NSString *kPOST_HASH_ATTRIBUTE = @"hash";
     }
     
     if (tagList) {
+		tags = [NSMutableArray arrayWithCapacity: 1];
         tags = *tagList;
     }
     else {
@@ -88,7 +91,7 @@ static NSString *kPOST_HASH_ATTRIBUTE = @"hash";
 }
 
 - (void) parser: (NSXMLParser *) parser didStartElement: (NSString *) elementName namespaceURI: (NSString *) namespaceURI qualifiedName: (NSString *) qualifiedName attributes: (NSDictionary *) attributeDict {
-    if (posts && [elementName isEqualToString: kPOST_ELEMENT]) {
+	if (posts && [elementName isEqualToString: kPOST_ELEMENT]) {
         NSString *URLString = [attributeDict objectForKey: kPOST_HREF_ATTRIBUTE];
         NSURL *postURL = [NSURL URLWithString: [URLString stringByUnescapingEntities: nil]];
         
