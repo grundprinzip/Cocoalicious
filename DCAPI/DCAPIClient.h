@@ -16,6 +16,8 @@
     NSString *username;
     NSString *password;
     id delegate;
+	
+	NSDate *lastAPISubmissionTime;
 }
 
 - initWithAPIURL: (NSURL *) newAPIURL username: (NSString *) newUsername password: (NSString *) newPassword delegate: (id) newDelegate;
@@ -26,6 +28,8 @@
 - (NSString *) username;
 - (void) setPassword: (NSString *) newPassword;
 - (NSString *) password;
+- (void) setLastAPISubmissionTime: (NSDate *) date;
+- (NSDate *) lastAPISubmissionTime;
 
 - (void) setAPIURL: (NSURL *) newAPIURL;
 - (NSURL *) APIURL;

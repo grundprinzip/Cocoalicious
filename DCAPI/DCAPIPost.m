@@ -186,7 +186,7 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 }
 
 - (void) addTagNamed: (NSString *) newTagName {
-	if (newTagName) {
+	if (newTagName && ![newTagName isEqualToString: @" "]) {
 		[tags addObject: newTagName];
 	}
 }

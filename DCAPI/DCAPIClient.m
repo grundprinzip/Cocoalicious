@@ -28,6 +28,7 @@ static NSString *kPOST_EXTENDED_PARAM = @"extended";
 static NSString *kRENAME_TAG_OLD_PARAM = @"old";
 static NSString *kRENAME_TAG_NEW_PARAM = @"new";
 static double kREQUEST_TIMEOUT_INTERVAL = 30.0;
+static double kAPI_INTER_REQUEST_DELAY = 1.0;
 static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
 static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
 
@@ -332,6 +333,14 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
     NSURLResponse *resp;
     NSError *error;
 	
+	NSDate *now = [NSDate date];
+	NSDate *lastSubmission = [self lastAPISubmissionTime];
+	
+	if (lastSubmission && [now timeIntervalSinceDate: lastSubmission] < kAPI_INTER_REQUEST_DELAY) {
+		[NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: kAPI_INTER_REQUEST_DELAY]];
+	}
+
+	[self setLastAPISubmissionTime: now];
 	NSData *returnData = [NSURLConnection sendSynchronousRequest: req returningResponse: &resp error: &error];
 		
 	if (error) { 
@@ -341,10 +350,22 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
 	return returnData;
 }
 
+- (void) setLastAPISubmissionTime: (NSDate *) newLastAPISubmissionTime {
+	if (newLastAPISubmissionTime != lastAPISubmissionTime) {
+		[lastAPISubmissionTime release];
+		lastAPISubmissionTime = [newLastAPISubmissionTime copy];
+	}
+}
+
+- (NSDate *) lastAPISubmissionTime {
+	return [[lastAPISubmissionTime retain] autorelease];
+}
+
 - (void) dealloc {
     [username release];
     [password release];
     [APIURL release];
+	[lastAPISubmissionTime release];
     [super dealloc];
 }
 
