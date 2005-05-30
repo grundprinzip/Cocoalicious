@@ -50,8 +50,6 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
     else {
         [self setAPIURL: newAPIURL];
     }
-	
-	HTTPlock = [[NSLock alloc] init];
     
     return self;
 }
@@ -347,7 +345,6 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
     [username release];
     [password release];
     [APIURL release];
-	[HTTPlock release];
     [super dealloc];
 }
 
