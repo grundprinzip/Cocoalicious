@@ -24,6 +24,9 @@ const AEKeyword DCNNWPostSourceName = 'snam';
 const AEKeyword DCNNWPostSourceHomeURL = 'hurl';
 const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
+static NSString *ERR_LOGIN_AUTHENTICATION = @"Invalid Username/Password";
+static NSString *ERR_LOGIN_OTHER = @"Login Error.";
+
 @implementation AppController
 
 + (void) initialize {
@@ -1112,6 +1115,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
     NSString *user = [values valueForKey: kUSERNAME_DEFAULTS_KEY];
     NSString *apiURLString = [values valueForKey: kAPI_URL_DEFAULTS_KEY];
 	NSURL *apiURL = [NSURL URLWithString: apiURLString];
+	NSError *loginError;
 
 	BOOL autologin = [[values valueForKey: kAUTOLOGIN_DEFAULTS_KEY] boolValue];
 
@@ -1122,10 +1126,13 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 		
 		if (password) {
 			if (autologin) {
-				[self loginWithUsername: user password: password APIURL: apiURL];
-				return;
+				if ([self loginWithUsername: user password: password APIURL: apiURL error: &loginError])
+					return;
+				else if([loginError code] == -1012)
+					[loginErrorText setStringValue: ERR_LOGIN_AUTHENTICATION];
+				else 
+					[loginErrorText setStringValue: ERR_LOGIN_OTHER];
 			}
-			
 			[loginProperties setObject: password forKey: @"password"];
 		}
 	}
@@ -1135,43 +1142,66 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (IBAction) loginFromPanel: (id) sender {
+	[loginErrorText setStringValue: @""];
+	[loginErrorText display];
+	[loginSpinner startAnimation: self];
 	[loginController commitEditing];
 
 	NSString *username = [loginProperties objectForKey: @"username"];
 	NSString *password = [loginProperties objectForKey: @"password"];
 	BOOL autologin = [[loginProperties objectForKey: @"autologin"] boolValue];
+	NSError *loginError;
 
 	if (!username || !password) {
 		return;
 	}
 
-    [loginPanel close];
-
     NSDictionary *values = [[NSUserDefaultsController sharedUserDefaultsController] values];	
     NSString *apiURLString = [values valueForKey: kAPI_URL_DEFAULTS_KEY];
 	NSURL *apiURL = [NSURL URLWithString: apiURLString];	
-
+	
 	/* Write username to defaults */
 	NSUserDefaults *defaults = [[NSUserDefaultsController sharedUserDefaultsController] defaults];
-    [defaults setObject: username forKey: kUSERNAME_DEFAULTS_KEY];
+	[defaults setObject: username forKey: kUSERNAME_DEFAULTS_KEY];
 	
 	/* If we're supposed to autologin, remember that */
 	[defaults setObject: [NSNumber numberWithBool: autologin] forKey: kAUTOLOGIN_DEFAULTS_KEY];
-
+	
 	/* Write password to keychain */
 	[SFHFKeychainUtils addWebPassword: password forUser: username URL: apiURL domain: kDEFAULT_SECURITY_DOMAIN];
 	
-	[self loginWithUsername: username password: password APIURL: apiURL];
+	if([self loginWithUsername: username password: password APIURL: apiURL error: &loginError]) {
+		[loginPanel close];
+	}
+	else {
+		if([loginError code] == -1012)
+			[loginErrorText setStringValue: ERR_LOGIN_AUTHENTICATION];
+		else
+			[loginErrorText setStringValue: ERR_LOGIN_OTHER];
+	}
+	
+	[loginSpinner stopAnimation: self];
 }
 
-- (void) loginWithUsername: (NSString *) username password: (NSString *) password APIURL: (NSURL *) APIURL {
-    DCAPIClient *dcClient = [[DCAPIClient alloc] initWithAPIURL: APIURL username: username password: password delegate: self];
-    [self setClient: dcClient];
-    [dcClient release];
+- (BOOL) loginWithUsername: (NSString *) username password: (NSString *) password APIURL: (NSURL *) APIURL error: (NSError **) error {
+    if(!client) {
+		DCAPIClient *dcClient = [[DCAPIClient alloc] initWithAPIURL: APIURL username: username password: password delegate: self];
+		[self setClient: dcClient];
+		[dcClient release];
+	}
+	
+	/* Get last update time.  Right now this is just used to verify authentication. */
+	[client requestLastUpdateTime: error];
 
+	if(*error) {
+		return NO;
+	}
+	
 	[mainWindow makeKeyAndOrderFront: self];
 	[mainWindow setTitle: [NSString stringWithFormat: [[NSBundle mainBundle] objectForInfoDictionaryKey: @"DCWindowTitleFormat"], username]];
 	[NSThread detachNewThreadSelector: @selector(refreshAll) toTarget: self withObject: nil];
+		
+	return YES;
 }
 
 - (IBAction) cancelLogin: (id) sender {
@@ -1508,7 +1538,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 }
 
 - (BOOL) applicationShouldHandleReopen: (NSApplication *) theApplication hasVisibleWindows: (BOOL) visibleWindows {
-	if (![mainWindow isVisible]) {
+	if (![mainWindow isVisible]  && ![loginPanel isVisible]) {
 		[mainWindow makeKeyAndOrderFront: self];
 	}
 	

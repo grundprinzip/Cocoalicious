@@ -32,7 +32,9 @@
                 indexingProgressView = NSView; 
                 indexingStatusText = NSTextField; 
                 loginController = NSController; 
+                loginErrorText = NSTextField; 
                 loginPanel = NSPanel; 
+                loginSpinner = NSProgressIndicator; 
                 mainWindow = NSWindow; 
                 metadataDrawer = NSDrawer; 
                 postDescriptionField = NSTextField; 

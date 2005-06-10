@@ -78,6 +78,8 @@
     NSString *currentSearch;
     DCAPITag *currentTagFilter;
 
+	IBOutlet NSProgressIndicator *loginSpinner;
+	IBOutlet NSTextField *loginErrorText;
 	IBOutlet NSController *loginController;
 	NSMutableDictionary *currentPostProperties;
 	NSMutableDictionary *loginProperties;
@@ -100,7 +102,7 @@
 - (void) setClient: (DCAPIClient *) newClient;
 - (DCAPIClient *) client;
 - (void) login;
-- (void) loginWithUsername: (NSString *) username password: (NSString *) password APIURL: (NSURL *) APIURL;
+- (BOOL) loginWithUsername: (NSString *) username password: (NSString *) password APIURL: (NSURL *) APIURL error: (NSError **) error;
 - (IBAction) refresh: (id) sender;
 - (void) refreshAll;
 - (void) refreshTags;

@@ -18,7 +18,7 @@
 	const char *dom = [domain UTF8String];
 	//UInt16 port = [[url port] shortValue];
 	void *password = NULL;
-	UInt32 passwordLength = NULL;
+	UInt32 passwordLength = 0;
 	
 	OSStatus findResult = SecKeychainFindInternetPassword (
 		NULL, // default keychain
