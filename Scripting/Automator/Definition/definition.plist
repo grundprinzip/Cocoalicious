@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AMProvides</key>
+	<dict>
+		<key>Container</key>
+		<string>List</string>
+		<key>Types</key>
+		<array>
+			<string>com.scifihifi.cocoalicious.post</string>
+		</array>
+	</dict>
+	<key>Specific Keywords</key>
+	<array>
+		<string>Find</string>
+		<string>Get</string>
+		<string>Post</string>
+		<string>URL</string>
+		<string>Cocoalicious</string>
+		<string>del.icio.us</string>
+		<string>delicious</string>
+		<string>Web Page</string>
+		<string>Bookmark</string>
+	</array>
+	<key>application</key>
+	<string>Cocoalicious</string>
+	<key>defined_types</key>
+	<dict>
+		<key>com.scifihifi.cocoalicious.post</key>
+		<dict>
+			<key>name</key>
+			<string>Cocoalicious Posts</string>
+		</dict>
+		<key>com.scifihifi.cocoalicious.tag</key>
+		<dict>
+			<key>name</key>
+			<string>Cocoalicious Tags</string>
+		</dict>
+	</dict>
+	<key>elements</key>
+	<array>
+		<dict>
+			<key>AMAccepts</key>
+			<dict>
+				<key>Container</key>
+				<string>List</string>
+				<key>Optional</key>
+				<true/>
+				<key>Types</key>
+				<array>
+					<string>com.scifihifi.cocoalicious.post</string>
+				</array>
+			</dict>
+			<key>AMProvides</key>
+			<dict>
+				<key>Container</key>
+				<string>List</string>
+				<key>Types</key>
+				<array>
+					<string>com.scifihifi.cocoalicious.post</string>
+				</array>
+			</dict>
+			<key>container</key>
+			<string>application</string>
+			<key>name</key>
+			<string>post</string>
+			<key>plural name</key>
+			<string>posts</string>
+			<key>properties</key>
+			<array>
+				<dict>
+					<key>name</key>
+					<string>description</string>
+					<key>type</key>
+					<string>string</string>
+				</dict>
+				<dict>
+					<key>name</key>
+					<string>url</string>
+					<key>type</key>
+					<string>string</string>
+				</dict>
+				<dict>
+					<key>name</key>
+					<string>extended</string>
+					<key>type</key>
+					<string>string</string>
+				</dict>
+				<dict>
+					<key>name</key>
+					<string>tag string</string>
+					<key>type</key>
+					<string>string</string>
+				</dict>
+				<dict>
+					<key>name</key>
+					<string>id</string>
+					<key>type</key>
+					<string>string</string>
+				</dict>
+				<dict>
+					<key>name</key>
+					<string>timestamp</string>
+					<key>type</key>
+					<string>date</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>AMAccepts</key>
+			<dict>
+				<key>Container</key>
+				<string>List</string>
+				<key>Optional</key>
+				<true/>
+				<key>Types</key>
+				<array>
+					<string>com.scifihifi.cocoalicious.tag</string>
+				</array>
+			</dict>
+			<key>AMProvides</key>
+			<dict>
+				<key>Container</key>
+				<string>List</string>
+				<key>Types</key>
+				<array>
+					<string>com.scifihifi.cocoalicious.tag</string>
+				</array>
+			</dict>
+			<key>container</key>
+			<string>application</string>
+			<key>name</key>
+			<string>tag</string>
+			<key>plural name</key>
+			<string>tags</string>
+			<key>properties</key>
+			<array>
+				<dict>
+					<key>name</key>
+					<string>name</string>
+					<key>type</key>
+					<string>string</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+	<key>iconName</key>
+	<string>Cocoalicious</string>
+	<key>library path</key>
+	<string>~/Library/Automator/Cocoalicious</string>
+	<key>scripts</key>
+	<dict>
+		<key>filter items</key>
+		<string>on run {input, parameters}
+	
+	set foundItems to {}
+	set currentDate to date (date string of (current date))
+	
+	with timeout of 900 seconds
+		tell application "%@"
+			%@
+		end tell
+	end timeout
+
+	return foundItems
+
+end run
+</string>
+		<key>find every item</key>
+		<string>on run {input, parameters}
+	
+	set foundItems to input
+	set currentDate to date (date string of (current date))
+	
+	with timeout of 900 seconds
+		tell application "%@"
+			repeat with i in every %@
+				set foundItems to foundItems &amp; (%@)
+			end repeat
+		end tell
+	end timeout
+	
+	return foundItems
+end run</string>
+		<key>find items</key>
+		<string>on run {input, parameters}
+	
+	set foundItems to input
+	set currentDate to date (date string of (current date))
+	
+	with timeout of 900 seconds
+		tell application "%@"
+			set foundItems to foundItems &amp; (%@)
+		end tell
+	end timeout
+
+	return foundItems
+
+end run
+</string>
+		<!-- <key>get selected items</key>
+		<string>on run {input, parameters}
+	
+	set currentSelection to {}
+	
+	tell application "Cocoalicious"
+		set currentSelection to selection
+	end tell
+	
+	return currentSelection
+end run
+</string> -->
+	</dict>
+</dict>
+</plist>

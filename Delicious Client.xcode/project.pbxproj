@@ -45,6 +45,7 @@
 //104
 		1058C7A0FEA54F0111CA2CBB = {
 			children = (
+				6B47BF1D08633EB700636CB2,
 				6B21241B071CE7270044339D,
 				6B20697B05CB87E700D424BF,
 				1058C7A1FEA54F0111CA2CBB,
@@ -85,6 +86,8 @@
 		19C28FACFE9D520D11CA2CBB = {
 			children = (
 				6BAB081C06D2FF6A0058BAC1,
+				6B47BEFA08633D0800636CB2,
+				6B47BF5B086345A400636CB2,
 			);
 			isa = PBXGroup;
 			name = Products;
@@ -114,6 +117,8 @@
 			projectDirPath = "";
 			targets = (
 				8D1107260486CEB800E47090,
+				6B47BEF908633D0800636CB2,
+				6B47BF5A086345A400636CB2,
 			);
 		};
 		29B97314FDCFA39411CA2CEA = {
@@ -841,6 +846,415 @@
 			settings = {
 			};
 		};
+		6B47BEDB08633BD700636CB2 = {
+			children = (
+				6B47BF54086344E900636CB2,
+				6B47BEDE08633BF100636CB2,
+			);
+			isa = PBXGroup;
+			name = "Automator Actions";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B47BEDE08633BF100636CB2 = {
+			children = (
+				6B47BF4F0863443C00636CB2,
+				6B47BF0908633DF600636CB2,
+				6B47BF0C08633E0400636CB2,
+			);
+			isa = PBXGroup;
+			name = "Convert Posts to URLs";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B47BEF608633D0800636CB2 = {
+			buildActionMask = 2147483647;
+			files = (
+				6B47BF3B0863408900636CB2,
+				6B47BF510863443C00636CB2,
+			);
+			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B47BEF808633D0800636CB2 = {
+			buildActionMask = 2147483647;
+			files = (
+				6B47BF1A08633E8700636CB2,
+				6B47BF1E08633EB700636CB2,
+			);
+			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B47BEF908633D0800636CB2 = {
+			buildPhases = (
+				6B47BEF608633D0800636CB2,
+				6B47BEF808633D0800636CB2,
+				6B47BF1708633E4400636CB2,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "Scripting/Automator/Convert Posts To URLs/Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Automator";
+				LIBRARY_STYLE = STATIC;
+				OPTIMIZATION_CFLAGS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "-framework Foundation -framework AppKit";
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = "Convert Posts to URLs";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
+				WRAPPER_EXTENSION = caction;
+			};
+			dependencies = (
+			);
+			isa = PBXNativeTarget;
+			name = "Convert Posts to URLs";
+			productName = "Convert Posts to URLs";
+			productReference = 6B47BEFA08633D0800636CB2;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>Convert Posts to URLs</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.Convert_Posts_to_URLs</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+</dict>
+</plist>
+";
+			productType = "com.apple.product-type.bundle";
+		};
+		6B47BEFA08633D0800636CB2 = {
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+			isa = PBXFileReference;
+			path = "Convert Posts to URLs.caction";
+			refType = 3;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6B47BF0908633DF600636CB2 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.applescript;
+			name = main.applescript;
+			path = "Scripting/Automator/Convert Posts To URLs/main.applescript";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B47BF0C08633E0400636CB2 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.xml;
+			name = Info.plist;
+			path = "Scripting/Automator/Convert Posts To URLs/Info.plist";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B47BF1708633E4400636CB2 = {
+			buildActionMask = 2147483647;
+			contextName = "";
+			files = (
+				6B47BF1908633E4D00636CB2,
+			);
+			isSharedContext = 0;
+			isa = PBXAppleScriptBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B47BF1908633E4D00636CB2 = {
+			fileRef = 6B47BF0908633DF600636CB2;
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+					Debug,
+				);
+			};
+		};
+		6B47BF1A08633E8700636CB2 = {
+			fileRef = 1058C7A1FEA54F0111CA2CBB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B47BF1D08633EB700636CB2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = Automator.framework;
+			path = /System/Library/Frameworks/Automator.framework;
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		6B47BF1E08633EB700636CB2 = {
+			fileRef = 6B47BF1D08633EB700636CB2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B47BF3B0863408900636CB2 = {
+			fileRef = 6B47BF0C08633E0400636CB2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B47BF4F0863443C00636CB2 = {
+			children = (
+				6B47BF500863443C00636CB2,
+			);
+			isa = PBXVariantGroup;
+			name = main.nib;
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B47BF500863443C00636CB2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.nib;
+			name = English;
+			path = "Scripting/Automator/Convert Posts To URLs/English.lproj/main.nib";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B47BF510863443C00636CB2 = {
+			fileRef = 6B47BF4F0863443C00636CB2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B47BF54086344E900636CB2 = {
+			children = (
+				6B47BF64086345F100636CB2,
+				6B47BF62086345DF00636CB2,
+				6B47BF5D086345C500636CB2,
+				6B47BF5F086345CF00636CB2,
+			);
+			isa = PBXGroup;
+			name = Definition;
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B47BF57086345A400636CB2 = {
+			buildActionMask = 2147483647;
+			files = (
+				6B47BF5E086345C500636CB2,
+				6B47BF61086345CF00636CB2,
+			);
+			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B47BF58086345A400636CB2 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B47BF59086345A400636CB2 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B47BF5A086345A400636CB2 = {
+			buildPhases = (
+				6B47BF57086345A400636CB2,
+				6B47BF58086345A400636CB2,
+				6B47BF59086345A400636CB2,
+				6B47BF6D0863468200636CB2,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Scripting/Automator/Definition/Info.plist;
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Automator";
+				LIBRARY_STYLE = BUNDLE;
+				OPTIMIZATION_CFLAGS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "-framework Foundation -framework AppKit";
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = Cocoalicious;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
+				WRAPPER_EXTENSION = definition;
+			};
+			dependencies = (
+			);
+			isa = PBXNativeTarget;
+			name = "Cocoalicious Definition";
+			productName = "Cocoalicious Definition";
+			productReference = 6B47BF5B086345A400636CB2;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>Cocoalicious Definition</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.Cocoalicious_Definition</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+</dict>
+</plist>
+";
+			productType = "com.apple.product-type.bundle";
+		};
+		6B47BF5B086345A400636CB2 = {
+			explicitFileType = wrapper.cfbundle;
+			includeInIndex = 0;
+			isa = PBXFileReference;
+			path = Cocoalicious.definition;
+			refType = 3;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6B47BF5D086345C500636CB2 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.xml;
+			name = definition.plist;
+			path = Scripting/Automator/Definition/definition.plist;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B47BF5E086345C500636CB2 = {
+			fileRef = 6B47BF5D086345C500636CB2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B47BF5F086345CF00636CB2 = {
+			children = (
+				6B47BF60086345CF00636CB2,
+			);
+			isa = PBXVariantGroup;
+			name = Localizable.strings;
+			path = Scripting/Automator/Definition/English.lproj;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B47BF60086345CF00636CB2 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.strings;
+			path = Localizable.strings;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B47BF61086345CF00636CB2 = {
+			fileRef = 6B47BF5F086345CF00636CB2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B47BF62086345DF00636CB2 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.xml;
+			name = version.plist;
+			path = Scripting/Automator/Definition/version.plist;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B47BF64086345F100636CB2 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.xml;
+			name = Info.plist;
+			path = Scripting/Automator/Definition/Info.plist;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B47BF6D0863468200636CB2 = {
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 1;
+			files = (
+				6B47BF6F0863468D00636CB2,
+			);
+			isa = PBXCopyFilesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B47BF6F0863468D00636CB2 = {
+			fileRef = 6B47BF62086345DF00636CB2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B47BF89086347D100636CB2 = {
+			containerPortal = 29B97313FDCFA39411CA2CEA;
+			isa = PBXContainerItemProxy;
+			proxyType = 1;
+			remoteGlobalIDString = 6B47BEF908633D0800636CB2;
+			remoteInfo = "Convert Posts to URLs";
+		};
+		6B47BF8A086347D100636CB2 = {
+			isa = PBXTargetDependency;
+			target = 6B47BEF908633D0800636CB2;
+			targetProxy = 6B47BF89086347D100636CB2;
+		};
+		6B47BF8B086347D500636CB2 = {
+			containerPortal = 29B97313FDCFA39411CA2CEA;
+			isa = PBXContainerItemProxy;
+			proxyType = 1;
+			remoteGlobalIDString = 6B47BF5A086345A400636CB2;
+			remoteInfo = "Cocoalicious Definition";
+		};
+		6B47BF8C086347D500636CB2 = {
+			isa = PBXTargetDependency;
+			target = 6B47BF5A086345A400636CB2;
+			targetProxy = 6B47BF8B086347D500636CB2;
+		};
+		6B47BF91086348A000636CB2 = {
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/Automator;
+			dstSubfolderSpec = 1;
+			files = (
+				6B47BFA7086348C200636CB2,
+				6B47BFA8086348C200636CB2,
+			);
+			isa = PBXCopyFilesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B47BFA7086348C200636CB2 = {
+			fileRef = 6B47BEFA08633D0800636CB2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B47BFA8086348C200636CB2 = {
+			fileRef = 6B47BF5B086345A400636CB2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		6B5A44BC06D1CFB6007C405C = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -1103,6 +1517,7 @@
 		};
 		6BD81875075AFB510088A2CF = {
 			children = (
+				6B47BEDB08633BD700636CB2,
 				6BD8187D075AFB740088A2CF,
 				6BD8187E075AFB740088A2CF,
 				6BD818EA075AFCE50088A2CF,
@@ -1429,6 +1844,7 @@
 				8D11072C0486CEB800E47090,
 				8D11072E0486CEB800E47090,
 				6BD8194B075AFD9C0088A2CF,
+				6B47BF91086348A000636CB2,
 			);
 			buildRules = (
 			);
@@ -1453,6 +1869,8 @@
 				WRAPPER_EXTENSION = app;
 			};
 			dependencies = (
+				6B47BF8A086347D100636CB2,
+				6B47BF8C086347D500636CB2,
 			);
 			isa = PBXNativeTarget;
 			name = Cocoal.icio.us;
