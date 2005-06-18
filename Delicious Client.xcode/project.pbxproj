@@ -870,7 +870,6 @@
 		6B47BEF608633D0800636CB2 = {
 			buildActionMask = 2147483647;
 			files = (
-				6B47BF3B0863408900636CB2,
 				6B47BF510863443C00636CB2,
 			);
 			isa = PBXResourcesBuildPhase;
@@ -901,7 +900,6 @@
 				INFOPLIST_FILE = "Scripting/Automator/Convert Posts To URLs/Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Automator";
 				LIBRARY_STYLE = STATIC;
-				OPTIMIZATION_CFLAGS = "";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-framework Foundation -framework AppKit";
 				OTHER_REZFLAGS = "";
@@ -1005,12 +1003,6 @@
 			settings = {
 			};
 		};
-		6B47BF3B0863408900636CB2 = {
-			fileRef = 6B47BF0C08633E0400636CB2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		6B47BF4F0863443C00636CB2 = {
 			children = (
 				6B47BF500863443C00636CB2,
@@ -1088,7 +1080,6 @@
 				INFOPLIST_FILE = Scripting/Automator/Definition/Info.plist;
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Automator";
 				LIBRARY_STYLE = BUNDLE;
-				OPTIMIZATION_CFLAGS = "";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-framework Foundation -framework AppKit";
 				OTHER_REZFLAGS = "";
