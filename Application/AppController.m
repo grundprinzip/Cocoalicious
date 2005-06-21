@@ -98,6 +98,7 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
     
     [self setPosts: [NSMutableDictionary dictionaryWithCapacity: 0]];
     [self setTags: [NSMutableDictionary dictionaryWithCapacity: 0]];
+	[self setFavIcons: [NSMutableDictionary dictionaryWithCapacity: 0]];
     
     [self setupTaglist];
 	[self setupPostlist];
@@ -223,8 +224,12 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	[starCell release];
 	
 	NSTableColumn *descriptionColumn = [postList tableColumnWithIdentifier: @"description"];
-	NSCell *descriptionColumnCell = [descriptionColumn dataCell];
+	EBIconAndTextCell * descriptionColumnCell = [[EBIconAndTextCell alloc] initWithDefaultIcon:[NSImage imageNamed: @"default_favicon.tif"]];
+	[descriptionColumnCell setIconSize: NSMakeSize(13.0,13.0)];
 	[descriptionColumnCell setWraps: YES];
+	[descriptionColumnCell setFont: [[descriptionColumn dataCell] font]];	// Works, but there must be a better way to set default font
+	[descriptionColumn setDataCell: descriptionColumnCell];
+	[descriptionColumnCell release];
 
 	NSTableColumn *dateColumn = [postList tableColumnWithIdentifier: @"date"];
 	NSCell *dateColumnCell = [dateColumn dataCell];
@@ -266,6 +271,7 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	[spinnyThing startAnimation: self];
     [self refreshPostsWithDownload: YES];
 	[self refreshTags];
+	[self refreshFavIconsWithDownload: NO];
 	[spinnyThing stopAnimation: self];
 	
 	[pool release];
@@ -333,6 +339,32 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	[postList performSelectorOnMainThread: @selector(reloadData) withObject: nil waitUntilDone: NO];
 	
 	[pool release];
+}
+
+- (void) refreshFavIconsWithDownload: (BOOL) download {
+ 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+ 
+ 	NSArray * unfilteredURLs = [self urlsArray];
+	NSString * favIconPath;
+ 	
+ 	NSEnumerator * urlEnum = [unfilteredURLs objectEnumerator];
+ 	NSString * currURLString;
+ 	NSURL * currURL;
+ 	
+ 	while((currURLString = (NSString *)[urlEnum nextObject]) != nil) {
+		currURL = [NSURL URLWithString:currURLString];
+		
+ 		if(currURL != nil) {
+ 			favIconPath = [EBFavIconUtils downloadFavIconForURL:currURL forceDownload: download];
+			
+			if (favIconPath) {
+				[[self favIcons] setObject:favIconPath forKey:currURL];
+			}
+		}
+ 	}
+ 	
+ 	[postList performSelectorOnMainThread: @selector(reloadData) withObject:nil waitUntilDone:NO];
+ 	[pool release];
 }
 
 - (NSArray *) selectedTags {
@@ -443,6 +475,19 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 
 - (DCAPIClient *) client {
     return [[client retain] autorelease];
+}
+
+- (void) setFavIcons: (NSDictionary *) newFavIcons {
+	@synchronized(favIcons) { 
+ 		if (favIcons != newFavIcons) {
+ 			[favIcons release];
+ 			favIcons = [newFavIcons mutableCopy];
+ 		}
+ 	}
+}
+ 
+- (NSMutableDictionary *) favIcons {
+     return [[favIcons retain] autorelease];
 }
 
 - (void) setTags: (NSDictionary *) newTags {
@@ -916,7 +961,12 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	}
 	
 	if (tableView == postList) {
-		[pboard declareTypes: [NSArray arrayWithObjects: kDCAPIPostPboardType, NSURLPboardType, NSStringPboardType, nil] owner: self];
+ 		[pboard declareTypes: [NSArray arrayWithObjects: kDCAPIPostPboardType,
+ 														 kWebURLsWithTitlesPboardType,
+ 														 NSURLPboardType,
+ 														 kWebURLPboardType,
+ 														 kWebURLNamePboardType,
+ 														 NSStringPboardType, nil] owner: self];
 		
 		NSNumber *currentPostIndex = [rows objectAtIndex: 0];
 		DCAPIPost *currentPost = [[self filteredPosts] objectAtIndex: [currentPostIndex unsignedIntValue]];
@@ -925,7 +975,24 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 		NSURL *currentURL = [currentPost URL];
 		[pboard setString: [currentURL absoluteString] forType: NSStringPboardType];
 		[currentURL writeToPasteboard: pboard];
-			
+
+		NSString *currentTitle = [currentPost description];
+
+		id plist = [NSArray arrayWithObjects:[NSArray arrayWithObject:[currentURL absoluteString]],
+ 											 [NSArray arrayWithObject:[currentPost description]],
+ 											 nil];
+ 		NSData * data = [NSPropertyListSerialization dataFromPropertyList:plist
+ 							format:NSPropertyListXMLFormat_v1_0
+ 							errorDescription:NULL];
+ 		NSString * string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+ 		
+ 		[pboard setPropertyList:plist forType:kWebURLsWithTitlesPboardType];
+ 		[pboard setString:string forType:kWebURLsWithTitlesPboardType];
+ 		[pboard setData:data forType:kWebURLsWithTitlesPboardType];
+ 		
+ 		[pboard setString:[currentURL absoluteString] forType:kWebURLPboardType];
+ 		[pboard setString:currentTitle forType:kWebURLNamePboardType];
+
 		return YES;
 	}
 	
@@ -967,6 +1034,15 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 		NSData *descriptorData = [NSArchiver archivedDataWithRootObject: descriptors];
 		[[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: descriptorData forKey: kPOST_LIST_SORT_DEFAULTS_KEY];
 	}
+}
+
+- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex {
+ 	if(aTableView == postList) {
+ 		if([[aTableColumn identifier] isEqualToString:@"description"]) {
+ 			DCAPIPost * currentPost = [[self filteredPosts] objectAtIndex: rowIndex];
+ 			[(EBIconAndTextCell *) aCell setFavIconPath: [[self favIcons] objectForKey: [currentPost URL]]];
+ 		}
+ 	}
 }
 
 // ----- beg implementation for postList tooltips -----
@@ -1349,6 +1425,9 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	
 	DCAPIPost *newPost = [[DCAPIPost alloc] initWithURL: postURL description: postDescription extended: postExtended date: postDate tags: nil urlHash: nil];
 	[newPost setTagsFromString: postTags];
+
+	NSString * favIconPath = [EBFavIconUtils downloadFavIconForURL: [newPost valueForKey: @"URL"] forceDownload: NO];
+ 	[[self favIcons] setObject: favIconPath forKey: [newPost valueForKey: @"URL"]];
 	
 	[NSThread detachNewThreadSelector: @selector(addPost:) toTarget: [self client] withObject: newPost];
 	
@@ -1620,6 +1699,7 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	[currentPostProperties release];
 	[loginProperties release];
     [currentSearch release];
+	[favIcons release];
 #ifdef AWOOSTER_CHANGES
     [textIndex release];
 #endif

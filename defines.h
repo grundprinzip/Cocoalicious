@@ -71,3 +71,7 @@
 #define kTAGLIST_TAG_COLUMN_IDENTIFIER @"tags"
 
 #define kSAFARI_HISTORY_PATH @"~/Library/Safari/History.plist"
+
+#define kWebURLPboardType				@"CorePasteboardFlavorType 0x75726C20"
+#define kWebURLNamePboardType			@"CorePasteboardFlavorType 0x75726C6E"
+#define kWebURLsWithTitlesPboardType	@"WebURLsWithTitlesPboardType"

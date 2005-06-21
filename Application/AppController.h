@@ -24,6 +24,8 @@
 #import "SFHFRatingCell.h"
 #import "SFHFCircularCounterCell.h"
 #import "SFHFCornerView.h"
+#import "EBIconAndTextCell.h"
+#import "EBFavIconUtils.h"
 #import "defines.h"
 #import "DCTypes.h"
 
@@ -74,6 +76,8 @@
     NSMutableDictionary *posts;
 	NSArray *filteredTags;
 	NSArray *filteredPosts;
+
+ 	NSMutableDictionary *favIcons;
     
     NSString *currentSearch;
     DCAPITag *currentTagFilter;
@@ -107,6 +111,7 @@
 - (void) refreshAll;
 - (void) refreshTags;
 - (void) refreshPostsWithDownload: (BOOL) download;
+- (void) refreshFavIconsWithDownload: (BOOL) download;
 
 /* Search/Tag Filtering */
 - (IBAction) doSearch: (id) sender;
@@ -142,6 +147,8 @@
 - (NSArray *) tagsArray;
 - (void) resortTags;
 - (void) renameTag: (NSString *) originalName to: (NSString *) newName withUpload: (BOOL) upload;
+- (void) setFavIcons: (NSDictionary *) newFavIcons;
+- (NSMutableDictionary *) favIcons;
 
 /* UI setup */
 - (void) setupTaglist;

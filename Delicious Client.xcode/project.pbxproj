@@ -164,6 +164,7 @@
 		};
 		29B97317FDCFA39411CA2CEA = {
 			children = (
+				6B6475D30867E11800CD0EC9,
 				6B0896C60838FCEF0057A654,
 				6B0896C70838FCEF0057A654,
 				6BF009AD077B05B30036723E,
@@ -1045,6 +1046,7 @@
 			files = (
 				6B47BF5E086345C500636CB2,
 				6B47BF61086345CF00636CB2,
+				6B6475D40867E11800CD0EC9,
 			);
 			isa = PBXResourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1052,6 +1054,9 @@
 		6B47BF58086345A400636CB2 = {
 			buildActionMask = 2147483647;
 			files = (
+				6B6475D80867E14A00CD0EC9,
+				6B6475DC0867E18100CD0EC9,
+				6B6475E10867E1EC00CD0EC9,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1189,6 +1194,9 @@
 			dstSubfolderSpec = 1;
 			files = (
 				6B47BF6F0863468D00636CB2,
+				6B6475D70867E14A00CD0EC9,
+				6B6475DB0867E18100CD0EC9,
+				6B6475E00867E1EC00CD0EC9,
 			);
 			isa = PBXCopyFilesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1302,6 +1310,152 @@
 		};
 		6B61ACDD0846382500A27692 = {
 			fileRef = 6B61ACDB0846382500A27692;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B6475D30867E11800CD0EC9 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.tiff;
+			name = default_favicon.tif;
+			path = Art/default_favicon.tif;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B6475D40867E11800CD0EC9 = {
+			fileRef = 6B6475D30867E11800CD0EC9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B6475D50867E14A00CD0EC9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = EBIconAndTextCell.h;
+			path = UI/EBIconAndTextCell.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B6475D60867E14A00CD0EC9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = EBIconAndTextCell.m;
+			path = UI/EBIconAndTextCell.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B6475D70867E14A00CD0EC9 = {
+			fileRef = 6B6475D50867E14A00CD0EC9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B6475D80867E14A00CD0EC9 = {
+			fileRef = 6B6475D60867E14A00CD0EC9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B6475D90867E18100CD0EC9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = EBFavIconUtils.h;
+			path = Utilities/EBFavIconUtils.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B6475DA0867E18100CD0EC9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = EBFavIconUtils.m;
+			path = Utilities/EBFavIconUtils.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B6475DB0867E18100CD0EC9 = {
+			fileRef = 6B6475D90867E18100CD0EC9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B6475DC0867E18100CD0EC9 = {
+			fileRef = 6B6475DA0867E18100CD0EC9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B6475DE0867E1EC00CD0EC9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = "NSFileManager+ESBExtensions.h";
+			path = "Utilities/NSFileManager+ESBExtensions.h";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B6475DF0867E1EC00CD0EC9 = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = "NSFileManager+ESBExtensions.m";
+			path = "Utilities/NSFileManager+ESBExtensions.m";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		6B6475E00867E1EC00CD0EC9 = {
+			fileRef = 6B6475DE0867E1EC00CD0EC9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B6475E10867E1EC00CD0EC9 = {
+			fileRef = 6B6475DF0867E1EC00CD0EC9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B6475E20867E26500CD0EC9 = {
+			fileRef = 6B6475D30867E11800CD0EC9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B6475F30867E2F800CD0EC9 = {
+			fileRef = 6B6475D50867E14A00CD0EC9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B6475F40867E2FB00CD0EC9 = {
+			fileRef = 6B6475D60867E14A00CD0EC9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B6475F50867E31500CD0EC9 = {
+			fileRef = 6B6475DE0867E1EC00CD0EC9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B6475F60867E31600CD0EC9 = {
+			fileRef = 6B6475DF0867E1EC00CD0EC9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B6475F70867E31700CD0EC9 = {
+			fileRef = 6B6475D90867E18100CD0EC9;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		6B6475F80867E31700CD0EC9 = {
+			fileRef = 6B6475DA0867E18100CD0EC9;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -1642,6 +1796,10 @@
 				6B6B69DF082B3C97003DFA07,
 				6BA936C20655EEC400AE7890,
 				6BA936C30655EEC400AE7890,
+				6B6475DE0867E1EC00CD0EC9,
+				6B6475DF0867E1EC00CD0EC9,
+				6B6475D90867E18100CD0EC9,
+				6B6475DA0867E18100CD0EC9,
 				6B212599071D935F0044339D,
 				6B21259A071D935F0044339D,
 			);
@@ -1652,6 +1810,8 @@
 		};
 		6BD8D4B607205221008CA80A = {
 			children = (
+				6B6475D50867E14A00CD0EC9,
+				6B6475D60867E14A00CD0EC9,
 				6B61ACDB0846382500A27692,
 				6B61ACDA0846382500A27692,
 				6B13FAE406E10A6F007B4E5F,
@@ -1902,6 +2062,9 @@
 				6B0896D70838FD090057A654,
 				6B61ACDD0846382500A27692,
 				6B6AA443084A7B0F00FDB683,
+				6B6475F30867E2F800CD0EC9,
+				6B6475F50867E31500CD0EC9,
+				6B6475F70867E31700CD0EC9,
 			);
 			isa = PBXHeadersBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1919,6 +2082,7 @@
 				8D11072B0486CEB800E47090,
 				6BA939AE065692DC00AE7890,
 				6B0D0363072EC7B6009A7725,
+				6B6475E20867E26500CD0EC9,
 				3B3F0229073EF1A3003AB1C7,
 				6BB0A8E9074FF64B008FDDCC,
 				6B3AC8840759162F00F20C1F,
@@ -1973,6 +2137,9 @@
 				6B0896D80838FD090057A654,
 				6B61ACDC0846382500A27692,
 				6B6AA444084A7B0F00FDB683,
+				6B6475F40867E2FB00CD0EC9,
+				6B6475F60867E31600CD0EC9,
+				6B6475F80867E31700CD0EC9,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
