@@ -18,6 +18,7 @@
                 postCurrentSafariURL = id; 
                 postNewLink = id; 
                 refresh = id; 
+                refreshFavIconCache = id; 
                 setSearchTypeToBasic = id; 
                 setSearchTypeToExtended = id; 
                 setSearchTypeToFullText = id; 

@@ -346,6 +346,14 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 }
 
 #ifdef FAVICON_SUPPORT
+- (IBAction) refreshFavIconCache: (id) sender {
+	[NSThread detachNewThreadSelector: @selector(refreshFavIcons) toTarget: self withObject: nil];
+}
+
+- (void) refreshFavIcons {
+	[self refreshFavIconsWithDownload: YES];
+}
+
 - (void) refreshFavIconsWithDownload: (BOOL) download {
  	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
  

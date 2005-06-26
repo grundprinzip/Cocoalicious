@@ -111,7 +111,13 @@
 - (void) refreshAll;
 - (void) refreshTags;
 - (void) refreshPostsWithDownload: (BOOL) download;
+
+#ifdef FAVICON_SUPPORT
+/* Favicons */
+- (IBAction) refreshFavIconCache: (id) sender;
+- (void) refreshFavIcons;
 - (void) refreshFavIconsWithDownload: (BOOL) download;
+#endif
 
 /* Search/Tag Filtering */
 - (IBAction) doSearch: (id) sender;
