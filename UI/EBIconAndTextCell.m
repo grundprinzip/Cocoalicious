@@ -231,9 +231,11 @@
 		[self setFavIcon: [self defaultIcon]];
 	
 	if(NSEqualSizes([self iconSize], NSZeroSize) == NO) {
-		[[self favIcon] setScalesWhenResized:YES];
+		[[self favIcon] setScalesWhenResized: NO];
 		[[self favIcon] setSize: iconSize];
 	}
+	
+	[[self favIcon] setCacheMode: NSImageCacheAlways];
 }
 
 @end

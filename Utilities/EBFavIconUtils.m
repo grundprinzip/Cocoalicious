@@ -34,12 +34,14 @@
 	
 	// If we're purging the cache or the file doesn't exist, pull it down from the web
 	// Should set favIconPath to "" if the file doesn't exist on the server.
-	if(aForceDownload || ![[NSFileManager defaultManager] fileExistsAtPath:favIconPath]) {
+	BOOL iconExists = [[NSFileManager defaultManager] fileExistsAtPath:favIconPath];
+	
+	if(aForceDownload) {
 		BOOL proceed = YES;
 
-		// If the file exists, delete it - cache purce
+		// If the file exists, delete it - cache purge
 		// If we can't delete, stop processing since we don't have write access to the required path.
-		if([[NSFileManager defaultManager] fileExistsAtPath:favIconPath])
+		if(iconExists)
 			proceed = [[NSFileManager defaultManager] removeFileAtPath:favIconPath handler:nil];
 		
 		if(proceed) {
@@ -51,20 +53,32 @@
 			
 			NSURLResponse * resp;
 			NSError * error;
-			
+
 			NSData *returnData = [NSURLConnection sendSynchronousRequest: req returningResponse: &resp error: &error];
 			
-			if (!error) {
-				NSImage * favicon = [[NSImage alloc] initWithData: returnData];
+			if (returnData && !error) {
+				NSImage *iconImage = [[NSImage alloc] initWithData: returnData];		
+
+				if (iconImage) {
+					NSImage *resizedImage = [[NSImage alloc] initWithSize: kFAVICON_DISPLAY_SIZE];
+					
+					[resizedImage lockFocus];
+					NSSize originalSize = [iconImage size];
+					NSSize resizedSize = [resizedImage size];
+					[iconImage drawInRect: NSMakeRect(0, 0, resizedSize.width, resizedSize.height) fromRect: NSMakeRect(0, 0, originalSize.width, originalSize.height) operation: NSCompositeSourceOver fraction: 1.0];
+					[resizedImage unlockFocus];
+					
+					NSData *resizedData = [resizedImage TIFFRepresentation];
 				
-				//save to disk
-				if(favicon != nil)
-					[returnData writeToFile: favIconPath atomically:YES];
+					if (resizedData) {
+						[resizedData writeToFile: favIconPath atomically:YES];
+					}
+				}
 				
-				[favicon release];
+				[iconImage release];
 			}
 			else
-				NSLog(@"%@", error);
+				NSLog(@"%@: %@", faviconURL, error);
 		}
 	}
 	
@@ -88,7 +102,7 @@
 		options:nil
 		range:NSMakeRange(0, [hostName length])];
 	
-	[hostName appendString:@".ico"];
+	[hostName appendString:@".tiff"];
 	
 	return [[hostName copy] autorelease];
 }

@@ -222,14 +222,16 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	[starCell setMaximumRating: [NSNumber numberWithInt: kMAXIMUM_STAR_RATING]];
 	[[postList tableColumnWithIdentifier: kRATING_COLUMN_IDENTIFIER] setDataCell: starCell];
 	[starCell release];
-	
+
+#ifdef FAVICON_SUPPORT
 	NSTableColumn *descriptionColumn = [postList tableColumnWithIdentifier: @"description"];
 	EBIconAndTextCell * descriptionColumnCell = [[EBIconAndTextCell alloc] initWithDefaultIcon:[NSImage imageNamed: @"default_favicon.tif"]];
-	[descriptionColumnCell setIconSize: NSMakeSize(13.0,13.0)];
-	[descriptionColumnCell setWraps: YES];
+	[descriptionColumnCell setIconSize: kFAVICON_DISPLAY_SIZE];
 	[descriptionColumnCell setFont: [[descriptionColumn dataCell] font]];	// Works, but there must be a better way to set default font
 	[descriptionColumn setDataCell: descriptionColumnCell];
 	[descriptionColumnCell release];
+	[descriptionColumnCell setWraps: YES];
+#endif
 
 	NSTableColumn *dateColumn = [postList tableColumnWithIdentifier: @"date"];
 	NSCell *dateColumnCell = [dateColumn dataCell];
@@ -271,7 +273,9 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	[spinnyThing startAnimation: self];
     [self refreshPostsWithDownload: YES];
 	[self refreshTags];
+#ifdef FAVICON_SUPPORT
 	[self refreshFavIconsWithDownload: NO];
+#endif
 	[spinnyThing stopAnimation: self];
 	
 	[pool release];
@@ -341,6 +345,7 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	[pool release];
 }
 
+#ifdef FAVICON_SUPPORT
 - (void) refreshFavIconsWithDownload: (BOOL) download {
  	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
  
@@ -366,6 +371,7 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
  	[postList performSelectorOnMainThread: @selector(reloadData) withObject:nil waitUntilDone:NO];
  	[pool release];
 }
+#endif
 
 - (NSArray *) selectedTags {
 	if ([tagList isRowSelected: 0]) {
@@ -1036,6 +1042,7 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	}
 }
 
+#ifdef FAVICON_SUPPORT
 - (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex {
  	if(aTableView == postList) {
  		if([[aTableColumn identifier] isEqualToString:@"description"]) {
@@ -1044,6 +1051,7 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
  		}
  	}
 }
+#endif
 
 // ----- beg implementation for postList tooltips -----
 - (NSString *)tableView:(SFHFTableView *)tableView tooltipForItem:(id)item {

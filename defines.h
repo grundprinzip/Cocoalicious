@@ -75,3 +75,6 @@
 #define kWebURLPboardType				@"CorePasteboardFlavorType 0x75726C20"
 #define kWebURLNamePboardType			@"CorePasteboardFlavorType 0x75726C6E"
 #define kWebURLsWithTitlesPboardType	@"WebURLsWithTitlesPboardType"
+
+#define FAVICON_SUPPORT 1
+#define kFAVICON_DISPLAY_SIZE NSMakeSize(13.0, 13.0)
