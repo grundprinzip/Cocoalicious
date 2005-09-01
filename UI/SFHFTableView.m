@@ -240,7 +240,7 @@
 	NSPoint mouseLocationInTable = [self convertPoint: mouseLocationInWindow fromView: [[self window] contentView]];
 
 	int columnIndex = [self columnAtPoint: mouseLocationInTable];
-	int rowIndex = [self rowAtPoint: mouseLocationInTable];
+	//int rowIndex = [self rowAtPoint: mouseLocationInTable];
 	NSTableColumn *column = [[self tableColumns] objectAtIndex: columnIndex];
 
 	if ([self draggingIsDisabledForColumnWithIdentifier: [column identifier]]) {

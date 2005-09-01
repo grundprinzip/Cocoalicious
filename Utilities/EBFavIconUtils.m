@@ -20,7 +20,7 @@
 
 @implementation EBFavIconUtils
 
-+ (NSString *)downloadFavIconForURL:(NSURL *)aURL
++ (NSImage *) downloadFavIconForURL: (NSURL *) aURL
 	forceDownload:(BOOL)aForceDownload {
 	
 	NSString * favIconFolder = [[NSFileManager defaultManager] getApplicationSupportSubpath: @"FavIcons"];
@@ -36,7 +36,7 @@
 	// Should set favIconPath to "" if the file doesn't exist on the server.
 	BOOL iconExists = [[NSFileManager defaultManager] fileExistsAtPath:favIconPath];
 	
-	if(aForceDownload) {
+	if (aForceDownload) {
 		BOOL proceed = YES;
 
 		// If the file exists, delete it - cache purge
@@ -58,9 +58,10 @@
 			
 			if (returnData && !error) {
 				NSImage *iconImage = [[NSImage alloc] initWithData: returnData];		
+				NSImage *resizedImage = nil;
 
 				if (iconImage) {
-					NSImage *resizedImage = [[NSImage alloc] initWithSize: kFAVICON_DISPLAY_SIZE];
+					resizedImage = [[NSImage alloc] initWithSize: kFAVICON_DISPLAY_SIZE];
 					
 					[resizedImage lockFocus];
 					NSSize originalSize = [iconImage size];
@@ -76,13 +77,14 @@
 				}
 				
 				[iconImage release];
+				return [resizedImage autorelease];
 			}
 			else
 				NSLog(@"%@: %@", faviconURL, error);
 		}
 	}
 	
-	return favIconPath;
+	return [[[NSImage alloc] initWithContentsOfFile: favIconPath] autorelease];
 }
 
 @end

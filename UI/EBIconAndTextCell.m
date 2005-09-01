@@ -121,8 +121,6 @@
 }
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-	[self generateFavIcon];
-	
 	NSSize imageSize;
 	NSRect imageFrame;
 	
@@ -140,7 +138,13 @@
 	else
 		imageFrame.origin.y += ceil((cellFrame.size.height - imageFrame.size.height) / 2);
 	
-	[[self favIcon] compositeToPoint:imageFrame.origin operation:NSCompositeSourceOver];
+	NSImage *icon = [self favIcon];
+	
+	if (!icon) {
+		icon = [self defaultIcon];
+	}
+	
+	[icon compositeToPoint:imageFrame.origin operation:NSCompositeSourceOver];
 	
 	[super drawWithFrame:cellFrame inView:controlView];
 }
@@ -220,14 +224,14 @@
 	if([self favIcon] != nil && ![self regenFavIcon])
 		return;
 	// Try to get a stored fav icon for the cell
-	BOOL gotFavIcon = NO;
+	/*BOOL gotFavIcon = NO;
 	if([[NSFileManager defaultManager] fileExistsAtPath:[self favIconPath]]) {
 		[self setFavIcon: [[NSImage alloc] initWithContentsOfFile:[self favIconPath]]];
 		// Check if the data at the given path could be converted to an NSImage
 		gotFavIcon = ([self favIcon] != nil);
 	}	
 	// Fall back to the default icon
-	if(!gotFavIcon)
+	if(!gotFavIcon)*/
 		[self setFavIcon: [self defaultIcon]];
 	
 	if(NSEqualSizes([self iconSize], NSZeroSize) == NO) {
@@ -235,7 +239,7 @@
 		[[self favIcon] setSize: iconSize];
 	}
 	
-	[[self favIcon] setCacheMode: NSImageCacheAlways];
+	//[[self favIcon] setCacheMode: NSImageCacheAlways];
 }
 
 @end

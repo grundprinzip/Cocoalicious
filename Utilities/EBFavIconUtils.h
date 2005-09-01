@@ -12,7 +12,7 @@
 
 }
 
-+ (NSString *)downloadFavIconForURL:(NSURL *)aURL
++ (NSImage *) downloadFavIconForURL:(NSURL *)aURL
 	forceDownload:(BOOL)aForceDownload;
 
 @end

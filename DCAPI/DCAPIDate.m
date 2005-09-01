@@ -26,14 +26,14 @@
     return self;
 }
 
-- (void) setDate: (NSDate *) newDate {
+- (void) setDate: (NSCalendarDate *) newDate {
     if (date != newDate) {
         [date release];
         date = [newDate copy];
     }
 }
 
-- (NSDate *) date {
+- (NSCalendarDate *) date {
     return [[date retain] autorelease];
 }
 

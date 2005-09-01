@@ -98,8 +98,7 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
     
     [self setPosts: [NSMutableDictionary dictionaryWithCapacity: 0]];
     [self setTags: [NSMutableDictionary dictionaryWithCapacity: 0]];
-	[self setFavIcons: [NSMutableDictionary dictionaryWithCapacity: 0]];
-    
+	
     [self setupTaglist];
 	[self setupPostlist];
 
@@ -186,6 +185,7 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	NSMenuItem *newPostMenuItem = [dockMenu addItemWithTitle: @"New Post" action: @selector(showPostingInterface:) keyEquivalent: @""];
 	NSMenuItem *safariNewPostMenuItem = [dockMenu addItemWithTitle: @"New Post from Safari" action: @selector(postCurrentSafariURL:) keyEquivalent: @""];
 	[safariNewPostMenuItem setTarget: self];
+	[newPostMenuItem setTarget: self];
 }
 
 - (NSMenu *) applicationDockMenu: (NSApplication *) sender {
@@ -225,7 +225,7 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 
 #ifdef FAVICON_SUPPORT
 	NSTableColumn *descriptionColumn = [postList tableColumnWithIdentifier: @"description"];
-	EBIconAndTextCell * descriptionColumnCell = [[EBIconAndTextCell alloc] initWithDefaultIcon:[NSImage imageNamed: @"default_favicon.tif"]];
+	EBIconAndTextCell * descriptionColumnCell = [[EBIconAndTextCell alloc] initWithDefaultIcon: [NSImage imageNamed: @"default_favicon.tif"]];
 	[descriptionColumnCell setIconSize: kFAVICON_DISPLAY_SIZE];
 	[descriptionColumnCell setFont: [[descriptionColumn dataCell] font]];	// Works, but there must be a better way to set default font
 	[descriptionColumn setDataCell: descriptionColumnCell];
@@ -273,9 +273,6 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	[spinnyThing startAnimation: self];
     [self refreshPostsWithDownload: YES];
 	[self refreshTags];
-#ifdef FAVICON_SUPPORT
-	[self refreshFavIconsWithDownload: NO];
-#endif
 	[spinnyThing stopAnimation: self];
 	
 	[pool release];
@@ -344,42 +341,6 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	
 	[pool release];
 }
-
-#ifdef FAVICON_SUPPORT
-- (IBAction) refreshFavIconCache: (id) sender {
-	[NSThread detachNewThreadSelector: @selector(refreshFavIcons) toTarget: self withObject: nil];
-}
-
-- (void) refreshFavIcons {
-	[self refreshFavIconsWithDownload: YES];
-}
-
-- (void) refreshFavIconsWithDownload: (BOOL) download {
- 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
- 
- 	NSArray * unfilteredURLs = [self urlsArray];
-	NSString * favIconPath;
- 	
- 	NSEnumerator * urlEnum = [unfilteredURLs objectEnumerator];
- 	NSString * currURLString;
- 	NSURL * currURL;
- 	
- 	while((currURLString = (NSString *)[urlEnum nextObject]) != nil) {
-		currURL = [NSURL URLWithString:currURLString];
-		
- 		if(currURL != nil) {
- 			favIconPath = [EBFavIconUtils downloadFavIconForURL:currURL forceDownload: download];
-			
-			if (favIconPath) {
-				[[self favIcons] setObject:favIconPath forKey:currURL];
-			}
-		}
- 	}
- 	
- 	[postList performSelectorOnMainThread: @selector(reloadData) withObject:nil waitUntilDone:NO];
- 	[pool release];
-}
-#endif
 
 - (NSArray *) selectedTags {
 	if ([tagList isRowSelected: 0]) {
@@ -489,19 +450,6 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 
 - (DCAPIClient *) client {
     return [[client retain] autorelease];
-}
-
-- (void) setFavIcons: (NSDictionary *) newFavIcons {
-	@synchronized(favIcons) { 
- 		if (favIcons != newFavIcons) {
- 			[favIcons release];
- 			favIcons = [newFavIcons mutableCopy];
- 		}
- 	}
-}
- 
-- (NSMutableDictionary *) favIcons {
-     return [[favIcons retain] autorelease];
 }
 
 - (void) setTags: (NSDictionary *) newTags {
@@ -869,10 +817,10 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
         DCAPIPost *post = [postArray objectAtIndex: selectedRow];
 		
 		LSLaunchURLSpec openURLSpec;
-		openURLSpec.appURL = NULL;
-		openURLSpec.passThruParams = NULL;
-		openURLSpec.asyncRefCon = NULL;
-		openURLSpec.launchFlags = NULL;
+		openURLSpec.appURL = nil;
+		openURLSpec.passThruParams = nil;
+		openURLSpec.asyncRefCon = nil;
+		openURLSpec.launchFlags = nil;
 		
 		BOOL openInBG = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kOPEN_URLS_IN_BACKGROUND_DEFAULTS_KEY] boolValue];
 		unsigned int alternatePressed = [[NSApp currentEvent] modifierFlags] & NSAlternateKeyMask;
@@ -881,12 +829,12 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 			openURLSpec.launchFlags = kLSLaunchDontSwitch;
 		}
 		else {
-			openURLSpec.launchFlags = NULL;
+			openURLSpec.launchFlags = nil;
 		}
 		
 		openURLSpec.itemURLs = (CFArrayRef) [NSArray arrayWithObjects: [post URL], nil];
 		
-		LSOpenFromURLSpec(&openURLSpec, NULL);
+		LSOpenFromURLSpec(&openURLSpec, nil);
 		
 		[post incrementVisitCount];
     }
@@ -1055,8 +1003,15 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
  	if(aTableView == postList) {
  		if([[aTableColumn identifier] isEqualToString:@"description"]) {
  			DCAPIPost * currentPost = [[self filteredPosts] objectAtIndex: rowIndex];
- 			[(EBIconAndTextCell *) aCell setFavIconPath: [[self favIcons] objectForKey: [currentPost URL]]];
- 		}
+ 			
+			if ([aCell isKindOfClass: [EBIconAndTextCell class]]) {
+				NSImage *icon = [[self favIcons] objectForKey: [currentPost URL]];
+				
+				if (icon) {
+					[(EBIconAndTextCell *) aCell setFavIcon: icon];
+				}
+			}
+		}
  	}
 }
 #endif
@@ -1441,9 +1396,6 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	
 	DCAPIPost *newPost = [[DCAPIPost alloc] initWithURL: postURL description: postDescription extended: postExtended date: postDate tags: nil urlHash: nil];
 	[newPost setTagsFromString: postTags];
-
-	NSString * favIconPath = [EBFavIconUtils downloadFavIconForURL: [newPost valueForKey: @"URL"] forceDownload: NO];
- 	[[self favIcons] setObject: favIconPath forKey: [newPost valueForKey: @"URL"]];
 	
 	[NSThread detachNewThreadSelector: @selector(addPost:) toTarget: [self client] withObject: newPost];
 	
@@ -1600,7 +1552,7 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
     NSWindow *theWindow = [aNotification object];
     
     if (theWindow == preferencesWindow) {
-        [[NSUserDefaultsController sharedUserDefaultsController] save: self];
+        [(NSUserDefaultsController *) [NSUserDefaultsController sharedUserDefaultsController] save: self];
     }
 }
 
@@ -1715,7 +1667,6 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	[currentPostProperties release];
 	[loginProperties release];
     [currentSearch release];
-	[favIcons release];
 #ifdef AWOOSTER_CHANGES
     [textIndex release];
 #endif

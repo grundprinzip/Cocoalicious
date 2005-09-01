@@ -1,0 +1,1325 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXAppleScriptBuildPhase section */
+		6B47BF1708633E4400636CB2 /* AppleScript */ = {
+			isa = PBXAppleScriptBuildPhase;
+			buildActionMask = 2147483647;
+			contextName = "";
+			files = (
+				6B47BF1908633E4D00636CB2 /* main.applescript in AppleScript */,
+			);
+			isSharedContext = 0;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXAppleScriptBuildPhase section */
+
+/* Begin PBXBuildFile section */
+		3B3F0229073EF1A3003AB1C7 /* safari_script.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 3B3F0228073EF1A3003AB1C7 /* safari_script.scpt */; };
+		3B3F024B073EF405003AB1C7 /* NSAppleScript+HandlerCalls.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B3F0249073EF405003AB1C7 /* NSAppleScript+HandlerCalls.h */; };
+		3B3F024C073EF405003AB1C7 /* NSAppleScript+HandlerCalls.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3F024A073EF405003AB1C7 /* NSAppleScript+HandlerCalls.m */; };
+		49FE4957073A0868004027E5 /* FullTextIndex.h in Headers */ = {isa = PBXBuildFile; fileRef = 49FE4955073A0868004027E5 /* FullTextIndex.h */; };
+		49FE4958073A0868004027E5 /* FullTextIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FE4956073A0868004027E5 /* FullTextIndex.m */; };
+		6B0896C80838FCEF0057A654 /* star.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6B0896C60838FCEF0057A654 /* star.tif */; };
+		6B0896C90838FCEF0057A654 /* star_highlighted.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6B0896C70838FCEF0057A654 /* star_highlighted.tif */; };
+		6B0896D70838FD090057A654 /* SFHFRatingCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0896D50838FD090057A654 /* SFHFRatingCell.h */; };
+		6B0896D80838FD090057A654 /* SFHFRatingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0896D60838FD090057A654 /* SFHFRatingCell.m */; };
+		6B0D0363072EC7B6009A7725 /* deliciousclient.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6B0D0362072EC7B6009A7725 /* deliciousclient.icns */; };
+		6B13FAE606E10A6F007B4E5F /* SFHFBezelView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B13FAE406E10A6F007B4E5F /* SFHFBezelView.h */; };
+		6B13FAE706E10A6F007B4E5F /* SFHFBezelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B13FAE506E10A6F007B4E5F /* SFHFBezelView.m */; };
+		6B13FBAA06E27AB1007B4E5F /* SFHFSplitView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B13FBA806E27AB1007B4E5F /* SFHFSplitView.h */; };
+		6B13FBAB06E27AB1007B4E5F /* SFHFSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B13FBA906E27AB1007B4E5F /* SFHFSplitView.m */; };
+		6B13FD0B06E2962B007B4E5F /* SFHFTableHeaderCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B13FD0906E2962B007B4E5F /* SFHFTableHeaderCell.h */; };
+		6B13FD0C06E2962B007B4E5F /* SFHFTableHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B13FD0A06E2962B007B4E5F /* SFHFTableHeaderCell.m */; };
+		6B13FEA306E2AAEC007B4E5F /* SFHFCornerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B13FEA106E2AAEC007B4E5F /* SFHFCornerView.h */; };
+		6B13FEA406E2AAEC007B4E5F /* SFHFCornerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B13FEA206E2AAEC007B4E5F /* SFHFCornerView.m */; };
+		6B20697C05CB87E700D424BF /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B20697B05CB87E700D424BF /* WebKit.framework */; };
+		6B21241C071CE7270044339D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B21241B071CE7270044339D /* Security.framework */; };
+		6B21259B071D935F0044339D /* SFHFKeychainUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B212599071D935F0044339D /* SFHFKeychainUtils.h */; };
+		6B21259C071D935F0044339D /* SFHFKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B21259A071D935F0044339D /* SFHFKeychainUtils.m */; };
+		6B34D116072A2CBA00D08DB1 /* SFHFMetalTableHeaderCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B34D114072A2CBA00D08DB1 /* SFHFMetalTableHeaderCell.h */; };
+		6B34D117072A2CBA00D08DB1 /* SFHFMetalTableHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B34D115072A2CBA00D08DB1 /* SFHFMetalTableHeaderCell.m */; };
+		6B34D18F072A2E7400D08DB1 /* SFHFiTunesTableHeaderCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B34D18D072A2E7400D08DB1 /* SFHFiTunesTableHeaderCell.h */; };
+		6B34D190072A2E7400D08DB1 /* SFHFiTunesTableHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B34D18E072A2E7400D08DB1 /* SFHFiTunesTableHeaderCell.m */; };
+		6B37C7D605C8C83E00A005A7 /* DCAPIParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B37C7D405C8C83E00A005A7 /* DCAPIParser.h */; };
+		6B37C7D705C8C83E00A005A7 /* DCAPIParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B37C7D505C8C83E00A005A7 /* DCAPIParser.m */; };
+		6B37C95005C8D5BB00A005A7 /* DCAPIPost.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B37C94E05C8D5BB00A005A7 /* DCAPIPost.h */; };
+		6B37C95105C8D5BB00A005A7 /* DCAPIPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B37C94F05C8D5BB00A005A7 /* DCAPIPost.m */; };
+		6B3AC8840759162F00F20C1F /* add_post_icon.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6B3AC8810759162F00F20C1F /* add_post_icon.tif */; };
+		6B3AC8850759162F00F20C1F /* delete_post_icon.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6B3AC8820759162F00F20C1F /* delete_post_icon.tif */; };
+		6B3AC8860759162F00F20C1F /* show_info_icon.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6B3AC8830759162F00F20C1F /* show_info_icon.tif */; };
+		6B4324FD08C6DD8C00C26737 /* SFHFFaviconCache.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B4324FB08C6DD8C00C26737 /* SFHFFaviconCache.h */; };
+		6B4324FE08C6DD8C00C26737 /* SFHFFaviconCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4324FC08C6DD8C00C26737 /* SFHFFaviconCache.m */; };
+		6B45F6C707B4934D0007FA1E /* SFHFTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B45F6C507B4934D0007FA1E /* SFHFTextView.h */; };
+		6B45F6C807B4934D0007FA1E /* SFHFTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B45F6C607B4934D0007FA1E /* SFHFTextView.m */; };
+		6B47BF1908633E4D00636CB2 /* main.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 6B47BF0908633DF600636CB2 /* main.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		6B47BF1A08633E8700636CB2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		6B47BF1E08633EB700636CB2 /* Automator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B47BF1D08633EB700636CB2 /* Automator.framework */; };
+		6B47BF510863443C00636CB2 /* main.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6B47BF4F0863443C00636CB2 /* main.nib */; };
+		6B47BF5E086345C500636CB2 /* definition.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B47BF5D086345C500636CB2 /* definition.plist */; };
+		6B47BF61086345CF00636CB2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6B47BF5F086345CF00636CB2 /* Localizable.strings */; };
+		6B47BF6F0863468D00636CB2 /* version.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B47BF62086345DF00636CB2 /* version.plist */; };
+		6B47BFA7086348C200636CB2 /* Convert Posts to URLs.caction in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B47BEFA08633D0800636CB2 /* Convert Posts to URLs.caction */; };
+		6B47BFA8086348C200636CB2 /* Cocoalicious.definition in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B47BF5B086345A400636CB2 /* Cocoalicious.definition */; };
+		6B5A44BE06D1CFB6007C405C /* DCAPITagFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B5A44BC06D1CFB6007C405C /* DCAPITagFormatter.h */; };
+		6B5A44BF06D1CFB6007C405C /* DCAPITagFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5A44BD06D1CFB6007C405C /* DCAPITagFormatter.m */; };
+		6B61ACDC0846382500A27692 /* KFTypeSelectTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B61ACDA0846382500A27692 /* KFTypeSelectTableView.m */; };
+		6B61ACDD0846382500A27692 /* KFTypeSelectTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B61ACDB0846382500A27692 /* KFTypeSelectTableView.h */; };
+		6B6475D40867E11800CD0EC9 /* default_favicon.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6B6475D30867E11800CD0EC9 /* default_favicon.tif */; };
+		6B6475D70867E14A00CD0EC9 /* EBIconAndTextCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B6475D50867E14A00CD0EC9 /* EBIconAndTextCell.h */; };
+		6B6475D80867E14A00CD0EC9 /* EBIconAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6475D60867E14A00CD0EC9 /* EBIconAndTextCell.m */; };
+		6B6475DB0867E18100CD0EC9 /* EBFavIconUtils.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B6475D90867E18100CD0EC9 /* EBFavIconUtils.h */; };
+		6B6475DC0867E18100CD0EC9 /* EBFavIconUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6475DA0867E18100CD0EC9 /* EBFavIconUtils.m */; };
+		6B6475E00867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B6475DE0867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.h */; };
+		6B6475E10867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6475DF0867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.m */; };
+		6B6475E20867E26500CD0EC9 /* default_favicon.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6B6475D30867E11800CD0EC9 /* default_favicon.tif */; };
+		6B6475F30867E2F800CD0EC9 /* EBIconAndTextCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B6475D50867E14A00CD0EC9 /* EBIconAndTextCell.h */; };
+		6B6475F40867E2FB00CD0EC9 /* EBIconAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6475D60867E14A00CD0EC9 /* EBIconAndTextCell.m */; };
+		6B6475F50867E31500CD0EC9 /* NSFileManager+ESBExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B6475DE0867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.h */; };
+		6B6475F60867E31600CD0EC9 /* NSFileManager+ESBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6475DF0867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.m */; };
+		6B6475F70867E31700CD0EC9 /* EBFavIconUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B6475D90867E18100CD0EC9 /* EBFavIconUtils.h */; };
+		6B6475F80867E31700CD0EC9 /* EBFavIconUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6475DA0867E18100CD0EC9 /* EBFavIconUtils.m */; };
+		6B698144065346D6000649B0 /* defines.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B698143065346D6000649B0 /* defines.h */; };
+		6B6981960653485C000649B0 /* DCAPIDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B6981940653485C000649B0 /* DCAPIDate.h */; };
+		6B6981970653485C000649B0 /* DCAPIDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6981950653485C000649B0 /* DCAPIDate.m */; };
+		6B69829306534D8F000649B0 /* DCAPITag.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B69829106534D8F000649B0 /* DCAPITag.h */; };
+		6B69829406534D8F000649B0 /* DCAPITag.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B69829206534D8F000649B0 /* DCAPITag.m */; };
+		6B6AA443084A7B0F00FDB683 /* SFHFCircularCounterCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B6AA441084A7B0F00FDB683 /* SFHFCircularCounterCell.h */; };
+		6B6AA444084A7B0F00FDB683 /* SFHFCircularCounterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6AA442084A7B0F00FDB683 /* SFHFCircularCounterCell.m */; };
+		6B6B69E0082B3C97003DFA07 /* NSDictionary+SFHFUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B6B69DE082B3C97003DFA07 /* NSDictionary+SFHFUtils.h */; };
+		6B6B69E1082B3C97003DFA07 /* NSDictionary+SFHFUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6B69DF082B3C97003DFA07 /* NSDictionary+SFHFUtils.m */; };
+		6BA936C40655EEC400AE7890 /* NSString+SFHFUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BA936C20655EEC400AE7890 /* NSString+SFHFUtils.h */; };
+		6BA936C50655EEC400AE7890 /* NSString+SFHFUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA936C30655EEC400AE7890 /* NSString+SFHFUtils.m */; };
+		6BA939AE065692DC00AE7890 /* metal_column_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA939AD065692DC00AE7890 /* metal_column_header.png */; };
+		6BB0A8E9074FF64B008FDDCC /* refresh_icon.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6BB0A8E8074FF64B008FDDCC /* refresh_icon.tif */; };
+		6BD81880075AFB740088A2CF /* AppController-AppleScriptExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD8187D075AFB740088A2CF /* AppController-AppleScriptExtensions.h */; };
+		6BD81881075AFB740088A2CF /* AppController-AppleScriptExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD8187E075AFB740088A2CF /* AppController-AppleScriptExtensions.m */; };
+		6BD818EE075AFCE60088A2CF /* DCAPIPost-AppleScriptExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD818EA075AFCE50088A2CF /* DCAPIPost-AppleScriptExtensions.h */; };
+		6BD818EF075AFCE60088A2CF /* DCAPIPost-AppleScriptExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD818EB075AFCE50088A2CF /* DCAPIPost-AppleScriptExtensions.m */; };
+		6BD818F0075AFCE60088A2CF /* DCAPITag-AppleScriptExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD818EC075AFCE50088A2CF /* DCAPITag-AppleScriptExtensions.h */; };
+		6BD818F1075AFCE60088A2CF /* DCAPITag-AppleScriptExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD818ED075AFCE50088A2CF /* DCAPITag-AppleScriptExtensions.m */; };
+		6BE6C20306C9FE1100E90B12 /* SFHFTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BE6C20106C9FE1100E90B12 /* SFHFTableView.h */; };
+		6BE6C20406C9FE1100E90B12 /* SFHFTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE6C20206C9FE1100E90B12 /* SFHFTableView.m */; };
+		6BF009AE077B05B30036723E /* toggle_web_preview_icon.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6BF009AD077B05B30036723E /* toggle_web_preview_icon.tif */; };
+		6BF00A90077B0D340036723E /* DCTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BF00A8F077B0D340036723E /* DCTypes.h */; };
+		6BF88AE505C4D56000D7EDBB /* AppController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BF88AE305C4D56000D7EDBB /* AppController.h */; };
+		6BF88AE605C4D56000D7EDBB /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF88AE405C4D56000D7EDBB /* AppController.m */; };
+		6BF88AF505C4D79D00D7EDBB /* DCAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BF88AF305C4D79D00D7EDBB /* DCAPIClient.h */; };
+		6BF88AF605C4D79D00D7EDBB /* DCAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF88AF405C4D79D00D7EDBB /* DCAPIClient.m */; };
+		8D1107280486CEB800E47090 /* Delicious Client_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 32CA4F630368D1EE00C91783 /* Delicious Client_Prefix.pch */; };
+		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		4A9504CCFFE6A4B311CA0CBA /* Development */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OPTIMIZATION_CFLAGS = "-O0";
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		4A9504CDFFE6A4B311CA0CBA /* Deployment */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPYING_PRESERVES_HFS_DATA = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		6B47BF89086347D100636CB2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6B47BEF908633D0800636CB2;
+			remoteInfo = "Convert Posts to URLs";
+		};
+		6B47BF8B086347D500636CB2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6B47BF5A086345A400636CB2;
+			remoteInfo = "Cocoalicious Definition";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6B47BF6D0863468200636CB2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 1;
+			files = (
+				6B47BF6F0863468D00636CB2 /* version.plist in CopyFiles */,
+				6B6475D70867E14A00CD0EC9 /* EBIconAndTextCell.h in CopyFiles */,
+				6B6475DB0867E18100CD0EC9 /* EBFavIconUtils.h in CopyFiles */,
+				6B6475E00867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.h in CopyFiles */,
+				6B4324FD08C6DD8C00C26737 /* SFHFFaviconCache.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B47BF91086348A000636CB2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/Automator;
+			dstSubfolderSpec = 1;
+			files = (
+				6B47BFA7086348C200636CB2 /* Convert Posts to URLs.caction in CopyFiles */,
+				6B47BFA8086348C200636CB2 /* Cocoalicious.definition in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32CA4F630368D1EE00C91783 /* Delicious Client_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Delicious Client_Prefix.pch"; sourceTree = "<group>"; };
+		3B3F0228073EF1A3003AB1C7 /* safari_script.scpt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.scpt; name = safari_script.scpt; path = Scripts/safari_script.scpt; sourceTree = "<group>"; };
+		3B3F0249073EF405003AB1C7 /* NSAppleScript+HandlerCalls.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "NSAppleScript+HandlerCalls.h"; path = "Utilities/NSAppleScript+HandlerCalls.h"; sourceTree = "<group>"; };
+		3B3F024A073EF405003AB1C7 /* NSAppleScript+HandlerCalls.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "NSAppleScript+HandlerCalls.m"; path = "Utilities/NSAppleScript+HandlerCalls.m"; sourceTree = "<group>"; };
+		49FE4955073A0868004027E5 /* FullTextIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullTextIndex.h; sourceTree = "<group>"; };
+		49FE4956073A0868004027E5 /* FullTextIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullTextIndex.m; sourceTree = "<group>"; };
+		6B0896C60838FCEF0057A654 /* star.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = star.tif; path = Art/star.tif; sourceTree = "<group>"; };
+		6B0896C70838FCEF0057A654 /* star_highlighted.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = star_highlighted.tif; path = Art/star_highlighted.tif; sourceTree = "<group>"; };
+		6B0896D50838FD090057A654 /* SFHFRatingCell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = SFHFRatingCell.h; path = UI/SFHFRatingCell.h; sourceTree = "<group>"; };
+		6B0896D60838FD090057A654 /* SFHFRatingCell.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = SFHFRatingCell.m; path = UI/SFHFRatingCell.m; sourceTree = "<group>"; };
+		6B0D0362072EC7B6009A7725 /* deliciousclient.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = deliciousclient.icns; path = Art/deliciousclient.icns; sourceTree = "<group>"; };
+		6B13FAE406E10A6F007B4E5F /* SFHFBezelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFBezelView.h; path = UI/SFHFBezelView.h; sourceTree = "<group>"; };
+		6B13FAE506E10A6F007B4E5F /* SFHFBezelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFBezelView.m; path = UI/SFHFBezelView.m; sourceTree = "<group>"; };
+		6B13FBA806E27AB1007B4E5F /* SFHFSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFSplitView.h; path = UI/SFHFSplitView.h; sourceTree = "<group>"; };
+		6B13FBA906E27AB1007B4E5F /* SFHFSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFSplitView.m; path = UI/SFHFSplitView.m; sourceTree = "<group>"; };
+		6B13FD0906E2962B007B4E5F /* SFHFTableHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFTableHeaderCell.h; path = UI/SFHFTableHeaderCell.h; sourceTree = "<group>"; };
+		6B13FD0A06E2962B007B4E5F /* SFHFTableHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFTableHeaderCell.m; path = UI/SFHFTableHeaderCell.m; sourceTree = "<group>"; };
+		6B13FEA106E2AAEC007B4E5F /* SFHFCornerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFCornerView.h; path = UI/SFHFCornerView.h; sourceTree = "<group>"; };
+		6B13FEA206E2AAEC007B4E5F /* SFHFCornerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFCornerView.m; path = UI/SFHFCornerView.m; sourceTree = "<group>"; };
+		6B20697B05CB87E700D424BF /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
+		6B21241B071CE7270044339D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
+		6B212599071D935F0044339D /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFKeychainUtils.h; path = Utilities/SFHFKeychainUtils.h; sourceTree = "<group>"; };
+		6B21259A071D935F0044339D /* SFHFKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFKeychainUtils.m; path = Utilities/SFHFKeychainUtils.m; sourceTree = "<group>"; };
+		6B34D114072A2CBA00D08DB1 /* SFHFMetalTableHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFMetalTableHeaderCell.h; path = UI/SFHFMetalTableHeaderCell.h; sourceTree = "<group>"; };
+		6B34D115072A2CBA00D08DB1 /* SFHFMetalTableHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFMetalTableHeaderCell.m; path = UI/SFHFMetalTableHeaderCell.m; sourceTree = "<group>"; };
+		6B34D18D072A2E7400D08DB1 /* SFHFiTunesTableHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFiTunesTableHeaderCell.h; path = UI/SFHFiTunesTableHeaderCell.h; sourceTree = "<group>"; };
+		6B34D18E072A2E7400D08DB1 /* SFHFiTunesTableHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFiTunesTableHeaderCell.m; path = UI/SFHFiTunesTableHeaderCell.m; sourceTree = "<group>"; };
+		6B37C7D405C8C83E00A005A7 /* DCAPIParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCAPIParser.h; path = DCAPI/DCAPIParser.h; sourceTree = "<group>"; };
+		6B37C7D505C8C83E00A005A7 /* DCAPIParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCAPIParser.m; path = DCAPI/DCAPIParser.m; sourceTree = "<group>"; };
+		6B37C94E05C8D5BB00A005A7 /* DCAPIPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCAPIPost.h; path = DCAPI/DCAPIPost.h; sourceTree = "<group>"; };
+		6B37C94F05C8D5BB00A005A7 /* DCAPIPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCAPIPost.m; path = DCAPI/DCAPIPost.m; sourceTree = "<group>"; };
+		6B3AC8810759162F00F20C1F /* add_post_icon.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = add_post_icon.tif; path = Art/add_post_icon.tif; sourceTree = "<group>"; };
+		6B3AC8820759162F00F20C1F /* delete_post_icon.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = delete_post_icon.tif; path = Art/delete_post_icon.tif; sourceTree = "<group>"; };
+		6B3AC8830759162F00F20C1F /* show_info_icon.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = show_info_icon.tif; path = Art/show_info_icon.tif; sourceTree = "<group>"; };
+		6B4324FB08C6DD8C00C26737 /* SFHFFaviconCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFFaviconCache.h; path = Utilities/SFHFFaviconCache.h; sourceTree = "<group>"; };
+		6B4324FC08C6DD8C00C26737 /* SFHFFaviconCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFFaviconCache.m; path = Utilities/SFHFFaviconCache.m; sourceTree = "<group>"; };
+		6B45F6C507B4934D0007FA1E /* SFHFTextView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = SFHFTextView.h; path = UI/SFHFTextView.h; sourceTree = "<group>"; };
+		6B45F6C607B4934D0007FA1E /* SFHFTextView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = SFHFTextView.m; path = UI/SFHFTextView.m; sourceTree = "<group>"; };
+		6B47BEFA08633D0800636CB2 /* Convert Posts to URLs.caction */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Convert Posts to URLs.caction"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B47BF0908633DF600636CB2 /* main.applescript */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.applescript; name = main.applescript; path = "Scripting/Automator/Convert Posts To URLs/main.applescript"; sourceTree = "<group>"; };
+		6B47BF0C08633E0400636CB2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Info.plist; path = "Scripting/Automator/Convert Posts To URLs/Info.plist"; sourceTree = "<group>"; };
+		6B47BF1D08633EB700636CB2 /* Automator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Automator.framework; path = /System/Library/Frameworks/Automator.framework; sourceTree = "<absolute>"; };
+		6B47BF500863443C00636CB2 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = "Scripting/Automator/Convert Posts To URLs/English.lproj/main.nib"; sourceTree = "<group>"; };
+		6B47BF5B086345A400636CB2 /* Cocoalicious.definition */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Cocoalicious.definition; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B47BF5D086345C500636CB2 /* definition.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = definition.plist; path = Scripting/Automator/Definition/definition.plist; sourceTree = "<group>"; };
+		6B47BF60086345CF00636CB2 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		6B47BF62086345DF00636CB2 /* version.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = version.plist; path = Scripting/Automator/Definition/version.plist; sourceTree = "<group>"; };
+		6B47BF64086345F100636CB2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Info.plist; path = Scripting/Automator/Definition/Info.plist; sourceTree = "<group>"; };
+		6B5A44BC06D1CFB6007C405C /* DCAPITagFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCAPITagFormatter.h; path = DCAPI/DCAPITagFormatter.h; sourceTree = "<group>"; };
+		6B5A44BD06D1CFB6007C405C /* DCAPITagFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCAPITagFormatter.m; path = DCAPI/DCAPITagFormatter.m; sourceTree = "<group>"; };
+		6B61ACDA0846382500A27692 /* KFTypeSelectTableView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = KFTypeSelectTableView.m; path = UI/KFTypeSelectTableView.m; sourceTree = "<group>"; };
+		6B61ACDB0846382500A27692 /* KFTypeSelectTableView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = KFTypeSelectTableView.h; path = UI/KFTypeSelectTableView.h; sourceTree = "<group>"; };
+		6B6475D30867E11800CD0EC9 /* default_favicon.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = default_favicon.tif; path = Art/default_favicon.tif; sourceTree = "<group>"; };
+		6B6475D50867E14A00CD0EC9 /* EBIconAndTextCell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = EBIconAndTextCell.h; path = UI/EBIconAndTextCell.h; sourceTree = "<group>"; };
+		6B6475D60867E14A00CD0EC9 /* EBIconAndTextCell.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = EBIconAndTextCell.m; path = UI/EBIconAndTextCell.m; sourceTree = "<group>"; };
+		6B6475D90867E18100CD0EC9 /* EBFavIconUtils.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = EBFavIconUtils.h; path = Utilities/EBFavIconUtils.h; sourceTree = "<group>"; };
+		6B6475DA0867E18100CD0EC9 /* EBFavIconUtils.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = EBFavIconUtils.m; path = Utilities/EBFavIconUtils.m; sourceTree = "<group>"; };
+		6B6475DE0867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+ESBExtensions.h"; path = "Utilities/NSFileManager+ESBExtensions.h"; sourceTree = "<group>"; };
+		6B6475DF0867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+ESBExtensions.m"; path = "Utilities/NSFileManager+ESBExtensions.m"; sourceTree = "<group>"; };
+		6B698143065346D6000649B0 /* defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = defines.h; sourceTree = "<group>"; };
+		6B6981940653485C000649B0 /* DCAPIDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCAPIDate.h; path = DCAPI/DCAPIDate.h; sourceTree = "<group>"; };
+		6B6981950653485C000649B0 /* DCAPIDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCAPIDate.m; path = DCAPI/DCAPIDate.m; sourceTree = "<group>"; };
+		6B69829106534D8F000649B0 /* DCAPITag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCAPITag.h; path = DCAPI/DCAPITag.h; sourceTree = "<group>"; };
+		6B69829206534D8F000649B0 /* DCAPITag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCAPITag.m; path = DCAPI/DCAPITag.m; sourceTree = "<group>"; };
+		6B6AA441084A7B0F00FDB683 /* SFHFCircularCounterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFCircularCounterCell.h; path = UI/SFHFCircularCounterCell.h; sourceTree = "<group>"; };
+		6B6AA442084A7B0F00FDB683 /* SFHFCircularCounterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFCircularCounterCell.m; path = UI/SFHFCircularCounterCell.m; sourceTree = "<group>"; };
+		6B6B69DE082B3C97003DFA07 /* NSDictionary+SFHFUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+SFHFUtils.h"; path = "Utilities/NSDictionary+SFHFUtils.h"; sourceTree = "<group>"; };
+		6B6B69DF082B3C97003DFA07 /* NSDictionary+SFHFUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+SFHFUtils.m"; path = "Utilities/NSDictionary+SFHFUtils.m"; sourceTree = "<group>"; };
+		6BA936C20655EEC400AE7890 /* NSString+SFHFUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+SFHFUtils.h"; path = "Utilities/NSString+SFHFUtils.h"; sourceTree = "<group>"; };
+		6BA936C30655EEC400AE7890 /* NSString+SFHFUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+SFHFUtils.m"; path = "Utilities/NSString+SFHFUtils.m"; sourceTree = "<group>"; };
+		6BA939AD065692DC00AE7890 /* metal_column_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = metal_column_header.png; path = Art/metal_column_header.png; sourceTree = "<group>"; };
+		6BAB081C06D2FF6A0058BAC1 /* Cocoalicious.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cocoalicious.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BB0A8E8074FF64B008FDDCC /* refresh_icon.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = refresh_icon.tif; path = Art/refresh_icon.tif; sourceTree = "<group>"; };
+		6BD8187D075AFB740088A2CF /* AppController-AppleScriptExtensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "AppController-AppleScriptExtensions.h"; path = "Scripting/AppController-AppleScriptExtensions.h"; sourceTree = "<group>"; };
+		6BD8187E075AFB740088A2CF /* AppController-AppleScriptExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "AppController-AppleScriptExtensions.m"; path = "Scripting/AppController-AppleScriptExtensions.m"; sourceTree = "<group>"; };
+		6BD8187F075AFB740088A2CF /* Cocoalicious.sdef */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.sdef; name = Cocoalicious.sdef; path = Scripting/Cocoalicious.sdef; sourceTree = "<group>"; };
+		6BD818EA075AFCE50088A2CF /* DCAPIPost-AppleScriptExtensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "DCAPIPost-AppleScriptExtensions.h"; path = "Scripting/DCAPIPost-AppleScriptExtensions.h"; sourceTree = "<group>"; };
+		6BD818EB075AFCE50088A2CF /* DCAPIPost-AppleScriptExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "DCAPIPost-AppleScriptExtensions.m"; path = "Scripting/DCAPIPost-AppleScriptExtensions.m"; sourceTree = "<group>"; };
+		6BD818EC075AFCE50088A2CF /* DCAPITag-AppleScriptExtensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "DCAPITag-AppleScriptExtensions.h"; path = "Scripting/DCAPITag-AppleScriptExtensions.h"; sourceTree = "<group>"; };
+		6BD818ED075AFCE50088A2CF /* DCAPITag-AppleScriptExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "DCAPITag-AppleScriptExtensions.m"; path = "Scripting/DCAPITag-AppleScriptExtensions.m"; sourceTree = "<group>"; };
+		6BE6C20106C9FE1100E90B12 /* SFHFTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFTableView.h; path = UI/SFHFTableView.h; sourceTree = "<group>"; };
+		6BE6C20206C9FE1100E90B12 /* SFHFTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFTableView.m; path = UI/SFHFTableView.m; sourceTree = "<group>"; };
+		6BF009AD077B05B30036723E /* toggle_web_preview_icon.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = toggle_web_preview_icon.tif; path = Art/toggle_web_preview_icon.tif; sourceTree = "<group>"; };
+		6BF00A8F077B0D340036723E /* DCTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCTypes.h; sourceTree = "<group>"; };
+		6BF88AE305C4D56000D7EDBB /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppController.h; path = Application/AppController.h; sourceTree = "<group>"; };
+		6BF88AE405C4D56000D7EDBB /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppController.m; path = Application/AppController.m; sourceTree = "<group>"; };
+		6BF88AF305C4D79D00D7EDBB /* DCAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCAPIClient.h; path = DCAPI/DCAPIClient.h; sourceTree = "<group>"; };
+		6BF88AF405C4D79D00D7EDBB /* DCAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCAPIClient.m; path = DCAPI/DCAPIClient.m; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6B47BEF808633D0800636CB2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B47BF1A08633E8700636CB2 /* Cocoa.framework in Frameworks */,
+				6B47BF1E08633EB700636CB2 /* Automator.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B47BF59086345A400636CB2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				6B20697C05CB87E700D424BF /* WebKit.framework in Frameworks */,
+				6B21241C071CE7270044339D /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				6BF88AE305C4D56000D7EDBB /* AppController.h */,
+				6BF88AE405C4D56000D7EDBB /* AppController.m */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6B47BF1D08633EB700636CB2 /* Automator.framework */,
+				6B21241B071CE7270044339D /* Security.framework */,
+				6B20697B05CB87E700D424BF /* WebKit.framework */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6BAB081C06D2FF6A0058BAC1 /* Cocoalicious.app */,
+				6B47BEFA08633D0800636CB2 /* Convert Posts to URLs.caction */,
+				6B47BF5B086345A400636CB2 /* Cocoalicious.definition */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* Cocoal.icio.us */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Application */,
+				6BD8D4C407205239008CA80A /* del.icio.us Client API */,
+				6BD8D4B607205221008CA80A /* Custom UI */,
+				49FE4954073A0868004027E5 /* Search */,
+				3B3F0225073EF17A003AB1C7 /* Scripts */,
+				6BD81875075AFB510088A2CF /* AppleScript Support */,
+				6BD8D4A707205205008CA80A /* Utilities */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = Cocoal.icio.us;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				6B698143065346D6000649B0 /* defines.h */,
+				6BF00A8F077B0D340036723E /* DCTypes.h */,
+				32CA4F630368D1EE00C91783 /* Delicious Client_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6B6475D30867E11800CD0EC9 /* default_favicon.tif */,
+				6B0896C60838FCEF0057A654 /* star.tif */,
+				6B0896C70838FCEF0057A654 /* star_highlighted.tif */,
+				6BF009AD077B05B30036723E /* toggle_web_preview_icon.tif */,
+				6B0D0362072EC7B6009A7725 /* deliciousclient.icns */,
+				6BA939AD065692DC00AE7890 /* metal_column_header.png */,
+				6BB0A8E8074FF64B008FDDCC /* refresh_icon.tif */,
+				6B3AC8810759162F00F20C1F /* add_post_icon.tif */,
+				6B3AC8820759162F00F20C1F /* delete_post_icon.tif */,
+				6B3AC8830759162F00F20C1F /* show_info_icon.tif */,
+				8D1107310486CEB800E47090 /* Info.plist */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3B3F0225073EF17A003AB1C7 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				3B3F0228073EF1A3003AB1C7 /* safari_script.scpt */,
+			);
+			name = Scripts;
+			sourceTree = "<group>";
+		};
+		49FE4954073A0868004027E5 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				49FE4955073A0868004027E5 /* FullTextIndex.h */,
+				49FE4956073A0868004027E5 /* FullTextIndex.m */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		6B47BEDB08633BD700636CB2 /* Automator Actions */ = {
+			isa = PBXGroup;
+			children = (
+				6B47BF54086344E900636CB2 /* Definition */,
+				6B47BEDE08633BF100636CB2 /* Convert Posts to URLs */,
+			);
+			name = "Automator Actions";
+			sourceTree = "<group>";
+		};
+		6B47BEDE08633BF100636CB2 /* Convert Posts to URLs */ = {
+			isa = PBXGroup;
+			children = (
+				6B47BF4F0863443C00636CB2 /* main.nib */,
+				6B47BF0908633DF600636CB2 /* main.applescript */,
+				6B47BF0C08633E0400636CB2 /* Info.plist */,
+			);
+			name = "Convert Posts to URLs";
+			sourceTree = "<group>";
+		};
+		6B47BF54086344E900636CB2 /* Definition */ = {
+			isa = PBXGroup;
+			children = (
+				6B47BF64086345F100636CB2 /* Info.plist */,
+				6B47BF62086345DF00636CB2 /* version.plist */,
+				6B47BF5D086345C500636CB2 /* definition.plist */,
+				6B47BF5F086345CF00636CB2 /* Localizable.strings */,
+			);
+			name = Definition;
+			sourceTree = "<group>";
+		};
+		6BD81875075AFB510088A2CF /* AppleScript Support */ = {
+			isa = PBXGroup;
+			children = (
+				6B47BEDB08633BD700636CB2 /* Automator Actions */,
+				6BD8187D075AFB740088A2CF /* AppController-AppleScriptExtensions.h */,
+				6BD8187E075AFB740088A2CF /* AppController-AppleScriptExtensions.m */,
+				6BD818EA075AFCE50088A2CF /* DCAPIPost-AppleScriptExtensions.h */,
+				6BD818EB075AFCE50088A2CF /* DCAPIPost-AppleScriptExtensions.m */,
+				6BD818EC075AFCE50088A2CF /* DCAPITag-AppleScriptExtensions.h */,
+				6BD818ED075AFCE50088A2CF /* DCAPITag-AppleScriptExtensions.m */,
+				6BD8187F075AFB740088A2CF /* Cocoalicious.sdef */,
+			);
+			name = "AppleScript Support";
+			sourceTree = "<group>";
+		};
+		6BD8D4A707205205008CA80A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3B3F0249073EF405003AB1C7 /* NSAppleScript+HandlerCalls.h */,
+				3B3F024A073EF405003AB1C7 /* NSAppleScript+HandlerCalls.m */,
+				6B6B69DE082B3C97003DFA07 /* NSDictionary+SFHFUtils.h */,
+				6B6B69DF082B3C97003DFA07 /* NSDictionary+SFHFUtils.m */,
+				6BA936C20655EEC400AE7890 /* NSString+SFHFUtils.h */,
+				6BA936C30655EEC400AE7890 /* NSString+SFHFUtils.m */,
+				6B6475DE0867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.h */,
+				6B6475DF0867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.m */,
+				6B6475D90867E18100CD0EC9 /* EBFavIconUtils.h */,
+				6B6475DA0867E18100CD0EC9 /* EBFavIconUtils.m */,
+				6B212599071D935F0044339D /* SFHFKeychainUtils.h */,
+				6B21259A071D935F0044339D /* SFHFKeychainUtils.m */,
+				6B4324FB08C6DD8C00C26737 /* SFHFFaviconCache.h */,
+				6B4324FC08C6DD8C00C26737 /* SFHFFaviconCache.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		6BD8D4B607205221008CA80A /* Custom UI */ = {
+			isa = PBXGroup;
+			children = (
+				6B6475D50867E14A00CD0EC9 /* EBIconAndTextCell.h */,
+				6B6475D60867E14A00CD0EC9 /* EBIconAndTextCell.m */,
+				6B61ACDB0846382500A27692 /* KFTypeSelectTableView.h */,
+				6B61ACDA0846382500A27692 /* KFTypeSelectTableView.m */,
+				6B13FAE406E10A6F007B4E5F /* SFHFBezelView.h */,
+				6B13FAE506E10A6F007B4E5F /* SFHFBezelView.m */,
+				6BE6C20106C9FE1100E90B12 /* SFHFTableView.h */,
+				6BE6C20206C9FE1100E90B12 /* SFHFTableView.m */,
+				6B13FD0906E2962B007B4E5F /* SFHFTableHeaderCell.h */,
+				6B13FD0A06E2962B007B4E5F /* SFHFTableHeaderCell.m */,
+				6B34D114072A2CBA00D08DB1 /* SFHFMetalTableHeaderCell.h */,
+				6B34D115072A2CBA00D08DB1 /* SFHFMetalTableHeaderCell.m */,
+				6B34D18D072A2E7400D08DB1 /* SFHFiTunesTableHeaderCell.h */,
+				6B34D18E072A2E7400D08DB1 /* SFHFiTunesTableHeaderCell.m */,
+				6B13FEA106E2AAEC007B4E5F /* SFHFCornerView.h */,
+				6B13FEA206E2AAEC007B4E5F /* SFHFCornerView.m */,
+				6B13FBA806E27AB1007B4E5F /* SFHFSplitView.h */,
+				6B13FBA906E27AB1007B4E5F /* SFHFSplitView.m */,
+				6B45F6C507B4934D0007FA1E /* SFHFTextView.h */,
+				6B45F6C607B4934D0007FA1E /* SFHFTextView.m */,
+				6B0896D50838FD090057A654 /* SFHFRatingCell.h */,
+				6B0896D60838FD090057A654 /* SFHFRatingCell.m */,
+				6B6AA441084A7B0F00FDB683 /* SFHFCircularCounterCell.h */,
+				6B6AA442084A7B0F00FDB683 /* SFHFCircularCounterCell.m */,
+			);
+			name = "Custom UI";
+			sourceTree = "<group>";
+		};
+		6BD8D4C407205239008CA80A /* del.icio.us Client API */ = {
+			isa = PBXGroup;
+			children = (
+				6BF88AF305C4D79D00D7EDBB /* DCAPIClient.h */,
+				6BF88AF405C4D79D00D7EDBB /* DCAPIClient.m */,
+				6B37C7D405C8C83E00A005A7 /* DCAPIParser.h */,
+				6B37C7D505C8C83E00A005A7 /* DCAPIParser.m */,
+				6B6981940653485C000649B0 /* DCAPIDate.h */,
+				6B6981950653485C000649B0 /* DCAPIDate.m */,
+				6B69829106534D8F000649B0 /* DCAPITag.h */,
+				6B69829206534D8F000649B0 /* DCAPITag.m */,
+				6B5A44BC06D1CFB6007C405C /* DCAPITagFormatter.h */,
+				6B5A44BD06D1CFB6007C405C /* DCAPITagFormatter.m */,
+				6B37C94E05C8D5BB00A005A7 /* DCAPIPost.h */,
+				6B37C94F05C8D5BB00A005A7 /* DCAPIPost.m */,
+			);
+			name = "del.icio.us Client API";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8D1107270486CEB800E47090 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D1107280486CEB800E47090 /* Delicious Client_Prefix.pch in Headers */,
+				6BF88AE505C4D56000D7EDBB /* AppController.h in Headers */,
+				6BF88AF505C4D79D00D7EDBB /* DCAPIClient.h in Headers */,
+				6B37C7D605C8C83E00A005A7 /* DCAPIParser.h in Headers */,
+				6B37C95005C8D5BB00A005A7 /* DCAPIPost.h in Headers */,
+				6B698144065346D6000649B0 /* defines.h in Headers */,
+				6B6981960653485C000649B0 /* DCAPIDate.h in Headers */,
+				6B69829306534D8F000649B0 /* DCAPITag.h in Headers */,
+				6BA936C40655EEC400AE7890 /* NSString+SFHFUtils.h in Headers */,
+				6BE6C20306C9FE1100E90B12 /* SFHFTableView.h in Headers */,
+				6B5A44BE06D1CFB6007C405C /* DCAPITagFormatter.h in Headers */,
+				6B13FAE606E10A6F007B4E5F /* SFHFBezelView.h in Headers */,
+				6B13FBAA06E27AB1007B4E5F /* SFHFSplitView.h in Headers */,
+				6B13FD0B06E2962B007B4E5F /* SFHFTableHeaderCell.h in Headers */,
+				6B13FEA306E2AAEC007B4E5F /* SFHFCornerView.h in Headers */,
+				6B21259B071D935F0044339D /* SFHFKeychainUtils.h in Headers */,
+				6B34D116072A2CBA00D08DB1 /* SFHFMetalTableHeaderCell.h in Headers */,
+				6B34D18F072A2E7400D08DB1 /* SFHFiTunesTableHeaderCell.h in Headers */,
+				49FE4957073A0868004027E5 /* FullTextIndex.h in Headers */,
+				3B3F024B073EF405003AB1C7 /* NSAppleScript+HandlerCalls.h in Headers */,
+				6BD81880075AFB740088A2CF /* AppController-AppleScriptExtensions.h in Headers */,
+				6BD818EE075AFCE60088A2CF /* DCAPIPost-AppleScriptExtensions.h in Headers */,
+				6BD818F0075AFCE60088A2CF /* DCAPITag-AppleScriptExtensions.h in Headers */,
+				6BF00A90077B0D340036723E /* DCTypes.h in Headers */,
+				6B45F6C707B4934D0007FA1E /* SFHFTextView.h in Headers */,
+				6B6B69E0082B3C97003DFA07 /* NSDictionary+SFHFUtils.h in Headers */,
+				6B0896D70838FD090057A654 /* SFHFRatingCell.h in Headers */,
+				6B61ACDD0846382500A27692 /* KFTypeSelectTableView.h in Headers */,
+				6B6AA443084A7B0F00FDB683 /* SFHFCircularCounterCell.h in Headers */,
+				6B6475F30867E2F800CD0EC9 /* EBIconAndTextCell.h in Headers */,
+				6B6475F50867E31500CD0EC9 /* NSFileManager+ESBExtensions.h in Headers */,
+				6B6475F70867E31700CD0EC9 /* EBFavIconUtils.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		6B47BEF908633D0800636CB2 /* Convert Posts to URLs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6BBFD3B908AD6B1D005A088A /* Build configuration list for PBXNativeTarget "Convert Posts to URLs" */;
+			buildPhases = (
+				6B47BEF608633D0800636CB2 /* Resources */,
+				6B47BEF808633D0800636CB2 /* Frameworks */,
+				6B47BF1708633E4400636CB2 /* AppleScript */,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "Scripting/Automator/Convert Posts To URLs/Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Automator";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = "Convert Posts to URLs";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = caction;
+			};
+			dependencies = (
+			);
+			name = "Convert Posts to URLs";
+			productName = "Convert Posts to URLs";
+			productReference = 6B47BEFA08633D0800636CB2 /* Convert Posts to URLs.caction */;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>Convert Posts to URLs</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.Convert_Posts_to_URLs</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+</dict>
+</plist>
+";
+			productType = "com.apple.product-type.bundle";
+		};
+		6B47BF5A086345A400636CB2 /* Cocoalicious Definition */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6BBFD3BD08AD6B1D005A088A /* Build configuration list for PBXNativeTarget "Cocoalicious Definition" */;
+			buildPhases = (
+				6B47BF57086345A400636CB2 /* Resources */,
+				6B47BF58086345A400636CB2 /* Sources */,
+				6B47BF59086345A400636CB2 /* Frameworks */,
+				6B47BF6D0863468200636CB2 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Scripting/Automator/Definition/Info.plist;
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Automator";
+				LIBRARY_STYLE = BUNDLE;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = Cocoalicious;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = definition;
+			};
+			dependencies = (
+			);
+			name = "Cocoalicious Definition";
+			productName = "Cocoalicious Definition";
+			productReference = 6B47BF5B086345A400636CB2 /* Cocoalicious.definition */;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>Cocoalicious Definition</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.Cocoalicious_Definition</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+</dict>
+</plist>
+";
+			productType = "com.apple.product-type.bundle";
+		};
+		8D1107260486CEB800E47090 /* Cocoal.icio.us */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6BBFD3C108AD6B1D005A088A /* Build configuration list for PBXNativeTarget "Cocoal.icio.us" */;
+			buildPhases = (
+				8D1107270486CEB800E47090 /* Headers */,
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+				6BD8194B075AFD9C0088A2CF /* ShellScript */,
+				6B47BF91086348A000636CB2 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Delicious Client_Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = Cocoalicious;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+			};
+			dependencies = (
+				6B47BF8A086347D100636CB2 /* PBXTargetDependency */,
+				6B47BF8C086347D500636CB2 /* PBXTargetDependency */,
+			);
+			name = Cocoal.icio.us;
+			productInstallPath = "$(HOME)/Applications";
+			productName = "Delicious Client";
+			productReference = 6BAB081C06D2FF6A0058BAC1 /* Cocoalicious.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 6BBFD3C508AD6B1D005A088A /* Build configuration list for PBXProject "Delicious Client" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				4A9504CCFFE6A4B311CA0CBA /* Development */,
+				4A9504CDFFE6A4B311CA0CBA /* Deployment */,
+			);
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* Cocoal.icio.us */;
+			projectDirPath = "";
+			targets = (
+				8D1107260486CEB800E47090 /* Cocoal.icio.us */,
+				6B47BEF908633D0800636CB2 /* Convert Posts to URLs */,
+				6B47BF5A086345A400636CB2 /* Cocoalicious Definition */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6B47BEF608633D0800636CB2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B47BF510863443C00636CB2 /* main.nib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B47BF57086345A400636CB2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B47BF5E086345C500636CB2 /* definition.plist in Resources */,
+				6B47BF61086345CF00636CB2 /* Localizable.strings in Resources */,
+				6B6475D40867E11800CD0EC9 /* default_favicon.tif in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				6BA939AE065692DC00AE7890 /* metal_column_header.png in Resources */,
+				6B0D0363072EC7B6009A7725 /* deliciousclient.icns in Resources */,
+				6B6475E20867E26500CD0EC9 /* default_favicon.tif in Resources */,
+				3B3F0229073EF1A3003AB1C7 /* safari_script.scpt in Resources */,
+				6BB0A8E9074FF64B008FDDCC /* refresh_icon.tif in Resources */,
+				6B3AC8840759162F00F20C1F /* add_post_icon.tif in Resources */,
+				6B3AC8850759162F00F20C1F /* delete_post_icon.tif in Resources */,
+				6B3AC8860759162F00F20C1F /* show_info_icon.tif in Resources */,
+				6BF009AE077B05B30036723E /* toggle_web_preview_icon.tif in Resources */,
+				6B0896C80838FCEF0057A654 /* star.tif in Resources */,
+				6B0896C90838FCEF0057A654 /* star_highlighted.tif in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6BD8194B075AFD9C0088A2CF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ -x /usr/bin/sdp ]; then\n\tsdp=\"/usr/bin/sdp\" \nelif [ -x /Developer/Tools/sdp ]; then\n\tsdp=\"/Developer/Tools/sdp\"\nelse\n\techo \"Unable to find sdp command\"\n\texit 1;\nfi\n\n${sdp} -f st -o \"$BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources\" \"$SOURCE_ROOT/Scripting/Cocoalicious.sdef\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6B47BF58086345A400636CB2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B6475D80867E14A00CD0EC9 /* EBIconAndTextCell.m in Sources */,
+				6B6475DC0867E18100CD0EC9 /* EBFavIconUtils.m in Sources */,
+				6B6475E10867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.m in Sources */,
+				6B4324FE08C6DD8C00C26737 /* SFHFFaviconCache.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				6BF88AE605C4D56000D7EDBB /* AppController.m in Sources */,
+				6BF88AF605C4D79D00D7EDBB /* DCAPIClient.m in Sources */,
+				6B37C7D705C8C83E00A005A7 /* DCAPIParser.m in Sources */,
+				6B37C95105C8D5BB00A005A7 /* DCAPIPost.m in Sources */,
+				6B6981970653485C000649B0 /* DCAPIDate.m in Sources */,
+				6B69829406534D8F000649B0 /* DCAPITag.m in Sources */,
+				6BA936C50655EEC400AE7890 /* NSString+SFHFUtils.m in Sources */,
+				6BE6C20406C9FE1100E90B12 /* SFHFTableView.m in Sources */,
+				6B5A44BF06D1CFB6007C405C /* DCAPITagFormatter.m in Sources */,
+				6B13FAE706E10A6F007B4E5F /* SFHFBezelView.m in Sources */,
+				6B13FBAB06E27AB1007B4E5F /* SFHFSplitView.m in Sources */,
+				6B13FD0C06E2962B007B4E5F /* SFHFTableHeaderCell.m in Sources */,
+				6B13FEA406E2AAEC007B4E5F /* SFHFCornerView.m in Sources */,
+				6B21259C071D935F0044339D /* SFHFKeychainUtils.m in Sources */,
+				6B34D117072A2CBA00D08DB1 /* SFHFMetalTableHeaderCell.m in Sources */,
+				6B34D190072A2E7400D08DB1 /* SFHFiTunesTableHeaderCell.m in Sources */,
+				49FE4958073A0868004027E5 /* FullTextIndex.m in Sources */,
+				3B3F024C073EF405003AB1C7 /* NSAppleScript+HandlerCalls.m in Sources */,
+				6BD81881075AFB740088A2CF /* AppController-AppleScriptExtensions.m in Sources */,
+				6BD818EF075AFCE60088A2CF /* DCAPIPost-AppleScriptExtensions.m in Sources */,
+				6BD818F1075AFCE60088A2CF /* DCAPITag-AppleScriptExtensions.m in Sources */,
+				6B45F6C807B4934D0007FA1E /* SFHFTextView.m in Sources */,
+				6B6B69E1082B3C97003DFA07 /* NSDictionary+SFHFUtils.m in Sources */,
+				6B0896D80838FD090057A654 /* SFHFRatingCell.m in Sources */,
+				6B61ACDC0846382500A27692 /* KFTypeSelectTableView.m in Sources */,
+				6B6AA444084A7B0F00FDB683 /* SFHFCircularCounterCell.m in Sources */,
+				6B6475F40867E2FB00CD0EC9 /* EBIconAndTextCell.m in Sources */,
+				6B6475F60867E31600CD0EC9 /* NSFileManager+ESBExtensions.m in Sources */,
+				6B6475F80867E31700CD0EC9 /* EBFavIconUtils.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6B47BF8A086347D100636CB2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6B47BEF908633D0800636CB2 /* Convert Posts to URLs */;
+			targetProxy = 6B47BF89086347D100636CB2 /* PBXContainerItemProxy */;
+		};
+		6B47BF8C086347D500636CB2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6B47BF5A086345A400636CB2 /* Cocoalicious Definition */;
+			targetProxy = 6B47BF8B086347D500636CB2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		29B97318FDCFA39411CA2CEA /* MainMenu.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29B97319FDCFA39411CA2CEA /* English */,
+			);
+			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+		6B47BF4F0863443C00636CB2 /* main.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6B47BF500863443C00636CB2 /* English */,
+			);
+			name = main.nib;
+			sourceTree = "<group>";
+		};
+		6B47BF5F086345CF00636CB2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6B47BF60086345CF00636CB2 /* Localizable.strings */,
+			);
+			name = Localizable.strings;
+			path = Scripting/Automator/Definition/English.lproj;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6BBFD3BA08AD6B1D005A088A /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "Scripting/Automator/Convert Posts To URLs/Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Automator";
+				LIBRARY_STYLE = STATIC;
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = "Convert Posts to URLs";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = caction;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		6BBFD3BB08AD6B1D005A088A /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPYING_PRESERVES_HFS_DATA = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "Scripting/Automator/Convert Posts To URLs/Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Automator";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = "Convert Posts to URLs";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = caction;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		6BBFD3BC08AD6B1D005A088A /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "Scripting/Automator/Convert Posts To URLs/Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Automator";
+				LIBRARY_STYLE = STATIC;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = "Convert Posts to URLs";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = caction;
+			};
+			name = Default;
+		};
+		6BBFD3BE08AD6B1D005A088A /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Scripting/Automator/Definition/Info.plist;
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Automator";
+				LIBRARY_STYLE = BUNDLE;
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = Cocoalicious;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = definition;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		6BBFD3BF08AD6B1D005A088A /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPYING_PRESERVES_HFS_DATA = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Scripting/Automator/Definition/Info.plist;
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Automator";
+				LIBRARY_STYLE = BUNDLE;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = Cocoalicious;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = definition;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		6BBFD3C008AD6B1D005A088A /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = Scripting/Automator/Definition/Info.plist;
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Automator";
+				LIBRARY_STYLE = BUNDLE;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = Cocoalicious;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = definition;
+			};
+			name = Default;
+		};
+		6BBFD3C208AD6B1D005A088A /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Delicious Client_Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = Cocoalicious;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		6BBFD3C308AD6B1D005A088A /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPYING_PRESERVES_HFS_DATA = NO;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Delicious Client_Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = Cocoalicious;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		6BBFD3C408AD6B1D005A088A /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_ENABLE_TRIGRAPHS = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Delicious Client_Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
+				GCC_WARN_UNKNOWN_PRAGMAS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = Cocoalicious;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+			};
+			name = Default;
+		};
+		6BBFD3C608AD6B1D005A088A /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = ppc;
+			};
+			name = Development;
+		};
+		6BBFD3C708AD6B1D005A088A /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = ppc;
+			};
+			name = Deployment;
+		};
+		6BBFD3C808AD6B1D005A088A /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = ppc;
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6BBFD3B908AD6B1D005A088A /* Build configuration list for PBXNativeTarget "Convert Posts to URLs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BBFD3BA08AD6B1D005A088A /* Development */,
+				6BBFD3BB08AD6B1D005A088A /* Deployment */,
+				6BBFD3BC08AD6B1D005A088A /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		6BBFD3BD08AD6B1D005A088A /* Build configuration list for PBXNativeTarget "Cocoalicious Definition" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BBFD3BE08AD6B1D005A088A /* Development */,
+				6BBFD3BF08AD6B1D005A088A /* Deployment */,
+				6BBFD3C008AD6B1D005A088A /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		6BBFD3C108AD6B1D005A088A /* Build configuration list for PBXNativeTarget "Cocoal.icio.us" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BBFD3C208AD6B1D005A088A /* Development */,
+				6BBFD3C308AD6B1D005A088A /* Deployment */,
+				6BBFD3C408AD6B1D005A088A /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		6BBFD3C508AD6B1D005A088A /* Build configuration list for PBXProject "Delicious Client" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BBFD3C608AD6B1D005A088A /* Development */,
+				6BBFD3C708AD6B1D005A088A /* Deployment */,
+				6BBFD3C808AD6B1D005A088A /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
