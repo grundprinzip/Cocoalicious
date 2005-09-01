@@ -257,14 +257,16 @@
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>6BD8D4A707205205008CA80A</string>
+								<string>1C37FBAC04509CD000000102</string>
+								<string>6B43266A08C6F93F00C26737</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>21</integer>
-									<integer>7</integer>
-									<integer>0</integer>
+									<integer>34</integer>
+									<integer>27</integer>
+									<integer>26</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -368,9 +370,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>6B43246808C6D78400C26737</string>
+				<string>6B43264E08C6F87E00C26737</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>6B43246908C6D78400C26737</string>
+				<string>6B43264F08C6F87E00C26737</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -504,9 +506,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>6BFBD192082EEB42009D11EB</string>
+		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>/Users/buzz/Code/Cocoa/cocoalicious/Delicious Client.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -552,6 +553,8 @@
 							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
+								<key>PBXBuildLogShowsTranscriptDefaultKey</key>
+								<string>{{0, 75}, {853, 161}}</string>
 								<key>PBXProjectModuleGUID</key>
 								<string>XCMainBuildResultsModuleGUID</string>
 								<key>PBXProjectModuleLabel</key>
@@ -589,7 +592,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>6BFBD192082EEB42009D11EB</string>
-				<string>6B43246D08C6D7B400C26737</string>
+				<string>6B43266508C6F8FB00C26737</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -600,7 +603,7 @@
 			<key>WindowToolGUID</key>
 			<string>6BFBD192082EEB42009D11EB</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -901,8 +904,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {367, 168}}</string>
-											<string>{{0, 173}, {367, 270}}</string>
+											<string>{{0, 0}, {491, 168}}</string>
+											<string>{{0, 173}, {491, 270}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -951,9 +954,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>6B4324A408C6D9BD00C26737</string>
+				<string>6B43266808C6F93A00C26737</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>6B4324A508C6D9BD00C26737</string>
+				<string>6B43266908C6F93A00C26737</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>
@@ -962,7 +965,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C0AD2B3069F1EA900FABCE6</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

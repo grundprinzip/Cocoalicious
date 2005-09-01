@@ -847,7 +847,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -x /usr/bin/sdp ]; then\n\tsdp=\"/usr/bin/sdp\" \nelif [ -x /Developer/Tools/sdp ]; then\n\tsdp=\"/Developer/Tools/sdp\"\nelse\n\techo \"Unable to find sdp command\"\n\texit 1;\nfi\n\n${sdp} -f st -o \"$BUILD_DIR/$FULL_PRODUCT_NAME/Contents/Resources\" \"$SOURCE_ROOT/Scripting/Cocoalicious.sdef\"";
+			shellScript = "if [ -x /usr/bin/sdp ]; then\n\tsdp=\"/usr/bin/sdp\" \nelif [ -x /Developer/Tools/sdp ]; then\n\tsdp=\"/Developer/Tools/sdp\"\nelse\n\techo \"Unable to find sdp command\"\n\texit 1;\nfi\n\n${sdp} -f st -o \"$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME/Contents/Resources\" \"$SOURCE_ROOT/Scripting/Cocoalicious.sdef\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 

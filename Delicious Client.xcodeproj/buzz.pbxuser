@@ -145,7 +145,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 147249021;
+			PBXPerProjectTemplateStateSaveDate = 147257442;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -1017,7 +1017,12 @@
 				PBXModuleWindowStatusBarHidden = YES;
 				RubberWindowFrame = "465 168 745 467 0 0 1280 832 ";
 			};
-			PBXWorkspaceStateSaveDate = 147249021;
+			PBXWorkspaceStateSaveDate = 147257442;
+		};
+		perUserProjectItems = {
+			6B43266308C6F8FB00C26737 /* PBXTextBookmark */ = 6B43266308C6F8FB00C26737 /* PBXTextBookmark */;
+			6B43266408C6F8FB00C26737 /* PBXTextBookmark */ = 6B43266408C6F8FB00C26737 /* PBXTextBookmark */;
+			6B43266708C6F93A00C26737 /* PBXTextBookmark */ = 6B43266708C6F93A00C26737 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 6BF88AE705C4D57100D7EDBB /* Source Control */;
 		userBuildSettings = {
@@ -1228,6 +1233,34 @@
 			sepNavVisRect = "{{0, 1498}, {812, 210}}";
 			sepNavWindowFrame = "{{438, 132}, {750, 558}}";
 		};
+	};
+	6B43266308C6F8FB00C26737 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "warning: #warning modify if tableView:validateDrop:proposedRow:proposedOperation returns for more than just tag assignment";
+		fRef = 6BF88AE405C4D56000D7EDBB /* AppController.m */;
+		rLen = 1;
+		rLoc = 972;
+		rType = 1;
+	};
+	6B43266408C6F8FB00C26737 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6BF88AE405C4D56000D7EDBB /* AppController.m */;
+		name = "#warning modify if tableView:validateDrop:proposedRow:proposedOperation returns for more than just tag assignment";
+		rLen = 114;
+		rLoc = 34452;
+		rType = 0;
+		vrLen = 721;
+		vrLoc = 34231;
+	};
+	6B43266708C6F93A00C26737 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6BF88AE405C4D56000D7EDBB /* AppController.m */;
+		name = "#warning modify if tableView:validateDrop:proposedRow:proposedOperation returns for more than just tag assignment";
+		rLen = 114;
+		rLoc = 34452;
+		rType = 0;
+		vrLen = 721;
+		vrLoc = 34231;
 	};
 	6B45F6C507B4934D0007FA1E /* SFHFTextView.h */ = {
 		uiCtxt = {
@@ -1545,7 +1578,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1736, 23506}}";
 			sepNavSelRange = "{34452, 114}";
-			sepNavVisRect = "{{0, 13510}, {812, 210}}";
+			sepNavVisRect = "{{0, 13511}, {812, 210}}";
 			sepNavWindowFrame = "{{176, 122}, {750, 558}}";
 		};
 	};
