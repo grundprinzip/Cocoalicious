@@ -24,7 +24,7 @@
 
 static SFHFFaviconCache *sharedFaviconCache = nil;
 
-+ (SFHFFaviconCache *) sharedFaviconCache {
++ (SFHFFaviconCache *) sharedFaviconCache {	
 	@synchronized (self) {
 		if (!sharedFaviconCache) {
 			sharedFaviconCache = [[SFHFFaviconCache alloc] init];
@@ -34,12 +34,27 @@ static SFHFFaviconCache *sharedFaviconCache = nil;
 	return sharedFaviconCache;
 }
 
-- (id) init {
+- init {
 	if (self = [super init]) {
 		memoryCache = [[NSMutableDictionary alloc] init];
+		[self setDefaultFavicon: [NSImage imageNamed: kDEFAULT_FAVICON_NAME]];
+
+		return self;
 	}
 	
-	return self;
+	return nil;
+}
+
+- (void) setDefaultFavicon: (NSImage *) newDefaultFavicon {
+	if (newDefaultFavicon != defaultFavicon) {
+		[defaultFavicon release];
+		defaultFavicon = [newDefaultFavicon copy];
+		[defaultFavicon setCacheMode: NSImageCacheNever];
+	}
+}
+
+- (NSImage *) defaultFavicon {
+	return [[defaultFavicon retain] autorelease];
 }
 
 - (NSImage *) faviconForURL: (NSURL *) url forceRefresh: (BOOL) forceRefresh {
@@ -66,7 +81,7 @@ static SFHFFaviconCache *sharedFaviconCache = nil;
 
 	BOOL iconExists = [[NSFileManager defaultManager] fileExistsAtPath: faviconPath];
 	
-	if (!iconExists || forceRefresh) {
+	if (forceRefresh) {
 		/* download icon, write to disk */
 		favicon = [self downloadFaviconForURL: url];
 		
@@ -92,12 +107,13 @@ static SFHFFaviconCache *sharedFaviconCache = nil;
 			favicon = [resizedImage autorelease];
 		}
 	}
-	else {
+	else if (iconExists) {
 		/* load icon from disk */
 		favicon = [[[NSImage alloc] initWithContentsOfFile: faviconPath] autorelease];
 	}
 	
 	if (favicon) {
+		[favicon setCacheMode: NSImageCacheNever];
 		[memCache setObject: favicon forKey: [url absoluteString]];
 	}
 	

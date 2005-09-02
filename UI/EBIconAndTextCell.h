@@ -10,12 +10,9 @@
 
 
 @interface EBIconAndTextCell : NSTextFieldCell <NSCopying, NSCoding> {
-	NSImage		*favIcon;
-	NSString	*favIconPath;
+	NSImage		*favicon;
 	NSString	*description;
 	NSSize		iconSize;
-	NSImage		*defaultIcon;
-	BOOL		regenFavIcon;
 }
 
 - (id)initWithDefaultIcon: (NSImage *)newDefaultIcon;
@@ -25,17 +22,11 @@
 	iconSize: (NSSize)newIconSize
 	defaultIcon: (NSImage *)newDefaultIcon;
 
-- (void)setFavIcon: (NSImage *)newFavIcon;
-- (NSImage* )favIcon;
-- (void)setFavIconPath: (NSString *)newFavIconPath;
-- (NSString *)favIconPath;
+- (void)setFavicon: (NSImage *)newFavicon;
+- (NSImage* )favicon;
 - (void)setDescription: (NSString *)newDescription;
 - (NSString *)description;
 - (void)setIconSize:(NSSize)newIconSize;
 - (NSSize)iconSize;
-- (void)setDefaultIcon: (NSImage *)newDefaultIcon;
-- (NSImage *)defaultIcon;
-- (void)setRegenFavIcon: (BOOL)newRegenFavIcon;
-- (BOOL)regenFavIcon;
 
 @end

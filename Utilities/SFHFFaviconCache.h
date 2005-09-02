@@ -11,9 +11,12 @@
 
 @interface SFHFFaviconCache : NSObject {
 	NSMutableDictionary *memoryCache;
+	NSImage *defaultFavicon;
 }
 
 + (SFHFFaviconCache *) sharedFaviconCache;
+- (NSImage *) defaultFavicon;
+- (void) setDefaultFavicon: (NSImage *) newDefaultFavicon;
 - (NSImage *) faviconForURL: (NSURL *) url forceRefresh: (BOOL) forceRefresh;
 
 @end

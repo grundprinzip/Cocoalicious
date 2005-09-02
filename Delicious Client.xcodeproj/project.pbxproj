@@ -103,6 +103,8 @@
 		6BD818EF075AFCE60088A2CF /* DCAPIPost-AppleScriptExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD818EB075AFCE50088A2CF /* DCAPIPost-AppleScriptExtensions.m */; };
 		6BD818F0075AFCE60088A2CF /* DCAPITag-AppleScriptExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD818EC075AFCE50088A2CF /* DCAPITag-AppleScriptExtensions.h */; };
 		6BD818F1075AFCE60088A2CF /* DCAPITag-AppleScriptExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD818ED075AFCE50088A2CF /* DCAPITag-AppleScriptExtensions.m */; };
+		6BE1ED1708C82BCD003EDABC /* SFHFFaviconCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B4324FB08C6DD8C00C26737 /* SFHFFaviconCache.h */; };
+		6BE1ED1808C82BD0003EDABC /* SFHFFaviconCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4324FC08C6DD8C00C26737 /* SFHFFaviconCache.m */; };
 		6BE6C20306C9FE1100E90B12 /* SFHFTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BE6C20106C9FE1100E90B12 /* SFHFTableView.h */; };
 		6BE6C20406C9FE1100E90B12 /* SFHFTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE6C20206C9FE1100E90B12 /* SFHFTableView.m */; };
 		6BF009AE077B05B30036723E /* toggle_web_preview_icon.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6BF009AD077B05B30036723E /* toggle_web_preview_icon.tif */; };
@@ -589,6 +591,7 @@
 				6B6475F30867E2F800CD0EC9 /* EBIconAndTextCell.h in Headers */,
 				6B6475F50867E31500CD0EC9 /* NSFileManager+ESBExtensions.h in Headers */,
 				6B6475F70867E31700CD0EC9 /* EBFavIconUtils.h in Headers */,
+				6BE1ED1708C82BCD003EDABC /* SFHFFaviconCache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -897,6 +900,7 @@
 				6B6475F40867E2FB00CD0EC9 /* EBIconAndTextCell.m in Sources */,
 				6B6475F60867E31600CD0EC9 /* NSFileManager+ESBExtensions.m in Sources */,
 				6B6475F80867E31700CD0EC9 /* EBFavIconUtils.m in Sources */,
+				6BE1ED1808C82BD0003EDABC /* SFHFFaviconCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

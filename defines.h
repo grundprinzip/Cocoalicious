@@ -76,4 +76,6 @@
 #define kWebURLNamePboardType			@"CorePasteboardFlavorType 0x75726C6E"
 #define kWebURLsWithTitlesPboardType	@"WebURLsWithTitlesPboardType"
 
+#define FAVICON_SUPPORT 1
 #define kFAVICON_DISPLAY_SIZE NSMakeSize(13.0, 13.0)
+#define kDEFAULT_FAVICON_NAME @"default_favicon.tif"

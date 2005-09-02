@@ -1002,14 +1002,21 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 - (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex {
  	if(aTableView == postList) {
  		if([[aTableColumn identifier] isEqualToString:@"description"]) {
- 			DCAPIPost * currentPost = [[self filteredPosts] objectAtIndex: rowIndex];
- 			
-			if ([aCell isKindOfClass: [EBIconAndTextCell class]]) {
-				NSImage *icon = [[self favIcons] objectForKey: [currentPost URL]];
+ 			DCAPIPost *currentPost = [[self filteredPosts] objectAtIndex: rowIndex];
+ 						
+			if ([aCell isKindOfClass: [EBIconAndTextCell class]]) {				
+				/*if ([aCell favicon]) {
+					return;
+				}*/
 				
-				if (icon) {
-					[(EBIconAndTextCell *) aCell setFavIcon: icon];
+				NSImage *icon = [[SFHFFaviconCache sharedFaviconCache] faviconForURL: [currentPost URL] forceRefresh: NO];
+				//NSImage *icon = nil;
+				
+				if (!icon) {
+					icon = [[SFHFFaviconCache sharedFaviconCache] defaultFavicon];
 				}
+				
+				[(EBIconAndTextCell *) aCell setFavicon: icon];
 			}
 		}
  	}

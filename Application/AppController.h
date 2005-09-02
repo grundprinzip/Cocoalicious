@@ -25,7 +25,7 @@
 #import "SFHFCircularCounterCell.h"
 #import "SFHFCornerView.h"
 #import "EBIconAndTextCell.h"
-#import "EBFavIconUtils.h"
+#import "SFHFFaviconCache.h"
 #import "defines.h"
 #import "DCTypes.h"
 
