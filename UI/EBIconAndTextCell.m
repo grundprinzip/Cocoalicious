@@ -125,10 +125,10 @@
 	[super drawWithFrame:cellFrame inView:controlView];
 }
 
-- (void)setFavicon: (NSImage *)newFavicon {
+- (void)setFavicon: (NSImage *) newFavicon {
 	if(favicon != newFavicon) {
 		[favicon release];
-		favicon = [newFavicon copy];
+		favicon = [newFavicon retain];
 	}
 }
 

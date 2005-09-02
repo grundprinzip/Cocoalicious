@@ -190,46 +190,6 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>6BE1ED8108C83619003EDABC</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>EBIconAndTextCell.m</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>6BE1ED8208C83619003EDABC</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>EBIconAndTextCell.m</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>6BE1ED8308C83619003EDABC</string>
-						<key>history</key>
-						<array>
-							<string>6BE1ED8008C83606003EDABC</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {964, 558}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>195 188 964 599 0 0 1280 832 </string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
 				<string>6BE1ECB308C823A9003EDABC</string>
 				<key>PBXProjectModuleLabel</key>
 				<string>defines.h</string>
@@ -244,10 +204,10 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>6BE1ED8408C83619003EDABC</string>
+						<string>6BCE644608C8462600C67918</string>
 						<key>history</key>
 						<array>
-							<string>6BE1ECB508C823A9003EDABC</string>
+							<string>6BE1ED8408C83619003EDABC</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -337,25 +297,17 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
-								<string>080E96DDFE201D6D7F000001</string>
-								<string>6BD8D4C407205239008CA80A</string>
-								<string>6BD8D4B607205221008CA80A</string>
-								<string>6BD8D4A707205205008CA80A</string>
-								<string>29B97315FDCFA39411CA2CEA</string>
-								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>19</integer>
-									<integer>17</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 183}, {225, 533}}</string>
+							<string>{{0, 0}, {225, 533}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -455,9 +407,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>6BE1EC6708C81E68003EDABC</string>
+				<string>6BCE644408C8462600C67918</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>6BE1EC6808C81E68003EDABC</string>
+				<string>6BCE644508C8462600C67918</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -591,12 +543,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
-		<string>6BFBD192082EEB42009D11EB</string>
 		<string>6BE1ECB308C823A9003EDABC</string>
 		<string>/Users/buzz/Code/Cocoa/cocoalicious/Delicious Client.xcodeproj</string>
-		<string>6BE1ED8108C83619003EDABC</string>
 	</array>
 	<key>WindowString</key>
 	<string>56 219 949 592 0 0 1280 832 </string>
@@ -990,8 +939,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {367, 168}}</string>
-											<string>{{0, 173}, {367, 270}}</string>
+											<string>{{0, 0}, {491, 168}}</string>
+											<string>{{0, 173}, {491, 270}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -1040,9 +989,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>6BE1EC6308C81E4B003EDABC</string>
+				<string>6BCE641D08C837B700C67918</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>6BE1EC6408C81E4B003EDABC</string>
+				<string>6BCE641E08C837B700C67918</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>
