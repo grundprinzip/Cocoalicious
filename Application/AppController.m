@@ -1404,13 +1404,20 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	DCAPIPost *newPost = [[DCAPIPost alloc] initWithURL: postURL description: postDescription extended: postExtended date: postDate tags: nil urlHash: nil];
 	[newPost setTagsFromString: postTags];
 	
-	[NSThread detachNewThreadSelector: @selector(addPost:) toTarget: [self client] withObject: newPost];
+	[NSThread detachNewThreadSelector: @selector(performAsyncAddOfPost:) toTarget: self withObject: newPost];
 	
 	[[SFHFFaviconCache sharedFaviconCache] faviconForURL: postURL forceRefresh: YES];
 	
 	[self closePostingInterface: self];
 	[self insertPost: newPost];
 	[newPost release];
+}
+
+- (void) performAsyncAddOfPost: (DCAPIPost *) newPost {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	[[SFHFFaviconCache sharedFaviconCache] faviconForURL: [newPost URL] forceRefresh: YES];
+	[[self client] addPost: newPost];
+	[pool release];
 }
 
 - (void)postNewLinkWithPasteboard:(NSPasteboard *)pboard userData:(NSString *)data error:(NSString **)error {
