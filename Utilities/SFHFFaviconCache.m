@@ -93,6 +93,7 @@ static SFHFFaviconCache *sharedFaviconCache = nil;
 			NSImage *resizedImage = [[NSImage alloc] initWithSize: kFAVICON_DISPLAY_SIZE];
 					
 			[resizedImage lockFocus];
+			[[NSGraphicsContext currentContext] setImageInterpolation: NSImageInterpolationHigh];
 			NSSize originalSize = [favicon size];
 			NSSize resizedSize = [resizedImage size];
 			[favicon drawInRect: NSMakeRect(0, 0, resizedSize.width, resizedSize.height) fromRect: NSMakeRect(0, 0, originalSize.width, originalSize.height) operation: NSCompositeSourceOver fraction: 1.0];

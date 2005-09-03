@@ -1406,6 +1406,8 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	
 	[NSThread detachNewThreadSelector: @selector(addPost:) toTarget: [self client] withObject: newPost];
 	
+	[[SFHFFaviconCache sharedFaviconCache] faviconForURL: postURL forceRefresh: YES];
+	
 	[self closePostingInterface: self];
 	[self insertPost: newPost];
 	[newPost release];

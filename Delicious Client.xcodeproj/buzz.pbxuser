@@ -145,7 +145,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 147368193;
+			PBXPerProjectTemplateStateSaveDate = 147374541;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -1017,14 +1017,11 @@
 				PBXModuleWindowStatusBarHidden = YES;
 				RubberWindowFrame = "465 168 745 467 0 0 1280 832 ";
 			};
-			PBXWorkspaceStateSaveDate = 147368193;
+			PBXWorkspaceStateSaveDate = 147374541;
 		};
 		perUserProjectItems = {
-			6BB1745D08C8A92F00B5AE97 /* PBXTextBookmark */ = 6BB1745D08C8A92F00B5AE97 /* PBXTextBookmark */;
-			6BB1745E08C8A92F00B5AE97 /* PBXTextBookmark */ = 6BB1745E08C8A92F00B5AE97 /* PBXTextBookmark */;
-			6BB1746008C8A93E00B5AE97 /* PBXTextBookmark */ = 6BB1746008C8A93E00B5AE97 /* PBXTextBookmark */;
-			6BCE644608C8462600C67918 = 6BCE644608C8462600C67918 /* PBXTextBookmark */;
-			6BE1ED8408C83619003EDABC = 6BE1ED8408C83619003EDABC /* PBXTextBookmark */;
+			6B5B300B08C9F7E90030D865 /* PBXTextBookmark */ = 6B5B300B08C9F7E90030D865 /* PBXTextBookmark */;
+			6BB1748008C8AAB100B5AE97 /* PBXTextBookmark */ = 6BB1748008C8AAB100B5AE97 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 6BF88AE705C4D57100D7EDBB /* Source Control */;
 		userBuildSettings = {
@@ -1232,10 +1229,10 @@
 	};
 	6B4324FC08C6DD8C00C26737 /* SFHFFaviconCache.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1250, 2450}}";
-			sepNavSelRange = "{3031, 0}";
-			sepNavVisRect = "{{0, 1384}, {711, 429}}";
-			sepNavWindowFrame = "{{438, 133}, {750, 558}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1250, 2464}}";
+			sepNavSelRange = "{48, 0}";
+			sepNavVisRect = "{{0, 0}, {711, 429}}";
+			sepNavWindowFrame = "{{14, 110}, {750, 558}}";
 		};
 	};
 	6B45F6C507B4934D0007FA1E /* SFHFTextView.h */ = {
@@ -1290,6 +1287,16 @@
 			sepNavWindowFrame = "{{15, 269}, {750, 558}}";
 		};
 	};
+	6B5B300B08C9F7E90030D865 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6B698143065346D6000649B0 /* defines.h */;
+		name = "defines.h: kTAGLIST_TAG_COLUMN_IDENTIFIER";
+		rLen = 0;
+		rLoc = 2657;
+		rType = 0;
+		vrLen = 1126;
+		vrLoc = 1936;
+	};
 	6B61ACDA0846382500A27692 /* KFTypeSelectTableView.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1430, 17822}}";
@@ -1322,8 +1329,8 @@
 	6B6475D60867E14A00CD0EC9 /* EBIconAndTextCell.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {925, 2254}}";
-			sepNavSelRange = "{504, 0}";
-			sepNavVisRect = "{{0, 191}, {925, 526}}";
+			sepNavSelRange = "{3256, 0}";
+			sepNavVisRect = "{{0, 1566}, {925, 526}}";
 			sepNavWindowFrame = "{{195, 132}, {964, 655}}";
 		};
 	};
@@ -1474,35 +1481,7 @@
 			sepNavWindowFrame = "{{84, 206}, {750, 558}}";
 		};
 	};
-	6BB1745D08C8A92F00B5AE97 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		comments = "warning: #warning modify if tableView:validateDrop:proposedRow:proposedOperation returns for more than just tag assignment";
-		fRef = 6BF88AE405C4D56000D7EDBB /* AppController.m */;
-		rLen = 1;
-		rLoc = 972;
-		rType = 1;
-	};
-	6BB1745E08C8A92F00B5AE97 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 6BF88AE405C4D56000D7EDBB /* AppController.m */;
-		name = "#warning modify if tableView:validateDrop:proposedRow:proposedOperation returns for more than just tag assignment";
-		rLen = 114;
-		rLoc = 34452;
-		rType = 0;
-		vrLen = 708;
-		vrLoc = 34231;
-	};
-	6BB1746008C8A93E00B5AE97 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 6BF88AE405C4D56000D7EDBB /* AppController.m */;
-		name = "#warning modify if tableView:validateDrop:proposedRow:proposedOperation returns for more than just tag assignment";
-		rLen = 114;
-		rLoc = 34452;
-		rType = 0;
-		vrLen = 708;
-		vrLoc = 34231;
-	};
-	6BCE644608C8462600C67918 /* PBXTextBookmark */ = {
+	6BB1748008C8AAB100B5AE97 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 6B698143065346D6000649B0 /* defines.h */;
 		name = "defines.h: kTAGLIST_TAG_COLUMN_IDENTIFIER";
@@ -1562,16 +1541,6 @@
 			sepNavVisRect = "{{0, 0}, {711, 404}}";
 		};
 	};
-	6BE1ED8408C83619003EDABC /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 6B698143065346D6000649B0 /* defines.h */;
-		name = "defines.h: kTAGLIST_TAG_COLUMN_IDENTIFIER";
-		rLen = 0;
-		rLoc = 2657;
-		rType = 0;
-		vrLen = 1126;
-		vrLoc = 1936;
-	};
 	6BE6C20106C9FE1100E90B12 /* SFHFTableView.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {754, 546}}";
@@ -1606,9 +1575,9 @@
 	};
 	6BF88AE405C4D56000D7EDBB /* AppController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1736, 23604}}";
-			sepNavSelRange = "{36034, 0}";
-			sepNavVisRect = "{{0, 13937}, {711, 429}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1736, 23632}}";
+			sepNavSelRange = "{49688, 0}";
+			sepNavVisRect = "{{0, 19401}, {711, 429}}";
 			sepNavWindowFrame = "{{391, 199}, {750, 558}}";
 		};
 	};
