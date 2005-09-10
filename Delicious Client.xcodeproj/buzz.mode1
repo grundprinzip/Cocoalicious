@@ -218,8 +218,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -328,6 +326,8 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -500,6 +500,8 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>6BFBD192082EEB42009D11EB</string>
+		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>/Users/buzz/Code/Cocoa/cocoalicious/Delicious Client.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -524,7 +526,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>AppController.m</string>
+								<string>&lt;No Editor&gt;</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -541,8 +543,6 @@
 							<string>184pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -582,7 +582,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>6BFBD192082EEB42009D11EB</string>
-				<string>6B491D3608D3621C00B6E3C4</string>
+				<string>6B804ED208D38B2E009B9F90</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -892,8 +892,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {367, 168}}</string>
-											<string>{{0, 173}, {367, 270}}</string>
+											<string>{{0, 0}, {491, 168}}</string>
+											<string>{{0, 173}, {491, 270}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -942,9 +942,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>6B491D1608D3600000B6E3C4</string>
+				<string>6B804EC208D384F6009B9F90</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>6B491D1708D3600000B6E3C4</string>
+				<string>6B804EC308D384F6009B9F90</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>

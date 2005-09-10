@@ -1210,8 +1210,8 @@
 	6B37C94F05C8D5BB00A005A7 /* DCAPIPost.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1160, 5446}}";
-			sepNavSelRange = "{254, 0}";
-			sepNavVisRect = "{{0, 0}, {711, 429}}";
+			sepNavSelRange = "{7493, 0}";
+			sepNavVisRect = "{{0, 0}, {705, 429}}";
 			sepNavWindowFrame = "{{402, 222}, {750, 558}}";
 		};
 	};
@@ -1605,9 +1605,9 @@
 	};
 	6BF88AE405C4D56000D7EDBB /* AppController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1736, 23926}}";
-			sepNavSelRange = "{34588, 114}";
-			sepNavVisRect = "{{0, 13623}, {806, 152}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1736, 23940}}";
+			sepNavSelRange = "{12843, 0}";
+			sepNavVisRect = "{{0, 3905}, {705, 429}}";
 			sepNavWindowFrame = "{{442, 274}, {750, 558}}";
 		};
 	};
@@ -1634,8 +1634,8 @@
 	6BF88AF405C4D79D00D7EDBB /* DCAPIClient.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1340, 5614}}";
-			sepNavSelRange = "{12664, 0}";
-			sepNavVisRect = "{{0, 4912}, {919, 526}}";
+			sepNavSelRange = "{44, 0}";
+			sepNavVisRect = "{{0, 0}, {919, 526}}";
 			sepNavWindowFrame = "{{196, 114}, {964, 655}}";
 		};
 	};

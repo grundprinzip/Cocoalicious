@@ -293,13 +293,14 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 		NSString *currentTagString;
 		
 		while ((currentTagString = [postTags nextObject]) != nil) {
-			DCAPITag *currentTag = [newTags objectForKey: currentTagString];
+			NSString *lcTagString = [currentTagString lowercaseString];
+			DCAPITag *currentTag = [newTags objectForKey: lcTagString];
 			
 			if (currentTag) {
 				[currentTag incrementCount];
 			}
 			else {
-				[newTags setObject: [[DCAPITag alloc] initWithName: currentTagString count: [NSNumber numberWithInt: 1]] forKey: [currentTagString lowercaseString]];
+				[newTags setObject: [[DCAPITag alloc] initWithName: currentTagString count: [NSNumber numberWithInt: 1]] forKey: lcTagString];
 			}
 		}
 	}
