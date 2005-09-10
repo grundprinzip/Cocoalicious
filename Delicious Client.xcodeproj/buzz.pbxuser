@@ -14,7 +14,7 @@
 		activeExecutable = 6BAB081D06D2FF6A0058BAC1 /* Cocoal.icio.us */;
 		activeTarget = 8D1107260486CEB800E47090 /* Cocoal.icio.us */;
 		addToTargets = (
-			6B47BF5A086345A400636CB2 /* Cocoalicious Definition */,
+			6B491C9208D35E1700B6E3C4 /* Convert Tags to Strings */,
 		);
 		breakpoints = (
 		);
@@ -145,7 +145,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 148029432;
+			PBXPerProjectTemplateStateSaveDate = 148079034;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -1017,7 +1017,7 @@
 				PBXModuleWindowStatusBarHidden = YES;
 				RubberWindowFrame = "465 168 745 467 0 0 1280 832 ";
 			};
-			PBXWorkspaceStateSaveDate = 148029432;
+			PBXWorkspaceStateSaveDate = 148079034;
 		};
 		sourceControlManager = 6BF88AE705C4D57100D7EDBB /* Source Control */;
 		userBuildSettings = {
@@ -1252,17 +1252,17 @@
 	6B47BF0908633DF600636CB2 /* main.applescript */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {705, 429}}";
-			sepNavSelRange = "{0, 0}";
+			sepNavSelRange = "{243, 33}";
 			sepNavVisRect = "{{0, 0}, {705, 429}}";
-			sepNavWindowFrame = "{{15, 269}, {750, 558}}";
+			sepNavWindowFrame = "{{349, 132}, {750, 558}}";
 		};
 	};
 	6B47BF0C08633E0400636CB2 /* Info.plist */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {919, 966}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 440}, {919, 526}}";
-			sepNavWindowFrame = "{{38, 151}, {964, 655}}";
+			sepNavSelRange = "{941, 0}";
+			sepNavVisRect = "{{0, 0}, {919, 526}}";
+			sepNavWindowFrame = "{{259, 155}, {964, 655}}";
 		};
 	};
 	6B47BF5A086345A400636CB2 /* Cocoalicious Definition */ = {
@@ -1270,9 +1270,9 @@
 	};
 	6B47BF5D086345C500636CB2 /* definition.plist */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {705, 3038}}";
-			sepNavSelRange = "{4293, 8}";
-			sepNavVisRect = "{{0, 2226}, {705, 429}}";
+			sepNavIntBoundsRect = "{{0, 0}, {705, 3052}}";
+			sepNavSelRange = "{2587, 30}";
+			sepNavVisRect = "{{0, 674}, {705, 429}}";
 			sepNavWindowFrame = "{{449, 155}, {750, 558}}";
 		};
 	};
@@ -1298,6 +1298,41 @@
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRect = "{{0, 0}, {919, 526}}";
 			sepNavWindowFrame = "{{61, 130}, {964, 655}}";
+		};
+	};
+	6B491C9208D35E1700B6E3C4 /* Convert Tags to Strings */ = {
+		activeExec = 0;
+	};
+	6B491CA008D35E5600B6E3C4 /* Info.plist */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1159, 966}}";
+			sepNavSelRange = "{289, 0}";
+			sepNavVisRect = "{{0, 0}, {1159, 583}}";
+			sepNavWindowFrame = "{{15, 115}, {1204, 712}}";
+		};
+	};
+	6B491CA208D35E7500B6E3C4 /* main.applescript */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1159, 583}}";
+			sepNavSelRange = "{375, 0}";
+			sepNavVisRect = "{{0, 0}, {1159, 583}}";
+			sepNavWindowFrame = "{{15, 115}, {1204, 712}}";
+		};
+	};
+	6B557A0008D34E74004D4A2A /* NSArray+IndexSetAdditions.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {806, 182}}";
+			sepNavSelRange = "{280, 4}";
+			sepNavVisRect = "{{0, 30}, {806, 152}}";
+			sepNavWindowFrame = "{{18, 97}, {1204, 712}}";
+		};
+	};
+	6B557A0108D34E74004D4A2A /* NSArray+IndexSetAdditions.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1159, 583}}";
+			sepNavSelRange = "{686, 0}";
+			sepNavVisRect = "{{0, 0}, {1159, 583}}";
+			sepNavWindowFrame = "{{15, 115}, {1204, 712}}";
 		};
 	};
 	6B5A44BC06D1CFB6007C405C /* DCAPITagFormatter.h */ = {
@@ -1493,17 +1528,17 @@
 	};
 	6BD8187E075AFB740088A2CF /* AppController-AppleScriptExtensions.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {782, 1274}}";
-			sepNavSelRange = "{1472, 0}";
-			sepNavVisRect = "{{0, 715}, {705, 429}}";
-			sepNavWindowFrame = "{{176, 122}, {750, 558}}";
+			sepNavIntBoundsRect = "{{0, 0}, {782, 1652}}";
+			sepNavSelRange = "{520, 0}";
+			sepNavVisRect = "{{0, 984}, {705, 429}}";
+			sepNavWindowFrame = "{{371, 126}, {750, 558}}";
 		};
 	};
 	6BD8187F075AFB740088A2CF /* Cocoalicious.sdef */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {711, 882}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {711, 404}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1159, 882}}";
+			sepNavSelRange = "{743, 20}";
+			sepNavVisRect = "{{0, 0}, {1159, 639}}";
 			sepNavWindowFrame = "{{84, 206}, {750, 558}}";
 		};
 	};
@@ -1516,9 +1551,10 @@
 	};
 	6BD818EB075AFCE50088A2CF /* DCAPIPost-AppleScriptExtensions.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {711, 489}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {711, 404}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1304, 583}}";
+			sepNavSelRange = "{932, 0}";
+			sepNavVisRect = "{{0, 0}, {1159, 583}}";
+			sepNavWindowFrame = "{{61, 73}, {1204, 712}}";
 		};
 	};
 	6BD818EC075AFCE50088A2CF /* DCAPITag-AppleScriptExtensions.h */ = {
@@ -1561,17 +1597,17 @@
 	};
 	6BF88AE305C4D56000D7EDBB /* AppController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {818, 2548}}";
-			sepNavSelRange = "{241, 0}";
-			sepNavVisRect = "{{0, 0}, {711, 429}}";
+			sepNavIntBoundsRect = "{{0, 0}, {818, 2576}}";
+			sepNavSelRange = "{4124, 0}";
+			sepNavVisRect = "{{0, 1709}, {705, 429}}";
 			sepNavWindowFrame = "{{209, 239}, {750, 558}}";
 		};
 	};
 	6BF88AE405C4D56000D7EDBB /* AppController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1736, 23912}}";
-			sepNavSelRange = "{34508, 114}";
-			sepNavVisRect = "{{0, 13609}, {806, 152}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1736, 23926}}";
+			sepNavSelRange = "{34588, 114}";
+			sepNavVisRect = "{{0, 13623}, {806, 152}}";
 			sepNavWindowFrame = "{{442, 274}, {750, 558}}";
 		};
 	};

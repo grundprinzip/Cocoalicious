@@ -25,6 +25,7 @@
 - (void) setURLAsString: (NSString *) newURLString {
 	[self setURL: [NSURL URLWithString: newURLString]];
 }
+
 - (NSString *) URLAsString {
 	return [[self URL] absoluteString];
 }

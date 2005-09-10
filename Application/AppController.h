@@ -14,6 +14,7 @@
 #import "DCAPITagFormatter.h"
 #import "NSString+SFHFUtils.h"
 #import "NSDictionary+SFHFUtils.h"
+#import "NSArray+IndexSetAdditions.h"
 #import "NSAppleScript+HandlerCalls.h"
 #import "SFHFKeychainUtils.h"
 #import "SFHFTableView.h"
@@ -134,6 +135,7 @@
 - (void) setPostsWithArray: (NSArray *) newPosts;
 - (NSMutableDictionary *) posts;
 - (NSArray *) postsArray;
+- (NSArray *) selectedPostsArray;
 - (NSArray *) urlsArray;
 - (void) setFilteredPosts: (NSArray *) newFilteredPosts;
 - (NSArray *) filteredPosts;

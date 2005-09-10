@@ -536,6 +536,10 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	return [[self posts] allValues];
 }
 
+- (NSArray *) selectedPostsArray {
+	return [[self filteredPosts] subarrayWithIndexes: [postList selectedRowIndexes]];
+}
+
 - (NSArray *) urlsArray {
 	return [[self posts] allKeys];
 }

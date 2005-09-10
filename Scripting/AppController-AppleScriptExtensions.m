@@ -16,7 +16,7 @@
 This also should make it easier to change storage method in the future. */
 
 - (int) countOfOrderedPosts {
-	return [[self posts] count];
+	return [[self postsArray] count];
 }
 
 - (int) indexOfObjectInOrderedPosts: (id) object {
@@ -74,6 +74,31 @@ This also should make it easier to change storage method in the future. */
 	return [self valueInOrderedTagsAtIndex: index];
 }
 
+
+- (int) countOfOrderedSelectedPosts {
+	return [[self selectedPostsArray] count];
+}
+
+- (int) indexOfObjectInOrderedSelectedPosts: (id) object {
+	return [[self selectedPostsArray] indexOfObject: object];
+}
+
+- (id) valueInOrderedSelectedPostsAtIndex: (int) index {
+	if (index < [self countOfOrderedSelectedPosts]) {
+		return [[self selectedPostsArray] objectAtIndex: index];
+	} else {
+		return nil;
+	}
+}
+
+- (id) objectInOrderedSelectedPostsAtIndex: (int) index {
+	return [self valueInOrderedSelectedPostsAtIndex: index];
+}
+
+- (NSArray *) orderedSelectedPosts {
+	return [self selectedPostsArray];
+}
+
 #pragma mark Application Delegate Methods
 
 - (BOOL)application:(NSApplication *)sender delegateHandlesKey:(NSString *)key {
@@ -81,6 +106,8 @@ This also should make it easier to change storage method in the future. */
 	if ([key isEqualToString: @"orderedPosts"]) {
 		return YES;
 	} else if ([key isEqualToString:@"orderedTags"]) {
+		return YES;
+	} else if ([key isEqualToString:@"orderedSelectedPosts"]) {
 		return YES;
 	} else {
 		return NO;		

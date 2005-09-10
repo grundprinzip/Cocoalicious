@@ -218,6 +218,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -281,7 +283,7 @@
 							<real>225</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>62 202 949 592 0 0 1280 832 </string>
+						<string>60 202 949 592 0 0 1280 832 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -318,7 +320,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {702, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>62 202 949 592 0 0 1280 832 </string>
+								<string>60 202 949 592 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -326,8 +328,6 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -340,7 +340,7 @@
 								<key>Frame</key>
 								<string>{{0, 5}, {702, 546}}</string>
 								<key>RubberWindowFrame</key>
-								<string>62 202 949 592 0 0 1280 832 </string>
+								<string>60 202 949 592 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -364,9 +364,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>6BFBE6F208D2C1C700C76075</string>
+				<string>6B804EBC08D381F4009B9F90</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>6BFBE6F308D2C1C700C76075</string>
+				<string>6B804EBD08D381F4009B9F90</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -500,13 +500,10 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>1C0AD2B3069F1EA900FABCE6</string>
-		<string>6BFBD192082EEB42009D11EB</string>
 		<string>/Users/buzz/Code/Cocoa/cocoalicious/Delicious Client.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>62 202 949 592 0 0 1280 832 </string>
+	<string>60 202 949 592 0 0 1280 832 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>
@@ -522,8 +519,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -546,10 +541,10 @@
 							<string>184pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
-								<key>PBXBuildLogShowsTranscriptDefaultKey</key>
-								<string>{{0, 152}, {853, 142}}</string>
 								<key>PBXProjectModuleGUID</key>
 								<string>XCMainBuildResultsModuleGUID</string>
 								<key>PBXProjectModuleLabel</key>
@@ -587,7 +582,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>6BFBD192082EEB42009D11EB</string>
-				<string>6BFBE6E208D2C11000C76075</string>
+				<string>6B491D3608D3621C00B6E3C4</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -947,9 +942,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>6BFBE6E608D2C11000C76075</string>
+				<string>6B491D1608D3600000B6E3C4</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>6BFBE6E708D2C11000C76075</string>
+				<string>6B491D1708D3600000B6E3C4</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>

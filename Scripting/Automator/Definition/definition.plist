@@ -151,8 +151,9 @@
 	<string>~/Library/Automator/Cocoalicious</string>
 	<key>scripts</key>
 	<dict>
-<!--		<key>filter items</key>
-		<string>on run {input, parameters}
+		<key>filter items</key>
+		<string>
+	on run {input, parameters}
 	
 	set foundItems to {}
 	set currentDate to date (date string of (current date))
@@ -165,8 +166,8 @@
 
 	return foundItems
 
-end run
-</string>-->
+	end run
+		</string>
 		<key>find every item</key>
 		<string>on run {input, parameters}
 	
@@ -199,7 +200,7 @@ end run</string>
 
 end run
 </string>
-		<!-- <key>get selected items</key>
+		<key>get selected items</key>
 		<string>on run {input, parameters}
 	
 	set currentSelection to {}
@@ -210,7 +211,7 @@ end run
 	
 	return currentSelection
 end run
-</string> -->
+</string>
 	</dict>
 </dict>
 </plist>

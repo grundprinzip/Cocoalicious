@@ -17,6 +17,16 @@
 			isSharedContext = 0;
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6B491D2708D361F600B6E3C4 /* AppleScript */ = {
+			isa = PBXAppleScriptBuildPhase;
+			buildActionMask = 2147483647;
+			contextName = "";
+			files = (
+				6B491D3008D3620200B6E3C4 /* main.applescript in AppleScript */,
+			);
+			isSharedContext = 0;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXAppleScriptBuildPhase section */
 
 /* Begin PBXBuildFile section */
@@ -58,9 +68,16 @@
 		6B47BF1908633E4D00636CB2 /* main.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 6B47BF0908633DF600636CB2 /* main.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		6B47BF1A08633E8700636CB2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		6B47BF1E08633EB700636CB2 /* Automator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B47BF1D08633EB700636CB2 /* Automator.framework */; };
-		6B47BF510863443C00636CB2 /* main.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6B47BF4F0863443C00636CB2 /* main.nib */; };
 		6B47BF5E086345C500636CB2 /* definition.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B47BF5D086345C500636CB2 /* definition.plist */; };
 		6B47BF61086345CF00636CB2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6B47BF5F086345CF00636CB2 /* Localizable.strings */; };
+		6B491D1008D35FEE00B6E3C4 /* Convert Tags to Strings.caction in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B491C9308D35E1700B6E3C4 /* Convert Tags to Strings.caction */; };
+		6B491D1A08D361CF00B6E3C4 /* Automator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B47BF1D08633EB700636CB2 /* Automator.framework */; };
+		6B491D1B08D361CF00B6E3C4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		6B491D3008D3620200B6E3C4 /* main.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 6B491CA208D35E7500B6E3C4 /* main.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		6B557A0208D34E74004D4A2A /* NSArray+IndexSetAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B557A0008D34E74004D4A2A /* NSArray+IndexSetAdditions.h */; };
+		6B557A0308D34E74004D4A2A /* NSArray+IndexSetAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B557A0108D34E74004D4A2A /* NSArray+IndexSetAdditions.m */; };
+		6B557A5F08D3558D004D4A2A /* Convert Posts to URLs.caction in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B47BEFA08633D0800636CB2 /* Convert Posts to URLs.caction */; };
+		6B557A6008D35590004D4A2A /* Cocoalicious.definition in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B47BF5B086345A400636CB2 /* Cocoalicious.definition */; };
 		6B5A44BE06D1CFB6007C405C /* DCAPITagFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B5A44BC06D1CFB6007C405C /* DCAPITagFormatter.h */; };
 		6B5A44BF06D1CFB6007C405C /* DCAPITagFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5A44BD06D1CFB6007C405C /* DCAPITagFormatter.m */; };
 		6B61ACDC0846382500A27692 /* KFTypeSelectTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B61ACDA0846382500A27692 /* KFTypeSelectTableView.m */; };
@@ -137,6 +154,30 @@
 		};
 /* End PBXBuildStyle section */
 
+/* Begin PBXContainerItemProxy section */
+		6B491CBA08D35EA700B6E3C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6B491C9208D35E1700B6E3C4;
+			remoteInfo = "Convert Tags to Strings";
+		};
+		6B557A4408D35531004D4A2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6B47BEF908633D0800636CB2;
+			remoteInfo = "Convert Posts to URLs";
+		};
+		6B557A4608D35536004D4A2A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6B47BF5A086345A400636CB2;
+			remoteInfo = "Cocoalicious Definition";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		6B47BF6D0863468200636CB2 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -153,6 +194,9 @@
 			dstPath = Contents/Library/Automator;
 			dstSubfolderSpec = 1;
 			files = (
+				6B491D1008D35FEE00B6E3C4 /* Convert Tags to Strings.caction in CopyFiles */,
+				6B557A6008D35590004D4A2A /* Cocoalicious.definition in CopyFiles */,
+				6B557A5F08D3558D004D4A2A /* Convert Posts to URLs.caction in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,12 +251,16 @@
 		6B47BF0908633DF600636CB2 /* main.applescript */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.applescript; name = main.applescript; path = "Scripting/Automator/Convert Posts To URLs/main.applescript"; sourceTree = "<group>"; };
 		6B47BF0C08633E0400636CB2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Info.plist; path = "Scripting/Automator/Convert Posts To URLs/Info.plist"; sourceTree = "<group>"; };
 		6B47BF1D08633EB700636CB2 /* Automator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Automator.framework; path = /System/Library/Frameworks/Automator.framework; sourceTree = "<absolute>"; };
-		6B47BF500863443C00636CB2 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = "Scripting/Automator/Convert Posts To URLs/English.lproj/main.nib"; sourceTree = "<group>"; };
 		6B47BF5B086345A400636CB2 /* Cocoalicious.definition */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Cocoalicious.definition; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B47BF5D086345C500636CB2 /* definition.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = definition.plist; path = Scripting/Automator/Definition/definition.plist; sourceTree = "<group>"; };
 		6B47BF60086345CF00636CB2 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		6B47BF62086345DF00636CB2 /* version.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = version.plist; path = Scripting/Automator/Definition/version.plist; sourceTree = "<group>"; };
 		6B47BF64086345F100636CB2 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Info.plist; path = Scripting/Automator/Definition/Info.plist; sourceTree = "<group>"; };
+		6B491C9308D35E1700B6E3C4 /* Convert Tags to Strings.caction */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Convert Tags to Strings.caction"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B491CA008D35E5600B6E3C4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Info.plist; path = "Scripting/Automator/Convert Tags to Strings/Info.plist"; sourceTree = "<group>"; };
+		6B491CA208D35E7500B6E3C4 /* main.applescript */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.applescript; name = main.applescript; path = "Scripting/Automator/Convert Tags to Strings/main.applescript"; sourceTree = "<group>"; };
+		6B557A0008D34E74004D4A2A /* NSArray+IndexSetAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+IndexSetAdditions.h"; path = "Utilities/NSArray+IndexSetAdditions.h"; sourceTree = "<group>"; };
+		6B557A0108D34E74004D4A2A /* NSArray+IndexSetAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+IndexSetAdditions.m"; path = "Utilities/NSArray+IndexSetAdditions.m"; sourceTree = "<group>"; };
 		6B5A44BC06D1CFB6007C405C /* DCAPITagFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCAPITagFormatter.h; path = DCAPI/DCAPITagFormatter.h; sourceTree = "<group>"; };
 		6B5A44BD06D1CFB6007C405C /* DCAPITagFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCAPITagFormatter.m; path = DCAPI/DCAPITagFormatter.m; sourceTree = "<group>"; };
 		6B61ACDA0846382500A27692 /* KFTypeSelectTableView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = KFTypeSelectTableView.m; path = UI/KFTypeSelectTableView.m; sourceTree = "<group>"; };
@@ -271,6 +319,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6B491C9108D35E1700B6E3C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B491D1A08D361CF00B6E3C4 /* Automator.framework in Frameworks */,
+				6B491D1B08D361CF00B6E3C4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -319,6 +376,7 @@
 				6BAB081C06D2FF6A0058BAC1 /* Cocoalicious.app */,
 				6B47BEFA08633D0800636CB2 /* Convert Posts to URLs.caction */,
 				6B47BF5B086345A400636CB2 /* Cocoalicious.definition */,
+				6B491C9308D35E1700B6E3C4 /* Convert Tags to Strings.caction */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -403,6 +461,7 @@
 			children = (
 				6B47BF54086344E900636CB2 /* Definition */,
 				6B47BEDE08633BF100636CB2 /* Convert Posts to URLs */,
+				6B491C9F08D35E2B00B6E3C4 /* Convert Tags to Strings */,
 			);
 			name = "Automator Actions";
 			sourceTree = "<group>";
@@ -410,7 +469,6 @@
 		6B47BEDE08633BF100636CB2 /* Convert Posts to URLs */ = {
 			isa = PBXGroup;
 			children = (
-				6B47BF4F0863443C00636CB2 /* main.nib */,
 				6B47BF0908633DF600636CB2 /* main.applescript */,
 				6B47BF0C08633E0400636CB2 /* Info.plist */,
 			);
@@ -426,6 +484,15 @@
 				6B47BF5F086345CF00636CB2 /* Localizable.strings */,
 			);
 			name = Definition;
+			sourceTree = "<group>";
+		};
+		6B491C9F08D35E2B00B6E3C4 /* Convert Tags to Strings */ = {
+			isa = PBXGroup;
+			children = (
+				6B491CA208D35E7500B6E3C4 /* main.applescript */,
+				6B491CA008D35E5600B6E3C4 /* Info.plist */,
+			);
+			name = "Convert Tags to Strings";
 			sourceTree = "<group>";
 		};
 		6BD81875075AFB510088A2CF /* AppleScript Support */ = {
@@ -458,6 +525,8 @@
 				6B21259A071D935F0044339D /* SFHFKeychainUtils.m */,
 				6B4324FB08C6DD8C00C26737 /* SFHFFaviconCache.h */,
 				6B4324FC08C6DD8C00C26737 /* SFHFFaviconCache.m */,
+				6B557A0008D34E74004D4A2A /* NSArray+IndexSetAdditions.h */,
+				6B557A0108D34E74004D4A2A /* NSArray+IndexSetAdditions.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -551,6 +620,7 @@
 				6B6475F30867E2F800CD0EC9 /* EBIconAndTextCell.h in Headers */,
 				6B6475F50867E31500CD0EC9 /* NSFileManager+ESBExtensions.h in Headers */,
 				6BE1ED1708C82BCD003EDABC /* SFHFFaviconCache.h in Headers */,
+				6B557A0208D34E74004D4A2A /* NSArray+IndexSetAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,6 +756,70 @@
 ";
 			productType = "com.apple.product-type.bundle";
 		};
+		6B491C9208D35E1700B6E3C4 /* Convert Tags to Strings */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6B491C9908D35E1700B6E3C4 /* Build configuration list for PBXNativeTarget "Convert Tags to Strings" */;
+			buildPhases = (
+				6B491C8F08D35E1700B6E3C4 /* Resources */,
+				6B491C9108D35E1700B6E3C4 /* Frameworks */,
+				6B491D2708D361F600B6E3C4 /* AppleScript */,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
+				INFOPLIST_FILE = "Convert Tags to Strings-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				LIBRARY_STYLE = BUNDLE;
+				OPTIMIZATION_CFLAGS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Carbon,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = "Convert Tags to Strings";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			dependencies = (
+			);
+			name = "Convert Tags to Strings";
+			productName = "Convert Tags to Strings";
+			productReference = 6B491C9308D35E1700B6E3C4 /* Convert Tags to Strings.caction */;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>Convert Tags to Strings</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.Convert_Tags_to_Strings</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>CSResourcesFileMapped</key>
+	<string>yes</string>
+</dict>
+</plist>
+";
+			productType = "com.apple.product-type.bundle";
+		};
 		8D1107260486CEB800E47090 /* Cocoal.icio.us */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6BBFD3C108AD6B1D005A088A /* Build configuration list for PBXNativeTarget "Cocoal.icio.us" */;
@@ -724,6 +858,9 @@
 				WRAPPER_EXTENSION = app;
 			};
 			dependencies = (
+				6B557A4508D35531004D4A2A /* PBXTargetDependency */,
+				6B557A4708D35536004D4A2A /* PBXTargetDependency */,
+				6B491CBB08D35EA700B6E3C4 /* PBXTargetDependency */,
 			);
 			name = Cocoal.icio.us;
 			productInstallPath = "$(HOME)/Applications";
@@ -750,6 +887,7 @@
 				8D1107260486CEB800E47090 /* Cocoal.icio.us */,
 				6B47BEF908633D0800636CB2 /* Convert Posts to URLs */,
 				6B47BF5A086345A400636CB2 /* Cocoalicious Definition */,
+				6B491C9208D35E1700B6E3C4 /* Convert Tags to Strings */,
 			);
 		};
 /* End PBXProject section */
@@ -759,7 +897,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B47BF510863443C00636CB2 /* main.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -770,6 +907,13 @@
 				6B47BF5E086345C500636CB2 /* definition.plist in Resources */,
 				6B47BF61086345CF00636CB2 /* Localizable.strings in Resources */,
 				6BCE225D08D2A4E10083FA32 /* version.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B491C8F08D35E1700B6E3C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -854,10 +998,29 @@
 				6B6475F40867E2FB00CD0EC9 /* EBIconAndTextCell.m in Sources */,
 				6B6475F60867E31600CD0EC9 /* NSFileManager+ESBExtensions.m in Sources */,
 				6BE1ED1808C82BD0003EDABC /* SFHFFaviconCache.m in Sources */,
+				6B557A0308D34E74004D4A2A /* NSArray+IndexSetAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6B491CBB08D35EA700B6E3C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6B491C9208D35E1700B6E3C4 /* Convert Tags to Strings */;
+			targetProxy = 6B491CBA08D35EA700B6E3C4 /* PBXContainerItemProxy */;
+		};
+		6B557A4508D35531004D4A2A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6B47BEF908633D0800636CB2 /* Convert Posts to URLs */;
+			targetProxy = 6B557A4408D35531004D4A2A /* PBXContainerItemProxy */;
+		};
+		6B557A4708D35536004D4A2A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6B47BF5A086345A400636CB2 /* Cocoalicious Definition */;
+			targetProxy = 6B557A4608D35536004D4A2A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
@@ -876,14 +1039,6 @@
 			name = MainMenu.nib;
 			sourceTree = "<group>";
 		};
-		6B47BF4F0863443C00636CB2 /* main.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6B47BF500863443C00636CB2 /* English */,
-			);
-			name = main.nib;
-			sourceTree = "<group>";
-		};
 		6B47BF5F086345CF00636CB2 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -896,6 +1051,95 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		6B491C9A08D35E1700B6E3C4 /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Scripting/Automator/Convert Tags to Strings/Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				LIBRARY_STYLE = STATIC;
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = "Convert Tags to Strings";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = caction;
+			};
+			name = Development;
+		};
+		6B491C9B08D35E1700B6E3C4 /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Scripting/Automator/Convert Tags to Strings/Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				LIBRARY_STYLE = STATIC;
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = "Convert Tags to Strings";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = caction;
+			};
+			name = Deployment;
+		};
+		6B491C9C08D35E1700B6E3C4 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Scripting/Automator/Convert Tags to Strings/Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				LIBRARY_STYLE = STATIC;
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = "Convert Tags to Strings";
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = caction;
+			};
+			name = Default;
+		};
 		6BBFD3BA08AD6B1D005A088A /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1223,6 +1467,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6B491C9908D35E1700B6E3C4 /* Build configuration list for PBXNativeTarget "Convert Tags to Strings" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6B491C9A08D35E1700B6E3C4 /* Development */,
+				6B491C9B08D35E1700B6E3C4 /* Deployment */,
+				6B491C9C08D35E1700B6E3C4 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		6BBFD3B908AD6B1D005A088A /* Build configuration list for PBXNativeTarget "Convert Posts to URLs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

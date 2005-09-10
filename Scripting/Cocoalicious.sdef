@@ -19,6 +19,11 @@
 						<cocoa method="orderedTags"/>
 					</element>
 				</elements>
+				<properties>
+					<property name="selection" type="post" access="r" code="SPST">
+						<cocoa method="orderedSelectedPosts"/>
+					</property>
+				</properties>
 			</class>
 			<class name="post" code="POST" inherits="NSCoreSuite.AbstractObject" description="A del.icio.us post.">
 				<cocoa class="DCAPIPost"/>
