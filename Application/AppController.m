@@ -299,7 +299,7 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 				[currentTag incrementCount];
 			}
 			else {
-				[newTags setObject: [[DCAPITag alloc] initWithName: currentTagString count: [NSNumber numberWithInt: 1]] forKey: currentTagString];
+				[newTags setObject: [[DCAPITag alloc] initWithName: currentTagString count: [NSNumber numberWithInt: 1]] forKey: [currentTagString lowercaseString]];
 			}
 		}
 	}

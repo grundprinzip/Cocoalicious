@@ -313,7 +313,7 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 		for (i = 0; i < max; i++) {
 			NSString *matchTag = [matchTags objectAtIndex: i];
 						
-			if ([currentTag isEqualToString: matchTag]) {
+			if ([currentTag caseInsensitiveCompare: matchTag] == NSOrderedSame) {
 				foundCount++;
 			}
 		}
