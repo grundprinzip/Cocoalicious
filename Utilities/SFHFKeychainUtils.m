@@ -96,16 +96,18 @@
 		return NO;
 	}
 	
-	const char *pass = [password UTF8String];
+	const char *pass = [password cStringUsingEncoding: [NSString defaultCStringEncoding]];
 	
 	NSLog(@"changing password");
 	
-	OSErr status = SecKeychainItemModifyAttributesAndData (
+	/*OSErr status = SecKeychainItemModifyAttributesAndData (
 		itemRef, // the item reference
 		NULL, // no change to attributes
 		strlen(pass), // length of password
 		pass // pointer to password data
-    );
+    );*/
+	
+	OSErr status = SecKeychainItemModifyContent(itemRef, nil, strlen(pass), pass);
 	
 	if (status == noErr) {
 		return YES;

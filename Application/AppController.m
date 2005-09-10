@@ -41,6 +41,7 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	
 	NSArray *descriptors = [NSArray arrayWithObject: [[[NSSortDescriptor alloc] initWithKey: kDATE_SORT_DESCRIPTOR ascending: NO] autorelease]];
 	NSData *descriptorData = [NSArchiver archivedDataWithRootObject: descriptors];
+	
 	[dictionary setObject: descriptorData forKey: kPOST_LIST_SORT_DEFAULTS_KEY];
 	
     [[NSUserDefaultsController sharedUserDefaultsController] setInitialValues: dictionary];
@@ -199,7 +200,8 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	[postList setAction: @selector(deleteSelectedLinks:) forKey: NSDeleteCharacter];
 
 	NSArray *descriptors = nil;
-	NSData *descriptorData = [[[NSUserDefaultsController sharedUserDefaultsController] defaults] dataForKey: kPOST_LIST_SORT_DEFAULTS_KEY];
+	NSData *descriptorData = (NSData *) [[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey: kPOST_LIST_SORT_DEFAULTS_KEY];
+		
 	if (descriptorData) {
 		descriptors = (NSArray *) [NSUnarchiver unarchiveObjectWithData: descriptorData];
 		[postList setSortDescriptors: descriptors];
@@ -1177,7 +1179,7 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 		[loginProperties setObject: user forKey: @"username"];
 
 		NSString *password = [SFHFKeychainUtils getWebPasswordForUser: user URL: apiURL domain: kDEFAULT_SECURITY_DOMAIN itemReference: NULL];
-		
+				
 		if (password) {
 			if (autologin) {
 				if ([self loginWithUsername: user password: password APIURL: apiURL error: &loginError])
@@ -1222,7 +1224,15 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	[defaults setObject: [NSNumber numberWithBool: autologin] forKey: kAUTOLOGIN_DEFAULTS_KEY];
 	
 	/* Write password to keychain */
-	[SFHFKeychainUtils addWebPassword: password forUser: username URL: apiURL domain: kDEFAULT_SECURITY_DOMAIN];
+	//[SFHFKeychainUtils addWebPassword: password forUser: username URL: apiURL domain: kDEFAULT_SECURITY_DOMAIN];
+	
+	//NSString *pass = [SFHFKeychainUtils getWebPasswordForUser: username URL: apiURL domain: kDEFAULT_SECURITY_DOMAIN itemReference: nil];
+	//NSLog(@"password in keychain is now: %@", pass);
+	
+	/* Make sure the password gets updated in both the keychain and the shared NSURLCredentialStorage used by NSURLConnection */
+	NSURLCredential *credential = [NSURLCredential credentialWithUser: username password: password persistence: NSURLCredentialPersistencePermanent];
+	NSURLProtectionSpace *protectionSpace = [[NSURLProtectionSpace alloc] initWithHost: [apiURL host] port: 0 protocol: @"http" realm: kDEFAULT_SECURITY_DOMAIN authenticationMethod: NSURLAuthenticationMethodDefault];
+	[[NSURLCredentialStorage sharedCredentialStorage] setDefaultCredential: credential forProtectionSpace: protectionSpace];
 	
 	if([self loginWithUsername: username password: password APIURL: apiURL error: &loginError]) {
 		[loginPanel close];

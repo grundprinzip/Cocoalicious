@@ -351,7 +351,6 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
 }
 
 - (NSData *) sendRequestForURI: (NSURL *) apiURL usingCachePolicy: (NSURLRequestCachePolicy) cachePolicy error: (NSError **) error {
-	
 	NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL: apiURL cachePolicy: cachePolicy timeoutInterval: kREQUEST_TIMEOUT_INTERVAL];
 		
     [req setValue: kUSER_AGENT forHTTPHeaderField: kUSER_AGENT_HTTP_HEADER];
@@ -384,6 +383,10 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
 
 - (NSDate *) lastAPISubmissionTime {
 	return [[lastAPISubmissionTime retain] autorelease];
+}
+
+- (void) connection: (NSURLConnection *) connection didReceiveAuthenticationChallenge: (NSURLAuthenticationChallenge *) challenge {
+	NSLog(@"got auth challenge");
 }
 
 - (void) dealloc {

@@ -53,8 +53,6 @@
 		6B3AC8840759162F00F20C1F /* add_post_icon.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6B3AC8810759162F00F20C1F /* add_post_icon.tif */; };
 		6B3AC8850759162F00F20C1F /* delete_post_icon.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6B3AC8820759162F00F20C1F /* delete_post_icon.tif */; };
 		6B3AC8860759162F00F20C1F /* show_info_icon.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6B3AC8830759162F00F20C1F /* show_info_icon.tif */; };
-		6B4324FD08C6DD8C00C26737 /* SFHFFaviconCache.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B4324FB08C6DD8C00C26737 /* SFHFFaviconCache.h */; };
-		6B4324FE08C6DD8C00C26737 /* SFHFFaviconCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4324FC08C6DD8C00C26737 /* SFHFFaviconCache.m */; };
 		6B45F6C707B4934D0007FA1E /* SFHFTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B45F6C507B4934D0007FA1E /* SFHFTextView.h */; };
 		6B45F6C807B4934D0007FA1E /* SFHFTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B45F6C607B4934D0007FA1E /* SFHFTextView.m */; };
 		6B47BF1908633E4D00636CB2 /* main.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 6B47BF0908633DF600636CB2 /* main.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
@@ -63,27 +61,15 @@
 		6B47BF510863443C00636CB2 /* main.nib in Resources */ = {isa = PBXBuildFile; fileRef = 6B47BF4F0863443C00636CB2 /* main.nib */; };
 		6B47BF5E086345C500636CB2 /* definition.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B47BF5D086345C500636CB2 /* definition.plist */; };
 		6B47BF61086345CF00636CB2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6B47BF5F086345CF00636CB2 /* Localizable.strings */; };
-		6B47BF6F0863468D00636CB2 /* version.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B47BF62086345DF00636CB2 /* version.plist */; };
-		6B47BFA7086348C200636CB2 /* Convert Posts to URLs.caction in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B47BEFA08633D0800636CB2 /* Convert Posts to URLs.caction */; };
-		6B47BFA8086348C200636CB2 /* Cocoalicious.definition in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B47BF5B086345A400636CB2 /* Cocoalicious.definition */; };
 		6B5A44BE06D1CFB6007C405C /* DCAPITagFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B5A44BC06D1CFB6007C405C /* DCAPITagFormatter.h */; };
 		6B5A44BF06D1CFB6007C405C /* DCAPITagFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5A44BD06D1CFB6007C405C /* DCAPITagFormatter.m */; };
 		6B61ACDC0846382500A27692 /* KFTypeSelectTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B61ACDA0846382500A27692 /* KFTypeSelectTableView.m */; };
 		6B61ACDD0846382500A27692 /* KFTypeSelectTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B61ACDB0846382500A27692 /* KFTypeSelectTableView.h */; };
-		6B6475D40867E11800CD0EC9 /* default_favicon.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6B6475D30867E11800CD0EC9 /* default_favicon.tif */; };
-		6B6475D70867E14A00CD0EC9 /* EBIconAndTextCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B6475D50867E14A00CD0EC9 /* EBIconAndTextCell.h */; };
-		6B6475D80867E14A00CD0EC9 /* EBIconAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6475D60867E14A00CD0EC9 /* EBIconAndTextCell.m */; };
-		6B6475DB0867E18100CD0EC9 /* EBFavIconUtils.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B6475D90867E18100CD0EC9 /* EBFavIconUtils.h */; };
-		6B6475DC0867E18100CD0EC9 /* EBFavIconUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6475DA0867E18100CD0EC9 /* EBFavIconUtils.m */; };
-		6B6475E00867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B6475DE0867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.h */; };
-		6B6475E10867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6475DF0867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.m */; };
 		6B6475E20867E26500CD0EC9 /* default_favicon.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6B6475D30867E11800CD0EC9 /* default_favicon.tif */; };
 		6B6475F30867E2F800CD0EC9 /* EBIconAndTextCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B6475D50867E14A00CD0EC9 /* EBIconAndTextCell.h */; };
 		6B6475F40867E2FB00CD0EC9 /* EBIconAndTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6475D60867E14A00CD0EC9 /* EBIconAndTextCell.m */; };
 		6B6475F50867E31500CD0EC9 /* NSFileManager+ESBExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B6475DE0867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.h */; };
 		6B6475F60867E31600CD0EC9 /* NSFileManager+ESBExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6475DF0867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.m */; };
-		6B6475F70867E31700CD0EC9 /* EBFavIconUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B6475D90867E18100CD0EC9 /* EBFavIconUtils.h */; };
-		6B6475F80867E31700CD0EC9 /* EBFavIconUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6475DA0867E18100CD0EC9 /* EBFavIconUtils.m */; };
 		6B698144065346D6000649B0 /* defines.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B698143065346D6000649B0 /* defines.h */; };
 		6B6981960653485C000649B0 /* DCAPIDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B6981940653485C000649B0 /* DCAPIDate.h */; };
 		6B6981970653485C000649B0 /* DCAPIDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6981950653485C000649B0 /* DCAPIDate.m */; };
@@ -97,6 +83,8 @@
 		6BA936C50655EEC400AE7890 /* NSString+SFHFUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA936C30655EEC400AE7890 /* NSString+SFHFUtils.m */; };
 		6BA939AE065692DC00AE7890 /* metal_column_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA939AD065692DC00AE7890 /* metal_column_header.png */; };
 		6BB0A8E9074FF64B008FDDCC /* refresh_icon.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6BB0A8E8074FF64B008FDDCC /* refresh_icon.tif */; };
+		6BCE225D08D2A4E10083FA32 /* version.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B47BF62086345DF00636CB2 /* version.plist */; };
+		6BCE226708D2A5330083FA32 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107310486CEB800E47090 /* Info.plist */; };
 		6BD81880075AFB740088A2CF /* AppController-AppleScriptExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD8187D075AFB740088A2CF /* AppController-AppleScriptExtensions.h */; };
 		6BD81881075AFB740088A2CF /* AppController-AppleScriptExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD8187E075AFB740088A2CF /* AppController-AppleScriptExtensions.m */; };
 		6BD818EE075AFCE60088A2CF /* DCAPIPost-AppleScriptExtensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BD818EA075AFCE50088A2CF /* DCAPIPost-AppleScriptExtensions.h */; };
@@ -149,23 +137,6 @@
 		};
 /* End PBXBuildStyle section */
 
-/* Begin PBXContainerItemProxy section */
-		6B47BF89086347D100636CB2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6B47BEF908633D0800636CB2;
-			remoteInfo = "Convert Posts to URLs";
-		};
-		6B47BF8B086347D500636CB2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6B47BF5A086345A400636CB2;
-			remoteInfo = "Cocoalicious Definition";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		6B47BF6D0863468200636CB2 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -173,11 +144,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 1;
 			files = (
-				6B47BF6F0863468D00636CB2 /* version.plist in CopyFiles */,
-				6B6475D70867E14A00CD0EC9 /* EBIconAndTextCell.h in CopyFiles */,
-				6B6475DB0867E18100CD0EC9 /* EBFavIconUtils.h in CopyFiles */,
-				6B6475E00867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.h in CopyFiles */,
-				6B4324FD08C6DD8C00C26737 /* SFHFFaviconCache.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,8 +153,6 @@
 			dstPath = Contents/Library/Automator;
 			dstSubfolderSpec = 1;
 			files = (
-				6B47BFA7086348C200636CB2 /* Convert Posts to URLs.caction in CopyFiles */,
-				6B47BFA8086348C200636CB2 /* Cocoalicious.definition in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,8 +220,6 @@
 		6B6475D30867E11800CD0EC9 /* default_favicon.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = default_favicon.tif; path = Art/default_favicon.tif; sourceTree = "<group>"; };
 		6B6475D50867E14A00CD0EC9 /* EBIconAndTextCell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = EBIconAndTextCell.h; path = UI/EBIconAndTextCell.h; sourceTree = "<group>"; };
 		6B6475D60867E14A00CD0EC9 /* EBIconAndTextCell.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = EBIconAndTextCell.m; path = UI/EBIconAndTextCell.m; sourceTree = "<group>"; };
-		6B6475D90867E18100CD0EC9 /* EBFavIconUtils.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = EBFavIconUtils.h; path = Utilities/EBFavIconUtils.h; sourceTree = "<group>"; };
-		6B6475DA0867E18100CD0EC9 /* EBFavIconUtils.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = EBFavIconUtils.m; path = Utilities/EBFavIconUtils.m; sourceTree = "<group>"; };
 		6B6475DE0867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+ESBExtensions.h"; path = "Utilities/NSFileManager+ESBExtensions.h"; sourceTree = "<group>"; };
 		6B6475DF0867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+ESBExtensions.m"; path = "Utilities/NSFileManager+ESBExtensions.m"; sourceTree = "<group>"; };
 		6B698143065346D6000649B0 /* defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = defines.h; sourceTree = "<group>"; };
@@ -492,8 +454,6 @@
 				6BA936C30655EEC400AE7890 /* NSString+SFHFUtils.m */,
 				6B6475DE0867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.h */,
 				6B6475DF0867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.m */,
-				6B6475D90867E18100CD0EC9 /* EBFavIconUtils.h */,
-				6B6475DA0867E18100CD0EC9 /* EBFavIconUtils.m */,
 				6B212599071D935F0044339D /* SFHFKeychainUtils.h */,
 				6B21259A071D935F0044339D /* SFHFKeychainUtils.m */,
 				6B4324FB08C6DD8C00C26737 /* SFHFFaviconCache.h */,
@@ -590,7 +550,6 @@
 				6B6AA443084A7B0F00FDB683 /* SFHFCircularCounterCell.h in Headers */,
 				6B6475F30867E2F800CD0EC9 /* EBIconAndTextCell.h in Headers */,
 				6B6475F50867E31500CD0EC9 /* NSFileManager+ESBExtensions.h in Headers */,
-				6B6475F70867E31700CD0EC9 /* EBFavIconUtils.h in Headers */,
 				6BE1ED1708C82BCD003EDABC /* SFHFFaviconCache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -765,8 +724,6 @@
 				WRAPPER_EXTENSION = app;
 			};
 			dependencies = (
-				6B47BF8A086347D100636CB2 /* PBXTargetDependency */,
-				6B47BF8C086347D500636CB2 /* PBXTargetDependency */,
 			);
 			name = Cocoal.icio.us;
 			productInstallPath = "$(HOME)/Applications";
@@ -812,7 +769,7 @@
 			files = (
 				6B47BF5E086345C500636CB2 /* definition.plist in Resources */,
 				6B47BF61086345CF00636CB2 /* Localizable.strings in Resources */,
-				6B6475D40867E11800CD0EC9 /* default_favicon.tif in Resources */,
+				6BCE225D08D2A4E10083FA32 /* version.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -833,6 +790,7 @@
 				6BF009AE077B05B30036723E /* toggle_web_preview_icon.tif in Resources */,
 				6B0896C80838FCEF0057A654 /* star.tif in Resources */,
 				6B0896C90838FCEF0057A654 /* star_highlighted.tif in Resources */,
+				6BCE226708D2A5330083FA32 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -859,10 +817,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B6475D80867E14A00CD0EC9 /* EBIconAndTextCell.m in Sources */,
-				6B6475DC0867E18100CD0EC9 /* EBFavIconUtils.m in Sources */,
-				6B6475E10867E1EC00CD0EC9 /* NSFileManager+ESBExtensions.m in Sources */,
-				6B4324FE08C6DD8C00C26737 /* SFHFFaviconCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -899,25 +853,11 @@
 				6B6AA444084A7B0F00FDB683 /* SFHFCircularCounterCell.m in Sources */,
 				6B6475F40867E2FB00CD0EC9 /* EBIconAndTextCell.m in Sources */,
 				6B6475F60867E31600CD0EC9 /* NSFileManager+ESBExtensions.m in Sources */,
-				6B6475F80867E31700CD0EC9 /* EBFavIconUtils.m in Sources */,
 				6BE1ED1808C82BD0003EDABC /* SFHFFaviconCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		6B47BF8A086347D100636CB2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6B47BEF908633D0800636CB2 /* Convert Posts to URLs */;
-			targetProxy = 6B47BF89086347D100636CB2 /* PBXContainerItemProxy */;
-		};
-		6B47BF8C086347D500636CB2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6B47BF5A086345A400636CB2 /* Cocoalicious Definition */;
-			targetProxy = 6B47BF8B086347D500636CB2 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {

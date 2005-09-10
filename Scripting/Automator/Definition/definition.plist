@@ -151,7 +151,7 @@
 	<string>~/Library/Automator/Cocoalicious</string>
 	<key>scripts</key>
 	<dict>
-		<key>filter items</key>
+<!--		<key>filter items</key>
 		<string>on run {input, parameters}
 	
 	set foundItems to {}
@@ -166,7 +166,7 @@
 	return foundItems
 
 end run
-</string>
+</string>-->
 		<key>find every item</key>
 		<string>on run {input, parameters}
 	
