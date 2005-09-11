@@ -145,7 +145,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 148079034;
+			PBXPerProjectTemplateStateSaveDate = 148114116;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -1017,7 +1017,7 @@
 				PBXModuleWindowStatusBarHidden = YES;
 				RubberWindowFrame = "465 168 745 467 0 0 1280 832 ";
 			};
-			PBXWorkspaceStateSaveDate = 148079034;
+			PBXWorkspaceStateSaveDate = 148114116;
 		};
 		sourceControlManager = 6BF88AE705C4D57100D7EDBB /* Source Control */;
 		userBuildSettings = {
@@ -1529,8 +1529,8 @@
 	6BD8187E075AFB740088A2CF /* AppController-AppleScriptExtensions.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {782, 1652}}";
-			sepNavSelRange = "{520, 0}";
-			sepNavVisRect = "{{0, 984}, {705, 429}}";
+			sepNavSelRange = "{583, 0}";
+			sepNavVisRect = "{{0, 742}, {705, 429}}";
 			sepNavWindowFrame = "{{371, 126}, {750, 558}}";
 		};
 	};
