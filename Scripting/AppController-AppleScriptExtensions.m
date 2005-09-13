@@ -16,12 +16,10 @@
 This also should make it easier to change storage method in the future. */
 
 - (int) countOfOrderedPosts {
-	NSLog(@"countOfOrderedPosts: %d", [[self postsArray] count]);
 	return [[self postsArray] count];
 }
 
 - (int) indexOfObjectInOrderedPosts: (id) object {
-	NSLog(@"indexOfObjectInOrderedPosts: %@", object);
 	return [[self postsArray] indexOfObject: object];
 }
 
