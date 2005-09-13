@@ -256,10 +256,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
+								<string>29B97317FDCFA39411CA2CEA</string>
+								<string>1C37FBAC04509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>22</integer>
+									<integer>9</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -364,9 +368,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>6B295A4C08D3C77000BC6C40</string>
+				<string>6B1F627A08D4A09C0010343B</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>6B295A4D08D3C77000BC6C40</string>
+				<string>6B1F627B08D4A09C0010343B</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -891,8 +895,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {491, 168}}</string>
-											<string>{{0, 173}, {491, 270}}</string>
+											<string>{{0, 0}, {367, 168}}</string>
+											<string>{{0, 173}, {367, 270}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -941,9 +945,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>6B295A4208D3912E00BC6C40</string>
+				<string>6B1F620608D40B480010343B</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>6B295A4308D3912E00BC6C40</string>
+				<string>6B1F620708D40B480010343B</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>
