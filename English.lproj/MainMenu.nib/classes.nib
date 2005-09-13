@@ -9,6 +9,7 @@
                 deleteSelectedLinks = id; 
                 doSearch = id; 
                 editSelectedLinks = id; 
+                emptyFaviconCache = id; 
                 indexAll = id; 
                 indexSelected = id; 
                 loginFromPanel = id; 
@@ -18,7 +19,7 @@
                 postCurrentSafariURL = id; 
                 postNewLink = id; 
                 refresh = id; 
-                refreshFavIconCache = id; 
+                refreshFaviconCache = id; 
                 setSearchTypeToBasic = id; 
                 setSearchTypeToExtended = id; 
                 setSearchTypeToFullText = id; 

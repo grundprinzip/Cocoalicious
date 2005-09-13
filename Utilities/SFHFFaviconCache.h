@@ -18,5 +18,6 @@
 - (NSImage *) defaultFavicon;
 - (void) setDefaultFavicon: (NSImage *) newDefaultFavicon;
 - (NSImage *) faviconForURL: (NSURL *) url forceRefresh: (BOOL) forceRefresh;
+- (void) clearFaviconCache;
 
 @end

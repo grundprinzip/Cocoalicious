@@ -1131,6 +1131,7 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 		[statusText setStringValue: [url description]];
 		
 		[[webView mainFrame] loadRequest: [NSURLRequest requestWithURL: url]];
+		[NSThread detachNewThreadSelector: @selector(performAsyncDownloadOfFaviconForPost:) toTarget: self withObject: post];
 	}
 	else {
 		[self resetPostView];
@@ -1420,9 +1421,7 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	[newPost setTagsFromString: postTags];
 	
 	[NSThread detachNewThreadSelector: @selector(performAsyncAddOfPost:) toTarget: self withObject: newPost];
-	
-	[[SFHFFaviconCache sharedFaviconCache] faviconForURL: postURL forceRefresh: YES];
-	
+		
 	[self closePostingInterface: self];
 	[self insertPost: newPost];
 	[newPost release];
@@ -1430,8 +1429,15 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 
 - (void) performAsyncAddOfPost: (DCAPIPost *) newPost {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	[[SFHFFaviconCache sharedFaviconCache] faviconForURL: [newPost URL] forceRefresh: YES];
+	[self performAsyncDownloadOfFaviconForPost: newPost];
 	[[self client] addPost: newPost];
+	[pool release];
+}
+
+- (void) performAsyncDownloadOfFaviconForPost: (DCAPIPost *) newPost {
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	[[SFHFFaviconCache sharedFaviconCache] faviconForURL: [newPost URL] forceRefresh: YES];
+	[postList performSelectorOnMainThread: @selector(reloadData) withObject: nil waitUntilDone:NO];
 	[pool release];
 }
 
@@ -1568,6 +1574,19 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 		[NSThread detachNewThreadSelector: @selector(deletePostWithURL:) toTarget: [self client] withObject: [selectedPost URL]];
 		[self refreshPostsWithDownload: NO];
 		[self refreshTags];
+	}
+}
+
+- (IBAction) refreshFaviconCache: (id) sender {
+
+}
+
+- (IBAction) emptyFaviconCache: (id) sender {
+	int result = NSRunAlertPanel(NSLocalizedString(@"Empty Icon Cache", @"Title of Empty Icon Cache confirmation dialog"), NSLocalizedString(@"Are you sure you want to empty the Cocoalicious favicon cache?", @"Message on the Empty Favicon Cache dialog"), NSLocalizedString(@"Empty", @"Positive Empty Favicon Cache confirmation dialog option"), NSLocalizedString(@"Cancel", @"Negative Empty Favicon Cache confirmation dialog option"), nil);
+	
+	if (result == NSAlertDefaultReturn) {
+		[[SFHFFaviconCache sharedFaviconCache] clearFaviconCache];
+		[postList reloadData];
 	}
 }
 

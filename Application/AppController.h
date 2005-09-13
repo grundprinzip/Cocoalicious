@@ -16,6 +16,7 @@
 #import "NSDictionary+SFHFUtils.h"
 #import "NSArray+IndexSetAdditions.h"
 #import "NSAppleScript+HandlerCalls.h"
+#import "NSFileManager+ESBExtensions.h"
 #import "SFHFKeychainUtils.h"
 #import "SFHFTableView.h"
 #import "SFHFBezelView.h"
@@ -174,10 +175,14 @@
 - (IBAction) setSearchTypeToBasic: (id) sender;
 - (IBAction) setSearchTypeToExtended: (id) sender;
 - (IBAction) copyAsTag: (id) sender;
+- (IBAction) refreshFaviconCache: (id) sender;
+- (IBAction) emptyFaviconCache: (id) sender;
 
 /* Misc. */
 - (void) handleScriptError: (NSDictionary *) errorInfo;
 - (void) resetPostView;
 - (void) previewSelectedLinks;
+- (void) performAsyncAddOfPost: (DCAPIPost *) newPost;
+- (void) performAsyncDownloadOfFaviconForPost: (DCAPIPost *) newPost;
 
 @end

@@ -1217,18 +1217,18 @@
 	};
 	6B4324FB08C6DD8C00C26737 /* SFHFFaviconCache.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {711, 429}}";
-			sepNavSelRange = "{415, 0}";
-			sepNavVisRect = "{{0, 0}, {711, 429}}";
+			sepNavIntBoundsRect = "{{0, 0}, {705, 429}}";
+			sepNavSelRange = "{521, 0}";
+			sepNavVisRect = "{{0, 0}, {705, 429}}";
 			sepNavWindowFrame = "{{549, 185}, {750, 558}}";
 		};
 	};
 	6B4324FC08C6DD8C00C26737 /* SFHFFaviconCache.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1250, 2464}}";
-			sepNavSelRange = "{48, 0}";
-			sepNavVisRect = "{{0, 0}, {711, 429}}";
-			sepNavWindowFrame = "{{373, 248}, {750, 558}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1250, 2646}}";
+			sepNavSelRange = "{4474, 0}";
+			sepNavVisRect = "{{0, 1890}, {705, 429}}";
+			sepNavWindowFrame = "{{359, 174}, {750, 558}}";
 		};
 	};
 	6B45F6C507B4934D0007FA1E /* SFHFTextView.h */ = {
@@ -1252,7 +1252,7 @@
 	6B47BF0908633DF600636CB2 /* main.applescript */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {705, 429}}";
-			sepNavSelRange = "{370, 0}";
+			sepNavSelRange = "{367, 0}";
 			sepNavVisRect = "{{0, 0}, {705, 429}}";
 			sepNavWindowFrame = "{{349, 132}, {750, 558}}";
 		};
@@ -1314,7 +1314,7 @@
 	6B491CA208D35E7500B6E3C4 /* main.applescript */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1159, 583}}";
-			sepNavSelRange = "{378, 0}";
+			sepNavSelRange = "{375, 0}";
 			sepNavVisRect = "{{0, 0}, {1159, 583}}";
 			sepNavWindowFrame = "{{15, 115}, {1204, 712}}";
 		};
@@ -1529,9 +1529,9 @@
 	6BD8187E075AFB740088A2CF /* AppController-AppleScriptExtensions.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {782, 1652}}";
-			sepNavSelRange = "{583, 0}";
-			sepNavVisRect = "{{0, 742}, {705, 429}}";
-			sepNavWindowFrame = "{{371, 126}, {750, 558}}";
+			sepNavSelRange = "{791, 0}";
+			sepNavVisRect = "{{0, 87}, {705, 429}}";
+			sepNavWindowFrame = "{{420, 115}, {750, 558}}";
 		};
 	};
 	6BD8187F075AFB740088A2CF /* Cocoalicious.sdef */ = {
@@ -1566,9 +1566,10 @@
 	};
 	6BD818ED075AFCE50088A2CF /* DCAPITag-AppleScriptExtensions.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {711, 404}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1286, 583}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {711, 404}}";
+			sepNavVisRect = "{{0, 0}, {1159, 583}}";
+			sepNavWindowFrame = "{{15, 115}, {1204, 712}}";
 		};
 	};
 	6BE6C20106C9FE1100E90B12 /* SFHFTableView.h */ = {
@@ -1597,18 +1598,18 @@
 	};
 	6BF88AE305C4D56000D7EDBB /* AppController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {818, 2576}}";
-			sepNavSelRange = "{4124, 0}";
-			sepNavVisRect = "{{0, 1709}, {705, 429}}";
-			sepNavWindowFrame = "{{209, 239}, {750, 558}}";
+			sepNavIntBoundsRect = "{{0, 0}, {818, 2646}}";
+			sepNavSelRange = "{501, 0}";
+			sepNavVisRect = "{{0, 183}, {806, 152}}";
+			sepNavWindowFrame = "{{526, 248}, {750, 558}}";
 		};
 	};
 	6BF88AE405C4D56000D7EDBB /* AppController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1736, 23940}}";
-			sepNavSelRange = "{12843, 0}";
-			sepNavVisRect = "{{0, 3905}, {705, 429}}";
-			sepNavWindowFrame = "{{442, 274}, {750, 558}}";
+			sepNavIntBoundsRect = "{{0, 0}, {2654, 24206}}";
+			sepNavSelRange = "{56485, 0}";
+			sepNavVisRect = "{{1415, 21955}, {705, 429}}";
+			sepNavWindowFrame = "{{471, 197}, {750, 558}}";
 		};
 	};
 	6BF88AE705C4D57100D7EDBB /* Source Control */ = {

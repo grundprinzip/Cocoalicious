@@ -16,6 +16,7 @@
 - (NSImage *) downloadFaviconForURL: (NSURL *) aURL;
 + (NSString *) cachedFileNameForURL: (NSURL *) aURL;
 + (NSURL *) faviconURLForURL: (NSURL *) aURL;
+- (void) setMemoryCache: (NSMutableDictionary *) newMemoryCache;
 - (NSMutableDictionary *) memoryCache;
 
 @end
@@ -36,7 +37,7 @@ static SFHFFaviconCache *sharedFaviconCache = nil;
 
 - init {
 	if (self = [super init]) {
-		memoryCache = [[NSMutableDictionary alloc] init];
+		[self setMemoryCache: [[[NSMutableDictionary alloc] init] autorelease]];
 		[self setDefaultFavicon: [NSImage imageNamed: kDEFAULT_FAVICON_NAME]];
 
 		return self;
@@ -121,6 +122,11 @@ static SFHFFaviconCache *sharedFaviconCache = nil;
 	return favicon;
 }
 
+- (void) clearFaviconCache {
+	[self setMemoryCache: nil];
+	[[NSFileManager defaultManager] removeFileAtPath: [[NSFileManager defaultManager] getApplicationSupportSubpath: @"FavIcons"] handler: nil];
+}
+
 @end
 
 
@@ -143,6 +149,13 @@ static SFHFFaviconCache *sharedFaviconCache = nil;
 	}
 
 	return nil;
+}
+
+- (void) setMemoryCache: (NSMutableDictionary *) newMemoryCache {
+	if (newMemoryCache != memoryCache) {
+		[memoryCache release];
+		memoryCache = [newMemoryCache mutableCopy];
+	}
 }
 
 - (NSMutableDictionary *) memoryCache {
