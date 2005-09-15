@@ -514,6 +514,10 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 
 - (void) setPostsWithArray: (NSArray *) newPosts {
 	@synchronized(posts) { 
+		if (!newPosts) {
+			return;
+		}
+		
 		NSMutableDictionary *newPostDict = [[NSMutableDictionary alloc] initWithObjects: newPosts keyName: kPOST_DICTIONARY_KEY_NAME];
 		[posts release];
 		posts = [newPostDict mutableCopy];
@@ -906,7 +910,7 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 - (void) tableView: (NSTableView *) view setObjectValue: (id) object forTableColumn: (NSTableColumn *) col row: (int) row {
 	if (view == tagList) {
 		DCAPITag *changedTag = [[self filteredTags] objectAtIndex: row - 1];
-		DCAPITag *originalTag = [[self tags] objectForKey: [changedTag name]];
+		DCAPITag *originalTag = [[self tags] objectForKey: [[changedTag name] lowercaseString]];
 		NSString *originalName = [originalTag name];
 				
 		if (![originalName isEqualToString: [object name]]) {
