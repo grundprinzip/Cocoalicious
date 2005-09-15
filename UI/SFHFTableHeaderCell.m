@@ -58,7 +58,7 @@
 		tempDst.origin.y = inFrame.size.height - 1.0;
 		tempDst.size.height = 1.0;
     
-		[texturedBackground drawInRect: tempDst fromRect: tempSrc operation: NSCompositeSourceOver fraction: 1.0];
+		//[texturedBackground drawInRect: tempDst fromRect: tempSrc operation: NSCompositeSourceOver fraction: 1.0];
 
 		tempSrc.origin.y = 0.0;
 		tempSrc.size.height = [texturedBackground size].height - 1.0;
@@ -81,10 +81,10 @@
 		[[NSGraphicsContext currentContext] setShouldAntialias: YES];
 	}
 
-	if (![self stringValue] || [[self stringValue] length] < 1) {
+	/*if (![self stringValue] || [[self stringValue] length] < 1) {
 		return;
 	}
-	
+
 	NSAttributedString *attrString = [self attributedStringValue];
 	NSDictionary *attrDictionary = [attrString attributesAtIndex: 0 effectiveRange: NULL];
 	NSMutableDictionary *attrs = [attrDictionary mutableCopy];
@@ -94,27 +94,25 @@
 	float offset = 0.5;
 	
 	if ([self textAlignment] == SFHFCenteredTableHeaderCellTextAlignment) {
-		alignedRect.origin.x = ((inFrame.size.width - alignedRect.size.width) / 2.0) - offset;	
+		alignedRect.origin.x = ((inFrame.size.width - [[self controlView] bounds].size.width) / 2.0) - offset;	
 	}
 	else {
 		alignedRect.origin.x += 1.5;	
 	}
-	
+		
 	alignedRect.origin.y = ((inFrame.size.height - alignedRect.size.height) / 2.0) + offset;
 	
 	if ([self textStyle] == SFHFEmbossedTableHeaderCellTextStyle) {
-		/* Switch color to white and draw offset text. */
 		[attrs setValue: [NSColor colorWithCalibratedWhite: 0.8 alpha: 0.7] forKey: @"NSColor"];
 		[[self stringValue] drawInRect: alignedRect withAttributes: attrs];
 		
-		/* Switch color to black and draw main text. */
 		[attrs setValue: [NSColor blackColor] forKey: @"NSColor"];
 		alignedRect.origin.x += offset;
 		alignedRect.origin.y -= offset;
 		[[self stringValue] drawInRect: alignedRect withAttributes: attrs];
 	}
 	
-	[attrs release];
+	[attrs release];*/
 }
 
 - (NSImage *) backgroundTexture {

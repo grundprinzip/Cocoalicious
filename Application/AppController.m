@@ -132,6 +132,33 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	
 	[tagList registerForDraggedTypes: [NSArray arrayWithObject: kDCAPIPostPboardType]];
 
+	NSRect superRect = [[tagList headerView] frame];
+	NSRect cornerRect = [[tagList cornerView] frame];
+	NSRect insetRect = NSInsetRect(superRect, cornerRect.size.width + 2, 1);
+	NSTableHeaderView *headerView = [[[NSTableHeaderView alloc] initWithFrame: superRect] autorelease];
+	[headerView setAutoresizesSubviews: YES];
+
+	NSShadow *shadow = [[[NSShadow alloc] init] autorelease];
+	[shadow setShadowOffset:NSMakeSize(1.1, -1.1)];
+	[shadow setShadowBlurRadius:0.2];
+	[shadow setShadowColor:[NSColor colorWithCalibratedWhite:1.0 alpha:0.6]];
+
+	NSMutableAttributedString *headerString = [[[NSMutableAttributedString alloc] initWithString:@"Tags"] autorelease];
+	NSRange range = NSMakeRange(0, [headerString length]);
+	[headerString addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:11.0] range:range];
+	[headerString addAttribute:NSShadowAttributeName value:shadow range:range];
+	[headerString setAlignment:NSCenterTextAlignment range:range];
+
+	NSTextField *headerText = [[NSTextField alloc] initWithFrame:insetRect];
+	[headerText setAutoresizingMask:NSViewWidthSizable];
+	[headerText setDrawsBackground:NO];
+	[headerText setBordered:NO];
+	[headerText setEditable:NO];
+	[headerText setAttributedStringValue:headerString];	
+
+	[headerView addSubview:headerText];
+	[tagList setHeaderView: headerView];
+
     SFHFMetalTableHeaderCell *cornerCell = [[SFHFMetalTableHeaderCell alloc] initTextCell: @" "];
 	SFHFCornerView *cornerControl = [[SFHFCornerView alloc] init];
     [cornerControl setCell: cornerCell];
