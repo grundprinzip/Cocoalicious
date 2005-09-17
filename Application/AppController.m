@@ -1010,6 +1010,8 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 		NSArray *descriptors = [postList sortDescriptors];
 		NSData *descriptorData = [NSArchiver archivedDataWithRootObject: descriptors];
 		[[[NSUserDefaultsController sharedUserDefaultsController] values] setValue: descriptorData forKey: kPOST_LIST_SORT_DEFAULTS_KEY];
+	
+		[self previewSelectedLinks];
 	}
 }
 
@@ -1624,6 +1626,7 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 		[NSThread detachNewThreadSelector: @selector(deletePostWithURL:) toTarget: [self client] withObject: [selectedPost URL]];
 		[self refreshPostsWithDownload: NO];
 		[self refreshTags];
+		[self resetPostView];
 	}
 }
 

@@ -146,7 +146,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 148633100;
+			PBXPerProjectTemplateStateSaveDate = 148661112;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -1018,11 +1018,7 @@
 				PBXModuleWindowStatusBarHidden = YES;
 				RubberWindowFrame = "465 168 745 467 0 0 1280 832 ";
 			};
-			PBXWorkspaceStateSaveDate = 148633100;
-		};
-		perUserProjectItems = {
-			6BD28E9708DBF8DE00590810 /* PBXBookmark */ = 6BD28E9708DBF8DE00590810 /* PBXBookmark */;
-			6BD28E9E08DBF93700590810 /* PBXTextBookmark */ = 6BD28E9E08DBF93700590810 /* PBXTextBookmark */;
+			PBXWorkspaceStateSaveDate = 148661112;
 		};
 		sourceControlManager = 6BF88AE705C4D57100D7EDBB /* Source Control */;
 		userBuildSettings = {
@@ -1536,20 +1532,6 @@
 			sepNavWindowFrame = "{{84, 206}, {750, 558}}";
 		};
 	};
-	6BD28E9708DBF8DE00590810 /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = 6BF88AE405C4D56000D7EDBB /* AppController.m */;
-	};
-	6BD28E9E08DBF93700590810 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 6BF88AE405C4D56000D7EDBB /* AppController.m */;
-		name = "AppController.m: 1108";
-		rLen = 0;
-		rLoc = 38948;
-		rType = 0;
-		vrLen = 826;
-		vrLoc = 38280;
-	};
 	6BD8187D075AFB740088A2CF /* AppController-AppleScriptExtensions.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {705, 429}}";
@@ -1638,9 +1620,9 @@
 	};
 	6BF88AE405C4D56000D7EDBB /* AppController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {2654, 24906}}";
-			sepNavSelRange = "{38948, 0}";
-			sepNavVisRect = "{{0, 15151}, {705, 429}}";
+			sepNavIntBoundsRect = "{{0, 0}, {2654, 24948}}";
+			sepNavSelRange = "{156, 0}";
+			sepNavVisRect = "{{0, 0}, {705, 429}}";
 			sepNavWindowFrame = "{{343, 137}, {750, 558}}";
 		};
 	};
