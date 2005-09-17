@@ -11,9 +11,7 @@
 
 @implementation SFHFBezelView
 
-- (void) drawRect: (NSRect) rect {
-	[super drawRect: rect];
-	
+- (void) drawRect: (NSRect) rect {	
 	[self lockFocus];
 	
 	NSRect frame = [self bounds];
@@ -47,6 +45,8 @@
 	[[NSGraphicsContext currentContext] setShouldAntialias: YES];
 	
 	[self unlockFocus];
+	
+ 	[super drawRect: rect];
 }
 
 @end

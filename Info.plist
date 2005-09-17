@@ -26,6 +26,19 @@
 	<string>NSApplication</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
+	<key>CFBundleURLTypes</key>
+	<array>
+    <dict>
+        <key>CFBundleURLName</key>
+        <string>Del.icio.us web site URL to bookmark</string>
+        <key>CFBundleURLSchemes</key>
+			<array>
+				<string>delicious</string>
+			</array>
+			<key>LSIsAppleDefaultForScheme</key>
+			<true/>
+		</dict>
+	</array>
 	<key>NSServices</key>
 	<array>
 		<dict>

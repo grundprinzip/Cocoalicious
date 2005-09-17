@@ -44,25 +44,17 @@
 }
 
 - (void) drawWithFrame: (NSRect) inFrame inView: (NSView*) inView {
-	[super drawWithFrame: inFrame inView: inView];
-
 	NSImage *texturedBackground = [self backgroundTexture];
+
+	[super drawWithFrame: inFrame inView: inView];
 
 	if (texturedBackground) {
 		NSRect tempSrc = NSZeroRect;
-		tempSrc.size = [texturedBackground size];
-		tempSrc.origin.y = tempSrc.size.height - 1.0;
-		tempSrc.size.height = 1.0;
-    
-		NSRect tempDst = inFrame;
-		tempDst.origin.y = inFrame.size.height - 1.0;
-		tempDst.size.height = 1.0;
-    
-		//[texturedBackground drawInRect: tempDst fromRect: tempSrc operation: NSCompositeSourceOver fraction: 1.0];
-
 		tempSrc.origin.y = 0.0;
+		tempSrc.size = [texturedBackground size];
 		tempSrc.size.height = [texturedBackground size].height - 1.0;
     
+		NSRect tempDst = inFrame;
 		tempDst.origin.y = 1.0;
 		tempDst.size.height = inFrame.size.height - 2.0;
     
@@ -81,7 +73,7 @@
 		[[NSGraphicsContext currentContext] setShouldAntialias: YES];
 	}
 
-	/*if (![self stringValue] || [[self stringValue] length] < 1) {
+	if (![self stringValue] || [[self stringValue] length] < 1) {
 		return;
 	}
 
@@ -94,7 +86,7 @@
 	float offset = 0.5;
 	
 	if ([self textAlignment] == SFHFCenteredTableHeaderCellTextAlignment) {
-		alignedRect.origin.x = ((inFrame.size.width - [[self controlView] bounds].size.width) / 2.0) - offset;	
+		alignedRect.origin.x = ((inFrame.size.width - alignedRect.size.width) / 2.0) - offset;	
 	}
 	else {
 		alignedRect.origin.x += 1.5;	
@@ -112,7 +104,7 @@
 		[[self stringValue] drawInRect: alignedRect withAttributes: attrs];
 	}
 	
-	[attrs release];*/
+	[attrs release];
 }
 
 - (NSImage *) backgroundTexture {

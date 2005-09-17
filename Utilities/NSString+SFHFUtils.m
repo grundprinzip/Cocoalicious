@@ -21,4 +21,8 @@
 	return [escapedString autorelease];
 }
 
+- (NSString *) stringByReplacingPercentEscapes {
+    return [(NSString*) CFURLCreateStringByReplacingPercentEscapes(NULL, (CFStringRef) self, CFSTR("")) autorelease];
+}
+
 @end

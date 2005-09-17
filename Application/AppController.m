@@ -69,6 +69,9 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 }
 
 - (void) applicationDidFinishLaunching: (NSNotification *) aNotification {
+    /* Support for bookmarklet type urls (added by Gus Mueller) */
+    [[NSAppleEventManager sharedAppleEventManager] setEventHandler: self andSelector: @selector(handleOpenURLAppleEvent:withReplyEvent:) forEventClass: kInternetEventClass andEventID:kAEGetURL];
+	
 	/* Support for NetNewsWire External Weblog Editor Interface */
 	[[NSAppleEventManager sharedAppleEventManager] setEventHandler: self andSelector: @selector(postNewNNWLink:withReplyEvent:) forEventClass: DCNNWPostAppleEventClass andEventID: DCNNWPostAppleEventID];
 	
@@ -128,36 +131,9 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	[tagList setAction: @selector(makePostListFirstResponder) forKey: NSRightArrowFunctionKey];
 	[tagList setAction: @selector(endTagListEditing) forKey: 27];
 
-	[tagList initializeColumnsUsingHeaderCellClass: [SFHFMetalTableHeaderCell class] formatterClass: [DCAPITagFormatter class]];
+	[tagList initializeColumnsUsingHeaderCellClass: [SFHFMetalTableHeaderCell class] formatterClass: [DCAPITagFormatter class] textAlignment: NSCenterTextAlignment];
 	
 	[tagList registerForDraggedTypes: [NSArray arrayWithObject: kDCAPIPostPboardType]];
-
-	NSRect superRect = [[tagList headerView] frame];
-	NSRect cornerRect = [[tagList cornerView] frame];
-	NSRect insetRect = NSInsetRect(superRect, cornerRect.size.width + 2, 1);
-	NSTableHeaderView *headerView = [[[NSTableHeaderView alloc] initWithFrame: superRect] autorelease];
-	[headerView setAutoresizesSubviews: YES];
-
-	NSShadow *shadow = [[[NSShadow alloc] init] autorelease];
-	[shadow setShadowOffset:NSMakeSize(1.1, -1.1)];
-	[shadow setShadowBlurRadius:0.2];
-	[shadow setShadowColor:[NSColor colorWithCalibratedWhite:1.0 alpha:0.6]];
-
-	NSMutableAttributedString *headerString = [[[NSMutableAttributedString alloc] initWithString:@"Tags"] autorelease];
-	NSRange range = NSMakeRange(0, [headerString length]);
-	[headerString addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:11.0] range:range];
-	[headerString addAttribute:NSShadowAttributeName value:shadow range:range];
-	[headerString setAlignment:NSCenterTextAlignment range:range];
-
-	NSTextField *headerText = [[NSTextField alloc] initWithFrame:insetRect];
-	[headerText setAutoresizingMask:NSViewWidthSizable];
-	[headerText setDrawsBackground:NO];
-	[headerText setBordered:NO];
-	[headerText setEditable:NO];
-	[headerText setAttributedStringValue:headerString];	
-
-	[headerView addSubview:headerText];
-	[tagList setHeaderView: headerView];
 
     SFHFMetalTableHeaderCell *cornerCell = [[SFHFMetalTableHeaderCell alloc] initTextCell: @" "];
 	SFHFCornerView *cornerControl = [[SFHFCornerView alloc] init];
@@ -236,7 +212,7 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	
 	[postList disableDraggingForColumnWithIdentifier: kRATING_COLUMN_IDENTIFIER];
 	
-	[postList initializeColumnsUsingHeaderCellClass: [SFHFiTunesTableHeaderCell class] formatterClass: nil];
+	[postList initializeColumnsUsingHeaderCellClass: [SFHFiTunesTableHeaderCell class] formatterClass: nil textAlignment: NSLeftTextAlignment];
 
     SFHFTableHeaderCell *cornerCell = [[SFHFiTunesTableHeaderCell alloc] initTextCell: @" "];
 	SFHFCornerView *cornerView = [[SFHFCornerView alloc] init];
@@ -1384,6 +1360,46 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	[[NSApp mainWindow] makeFirstResponder: [[NSApp mainWindow] initialFirstResponder]];
 }
 
+- (void) handleOpenURLAppleEvent: (NSAppleEventDescriptor *)event withReplyEvent: (NSAppleEventDescriptor *)replyEvent {
+
+    NSString *incomingString = [[ event paramDescriptorForKeyword: keyDirectObject] stringValue ];
+    NSString *description = nil;
+    NSString *url = nil;
+
+    // make sure it's an url we can handle.
+    if (![[incomingString lowercaseString] hasPrefix: @"delicious:"]) {
+        // fixme - put something in the replyEvent?
+        return;
+    }
+
+    // strip off the prefix.
+    incomingString = [incomingString substringFromIndex: 10];
+
+    NSEnumerator *enumerator = [[incomingString componentsSeparatedByString:@"&"] objectEnumerator];
+    NSString *component;
+
+    while ((component = [enumerator nextObject])) {
+    	
+        if ([[component lowercaseString] hasPrefix:@"url="]) {
+            url = [[component substringFromIndex: 4] stringByReplacingPercentEscapes];
+        }
+        else if ([[component lowercaseString] hasPrefix:@"description="]) {
+            description = [[component substringFromIndex: 12] stringByReplacingPercentEscapes];
+        }
+        else {
+            // just default to using the whole thing as the url.
+            url = component;
+        }
+    }
+
+    [currentPostProperties setObject: url forKey: @"url"];
+
+    if (description) {
+        [currentPostProperties setObject: description forKey: @"description"];
+    }
+
+    [self showPostingInterface: self];
+}
 
 - (void) postNewNNWLink: (NSAppleEventDescriptor *) event withReplyEvent: (NSAppleEventDescriptor *) reply {
     NSAppleEventDescriptor *recordDescriptor = [event descriptorForKeyword: keyDirectObject];

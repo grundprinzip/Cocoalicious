@@ -16,7 +16,7 @@
 	BOOL lastClickWasInDisabledColumn;
 }
 
-- (void) initializeColumnsUsingHeaderCellClass: (Class) cellClass formatterClass: (Class) formatterClass;
+- (void) initializeColumnsUsingHeaderCellClass: (Class) cellClass formatterClass: (Class) formatterClass textAlignment: (NSTextAlignment) textAlignment;
 - (void) setAction: (SEL) selector forKey: (unichar) key;
 - (SEL) actionForKey: (unichar) key;
 - (void) setKeyActions: (NSMutableDictionary *) newKeyActions;

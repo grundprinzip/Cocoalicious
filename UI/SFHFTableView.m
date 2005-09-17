@@ -94,7 +94,7 @@
 	[[self delegate] tableView: self writeRows: rowsToCopy toPasteboard: [NSPasteboard generalPasteboard]];
 }
 
-- (void) initializeColumnsUsingHeaderCellClass: (Class) cellClass formatterClass: (Class) formatterClass {
+- (void) initializeColumnsUsingHeaderCellClass: (Class) cellClass formatterClass: (Class) formatterClass textAlignment: (NSTextAlignment) textAlignment {
     NSArray *columns = [self tableColumns];
     NSEnumerator *cols = [columns objectEnumerator];
     NSTableColumn *col = nil;
@@ -103,6 +103,7 @@
 	
     while (col = [cols nextObject]) {
 		id headerCell = [[cellClass alloc] initTextCell: [[col headerCell] stringValue]];
+		[headerCell setAlignment: textAlignment];
         [col setHeaderCell: headerCell];
         [headerCell release];
 
