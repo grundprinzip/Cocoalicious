@@ -26,6 +26,7 @@ const AEKeyword DCNNWPostSourceFeedURL = 'furl';
 
 static NSString *ERR_LOGIN_AUTHENTICATION = @"Invalid Username/Password";
 static NSString *ERR_LOGIN_OTHER = @"Login Error.";
+static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not specified";
 
 @implementation AppController
 
@@ -1222,6 +1223,8 @@ static NSString *ERR_LOGIN_OTHER = @"Login Error.";
 	NSError *loginError;
 
 	if (!username || !password) {
+		[loginErrorText setStringValue: ERR_LOGIN_NO_CREDENTIALS_SPECIFIED];
+		[loginSpinner stopAnimation: self];
 		return;
 	}
 
