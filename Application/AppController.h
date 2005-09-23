@@ -172,6 +172,7 @@
 - (IBAction) postCurrentSafariURL: (id) sender;
 - (IBAction) editSelectedLinks: (id) sender;
 - (IBAction) deleteSelectedLinks: (id) sender;
+- (IBAction) highlightSearchField: (id) sender;
 - (IBAction) setSearchTypeToBasic: (id) sender;
 - (IBAction) setSearchTypeToExtended: (id) sender;
 - (IBAction) copyAsTag: (id) sender;

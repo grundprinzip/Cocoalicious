@@ -10,6 +10,7 @@
                 doSearch = id; 
                 editSelectedLinks = id; 
                 emptyFaviconCache = id; 
+                highlightSearchField = id; 
                 indexAll = id; 
                 indexSelected = id; 
                 loginFromPanel = id; 

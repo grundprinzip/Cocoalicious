@@ -17,13 +17,36 @@
 			6B491C9208D35E1700B6E3C4 /* Convert Tags to Strings */,
 		);
 		breakpoints = (
-			6B3FB14E08D9411E003CB654 /* AppController.m:318 */,
+			6B72EB8908E3D1C1000B3F10 /* [NSException raise] */,
 		);
+		breakpointsGroup = 6B72EB8C08E3D1C4000B3F10 /* XCBreakpointsBucket */;
 		codeSenseManager = 6BF88AE805C4D57100D7EDBB /* Code sense */;
 		executables = (
 			6BAB081D06D2FF6A0058BAC1 /* Cocoal.icio.us */,
 		);
 		perUserDictionary = {
+			"PBXConfiguration.PBXBreakpointsDataSource.v1:1CA1AED706398EBD00589147" = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXBreakpointsDataSource_BreakpointID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					20,
+					210,
+					20,
+					110,
+					109,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXBreakpointsDataSource_ActionID,
+					PBXBreakpointsDataSource_TypeID,
+					PBXBreakpointsDataSource_BreakpointID,
+					PBXBreakpointsDataSource_UseID,
+					PBXBreakpointsDataSource_LocationID,
+					PBXBreakpointsDataSource_ConditionID,
+					PBXBreakpointsDataSource_ContinueID,
+				);
+			};
 			PBXConfiguration.PBXFileTableDataSource3.PBXErrorsWarningsDataSource = {
 				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
 				PBXFileTableDataSourceColumnSortingKey = PBXErrorsWarningsDataSource_LocationID;
@@ -146,7 +169,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 148661112;
+			PBXPerProjectTemplateStateSaveDate = 149147574;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -1018,7 +1041,7 @@
 				PBXModuleWindowStatusBarHidden = YES;
 				RubberWindowFrame = "465 168 745 467 0 0 1280 832 ";
 			};
-			PBXWorkspaceStateSaveDate = 148661112;
+			PBXWorkspaceStateSaveDate = 149147574;
 		};
 		sourceControlManager = 6BF88AE705C4D57100D7EDBB /* Source Control */;
 		userBuildSettings = {
@@ -1212,22 +1235,9 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1160, 5446}}";
 			sepNavSelRange = "{6162, 0}";
-			sepNavVisRect = "{{0, 672}, {705, 429}}";
+			sepNavVisRect = "{{0, 0}, {705, 429}}";
 			sepNavWindowFrame = "{{402, 222}, {750, 558}}";
 		};
-	};
-	6B3FB14E08D9411E003CB654 /* AppController.m:318 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		continueAfterActions = 0;
-		delayBeforeContinue = 0;
-		fileReference = 6BF88AE405C4D56000D7EDBB /* AppController.m */;
-		functionName = "-refreshPostsWithDownload:";
-		hitCount = 4;
-		lineNumber = 318;
-		modificationTime = 148456007.392579;
-		state = 1;
 	};
 	6B4324FB08C6DD8C00C26737 /* SFHFFaviconCache.h */ = {
 		uiCtxt = {
@@ -1412,8 +1422,8 @@
 	6B698143065346D6000649B0 /* defines.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {705, 1134}}";
-			sepNavSelRange = "{1730, 3}";
-			sepNavVisRect = "{{0, 409}, {705, 429}}";
+			sepNavSelRange = "{449, 0}";
+			sepNavVisRect = "{{0, 0}, {705, 429}}";
 			sepNavWindowFrame = "{{84, 206}, {750, 558}}";
 		};
 	};
@@ -1479,6 +1489,24 @@
 			sepNavVisRect = "{{0, 0}, {705, 429}}";
 			sepNavWindowFrame = "{{153, 143}, {750, 558}}";
 		};
+	};
+	6B72EB8908E3D1C1000B3F10 /* [NSException raise] */ = {
+		isa = PBXSymbolicBreakpoint;
+		actions = (
+		);
+		continueAfterActions = 0;
+		delayBeforeContinue = 0;
+		hitCount = 1;
+		modificationTime = 149148126.686157;
+		state = 1;
+		symbolName = "[NSException raise]";
+	};
+	6B72EB8C08E3D1C4000B3F10 /* XCBreakpointsBucket */ = {
+		isa = XCBreakpointsBucket;
+		name = "Project Breakpoints";
+		objects = (
+			6B72EB8908E3D1C1000B3F10 /* [NSException raise] */,
+		);
 	};
 	6BA936C20655EEC400AE7890 /* NSString+SFHFUtils.h */ = {
 		uiCtxt = {
@@ -1597,32 +1625,32 @@
 	6BE6C20206C9FE1100E90B12 /* SFHFTableView.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {938, 3696}}";
-			sepNavSelRange = "{2207, 154}";
-			sepNavVisRect = "{{0, 1271}, {748, 434}}";
-			sepNavWindowFrame = "{{138, 221}, {793, 563}}";
+			sepNavSelRange = "{2457, 0}";
+			sepNavVisRect = "{{0, 1593}, {748, 434}}";
+			sepNavWindowFrame = "{{442, 209}, {793, 563}}";
 		};
 	};
 	6BF00A8F077B0D340036723E /* DCTypes.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {711, 429}}";
+			sepNavIntBoundsRect = "{{0, 0}, {705, 429}}";
 			sepNavSelRange = "{253, 0}";
-			sepNavVisRect = "{{0, 0}, {711, 429}}";
+			sepNavVisRect = "{{0, 0}, {705, 429}}";
 			sepNavWindowFrame = "{{107, 185}, {750, 558}}";
 		};
 	};
 	6BF88AE305C4D56000D7EDBB /* AppController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {818, 2646}}";
-			sepNavSelRange = "{829, 0}";
-			sepNavVisRect = "{{0, 55}, {705, 429}}";
+			sepNavIntBoundsRect = "{{0, 0}, {818, 2660}}";
+			sepNavSelRange = "{88, 0}";
+			sepNavVisRect = "{{0, 0}, {705, 429}}";
 			sepNavWindowFrame = "{{526, 248}, {750, 558}}";
 		};
 	};
 	6BF88AE405C4D56000D7EDBB /* AppController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {2654, 24948}}";
-			sepNavSelRange = "{156, 0}";
-			sepNavVisRect = "{{0, 0}, {705, 429}}";
+			sepNavIntBoundsRect = "{{0, 0}, {2654, 25060}}";
+			sepNavSelRange = "{37635, 0}";
+			sepNavVisRect = "{{0, 14612}, {705, 429}}";
 			sepNavWindowFrame = "{{343, 137}, {750, 558}}";
 		};
 	};
@@ -1663,8 +1691,8 @@
 	8D1107310486CEB800E47090 /* Info.plist */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1019, 966}}";
-			sepNavSelRange = "{1126, 0}";
-			sepNavVisRect = "{{0, 223}, {1019, 561}}";
+			sepNavSelRange = "{705, 0}";
+			sepNavVisRect = "{{0, 0}, {1019, 561}}";
 			sepNavWindowFrame = "{{15, 137}, {1064, 690}}";
 		};
 	};

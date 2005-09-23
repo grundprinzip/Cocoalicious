@@ -81,7 +81,7 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 	NSError *historyLoadError;
 	WebHistory *sharedHistory = [[WebHistory alloc] init];
 	[sharedHistory loadFromURL: [NSURL fileURLWithPath: [kSAFARI_HISTORY_PATH stringByExpandingTildeInPath]] error: &historyLoadError];
-	
+		
 	if (historyLoadError) {
 		NSLog(@"%@", historyLoadError);
 	}
@@ -602,6 +602,10 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
     return [[currentSearch retain] autorelease];
 }
 
+- (IBAction) highlightSearchField: (id) sender {
+    [mainWindow makeFirstResponder:searchField];
+}
+
 - (IBAction) doSearch: (id) sender {
     if (sender == searchField) {
 		[self resetPostView];
@@ -1055,6 +1059,10 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 
 - (id)tableView:(SFHFTableView *)tableView itemAtRow:(int)row {	
 	if (tableView == postList) {
+		if (row >= [[self filteredPosts] count]) {
+			return nil;
+		}
+		
 		DCAPIPost *post = [[self filteredPosts] objectAtIndex: row];
 		if (post) {
 			return post;
