@@ -43,7 +43,7 @@
 - (void) deletePostWithURL: (NSURL *) url;
 - (void) renameTag: (NSDictionary *) renameInfo;
 - (void) renameTag: (NSString *) oldName to: (NSString *) newName;
-- (NSData *) sendRequestForURI: (NSURL *) apiURL usingCachePolicy: (NSURLRequestCachePolicy) cachePolicy error: (NSError **) error;
+- (NSData *) sendRequestForURI: (NSURL *) apiURL usingCachePolicy: (NSURLRequestCachePolicy) cachePolicy response: (NSURLResponse **) response error: (NSError **) error;
 
 - (void) constructURIString: (NSMutableString **) URIString forFunction: (NSString *) function;
 

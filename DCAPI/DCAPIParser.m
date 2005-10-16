@@ -27,6 +27,9 @@ static NSString *kTAG_ATTRIBUTE = @"tag";
 static NSString *kTAG_COUNT_ATTRIBUTE = @"count";
 static NSString *kPOST_HASH_ATTRIBUTE = @"hash";
 
+static NSString *kUPDATE_ELEMENT = @"update";
+static NSString *kUPDATE_TIME_ATTRIBUTE = @"time";
+
 
 @implementation DCAPIParser
 
@@ -40,6 +43,16 @@ static NSString *kPOST_HASH_ATTRIBUTE = @"hash";
     [parser setShouldResolveExternalEntities: YES];
     
     return self;
+}
+
+- (NSDate *) parseForLastUpdateTime {
+	if (!parser || !XMLData) {
+		return nil;
+	}
+		
+	[parser parse];
+	
+	return lastUpdate;
 }
 
 - (void) parseForPosts: (NSMutableArray **) postList dates: (NSMutableArray **) dateList tags: (NSMutableArray **) tagList {
@@ -136,10 +149,13 @@ static NSString *kPOST_HASH_ATTRIBUTE = @"hash";
             [tag release];
         }
     }
+	else if ([elementName isEqualToString: kUPDATE_ELEMENT]) {
+		NSString *dateString = [[[attributeDict objectForKey: kUPDATE_TIME_ATTRIBUTE] stringByUnescapingEntities: nil] stringByAppendingString: kDEFAULT_TIME_ZONE_NAME];				
+		lastUpdate = [NSCalendarDate dateWithString: dateString calendarFormat: kDEFAULT_DATE_TIME_FORMAT];
+	}
 }
 
 - (NSData *)parser:(NSXMLParser *)parser resolveExternalEntityName:(NSString *)name systemID:(NSString *)systemID {
-    NSLog(@"EXTERNAL ENTITY: %@",name);
 	return nil;
 }
 

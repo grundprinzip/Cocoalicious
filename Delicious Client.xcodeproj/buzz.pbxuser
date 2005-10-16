@@ -9,7 +9,7 @@
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = Deployment;
+		activeBuildConfigurationName = Development;
 		activeBuildStyle = 4A9504CCFFE6A4B311CA0CBA /* Development */;
 		activeExecutable = 6BAB081D06D2FF6A0058BAC1 /* Cocoal.icio.us */;
 		activeTarget = 8D1107260486CEB800E47090 /* Cocoal.icio.us */;
@@ -169,7 +169,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 149147574;
+			PBXPerProjectTemplateStateSaveDate = 151126981;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -1041,7 +1041,7 @@
 				PBXModuleWindowStatusBarHidden = YES;
 				RubberWindowFrame = "465 168 745 467 0 0 1280 832 ";
 			};
-			PBXWorkspaceStateSaveDate = 149147574;
+			PBXWorkspaceStateSaveDate = 151126981;
 		};
 		sourceControlManager = 6BF88AE705C4D57100D7EDBB /* Source Control */;
 		userBuildSettings = {
@@ -1078,9 +1078,9 @@
 	};
 	49FE4956073A0868004027E5 /* FullTextIndex.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {866, 6202}}";
-			sepNavSelRange = "{7552, 0}";
-			sepNavVisRect = "{{0, 3384}, {711, 429}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1071, 6202}}";
+			sepNavSelRange = "{11269, 7}";
+			sepNavVisRect = "{{0, 4959}, {1071, 261}}";
 			sepNavWindowFrame = "{{67, 127}, {750, 558}}";
 		};
 	};
@@ -1171,9 +1171,9 @@
 	};
 	6B21259A071D935F0044339D /* SFHFKeychainUtils.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {944, 1680}}";
-			sepNavSelRange = "{2278, 0}";
-			sepNavVisRect = "{{0, 866}, {919, 526}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1071, 1680}}";
+			sepNavSelRange = "{1244, 7}";
+			sepNavVisRect = "{{0, 451}, {1071, 261}}";
 			sepNavWindowFrame = "{{219, 177}, {964, 655}}";
 		};
 	};
@@ -1209,18 +1209,18 @@
 	};
 	6B37C7D405C8C83E00A005A7 /* DCAPIParser.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {758, 448}}";
-			sepNavSelRange = "{182, 0}";
-			sepNavVisRect = "{{0, 0}, {754, 434}}";
-			sepNavWindowFrame = "{{130, 159}, {793, 563}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1071, 448}}";
+			sepNavSelRange = "{475, 15}";
+			sepNavVisRect = "{{0, 187}, {1071, 261}}";
+			sepNavWindowFrame = "{{409, 154}, {793, 563}}";
 		};
 	};
 	6B37C7D505C8C83E00A005A7 /* DCAPIParser.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1268, 2198}}";
-			sepNavSelRange = "{1426, 0}";
-			sepNavVisRect = "{{0, 578}, {705, 429}}";
-			sepNavWindowFrame = "{{211, 224}, {750, 558}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1268, 2422}}";
+			sepNavSelRange = "{3369, 23}";
+			sepNavVisRect = "{{0, 1473}, {1071, 261}}";
+			sepNavWindowFrame = "{{399, 253}, {750, 558}}";
 		};
 	};
 	6B37C94E05C8D5BB00A005A7 /* DCAPIPost.h */ = {
@@ -1421,10 +1421,10 @@
 	};
 	6B698143065346D6000649B0 /* defines.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {705, 1134}}";
-			sepNavSelRange = "{449, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {705, 1148}}";
+			sepNavSelRange = "{175, 0}";
 			sepNavVisRect = "{{0, 0}, {705, 429}}";
-			sepNavWindowFrame = "{{84, 206}, {750, 558}}";
+			sepNavWindowFrame = "{{113, 126}, {750, 558}}";
 		};
 	};
 	6B6981940653485C000649B0 /* DCAPIDate.h */ = {
@@ -1437,9 +1437,9 @@
 	};
 	6B6981950653485C000649B0 /* DCAPIDate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {603, 924}}";
-			sepNavSelRange = "{607, 20}";
-			sepNavVisRect = "{{0, 370}, {603, 171}}";
+			sepNavIntBoundsRect = "{{0, 0}, {705, 924}}";
+			sepNavSelRange = "{1013, 0}";
+			sepNavVisRect = "{{0, 0}, {705, 429}}";
 			sepNavWindowFrame = "{{15, 269}, {750, 558}}";
 		};
 	};
@@ -1649,8 +1649,8 @@
 	6BF88AE405C4D56000D7EDBB /* AppController.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {2654, 25060}}";
-			sepNavSelRange = "{37635, 0}";
-			sepNavVisRect = "{{0, 14612}, {705, 429}}";
+			sepNavSelRange = "{45730, 0}";
+			sepNavVisRect = "{{0, 17839}, {705, 429}}";
 			sepNavWindowFrame = "{{343, 137}, {750, 558}}";
 		};
 	};
@@ -1669,17 +1669,17 @@
 	6BF88AF305C4D79D00D7EDBB /* DCAPIClient.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1988, 714}}";
-			sepNavSelRange = "{1802, 0}";
-			sepNavVisRect = "{{203, 285}, {711, 429}}";
+			sepNavSelRange = "{1692, 17}";
+			sepNavVisRect = "{{0, 285}, {705, 429}}";
 			sepNavWindowFrame = "{{61, 227}, {750, 558}}";
 		};
 	};
 	6BF88AF405C4D79D00D7EDBB /* DCAPIClient.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1340, 5614}}";
-			sepNavSelRange = "{44, 0}";
-			sepNavVisRect = "{{0, 0}, {919, 526}}";
-			sepNavWindowFrame = "{{196, 114}, {964, 655}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1340, 5544}}";
+			sepNavSelRange = "{3663, 20}";
+			sepNavVisRect = "{{0, 1529}, {1071, 261}}";
+			sepNavWindowFrame = "{{207, 119}, {964, 655}}";
 		};
 	};
 	8D1107260486CEB800E47090 /* Cocoal.icio.us */ = {

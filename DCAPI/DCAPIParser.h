@@ -20,9 +20,11 @@
     NSMutableArray *posts;
     NSMutableArray *dates;
     NSMutableArray *tags;
+	NSCalendarDate *lastUpdate;
 }
 
 - initWithXMLData: (NSData *) xml;
+- (NSDate *) parseForLastUpdateTime;
 - (void) parseForPosts: (NSMutableArray **) postList dates: (NSMutableArray **) dateList tags: (NSMutableArray **) tagList;
 - (void) setXMLData: (NSData *) newXMLData;
 - (NSData *) XMLData;

@@ -1,5 +1,6 @@
 #define kDEFAULT_DATE_FORMAT (@"%Y-%m-%d")
 #define kDEFAULT_DATE_TIME_FORMAT (@"%Y-%m-%dT%H:%M:%SZ%Z")
+#define kLAST_UPDATE_DATE_TIME_FORMAT (@"%Y-%m-%dT%H:%M:%S")
 #define kPOSTING_DATE_TIME_FORMAT (@"%Y-%m-%dT%H:%M:%SZ")
 #define kDEFAULT_TIME_ZONE_NAME (@"UTC")
 

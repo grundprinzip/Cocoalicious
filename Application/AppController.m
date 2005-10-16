@@ -1281,12 +1281,12 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 	}
 	
 	/* Get last update time.  Right now this is just used to verify authentication. */
-	[client requestLastUpdateTime: error];
+	NSDate *lastUpdateTime = [client requestLastUpdateTime: error];
 
 	if(*error) {
 		return NO;
 	}
-	
+		
 	[mainWindow makeKeyAndOrderFront: self];
 	[mainWindow setTitle: [NSString stringWithFormat: [[NSBundle mainBundle] objectForInfoDictionaryKey: @"DCWindowTitleFormat"], username]];
 	[NSThread detachNewThreadSelector: @selector(refreshAll) toTarget: self withObject: nil];

@@ -121,7 +121,7 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
     
     NSURL *apiURL = [NSURL URLWithString: getTagsURIString];
  
-    NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestUseProtocolCachePolicy error: &error];
+    NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestUseProtocolCachePolicy response: nil error: &error];
 
     DCAPIParser *parser = [[DCAPIParser alloc] initWithXMLData: responseData];
     
@@ -148,7 +148,7 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
     
     NSURL *apiURL = [NSURL URLWithString: getDatesURIString];
  
-    NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestUseProtocolCachePolicy error: &error];
+    NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestUseProtocolCachePolicy response: nil error: &error];
 
     DCAPIParser *parser = [[DCAPIParser alloc] initWithXMLData: responseData];
     
@@ -193,7 +193,7 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
 
     NSURL *apiURL = [NSURL URLWithString: getPostsURIString];
  
-    NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestUseProtocolCachePolicy error: &error];
+    NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestUseProtocolCachePolicy response: nil error: &error];
 
     DCAPIParser *parser = [[DCAPIParser alloc] initWithXMLData: responseData];
     
@@ -224,7 +224,7 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
     
     NSURL *apiURL = [NSURL URLWithString: getPostsURIString];
  
-    NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestUseProtocolCachePolicy error: &error];
+    NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestUseProtocolCachePolicy response: nil error: &error];
 
     DCAPIParser *parser = [[DCAPIParser alloc] initWithXMLData: responseData];
     
@@ -235,7 +235,6 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
 	 return posts;
 }
 
-#warning Incomplete implementation.  DO NOT USE except for error handling.
 - (NSDate *) requestLastUpdateTime: (NSError **) error {
     NSMutableString *lastUpdateURIString;
 	
@@ -246,11 +245,13 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
     }
 
     NSURL *apiURL = [NSURL URLWithString: lastUpdateURIString];
- 
-    NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestReloadIgnoringCacheData error: error];
+
+    NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestReloadIgnoringCacheData response: nil error: error];
 	
-	/* This is where we need to coerce the data into an NSDate object and return it */
-	return nil;
+	DCAPIParser *parser = [[[DCAPIParser alloc] initWithXMLData: responseData] autorelease];
+	NSDate *lastUpdateTime = [parser parseForLastUpdateTime];
+	
+	return lastUpdateTime;
 }
 
 - (void) addPost: (DCAPIPost *) newPost {
@@ -297,7 +298,7 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
 
     NSURL *apiURL = [NSURL URLWithString: addPostURIString];
  
-    NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestReloadIgnoringCacheData error: &error];
+    NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestReloadIgnoringCacheData response: nil error: &error];
 
 	[pool release];
 }
@@ -318,7 +319,7 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
     
     NSURL *apiURL = [NSURL URLWithString: addPostURIString];
  
-    NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestReloadIgnoringCacheData error: &error];	
+    NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestReloadIgnoringCacheData response: nil error: &error];	
 	[pool release];
 }
 
@@ -347,15 +348,13 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
 
     NSURL *apiURL = [NSURL URLWithString: renameTagURIString];
  
-    NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestReloadIgnoringCacheData error: &error];
+    NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestReloadIgnoringCacheData response: nil error: &error];
 }
 
-- (NSData *) sendRequestForURI: (NSURL *) apiURL usingCachePolicy: (NSURLRequestCachePolicy) cachePolicy error: (NSError **) error {
+- (NSData *) sendRequestForURI: (NSURL *) apiURL usingCachePolicy: (NSURLRequestCachePolicy) cachePolicy response: (NSURLResponse **) response error: (NSError **) error {
 	NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL: apiURL cachePolicy: cachePolicy timeoutInterval: kREQUEST_TIMEOUT_INTERVAL];
 		
     [req setValue: kUSER_AGENT forHTTPHeaderField: kUSER_AGENT_HTTP_HEADER];
-
-    NSURLResponse *resp;
 	
 	NSDate *now = [NSDate date];
 	NSDate *lastSubmission = [self lastAPISubmissionTime];
@@ -365,7 +364,7 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
 	}
 
 	[self setLastAPISubmissionTime: now];
-	NSData *returnData = [NSURLConnection sendSynchronousRequest: req returningResponse: &resp error: error];
+	NSData *returnData = [NSURLConnection sendSynchronousRequest: req returningResponse: response error: error];
 		
 	if (*error) { 
 		NSLog(@"%@", *error);
@@ -383,10 +382,6 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
 
 - (NSDate *) lastAPISubmissionTime {
 	return [[lastAPISubmissionTime retain] autorelease];
-}
-
-- (void) connection: (NSURLConnection *) connection didReceiveAuthenticationChallenge: (NSURLAuthenticationChallenge *) challenge {
-	NSLog(@"got auth challenge");
 }
 
 - (void) dealloc {
