@@ -1170,8 +1170,10 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
         if ([[[frame frameView] documentView] 
              respondsToSelector:@selector(string)]) {
             NSURL *url = [[[frame dataSource] request] URL];
-            if ([[[frame dataSource] representation] 
-                canProvideDocumentSource] &&
+			// Make sure the URL should be added to the index.
+			DCAPIPost *currentPost = (DCAPIPost *) [posts objectForKey: [url absoluteString]];
+			if (currentPost && 
+				[[[frame dataSource] representation] canProvideDocumentSource] &&
                 [url description] != @"about:blank") {
                 NSString *contents = [[NSString alloc] initWithString: 
                     [[[frame dataSource] representation] documentSource]];
