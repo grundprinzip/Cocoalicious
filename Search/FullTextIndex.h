@@ -14,11 +14,6 @@
 // - I should make kTEXT_INDEX_NAME include the username.
 // - The View/Index menu item shouldn't be enabled until there's something to
 //   index on.
-// - I need to filter out the HTML in text given to addDocumentToIndex.
-// - I should not flush the index to disk after a document is added. I should
-//   probably add a "doFlush" parameter to the addDocumentToIndex selector so
-//   if a single doc is being added it's done so efficiently, and if I'm in
-//   index I can queue up the flushes and only do it every 10 docs or so.
 // - Similar to the search results callback, I should have a status callback
 //   which tells the main thread what I'm doing, with a textual description I
 //   can put in the status bar.

@@ -8,6 +8,8 @@
 
 #import "FullTextIndex.h"
 
+extern Boolean SKSearchFindMatches() __attribute__((weak_import));
+
 static double kREQUEST_TIMEOUT_INTERVAL = 30.0;
 static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
 
@@ -95,7 +97,12 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
 {
     [indexLock lock];
     if (textIndex) {
-        SKIndexFlush(textIndex);
+		if (AWOOSTER_DEBUG) {
+			NSLog(@"flushing index");
+		}
+        if (!SKIndexFlush(textIndex)) {
+			NSLog(@"flushing index failed");
+		}
     }
     [indexLock unlock];
 }
@@ -218,61 +225,92 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     
     [results removeAllObjects];
     searching = YES;
+	
+	// Switch based on Tiger or Panther SearchKit API's.
+	// Panther
+	if (SKSearchFindMatches == NULL) {
+		// We need a search group.
+		SKIndexRef indexArray[1];
+		indexArray[0] = textIndex;
+		CFArrayRef searchArray = CFArrayCreate(NULL,
+											   (void *) indexArray,
+											   1,
+											   &kCFTypeArrayCallBacks);
 		
-    // We need a search group.
-    SKIndexRef indexArray[1];
-    indexArray[0] = textIndex;
-    CFArrayRef searchArray = CFArrayCreate(NULL,
-                                           (void *) indexArray,
-                                           1,
-                                           &kCFTypeArrayCallBacks);
-	
-    SKSearchGroupRef searchGroup = SKSearchGroupCreate(searchArray);
+		SKSearchGroupRef searchGroup = SKSearchGroupCreate(searchArray);
 
-    SKSearchResultsRef searchResults
-        = SKSearchResultsCreateWithQuery(searchGroup,
-                                         (CFStringRef)query,
-                                         kSKSearchRequiredRanked,
-                                         kTEXT_SEARCH_MAX_RESULTS,
-                                         NULL,
-                                         NULL);
+		SKSearchResultsRef searchResults
+			= SKSearchResultsCreateWithQuery(searchGroup,
+											 (CFStringRef)query,
+											 kSKSearchRequiredRanked,
+											 kTEXT_SEARCH_MAX_RESULTS,
+											 NULL,
+											 NULL);
 
-    SKDocumentRef outDocumentsArray[kTEXT_SEARCH_CHUNK_SIZE];
-    int resultCount = 0;
-    int location;
-    resultCount = SKSearchResultsGetCount(searchResults);
-    if (AWOOSTER_DEBUG) {
-        NSLog(@"%d results", resultCount);
-    }
-    for (location = 0; 
-         location < resultCount; 
-         location += kTEXT_SEARCH_CHUNK_SIZE) {
-        int count = 
-            SKSearchResultsGetInfoInRange(searchResults,
-                                          CFRangeMake(location,
-                                                      kTEXT_SEARCH_CHUNK_SIZE),
-                                          outDocumentsArray,
-                                          NULL,
-                                          NULL);
-        int i;
-        for (i = 0; i < count; i++) {
-            NSString *url = (NSString *)SKDocumentGetName(outDocumentsArray[i]);
-            if (AWOOSTER_DEBUG) {
-                NSLog(@"Matched document:  %@", url);
-            }
-            [resultsLock lock];
-            [results addObject: url];
-            [resultsLock unlock];
-        }
-        
-        [anObject performSelectorOnMainThread: aSelector
-                                   withObject: [results copy]
-                                waitUntilDone: NO];
-    }
-	
-    CFRelease(searchArray);
-    CFRelease(searchGroup);
-    CFRelease(searchResults);
+		SKDocumentRef outDocumentsArray[kTEXT_SEARCH_CHUNK_SIZE];
+		int resultCount = 0;
+		int location;
+		resultCount = SKSearchResultsGetCount(searchResults);
+		if (AWOOSTER_DEBUG) {
+			NSLog(@"%d results", resultCount);
+		}
+		for (location = 0; 
+			 location < resultCount; 
+			 location += kTEXT_SEARCH_CHUNK_SIZE) {
+			int count = 
+				SKSearchResultsGetInfoInRange(searchResults,
+											  CFRangeMake(location,
+														  kTEXT_SEARCH_CHUNK_SIZE),
+											  outDocumentsArray,
+											  NULL,
+											  NULL);
+			int i;
+			for (i = 0; i < count; i++) {
+				NSString *url = (NSString *)SKDocumentGetName(outDocumentsArray[i]);
+				if (AWOOSTER_DEBUG) {
+					NSLog(@"Matched document:  %@", url);
+				}
+				[resultsLock lock];
+				[results addObject: url];
+				[resultsLock unlock];
+			}
+			
+			[anObject performSelectorOnMainThread: aSelector
+									   withObject: [results copy]
+									waitUntilDone: NO];
+		}
+		
+		CFRelease(searchArray);
+		CFRelease(searchGroup);
+		CFRelease(searchResults);
+
+	// Tiger SearchKit API
+	} else {
+		// Create a search.
+		SKSearchRef search = SKSearchCreate(textIndex, (CFStringRef)query, kSKSearchOptionDefault);
+		CFIndex maxResultCount = kTEXT_SEARCH_CHUNK_SIZE;
+		CFIndex resultCount = 0;
+		SKDocumentID documentIDs[kTEXT_SEARCH_CHUNK_SIZE];
+		SKDocumentRef documentRefs[kTEXT_SEARCH_CHUNK_SIZE];
+		
+		while (SKSearchFindMatches(search, maxResultCount, documentIDs, NULL, 0, &resultCount) || resultCount > 0) {
+			SKIndexCopyDocumentRefsForDocumentIDs(textIndex, resultCount, documentIDs, documentRefs);
+			int i;
+			for (i = 0; i < resultCount; i++) {
+				NSString *url = (NSString *)SKDocumentGetName(documentRefs[i]);
+				if (AWOOSTER_DEBUG) {
+					NSLog(@"Matched document: %@", url);
+				}
+				[resultsLock lock];
+				[results addObject: url];
+				[resultsLock unlock];
+			}
+			[anObject performSelectorOnMainThread: aSelector
+									   withObject: [results copy]
+									waitUntilDone: NO];
+		}
+		CFRelease(search);
+	}
     searching = NO;
     
     if (thisSearchID == currentSearchID) {
@@ -310,7 +348,8 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
 	[anObject performSelectorOnMainThread: aSelector
                                withObject: nil
                             waitUntilDone: NO];
-    
+	
+	
     NSEnumerator *urlsEnum = [urls objectEnumerator];
     NSURL *currentURL;
 
@@ -371,9 +410,11 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
               [resp suggestedFilename]);
         NSLog(@"length: %u", [returnData length]);
     }
+	
+	if (![[resp MIMEType] hasPrefix:@"text"] && ![[resp MIMEType] hasSuffix:@"html"] && ![[resp MIMEType] hasSuffix:@"xml"]) {
+		return @"";
+	}
 
-#warning Need better determination if contents are text.
-#warning Also should be able to handle badly encoded files.
     NSString *nsStrEncoding = [resp textEncodingName];
     if (!nsStrEncoding) {
         [nsStrEncoding release];
@@ -406,37 +447,74 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
 	return contents;
 }
 
-#warning Also need to remove text from <script>...</script> tags.
-#warning And, I need to convert HTML entities to strings.
 - (NSString *)extractTextFromHTMLString: (NSString *)html
 {
-    NSMutableString *result = [[NSMutableString alloc] init];
-    // If we were given a nil string, return;
-    if (nil == html) {
-        return result;
-    }
-    NSString *tempString;
-    NSCharacterSet *leftBracketSet;
-    NSCharacterSet *rightBracketSet;
-    NSScanner *theScanner = [NSScanner scannerWithString:html];
-    
-    leftBracketSet = [NSCharacterSet
-        characterSetWithCharactersInString:@"<"];
-    rightBracketSet = [NSCharacterSet
-        characterSetWithCharactersInString:@">"];
-    
-    while ([theScanner isAtEnd] == NO) {
-        if ([theScanner scanUpToCharactersFromSet: leftBracketSet
-                                       intoString: &tempString]) {
-            [result appendString: tempString];
-            [result appendString: @"\n"];
-        }
-        if ([theScanner scanString:@"<" intoString: NULL] &&
-            [theScanner scanUpToCharactersFromSet:rightBracketSet
-                                       intoString: NULL] &&
-            [theScanner scanString:@">" intoString: NULL]) {
-        }
-    }
-    return result;
+	NSMutableString *result = [[NSMutableString alloc] init];
+	
+	// Tiger
+	Class nsxmldoc = NSClassFromString(@"NSXMLDocument");
+	if (nsxmldoc != nil) {
+		NSError *err = nil;
+		NSXMLDocument *doc = [[nsxmldoc alloc] initWithXMLString:html options:(NSXMLNodePreserveAll|NSXMLDocumentTidyHTML) error:&err];
+		if (doc == nil) {
+			return result;
+		}
+		
+		// Walk the tree.
+		{
+			// Get all meta keywords tags.
+			NSArray *nodes = [doc nodesForXPath:@".//meta" error:&err];
+			int i;
+			for (i = 0; i < [nodes count]; i++) {
+				NSXMLNode *attr = [[nodes objectAtIndex:i] attributeForName:@"name"];
+				if (nil != attr && [[attr stringValue] isEqualToString:@"keywords"]) {
+					attr = [[nodes objectAtIndex:i] attributeForName:@"content"];
+					if (nil != attr) {
+						[result appendString:[attr stringValue]];
+						[result appendString:@"\n"];
+					}
+				}
+			}
+			
+			// Get all text nodes.
+			NSXMLNode *aNode = [doc rootElement];
+			while (aNode = [aNode nextNode]) {
+				if ([aNode kind] == NSXMLTextKind && ![[[aNode parent] name] isEqualToString:@"script"] && ![[[aNode parent] name] isEqualToString:@"style"]) {
+					[result appendString:[aNode stringValue]];
+					[result appendString:@"\n"];
+				}
+			}
+		}
+		[doc release];
+	// Panther
+	} else {
+		// If we were given a nil string, return;
+		if (nil == html) {
+			return result;
+		}
+		NSString *tempString;
+		NSCharacterSet *leftBracketSet;
+		NSCharacterSet *rightBracketSet;
+		NSScanner *theScanner = [NSScanner scannerWithString:html];
+		
+		leftBracketSet = [NSCharacterSet
+			characterSetWithCharactersInString:@"<"];
+		rightBracketSet = [NSCharacterSet
+			characterSetWithCharactersInString:@">"];
+		
+		while ([theScanner isAtEnd] == NO) {
+			if ([theScanner scanUpToCharactersFromSet: leftBracketSet
+										   intoString: &tempString]) {
+				[result appendString: tempString];
+				[result appendString: @"\n"];
+			}
+			if ([theScanner scanString:@"<" intoString: NULL] &&
+				[theScanner scanUpToCharactersFromSet:rightBracketSet
+										   intoString: NULL] &&
+				[theScanner scanString:@">" intoString: NULL]) {
+			}
+		}
+	}
+	return result;
 }
 @end
