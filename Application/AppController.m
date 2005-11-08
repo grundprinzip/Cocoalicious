@@ -1377,29 +1377,37 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 
 - (void) handleOpenURLAppleEvent: (NSAppleEventDescriptor *)event withReplyEvent: (NSAppleEventDescriptor *)replyEvent {
 
-    NSString *incomingString = [[ event paramDescriptorForKeyword: keyDirectObject] stringValue ];
+    NSString *incommingString = [[ event paramDescriptorForKeyword: keyDirectObject] stringValue ];
     NSString *description = nil;
     NSString *url = nil;
+    NSString *extended = nil;
+    NSString *myTags = nil;
 
     // make sure it's an url we can handle.
-    if (![[incomingString lowercaseString] hasPrefix: @"delicious:"]) {
+    if (![[incommingString lowercaseString] hasPrefix: @"delicious:"]) {
         // fixme - put something in the replyEvent?
         return;
     }
 
     // strip off the prefix.
-    incomingString = [incomingString substringFromIndex: 10];
+    incommingString = [incommingString substringFromIndex: 10];
 
-    NSEnumerator *enumerator = [[incomingString componentsSeparatedByString:@"&"] objectEnumerator];
+    NSEnumerator *enumerator = [[incommingString componentsSeparatedByString:@"&"] objectEnumerator];
     NSString *component;
 
     while ((component = [enumerator nextObject])) {
     	
         if ([[component lowercaseString] hasPrefix:@"url="]) {
-            url = [[component substringFromIndex: 4] stringByReplacingPercentEscapes];
+            url = [[component substringFromIndex:4] stringByReplacingPercentEscapes];
         }
         else if ([[component lowercaseString] hasPrefix:@"description="]) {
-            description = [[component substringFromIndex: 12] stringByReplacingPercentEscapes];
+            description = [[component substringFromIndex:12] stringByReplacingPercentEscapes];
+        }
+        else if ([[component lowercaseString] hasPrefix:@"extended="]) {
+            extended = [[component substringFromIndex:9] stringByReplacingPercentEscapes];
+        }
+        else if ([[component lowercaseString] hasPrefix:@"tags="]) {
+            myTags = [[component substringFromIndex:5] stringByReplacingPercentEscapes];
         }
         else {
             // just default to using the whole thing as the url.
@@ -1411,6 +1419,14 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 
     if (description) {
         [currentPostProperties setObject: description forKey: @"description"];
+    }
+
+    if (extended) {
+        [currentPostProperties setObject: extended forKey: @"extended"];
+    }
+
+    if (myTags) {
+        [currentPostProperties setObject: myTags forKey: @"tags"];
     }
 
     [self showPostingInterface: self];

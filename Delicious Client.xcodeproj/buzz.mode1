@@ -364,9 +364,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>6BF6A800090203D700399690</string>
+				<string>6B7176D209207A0700F93ECA</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>6BF6A801090203D700399690</string>
+				<string>6B7176D309207A0700F93ECA</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -500,9 +500,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C0AD2B3069F1EA900FABCE6</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>6BFBD192082EEB42009D11EB</string>
 		<string>/Users/buzz/Code/Cocoa/cocoalicious/Delicious Client.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
