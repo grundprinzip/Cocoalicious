@@ -185,48 +185,7 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>6BD9CF6C0929C48400A2F1CE</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>DCAPICache.m</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>6BD9CF6D0929C48400A2F1CE</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>DCAPICache.m</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>6BD9D00D0929D68300A2F1CE</string>
-						<key>history</key>
-						<array>
-							<string>6BD9CFFF0929D56400A2F1CE</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {1060, 660}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>128 121 1060 701 0 0 1280 832 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -407,9 +366,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>6BD9CE440929AB1000A2F1CE</string>
+				<string>6B38EA20092A6288009B01B7</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>6BD9CE450929AB1000A2F1CE</string>
+				<string>6B38EA21092A6288009B01B7</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -543,16 +502,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>6BD9CEC20929B8AB00A2F1CE</string>
-		<string>6BD9CEBE0929B89500A2F1CE</string>
-		<string>6BD9CEBF0929B89500A2F1CE</string>
-		<string>6BB6354E08348C5C008CCB54</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>6BD9CEBA0929B89100A2F1CE</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
-		<string>/Users/buzz/Code/Cocoa/cocoalicious/Delicious Client.xcodeproj</string>
 		<string>6BFBD192082EEB42009D11EB</string>
-		<string>6BD9CF6C0929C48400A2F1CE</string>
+		<string>/Users/buzz/Code/Cocoa/cocoalicious/Delicious Client.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>73 203 949 592 0 0 1280 832 </string>
@@ -576,7 +528,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>DCAPICache.m</string>
+								<string></string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -634,7 +586,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>6BFBD192082EEB42009D11EB</string>
-				<string>6BD9CE4E0929AC7E00A2F1CE</string>
+				<string>6B38EA23092A62BB009B01B7</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -645,7 +597,7 @@
 			<key>WindowToolGUID</key>
 			<string>6BFBD192082EEB42009D11EB</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -948,8 +900,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {491, 168}}</string>
-											<string>{{0, 173}, {491, 270}}</string>
+											<string>{{0, 0}, {366, 168}}</string>
+											<string>{{0, 173}, {366, 270}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -998,9 +950,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>6BD9CE4F0929AC7E00A2F1CE</string>
+				<string>6B38EA25092A641E009B01B7</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>6BD9CE500929AC7E00A2F1CE</string>
+				<string>6B38EA26092A641E009B01B7</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>
