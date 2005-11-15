@@ -48,6 +48,8 @@
 		6B13FD0C06E2962B007B4E5F /* SFHFTableHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B13FD0A06E2962B007B4E5F /* SFHFTableHeaderCell.m */; };
 		6B13FEA306E2AAEC007B4E5F /* SFHFCornerView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B13FEA106E2AAEC007B4E5F /* SFHFCornerView.h */; };
 		6B13FEA406E2AAEC007B4E5F /* SFHFCornerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B13FEA206E2AAEC007B4E5F /* SFHFCornerView.m */; };
+		6B1A966009285ED1000BFD8D /* DCAPICache.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B1A965E09285ED1000BFD8D /* DCAPICache.h */; };
+		6B1A966109285ED1000BFD8D /* DCAPICache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1A965F09285ED1000BFD8D /* DCAPICache.m */; };
 		6B20697C05CB87E700D424BF /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B20697B05CB87E700D424BF /* WebKit.framework */; };
 		6B21241C071CE7270044339D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B21241B071CE7270044339D /* Security.framework */; };
 		6B21259B071D935F0044339D /* SFHFKeychainUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B212599071D935F0044339D /* SFHFKeychainUtils.h */; };
@@ -228,6 +230,8 @@
 		6B13FD0A06E2962B007B4E5F /* SFHFTableHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFTableHeaderCell.m; path = UI/SFHFTableHeaderCell.m; sourceTree = "<group>"; };
 		6B13FEA106E2AAEC007B4E5F /* SFHFCornerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFCornerView.h; path = UI/SFHFCornerView.h; sourceTree = "<group>"; };
 		6B13FEA206E2AAEC007B4E5F /* SFHFCornerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFHFCornerView.m; path = UI/SFHFCornerView.m; sourceTree = "<group>"; };
+		6B1A965E09285ED1000BFD8D /* DCAPICache.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = DCAPICache.h; path = DCAPI/DCAPICache.h; sourceTree = "<group>"; };
+		6B1A965F09285ED1000BFD8D /* DCAPICache.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = DCAPICache.m; path = DCAPI/DCAPICache.m; sourceTree = "<group>"; };
 		6B20697B05CB87E700D424BF /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
 		6B21241B071CE7270044339D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		6B212599071D935F0044339D /* SFHFKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFHFKeychainUtils.h; path = Utilities/SFHFKeychainUtils.h; sourceTree = "<group>"; };
@@ -565,6 +569,8 @@
 		6BD8D4C407205239008CA80A /* del.icio.us Client API */ = {
 			isa = PBXGroup;
 			children = (
+				6B1A965E09285ED1000BFD8D /* DCAPICache.h */,
+				6B1A965F09285ED1000BFD8D /* DCAPICache.m */,
 				6BF88AF305C4D79D00D7EDBB /* DCAPIClient.h */,
 				6BF88AF405C4D79D00D7EDBB /* DCAPIClient.m */,
 				6B37C7D405C8C83E00A005A7 /* DCAPIParser.h */,
@@ -621,6 +627,7 @@
 				6B6475F50867E31500CD0EC9 /* NSFileManager+ESBExtensions.h in Headers */,
 				6BE1ED1708C82BCD003EDABC /* SFHFFaviconCache.h in Headers */,
 				6B557A0208D34E74004D4A2A /* NSArray+IndexSetAdditions.h in Headers */,
+				6B1A966009285ED1000BFD8D /* DCAPICache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -999,6 +1006,7 @@
 				6B6475F60867E31600CD0EC9 /* NSFileManager+ESBExtensions.m in Sources */,
 				6BE1ED1808C82BD0003EDABC /* SFHFFaviconCache.m in Sources */,
 				6B557A0308D34E74004D4A2A /* NSArray+IndexSetAdditions.m in Sources */,
+				6B1A966109285ED1000BFD8D /* DCAPICache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1478,6 +1486,7 @@
 				6B491C9C08D35E1700B6E3C4 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
 		};
 		6BBFD3B908AD6B1D005A088A /* Build configuration list for PBXNativeTarget "Convert Posts to URLs" */ = {
 			isa = XCConfigurationList;

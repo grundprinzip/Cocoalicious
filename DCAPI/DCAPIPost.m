@@ -9,6 +9,10 @@
 #import "DCAPIPost.h"
 
 static NSString *kSEARCH_SEPARATOR_STRING = @" ";
+static NSString *kPOST_DICTIONARY_DESCRIPTION_KEY = @"description";
+static NSString *kPOST_DICTIONARY_EXTENDED_KEY = @"extended";
+static NSString *kPOST_DICTIONARY_TAGS_KEY = @"tags";
+static NSString *kPOST_DICTIONARY_DATE_KEY = @"post-date";
 
 @implementation DCAPIPost
 
@@ -174,7 +178,7 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 	return -1;
 }
 
-- (NSArray *) tags {
+- (NSMutableArray *) tags {
 	return [[tags retain] autorelease];
 }
 
@@ -233,6 +237,10 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
 }
 
 - (NSNumber *) visitCount {
+	if (!visitCount) {
+		return [NSNumber numberWithInt: 0];
+	}
+	
 	return [[visitCount retain] autorelease];
 }
 
@@ -383,6 +391,53 @@ static NSString *kSEARCH_SEPARATOR_STRING = @" ";
     } else {
         return NO;
     }
+}
+
++ (DCAPIPost *) postWithDictionary: (NSDictionary *) postDictionary URL: (NSURL *) URL {
+	NSString *postDateString = [postDictionary objectForKey: kPOST_DICTIONARY_DATE_KEY];
+	NSDate *postDate = [NSCalendarDate dateWithString: postDateString calendarFormat: kDEFAULT_DATE_TIME_FORMAT];
+	DCAPIPost *post = [[DCAPIPost alloc] initWithURL: URL description: (NSString *) [postDictionary objectForKey: kPOST_DICTIONARY_DESCRIPTION_KEY] extended: (NSString *) [postDictionary objectForKey: kPOST_DICTIONARY_EXTENDED_KEY] date: postDate tags: (NSArray *) [postDictionary objectForKey: kPOST_DICTIONARY_TAGS_KEY] urlHash: nil];
+	
+	return [post autorelease];
+}
+
+- (NSDictionary *) dictionaryRepresentation {
+	NSMutableDictionary *postDictionary = [NSMutableDictionary dictionaryWithCapacity: 1];
+	
+	NSString *theDescription = [self description];
+	
+	if (!theDescription) {
+		theDescription = [NSString string];
+	}
+	
+	[postDictionary setObject: theDescription forKey: kPOST_DICTIONARY_DESCRIPTION_KEY];
+
+	NSString *theExtended = [self extended];
+	
+	if (!theExtended) {
+		theExtended = [NSString string];
+	}
+
+	[postDictionary setObject: theExtended forKey: kPOST_DICTIONARY_EXTENDED_KEY];
+	
+	NSArray *theTags = [self tags];
+	
+	if (!theTags) {
+		theTags = [NSMutableArray arrayWithCapacity: 0];
+	}
+	
+	[postDictionary setObject: theTags forKey: kPOST_DICTIONARY_TAGS_KEY];
+
+	NSDate *theDate = [self date];
+
+	if (!theDate) {
+		theDate = [NSDate date];
+	}
+
+	NSString *dateString = [theDate descriptionWithCalendarFormat: kDEFAULT_DATE_TIME_FORMAT timeZone: [NSTimeZone timeZoneWithName: kDEFAULT_TIME_ZONE_NAME] locale: nil];	
+	[postDictionary setObject: dateString forKey: kPOST_DICTIONARY_DATE_KEY];
+	
+	return postDictionary;
 }
 
 @end

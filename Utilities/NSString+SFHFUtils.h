@@ -13,5 +13,6 @@
 
 - (NSString *) stringByUnescapingEntities: (NSDictionary *) entitiesDictionary;
 - (NSString *) stringByAddingPercentEscapesUsingEncoding: (NSStringEncoding) encoding legalURLCharactersToBeEscaped: (NSString *) legalCharacters;
+- (NSString *) stringByReplacingPercentEscapes;
 
 @end

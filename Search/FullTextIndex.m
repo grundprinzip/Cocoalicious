@@ -4,7 +4,7 @@
 //
 //  Created by Andrew Wooster on Sat Oct 16 2004.
 //  Copyright (c) 2004 Andrew Wooster. All rights reserved.
-//
+// 
 
 #import "FullTextIndex.h"
 
@@ -68,13 +68,21 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     
     // Load existing index, if not already loaded.
     if (!textIndex) {
+		CFDictionaryRef indexAttributes = NULL;
+		
+		// Switch based on Tiger or Panther SearchKit API's.
+		if (SKSearchFindMatches != NULL) {
+			// If we're using Tiger, turn on proximity indexing.
+			indexAttributes = (CFDictionaryRef) [NSDictionary dictionaryWithObject: @"1" forKey: (NSString *) kSKProximityIndexing];
+		}
+
         textIndex = SKIndexCreateWithURL((CFURLRef)indexFileUrl,
                                          // Actually index name.
                                          (CFStringRef)kTEXT_INDEX_VERSION,
                                          // Terms to documents.
                                          kSKIndexInverted,
                                          // No need to set these options.
-                                         NULL);
+                                         indexAttributes);
     }
     [indexLock unlock];
     

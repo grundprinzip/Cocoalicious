@@ -35,7 +35,7 @@
 - (NSString *) tagsAsString;
 - (void) setTags: (NSArray *) newTags;
 - (void) addTagsFromRating: (NSNumber *) rating;
-- (NSArray *) tags;
+- (NSMutableArray *) tags;
 - (void) addTagNamed: (NSString *) newTagName;
 - (void) removeTagNamed: (NSString *) removeTagName;
 - (void) renameTag: (NSString *) oldTagName to: (NSString *) newTagName;
@@ -54,5 +54,8 @@
 
 - (id) initWithCoder:(NSCoder *) coder;
 - (void) encodeWithCoder:(NSCoder *) coder;
+
++ (DCAPIPost *) postWithDictionary: (NSDictionary *) postDictionary URL: (NSURL *) URL;
+- (NSDictionary *) dictionaryRepresentation;
 
 @end

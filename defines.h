@@ -80,3 +80,6 @@
 #define FAVICON_SUPPORT 1
 #define kFAVICON_DISPLAY_SIZE NSMakeSize(13.0, 13.0)
 #define kDEFAULT_FAVICON_NAME @"default_favicon.tif"
+
+#define kLAST_REFRESH_FILE_NAME @"last_refresh_time"
+#define kPOST_CACHE_FILE_NAME @"posts"

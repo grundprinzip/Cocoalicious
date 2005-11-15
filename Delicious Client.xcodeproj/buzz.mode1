@@ -218,6 +218,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -281,7 +283,7 @@
 							<real>225</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>65 201 949 592 0 0 1280 832 </string>
+						<string>73 212 949 592 0 0 1280 832 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -318,7 +320,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {702, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>65 201 949 592 0 0 1280 832 </string>
+								<string>73 212 949 592 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -326,8 +328,6 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -340,7 +340,7 @@
 								<key>Frame</key>
 								<string>{{0, 5}, {702, 546}}</string>
 								<key>RubberWindowFrame</key>
-								<string>65 201 949 592 0 0 1280 832 </string>
+								<string>73 212 949 592 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -364,9 +364,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>6B7176D209207A0700F93ECA</string>
+				<string>6BD9CE440929AB1000A2F1CE</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>6B7176D309207A0700F93ECA</string>
+				<string>6BD9CE450929AB1000A2F1CE</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -503,7 +503,7 @@
 		<string>/Users/buzz/Code/Cocoa/cocoalicious/Delicious Client.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>65 201 949 592 0 0 1280 832 </string>
+	<string>73 212 949 592 0 0 1280 832 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>
@@ -524,7 +524,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>AppController.m</string>
+								<string>FullTextIndex.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -533,7 +533,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {853, 184}}</string>
 								<key>RubberWindowFrame</key>
-								<string>307 242 853 524 0 0 1280 832 </string>
+								<string>279 260 853 524 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -559,7 +559,7 @@
 								<key>Frame</key>
 								<string>{{0, 189}, {853, 294}}</string>
 								<key>RubberWindowFrame</key>
-								<string>307 242 853 524 0 0 1280 832 </string>
+								<string>279 260 853 524 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXBuildResultsModule</string>
@@ -582,14 +582,14 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>6BFBD192082EEB42009D11EB</string>
-				<string>6BF6A8090902044A00399690</string>
+				<string>6B1A966709285F1D000BFD8D</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.build</string>
 			<key>WindowString</key>
-			<string>307 242 853 524 0 0 1280 832 </string>
+			<string>279 260 853 524 0 0 1280 832 </string>
 			<key>WindowToolGUID</key>
 			<string>6BFBD192082EEB42009D11EB</string>
 			<key>WindowToolIsVisible</key>
@@ -944,9 +944,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>6BF6A8300902098700399690</string>
+				<string>6B1A96CA09286295000BFD8D</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>6BF6A8310902098700399690</string>
+				<string>6B1A96CB09286295000BFD8D</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>
