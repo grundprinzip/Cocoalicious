@@ -34,27 +34,32 @@
 	NSString *lastRefreshFilePath = [DCAPICache lastRefreshFilePathForUsername: theUsername];
 	BOOL lastRefreshFileExists = [[NSFileManager defaultManager] fileExistsAtPath: lastRefreshFilePath];
 
-	BOOL serverHasUpdates = NO;
+	BOOL serverHasUpdates = YES;
 
-	if (client && lastRefreshFileExists && policy == DCAPICacheUseProtocolCachePolicy) {
+	NSCalendarDate *lastRefreshDate = nil;
+	
+	if (lastRefreshFileExists) {
+		#warning stringWithContentsOfFile: is deprecated in 10.4
+		NSString *lastRefreshTimeString = [NSString stringWithContentsOfFile: lastRefreshFilePath];
+		lastRefreshDate = [NSCalendarDate dateWithString: lastRefreshTimeString calendarFormat: kDEFAULT_DATE_TIME_FORMAT];
+	}
+
+	if (client && lastRefreshDate && policy == DCAPICacheUseProtocolCachePolicy) {
 		/* Must find out from del.icio.us whether there is an update */
 		NSDate *serverUpdateTime = [[self client] requestLastUpdateTime: error];
 
 		if (serverUpdateTime && !*error) {
-			#warning stringWithContentsOfFile: is deprecated in 10.4
-			NSString *lastRefreshTimeString = [NSString stringWithContentsOfFile: lastRefreshFilePath];
-			NSCalendarDate *lastRefreshDate = [NSCalendarDate dateWithString: lastRefreshTimeString calendarFormat: kDEFAULT_DATE_TIME_FORMAT];
-
-			if (lastRefreshDate && [lastRefreshDate compare: serverUpdateTime] == NSOrderedAscending) {
-				serverHasUpdates = YES;
+			if (lastRefreshDate && [lastRefreshDate compare: serverUpdateTime] == NSOrderedDescending) {
+				serverHasUpdates = NO;
 			}
 		}
 	}
 
-	if (client && (!diskCacheExists && DCAPICacheReturnCacheDataElseLoad) || policy == DCAPICacheReloadIgnoringCacheData || serverHasUpdates) {
+	if (client && ((!diskCacheExists && DCAPICacheReturnCacheDataElseLoad) || policy == DCAPICacheReloadIgnoringCacheData || serverHasUpdates)) {
+		NSLog(@"reloading from del.icio.us");
 		/* Must reload from del.icio.us */
 		NSArray *posts = [[self client] requestPostsFilteredByTag: nil count: nil];
-		[self addPosts: posts];
+		[self addPosts: posts clean: YES];
 		
 		/* Note that we refreshed the posts now */
 		[[NSFileManager defaultManager] createPathToFile: lastRefreshFilePath attributes: nil];
@@ -71,20 +76,41 @@
 	}
 } 
 
-- (void) addPosts: (NSArray *) posts {	
-	if (!memoryCache) {
-		[self setMemoryCache: [NSMutableDictionary dictionaryWithCapacity: [posts count]]];
-	}
-		
+- (void) addPosts: (NSArray *) posts clean: (BOOL) clean {	
 	NSEnumerator *postEnumerator = [posts objectEnumerator];
 	DCAPIPost *currentPost;
-	
-	while ((currentPost = (DCAPIPost *) [postEnumerator nextObject]) != nil) {
-		[memoryCache setObject: currentPost forKey: [[currentPost URL] absoluteString]];
-	}
 
 	NSString *diskCachePath = [DCAPICache diskCachePathForUsername: [self username]];
-	[DCAPICache addPosts: posts toDiskCache: diskCachePath];
+	NSMutableDictionary *diskCache = nil;
+
+	if (!clean && [[NSFileManager defaultManager] fileExistsAtPath: diskCachePath]) {
+		diskCache = [NSMutableDictionary dictionaryWithContentsOfFile: diskCachePath];
+	}
+	
+	if (!diskCache) {
+		diskCache = [NSMutableDictionary dictionaryWithCapacity: [posts count]];
+	}
+	
+	NSMutableDictionary *cache = [self memoryCache];
+	
+	if (!cache || clean) {
+		cache = [NSMutableDictionary dictionaryWithCapacity: [posts count]];
+	}
+	
+	while ((currentPost = (DCAPIPost *) [postEnumerator nextObject]) != nil) {
+		NSString *URLString = [[currentPost URL] absoluteString];
+		[cache setObject: currentPost forKey: URLString];
+		NSDictionary *postDictionary = [currentPost dictionaryRepresentation];
+		[diskCache setObject: postDictionary forKey: URLString];
+	}
+	
+	[self setMemoryCache: cache];
+	
+	[[NSFileManager defaultManager] createPathToFile: diskCachePath attributes: nil];
+	
+	if (![diskCache writeToFile: diskCachePath atomically: YES]) {
+		NSLog(@"Can't write cache!");
+	}
 }
 
 - (void) removePostsWithURLs: (NSArray *) postURLs {
@@ -177,32 +203,6 @@
 	}
 	
 	return postList;
-}
-
-+ (void) addPosts: (NSArray *) posts toDiskCache: (NSString *) cachePath {
-	NSMutableDictionary *cache;
-	
-	if ([[NSFileManager defaultManager] fileExistsAtPath: cachePath]) {
-		cache = [NSMutableDictionary dictionaryWithContentsOfFile: cachePath];
-	}
-	
-	if (!cache) {
-		cache = [NSMutableDictionary dictionaryWithCapacity: [posts count]];
-	}
-	
-	NSEnumerator *postEnumerator = [posts objectEnumerator];
-	DCAPIPost *currentPost;
-	
-	while ((currentPost = (DCAPIPost *) [postEnumerator nextObject]) != nil) {
-		NSDictionary *postDictionary = [currentPost dictionaryRepresentation];
-		[cache setObject: postDictionary forKey: [[currentPost URL] absoluteString]];
-	}
-	
-	[[NSFileManager defaultManager] createPathToFile: cachePath attributes: nil];
-	
-	if (![cache writeToFile: cachePath atomically: YES]) {
-		NSLog(@"Can't write cache!");
-	}
 }
 
 + (void) removePostsWithURLs: (NSArray *) urls fromDiskCache: (NSString *) cachePath {

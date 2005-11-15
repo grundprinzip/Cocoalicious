@@ -121,7 +121,7 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
     
     NSURL *apiURL = [NSURL URLWithString: getTagsURIString];
  
-    NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestUseProtocolCachePolicy response: nil error: &error];
+    NSData *responseData = [self sendRequestForURI: apiURL usingCachePolicy: NSURLRequestReloadIgnoringCacheData response: nil error: &error];
 
     DCAPIParser *parser = [[DCAPIParser alloc] initWithXMLData: responseData];
     
