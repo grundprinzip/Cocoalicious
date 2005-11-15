@@ -10,6 +10,7 @@
 #import <WebKit/WebKit.h>
 #import <openssl/md5.h>
 #import "DCAPIClient.h"
+#import "DCAPICache.h"
 #import "DCAPIParser.h"
 #import "DCAPITagFormatter.h"
 #import "NSString+SFHFUtils.h"
@@ -37,6 +38,7 @@
 
 @interface AppController : NSObject {
     DCAPIClient *client;
+	DCAPICache *cache;
     
     IBOutlet NSProgressIndicator *spinnyThing;
     IBOutlet NSTextField *statusText;
@@ -105,12 +107,15 @@
 /* del.icio.us API interaction */
 - (void) setClient: (DCAPIClient *) newClient;
 - (DCAPIClient *) client;
+- (void) setCache: (DCAPICache *) newCache;
+- (DCAPICache *) cache;
 - (void) login;
 - (BOOL) loginWithUsername: (NSString *) username password: (NSString *) password APIURL: (NSURL *) APIURL error: (NSError **) error;
 - (IBAction) refresh: (id) sender;
 - (void) refreshAll;
 - (void) refreshTags;
-- (void) refreshPostsWithDownload: (BOOL) download;
+//- (void) refreshPostsWithDownload: (BOOL) download;
+- (void) refreshPostsWithCachePolicy: (CocoaliciousCachePolicy) policy;
 
 /* Search/Tag Filtering */
 - (IBAction) doSearch: (id) sender;

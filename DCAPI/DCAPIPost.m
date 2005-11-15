@@ -232,7 +232,7 @@ static NSString *kPOST_DICTIONARY_DATE_KEY = @"post-date";
 - (void) setVisitCount: (NSNumber *) newVisitCount {
 	if (newVisitCount != visitCount) {
 		[visitCount release];
-		visitCount = newVisitCount;
+		visitCount = [newVisitCount copy];
 	}
 }
 

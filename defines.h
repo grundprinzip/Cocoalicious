@@ -10,7 +10,7 @@
 
 #define kDEFAULT_SECURITY_DOMAIN (@"del.icio.us API")
 
-#define kUSER_AGENT (@"Cocoal.icio.us/1.0 (v38) (Mac OS X; http://www.scifihifi.com/cocoalicious)")
+#define kUSER_AGENT (@"Cocoal.icio.us/1.0 (v39) (Mac OS X; http://www.scifihifi.com/cocoalicious)")
 
 #define kTAG_SEPARATOR (@" ")
 #define kHTTP_PROTOCOL_PREFIX (@"http://")

@@ -277,7 +277,7 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
 	[spinnyThing startAnimation: self];
-    [self refreshPostsWithDownload: YES];
+	[self refreshPostsWithCachePolicy: CocoaliciousCacheUseProtocolCachePolicy];
 	[self refreshTags];
 	[spinnyThing stopAnimation: self];
 	
@@ -315,19 +315,18 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 	[pool release];
 }
 
-- (void) refreshPostsWithDownload: (BOOL) download {
+- (void) refreshPostsWithCachePolicy: (CocoaliciousCachePolicy) policy {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+		
+	if (policy != CocoaliciousCacheUseMemoryCache) {
+		NSError *refreshError = nil;
+		[[self cache] refreshMemoryCacheWithPolicy: policy error: &refreshError];
+	}
+
+	NSDictionary *memoryCache = [[self cache] memoryCache];
+	[self setPosts: memoryCache];
+	NSArray *unfilteredPosts = [memoryCache allValues];
 	
-	NSArray *unfilteredPosts;
-
-	if (download || ![self postsArray]) {
-		unfilteredPosts = [[self client] requestPostsFilteredByTag: nil count: nil];
-		[self setPostsWithArray: unfilteredPosts];
-	}
-	else {
-		unfilteredPosts = [self postsArray];
-	}
-
 	NSArray *resortedPosts = [unfilteredPosts sortedArrayUsingDescriptors: [postList sortDescriptors]];
 	
 	NSString *search = [self currentSearch];
@@ -457,6 +456,18 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 
 - (DCAPIClient *) client {
     return [[client retain] autorelease];
+}
+
+- (void) setCache: (DCAPICache *) newCache {
+	if (newCache != cache) {
+		[newCache retain];
+		[cache release];
+		cache = newCache;
+	}
+}
+
+- (DCAPICache *) cache {
+	return [[cache retain] autorelease];
 }
 
 - (void) setTags: (NSDictionary *) newTags {
@@ -620,7 +631,7 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 - (void) doSearchForString: (NSString *) search {	
 	if (!search || [search isEqualToString: [NSString string]]) {
         [self setCurrentSearch: nil];
-		[self refreshPostsWithDownload: NO];
+		[self refreshPostsWithCachePolicy: CocoaliciousCacheUseMemoryCache];
 		return;
 	}
 	
@@ -631,12 +642,12 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 		[self beginFullTextSearchForQuery: [self currentSearch]];
 	}
 	else {
-		[self refreshPostsWithDownload: NO];
+		[self refreshPostsWithCachePolicy: CocoaliciousCacheUseMemoryCache];
 	}
 #else
 	/*[self setFilteredPosts: [self filterPosts: [self postsArray] forSearch: [self currentSearch] tags: [self selectedTags]]];
 	[postList reloadData];*/
-	[self refreshPostsWithDownload: NO];
+	[self refreshPostsWithCachePolicy: CocoaliciousCacheUseMemoryCache];
 #endif
 }
 
@@ -929,7 +940,7 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 		DCAPIPost *changedPost = [[self filteredPosts] objectAtIndex: row];
 		[changedPost setRating: object];
 		
-		[self refreshPostsWithDownload: NO];
+		[self refreshPostsWithCachePolicy: CocoaliciousCacheUseMemoryCache];
 		[self refreshTags];
 		
 		[NSThread detachNewThreadSelector: @selector(addPost:) toTarget: [self client] withObject: changedPost];
@@ -1009,7 +1020,7 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 
 - (void) tableView: (NSTableView *) tableView didClickTableColumn: (NSTableColumn *) tableColumn {
 	if (tableView == postList) {
-		[self refreshPostsWithDownload: NO];
+		[self refreshPostsWithCachePolicy: CocoaliciousCacheUseMemoryCache];
 
 		NSArray *descriptors = [postList sortDescriptors];
 		NSData *descriptorData = [NSArchiver archivedDataWithRootObject: descriptors];
@@ -1112,7 +1123,7 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 		[self setCurrentSearch: nil];
 		[searchField setStringValue: [NSString string]];
 		[self resetPostView];
-		[self refreshPostsWithDownload: NO];
+		[self refreshPostsWithCachePolicy: CocoaliciousCacheUseMemoryCache];
     }
     else if (table == postList) {
 		[self previewSelectedLinks];
@@ -1279,11 +1290,13 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
     if(!client) {
 		DCAPIClient *dcClient = [[DCAPIClient alloc] initWithAPIURL: APIURL username: username password: password delegate: self];
 		[self setClient: dcClient];
+		DCAPICache *dcCache = [DCAPICache DCAPICacheForUsername: username client: dcClient];
+		[self setCache: dcCache];
 		[dcClient release];
 	}
 	
-	/* Get last update time.  Right now this is just used to verify authentication. */
 	NSDate *lastUpdateTime = [client requestLastUpdateTime: error];
+	//[self setAPILastUpdatedTime: lastUpdateTime];
 
 	if(*error) {
 		return NO;
@@ -1479,7 +1492,7 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 
 - (void) insertPost: (DCAPIPost *) newPost {
 	[[self posts] setValue: newPost forKey: [newPost valueForKey: kPOST_DICTIONARY_KEY_NAME]];	
-	[self refreshPostsWithDownload: NO];
+	[self refreshPostsWithCachePolicy: CocoaliciousCacheUseMemoryCache];
 	[self refreshTags];
 }
 
@@ -1650,7 +1663,7 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 		DCAPIPost *selectedPost = [[self filteredPosts] objectAtIndex: selectedRow];
 		[[self posts] removeObjectForKey: [selectedPost valueForKey: kPOST_DICTIONARY_KEY_NAME]];
 		[NSThread detachNewThreadSelector: @selector(deletePostWithURL:) toTarget: [self client] withObject: [selectedPost URL]];
-		[self refreshPostsWithDownload: NO];
+		[self refreshPostsWithCachePolicy: CocoaliciousCacheUseMemoryCache];
 		[self refreshTags];
 		[self resetPostView];
 	}
