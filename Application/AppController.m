@@ -317,9 +317,10 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 
 - (void) refreshPostsWithCachePolicy: (CocoaliciousCachePolicy) policy {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+
+	NSError *refreshError = nil;
 		
 	if (policy != CocoaliciousCacheUseMemoryCache) {
-		NSError *refreshError = nil;
 		[[self cache] refreshMemoryCacheWithPolicy: policy error: &refreshError];
 	}
 
@@ -1293,13 +1294,6 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 		DCAPICache *dcCache = [DCAPICache DCAPICacheForUsername: username client: dcClient];
 		[self setCache: dcCache];
 		[dcClient release];
-	}
-	
-	NSDate *lastUpdateTime = [client requestLastUpdateTime: error];
-	//[self setAPILastUpdatedTime: lastUpdateTime];
-
-	if(*error) {
-		return NO;
 	}
 		
 	[mainWindow makeKeyAndOrderFront: self];

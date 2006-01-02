@@ -35,6 +35,8 @@
 		3B3F024C073EF405003AB1C7 /* NSAppleScript+HandlerCalls.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3F024A073EF405003AB1C7 /* NSAppleScript+HandlerCalls.m */; };
 		49FE4957073A0868004027E5 /* FullTextIndex.h in Headers */ = {isa = PBXBuildFile; fileRef = 49FE4955073A0868004027E5 /* FullTextIndex.h */; };
 		49FE4958073A0868004027E5 /* FullTextIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FE4956073A0868004027E5 /* FullTextIndex.m */; };
+		6B061A440968A2E4001FB28A /* SFHFNetworkUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B061A420968A2E4001FB28A /* SFHFNetworkUtils.h */; };
+		6B061A450968A2E4001FB28A /* SFHFNetworkUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B061A430968A2E4001FB28A /* SFHFNetworkUtils.m */; };
 		6B0896C80838FCEF0057A654 /* star.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6B0896C60838FCEF0057A654 /* star.tif */; };
 		6B0896C90838FCEF0057A654 /* star_highlighted.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6B0896C70838FCEF0057A654 /* star_highlighted.tif */; };
 		6B0896D70838FD090057A654 /* SFHFRatingCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0896D50838FD090057A654 /* SFHFRatingCell.h */; };
@@ -217,6 +219,8 @@
 		3B3F024A073EF405003AB1C7 /* NSAppleScript+HandlerCalls.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "NSAppleScript+HandlerCalls.m"; path = "Utilities/NSAppleScript+HandlerCalls.m"; sourceTree = "<group>"; };
 		49FE4955073A0868004027E5 /* FullTextIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullTextIndex.h; sourceTree = "<group>"; };
 		49FE4956073A0868004027E5 /* FullTextIndex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullTextIndex.m; sourceTree = "<group>"; };
+		6B061A420968A2E4001FB28A /* SFHFNetworkUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFHFNetworkUtils.h; sourceTree = "<group>"; };
+		6B061A430968A2E4001FB28A /* SFHFNetworkUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFHFNetworkUtils.m; sourceTree = "<group>"; };
 		6B0896C60838FCEF0057A654 /* star.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = star.tif; path = Art/star.tif; sourceTree = "<group>"; };
 		6B0896C70838FCEF0057A654 /* star_highlighted.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = star_highlighted.tif; path = Art/star_highlighted.tif; sourceTree = "<group>"; };
 		6B0896D50838FD090057A654 /* SFHFRatingCell.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = SFHFRatingCell.h; path = UI/SFHFRatingCell.h; sourceTree = "<group>"; };
@@ -531,6 +535,8 @@
 				6B4324FC08C6DD8C00C26737 /* SFHFFaviconCache.m */,
 				6B557A0008D34E74004D4A2A /* NSArray+IndexSetAdditions.h */,
 				6B557A0108D34E74004D4A2A /* NSArray+IndexSetAdditions.m */,
+				6B061A420968A2E4001FB28A /* SFHFNetworkUtils.h */,
+				6B061A430968A2E4001FB28A /* SFHFNetworkUtils.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -628,6 +634,7 @@
 				6BE1ED1708C82BCD003EDABC /* SFHFFaviconCache.h in Headers */,
 				6B557A0208D34E74004D4A2A /* NSArray+IndexSetAdditions.h in Headers */,
 				6B1A966009285ED1000BFD8D /* DCAPICache.h in Headers */,
+				6B061A440968A2E4001FB28A /* SFHFNetworkUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1007,6 +1014,7 @@
 				6BE1ED1808C82BD0003EDABC /* SFHFFaviconCache.m in Sources */,
 				6B557A0308D34E74004D4A2A /* NSArray+IndexSetAdditions.m in Sources */,
 				6B1A966109285ED1000BFD8D /* DCAPICache.m in Sources */,
+				6B061A450968A2E4001FB28A /* SFHFNetworkUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

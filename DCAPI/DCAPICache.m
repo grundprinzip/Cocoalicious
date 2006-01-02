@@ -7,6 +7,7 @@
 //
 
 #import "DCAPICache.h"
+#import "SFHFNetworkUtils.h"
 
 
 @implementation DCAPICache
@@ -48,30 +49,35 @@
 		/* Must find out from del.icio.us whether there is an update */
 		NSDate *serverUpdateTime = [[self client] requestLastUpdateTime: error];
 
-		if (serverUpdateTime && !*error) {
-			if (lastRefreshDate && [lastRefreshDate compare: serverUpdateTime] == NSOrderedDescending) {
-				serverHasUpdates = NO;
-			}
+		if (*error || (lastRefreshDate && [lastRefreshDate compare: serverUpdateTime] == NSOrderedDescending)) {
+			serverHasUpdates = NO;
 		}
 	}
 
 	if (client && ((!diskCacheExists && DCAPICacheReturnCacheDataElseLoad) || policy == DCAPICacheReloadIgnoringCacheData || serverHasUpdates)) {
-		NSLog(@"reloading from del.icio.us");
 		/* Must reload from del.icio.us */
 		NSArray *posts = [[self client] requestPostsFilteredByTag: nil count: nil];
-		[self addPosts: posts clean: YES];
 		
-		/* Note that we refreshed the posts now */
-		[[NSFileManager defaultManager] createPathToFile: lastRefreshFilePath attributes: nil];
-		NSString *lastRefreshTimeString = [[NSDate date] descriptionWithCalendarFormat: kDEFAULT_DATE_TIME_FORMAT timeZone: [NSTimeZone timeZoneWithName: kDEFAULT_TIME_ZONE_NAME] locale: nil];
-		[lastRefreshTimeString writeToFile: lastRefreshFilePath atomically: YES];
+		if (posts) {
+			[self addPosts: posts clean: YES];
+			
+			/* Note the time we refreshed the posts now */
+			[[NSFileManager defaultManager] createPathToFile: lastRefreshFilePath attributes: nil];
+			NSString *lastRefreshTimeString = [[NSDate date] descriptionWithCalendarFormat: kDEFAULT_DATE_TIME_FORMAT timeZone: [NSTimeZone timeZoneWithName: kDEFAULT_TIME_ZONE_NAME] locale: nil];
+			[lastRefreshTimeString writeToFile: lastRefreshFilePath atomically: YES];
+			
+			return;
+		}
 	}
-	else if (diskCacheExists) {
+	
+	if (diskCacheExists) {
+		NSLog(@"reloading from disk");
 		/* Must reload from disk */
 		NSDictionary *posts = [DCAPICache readPostsFromDiskCache: diskCachePath];
 		[self setMemoryCache: posts];
 	}
 	else {
+		NSLog(@"can't reload from disk or del.icio.us");
 		[self setMemoryCache: [NSMutableDictionary dictionaryWithCapacity: 0]];
 	}
 } 
