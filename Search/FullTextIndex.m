@@ -193,6 +193,16 @@ static NSString *kUSER_AGENT_HTTP_HEADER = @"User-Agent";
     }
 }
 
+- (void) removeDocumentFromIndex: (NSURL *) documentURL {
+    SKDocumentRef document = SKDocumentCreate((CFStringRef)@"file",
+                                              NULL,
+                                              (CFStringRef)[documentURL description]);
+	
+	SKIndexRemoveDocument(textIndex, document);
+    
+	CFRelease(document);
+}
+
 - (void) search: (NSDictionary *) searchDict {
     currentSearchID++;
     int thisSearchID = currentSearchID;

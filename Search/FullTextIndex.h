@@ -62,6 +62,7 @@
 - (void) addDocumentToIndex:(NSURL *)url
                 withContent:(NSString *)content
                 inBatchMode:(BOOL)batchMode;
+- (void) removeDocumentFromIndex: (NSURL *) documentURL;
 - (void) search: (NSDictionary *)searchDict;
 
 - (void) index: (NSDictionary *)indexDict;

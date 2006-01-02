@@ -190,47 +190,7 @@
 			<key>Content</key>
 			<dict>
 				<key>PBXProjectModuleGUID</key>
-				<string>6B061B420968C0FE001FB28A</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>DCAPICache.m</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>6B061B430968C0FE001FB28A</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>DCAPICache.m</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>6B061B540968C218001FB28A</string>
-						<key>history</key>
-						<array>
-							<string>6B061B470968C154001FB28A</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {1060, 659}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>143 132 1060 700 0 0 1280 832 </string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>6B061B160968BC0B001FB28A</string>
+				<string>6B061B7E0968C940001FB28A</string>
 				<key>PBXProjectModuleLabel</key>
 				<string>AppController.m</string>
 				<key>PBXSplitModuleInNavigatorKey</key>
@@ -238,16 +198,16 @@
 					<key>Split0</key>
 					<dict>
 						<key>PBXProjectModuleGUID</key>
-						<string>6B061B170968BC0B001FB28A</string>
+						<string>6B061B7F0968C940001FB28A</string>
 						<key>PBXProjectModuleLabel</key>
 						<string>AppController.m</string>
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>6B061B550968C218001FB28A</string>
+						<string>6B061B800968C940001FB28A</string>
 						<key>history</key>
 						<array>
-							<string>6B061B450968C0FE001FB28A</string>
+							<string>6B061B780968C90E001FB28A</string>
 						</array>
 					</dict>
 					<key>SplitCount</key>
@@ -583,6 +543,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>6BFBD192082EEB42009D11EB</string>
 		<string>6B061A310968A0D6001FB28A</string>
 		<string>6B061A320968A0D6001FB28A</string>
@@ -590,9 +551,7 @@
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>6B061A2E0968A0D6001FB28A</string>
 		<string>/Users/buzz/Code/Cocoa/cocoalicious/Delicious Client.xcodeproj</string>
-		<string>6B061B160968BC0B001FB28A</string>
-		<string>1C0AD2B3069F1EA900FABCE6</string>
-		<string>6B061B420968C0FE001FB28A</string>
+		<string>6B061B7E0968C940001FB28A</string>
 	</array>
 	<key>WindowString</key>
 	<string>67 219 949 592 0 0 1280 832 </string>
@@ -611,12 +570,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>DCAPICache.m</string>
+								<string>AppController.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -633,8 +594,6 @@
 							<string>184pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1047,7 +1006,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C0AD2B3069F1EA900FABCE6</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
