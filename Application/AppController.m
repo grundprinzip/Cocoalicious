@@ -1485,7 +1485,7 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 }
 
 - (void) insertPost: (DCAPIPost *) newPost {
-	[[self posts] setValue: newPost forKey: [newPost valueForKey: kPOST_DICTIONARY_KEY_NAME]];	
+	[[self cache] addPosts: [NSArray arrayWithObject: newPost] clean: NO];
 	[self refreshPostsWithCachePolicy: CocoaliciousCacheUseMemoryCache];
 	[self refreshTags];
 }
@@ -1655,8 +1655,8 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 
 	if (selectedRow > -1) {
 		DCAPIPost *selectedPost = [[self filteredPosts] objectAtIndex: selectedRow];
-		[[self posts] removeObjectForKey: [selectedPost valueForKey: kPOST_DICTIONARY_KEY_NAME]];
 		[NSThread detachNewThreadSelector: @selector(deletePostWithURL:) toTarget: [self client] withObject: [selectedPost URL]];
+		[[self cache] removePosts: [NSArray arrayWithObject: selectedPost]];
 		[self refreshPostsWithCachePolicy: CocoaliciousCacheUseMemoryCache];
 		[self refreshTags];
 		[self resetPostView];

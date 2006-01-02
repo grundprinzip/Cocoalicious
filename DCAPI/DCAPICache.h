@@ -32,7 +32,7 @@
 - (void) refreshMemoryCacheWithPolicy: (DCAPICachePolicy) policy error: (NSError **) error;
 
 - (void) addPosts: (NSArray *) posts clean: (BOOL) clean;
-- (void) removePostsWithURLs: (NSArray *) postURLs;
+- (void) removePosts: (NSArray *) postURLs;
 
 + (NSDictionary *) readPostsFromDiskCache: (NSString *) cachePath;
 + (void) removePostsWithURLs: (NSArray *) urls fromDiskCache: (NSString *) cachePath;

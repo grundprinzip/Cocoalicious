@@ -119,20 +119,24 @@
 	}
 }
 
-- (void) removePostsWithURLs: (NSArray *) postURLs {
+- (void) removePosts: (NSArray *) posts {
 	if (!memoryCache) {
 		return;
 	}
 	
-	NSEnumerator *urlEnumerator = [postURLs objectEnumerator];
+	NSEnumerator *postEnumerator = [posts objectEnumerator];
+	DCAPIPost *currentPost;
 	NSURL *currentURL;
+	NSMutableArray *urlsToDelete = [[NSMutableArray alloc] init];
 	
-	while ((currentURL = [urlEnumerator nextObject]) != nil) {
+	while ((currentPost = [postEnumerator nextObject]) != nil) {
+		currentURL = [currentPost URL];
 		[[self memoryCache] removeObjectForKey: [currentURL absoluteString]];
+		[urlsToDelete addObject: currentURL];
 	}
 
 	NSString *diskCachePath = [DCAPICache diskCachePathForUsername: [self username]];
-	[DCAPICache removePostsWithURLs: postURLs fromDiskCache: diskCachePath];
+	[DCAPICache removePostsWithURLs: [urlsToDelete autorelease] fromDiskCache: diskCachePath];
 }
 
 - (DCAPIPost *) postForURL: (NSURL *) url {
