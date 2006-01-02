@@ -7,7 +7,6 @@
 //
 
 #import "DCAPIClient.h"
-#import "SFHFNetworkUtils.h"
 
 
 static NSString *kGET_POSTS_RELATIVE_URI = @"/posts/get";

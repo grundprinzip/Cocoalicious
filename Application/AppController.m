@@ -324,6 +324,15 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 		[[self cache] refreshMemoryCacheWithPolicy: policy error: &refreshError];
 	}
 
+	NSString *windowTitle = [NSString stringWithFormat: [[NSBundle mainBundle] objectForInfoDictionaryKey: @"DCWindowTitleFormat"], [[self client] username]];
+
+	if (refreshError) {
+		[mainWindow setTitle: [windowTitle stringByAppendingString: NSLocalizedString(@" [Offline]", @"Offline warning in main window title.")]];
+	}
+	else {
+		[mainWindow setTitle: windowTitle];
+	}
+
 	NSDictionary *memoryCache = [[self cache] memoryCache];
 	[self setPosts: memoryCache];
 	NSArray *unfilteredPosts = [memoryCache allValues];
@@ -646,8 +655,6 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 		[self refreshPostsWithCachePolicy: CocoaliciousCacheUseMemoryCache];
 	}
 #else
-	/*[self setFilteredPosts: [self filterPosts: [self postsArray] forSearch: [self currentSearch] tags: [self selectedTags]]];
-	[postList reloadData];*/
 	[self refreshPostsWithCachePolicy: CocoaliciousCacheUseMemoryCache];
 #endif
 }
