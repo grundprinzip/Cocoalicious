@@ -19,13 +19,15 @@
 	<key>CFBundleSignature</key>
 	<string>Lish</string>
 	<key>CFBundleVersion</key>
-	<string>39</string>
+	<string>40</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
+	<key>SUFeedURL</key>
+	<string>http://www.scifihifi.com/cocoalicious/appcast.rss</string>
 	<key>CFBundleURLTypes</key>
 	<array>
     <dict>

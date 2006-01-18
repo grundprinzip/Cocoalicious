@@ -82,6 +82,13 @@
 		6B557A6008D35590004D4A2A /* Cocoalicious.definition in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B47BF5B086345A400636CB2 /* Cocoalicious.definition */; };
 		6B5A44BE06D1CFB6007C405C /* DCAPITagFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B5A44BC06D1CFB6007C405C /* DCAPITagFormatter.h */; };
 		6B5A44BF06D1CFB6007C405C /* DCAPITagFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5A44BD06D1CFB6007C405C /* DCAPITagFormatter.m */; };
+		6B5DAC0E097ED52B001DD6DA /* Sparkle.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6B5DAC07097ED52B001DD6DA /* Sparkle.strings */; };
+		6B5DAC0F097ED52B001DD6DA /* SUUpdater.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B5DAC08097ED52B001DD6DA /* SUUpdater.h */; };
+		6B5DAC10097ED52B001DD6DA /* NSString+extras.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B5DAC09097ED52B001DD6DA /* NSString+extras.h */; };
+		6B5DAC11097ED52B001DD6DA /* NSString+extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5DAC0A097ED52B001DD6DA /* NSString+extras.m */; };
+		6B5DAC12097ED52B001DD6DA /* RSS.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B5DAC0B097ED52B001DD6DA /* RSS.h */; };
+		6B5DAC13097ED52B001DD6DA /* RSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5DAC0C097ED52B001DD6DA /* RSS.m */; };
+		6B5DAC14097ED52B001DD6DA /* SUUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5DAC0D097ED52B001DD6DA /* SUUpdater.m */; };
 		6B61ACDC0846382500A27692 /* KFTypeSelectTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B61ACDA0846382500A27692 /* KFTypeSelectTableView.m */; };
 		6B61ACDD0846382500A27692 /* KFTypeSelectTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B61ACDB0846382500A27692 /* KFTypeSelectTableView.h */; };
 		6B6475E20867E26500CD0EC9 /* default_favicon.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6B6475D30867E11800CD0EC9 /* default_favicon.tif */; };
@@ -267,6 +274,13 @@
 		6B557A0108D34E74004D4A2A /* NSArray+IndexSetAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+IndexSetAdditions.m"; path = "Utilities/NSArray+IndexSetAdditions.m"; sourceTree = "<group>"; };
 		6B5A44BC06D1CFB6007C405C /* DCAPITagFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCAPITagFormatter.h; path = DCAPI/DCAPITagFormatter.h; sourceTree = "<group>"; };
 		6B5A44BD06D1CFB6007C405C /* DCAPITagFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCAPITagFormatter.m; path = DCAPI/DCAPITagFormatter.m; sourceTree = "<group>"; };
+		6B5DAC07097ED52B001DD6DA /* Sparkle.strings */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = Sparkle.strings; path = Autoupdate/Sparkle.strings; sourceTree = "<group>"; };
+		6B5DAC08097ED52B001DD6DA /* SUUpdater.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = SUUpdater.h; path = Autoupdate/SUUpdater.h; sourceTree = "<group>"; };
+		6B5DAC09097ED52B001DD6DA /* NSString+extras.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "NSString+extras.h"; path = "Autoupdate/NSString+extras.h"; sourceTree = "<group>"; };
+		6B5DAC0A097ED52B001DD6DA /* NSString+extras.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "NSString+extras.m"; path = "Autoupdate/NSString+extras.m"; sourceTree = "<group>"; };
+		6B5DAC0B097ED52B001DD6DA /* RSS.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = RSS.h; path = Autoupdate/RSS.h; sourceTree = "<group>"; };
+		6B5DAC0C097ED52B001DD6DA /* RSS.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = RSS.m; path = Autoupdate/RSS.m; sourceTree = "<group>"; };
+		6B5DAC0D097ED52B001DD6DA /* SUUpdater.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = SUUpdater.m; path = Autoupdate/SUUpdater.m; sourceTree = "<group>"; };
 		6B61ACDA0846382500A27692 /* KFTypeSelectTableView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = KFTypeSelectTableView.m; path = UI/KFTypeSelectTableView.m; sourceTree = "<group>"; };
 		6B61ACDB0846382500A27692 /* KFTypeSelectTableView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = KFTypeSelectTableView.h; path = UI/KFTypeSelectTableView.h; sourceTree = "<group>"; };
 		6B6475D30867E11800CD0EC9 /* default_favicon.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = default_favicon.tif; path = Art/default_favicon.tif; sourceTree = "<group>"; };
@@ -395,6 +409,7 @@
 				3B3F0225073EF17A003AB1C7 /* Scripts */,
 				6BD81875075AFB510088A2CF /* AppleScript Support */,
 				6BD8D4A707205205008CA80A /* Utilities */,
+				6B5DAC02097ED49E001DD6DA /* Auto Update */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -497,6 +512,20 @@
 				6B491CA008D35E5600B6E3C4 /* Info.plist */,
 			);
 			name = "Convert Tags to Strings";
+			sourceTree = "<group>";
+		};
+		6B5DAC02097ED49E001DD6DA /* Auto Update */ = {
+			isa = PBXGroup;
+			children = (
+				6B5DAC07097ED52B001DD6DA /* Sparkle.strings */,
+				6B5DAC08097ED52B001DD6DA /* SUUpdater.h */,
+				6B5DAC09097ED52B001DD6DA /* NSString+extras.h */,
+				6B5DAC0A097ED52B001DD6DA /* NSString+extras.m */,
+				6B5DAC0B097ED52B001DD6DA /* RSS.h */,
+				6B5DAC0C097ED52B001DD6DA /* RSS.m */,
+				6B5DAC0D097ED52B001DD6DA /* SUUpdater.m */,
+			);
+			name = "Auto Update";
 			sourceTree = "<group>";
 		};
 		6BD81875075AFB510088A2CF /* AppleScript Support */ = {
@@ -628,6 +657,9 @@
 				6BE1ED1708C82BCD003EDABC /* SFHFFaviconCache.h in Headers */,
 				6B557A0208D34E74004D4A2A /* NSArray+IndexSetAdditions.h in Headers */,
 				6B1A966009285ED1000BFD8D /* DCAPICache.h in Headers */,
+				6B5DAC0F097ED52B001DD6DA /* SUUpdater.h in Headers */,
+				6B5DAC10097ED52B001DD6DA /* NSString+extras.h in Headers */,
+				6B5DAC12097ED52B001DD6DA /* RSS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -942,6 +974,7 @@
 				6B0896C80838FCEF0057A654 /* star.tif in Resources */,
 				6B0896C90838FCEF0057A654 /* star_highlighted.tif in Resources */,
 				6BCE226708D2A5330083FA32 /* Info.plist in Resources */,
+				6B5DAC0E097ED52B001DD6DA /* Sparkle.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1007,6 +1040,9 @@
 				6BE1ED1808C82BD0003EDABC /* SFHFFaviconCache.m in Sources */,
 				6B557A0308D34E74004D4A2A /* NSArray+IndexSetAdditions.m in Sources */,
 				6B1A966109285ED1000BFD8D /* DCAPICache.m in Sources */,
+				6B5DAC11097ED52B001DD6DA /* NSString+extras.m in Sources */,
+				6B5DAC13097ED52B001DD6DA /* RSS.m in Sources */,
+				6B5DAC14097ED52B001DD6DA /* SUUpdater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -71,7 +71,6 @@
 	}
 	
 	if (diskCacheExists) {
-		NSLog(@"reloading from disk");
 		/* Must reload from disk */
 		NSDictionary *posts = [DCAPICache readPostsFromDiskCache: diskCachePath];
 		[self setMemoryCache: posts];
