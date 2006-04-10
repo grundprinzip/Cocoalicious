@@ -1054,6 +1054,8 @@
 			6BA6681009EAC24600CD12B5 /* PBXTextBookmark */ = 6BA6681009EAC24600CD12B5 /* PBXTextBookmark */;
 			6BA6682409EAC40000CD12B5 /* PBXTextBookmark */ = 6BA6682409EAC40000CD12B5 /* PBXTextBookmark */;
 			6BA6682E09EAC59A00CD12B5 /* PBXTextBookmark */ = 6BA6682E09EAC59A00CD12B5 /* PBXTextBookmark */;
+			6BA6682F09EAC7CB00CD12B5 /* PBXTextBookmark */ = 6BA6682F09EAC7CB00CD12B5 /* PBXTextBookmark */;
+			6BA6683009EAC7CB00CD12B5 /* PBXTextBookmark */ = 6BA6683009EAC7CB00CD12B5 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 6BF88AE705C4D57100D7EDBB /* Source Control */;
 		userBuildSettings = {
@@ -1633,6 +1635,24 @@
 		vrLoc = 35746;
 	};
 	6BA6682E09EAC59A00CD12B5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 6BF88AE405C4D56000D7EDBB /* AppController.m */;
+		name = "#warning modify if tableView:validateDrop:proposedRow:proposedOperation returns for more than just tag assignment";
+		rLen = 114;
+		rLoc = 35967;
+		rType = 0;
+		vrLen = 708;
+		vrLoc = 35746;
+	};
+	6BA6682F09EAC7CB00CD12B5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "warning: #warning modify if tableView:validateDrop:proposedRow:proposedOperation returns for more than just tag assignment";
+		fRef = 6BF88AE405C4D56000D7EDBB /* AppController.m */;
+		rLen = 1;
+		rLoc = 1011;
+		rType = 1;
+	};
+	6BA6683009EAC7CB00CD12B5 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 6BF88AE405C4D56000D7EDBB /* AppController.m */;
 		name = "#warning modify if tableView:validateDrop:proposedRow:proposedOperation returns for more than just tag assignment";
