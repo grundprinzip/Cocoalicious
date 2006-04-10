@@ -15,6 +15,9 @@ static NSString *kPOST_DESCRIPTION_ATTRIBUTE = @"description";
 static NSString *kPOST_EXTENDED_ATTRIBUTE = @"extended";
 static NSString *kPOST_DATE_ATTRIBUTE = @"time";
 static NSString *kPOST_TAGS_ATTRIBUTE = @"tag";
+static NSString *kPOST_SHARED_ATTRIBUTE = @"shared";
+static NSString *k_POST_SHARED_NO_VALUE = @"no";
+
 
 /* static NSString *kDATE_LIST_ELEMENT = @"dates"; */
 static NSString *kDATE_ELEMENT = @"date";
@@ -118,7 +121,15 @@ static NSString *kUPDATE_TIME_ATTRIBUTE = @"time";
 		
 		NSString *hashString = [[attributeDict objectForKey: kPOST_HASH_ATTRIBUTE] stringByUnescapingEntities: nil];
 	
-        DCAPIPost *post = [[DCAPIPost alloc] initWithURL: postURL description: postDescription extended: postExtended date: postDate tags: nil urlHash: hashString];
+		NSString *privateString = [[attributeDict objectForKey: kPOST_SHARED_ATTRIBUTE] stringByUnescapingEntities: nil];
+	
+		BOOL isPrivate = NO;
+	
+		if (privateString && [privateString isEqualToString: k_POST_SHARED_NO_VALUE]) {
+			isPrivate = YES;
+		}
+	
+        DCAPIPost *post = [[DCAPIPost alloc] initWithURL: postURL description: postDescription extended: postExtended date: postDate tags: nil urlHash: hashString isPrivate: isPrivate];
 		[post setTagsFromString: tagString];
         
         [posts addObject: post];

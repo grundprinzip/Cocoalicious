@@ -13,10 +13,11 @@ static NSString *kPOST_DICTIONARY_DESCRIPTION_KEY = @"description";
 static NSString *kPOST_DICTIONARY_EXTENDED_KEY = @"extended";
 static NSString *kPOST_DICTIONARY_TAGS_KEY = @"tags";
 static NSString *kPOST_DICTIONARY_DATE_KEY = @"post-date";
+static NSString *kPOST_DICTIONARY_IS_PRIVATE_KEY = @"private";
 
 @implementation DCAPIPost
 
-- initWithURL: (NSURL *) newURL description: (NSString *) newDescription extended: (NSString *) newExtended date: (NSDate *) newDate tags: (NSArray *) newTags urlHash: (NSString *) newHash {
+- initWithURL: (NSURL *) newURL description: (NSString *) newDescription extended: (NSString *) newExtended date: (NSDate *) newDate tags: (NSArray *) newTags urlHash: (NSString *) newHash isPrivate: (BOOL) newIsPrivate {
     [super init];
     
     [self setURL: newURL];
@@ -25,6 +26,7 @@ static NSString *kPOST_DICTIONARY_DATE_KEY = @"post-date";
     [self setDate: newDate];
 	[self setTags: newTags];
 	[self setURLHash: newHash];
+	[self setPrivate: newIsPrivate];
 	
 	[self setVisitCount: [NSNumber numberWithInt: 0]];
     
@@ -62,6 +64,14 @@ static NSString *kPOST_DICTIONARY_DATE_KEY = @"post-date";
 
 - (NSURL *) URL {
     return [[URL retain] autorelease];
+}
+
+- (BOOL) isPrivate {
+	return isPrivate;
+}
+
+- (void) setPrivate: (BOOL) newIsPrivate {
+	isPrivate = newIsPrivate;
 }
 
 - (NSString *) URLString {
@@ -396,7 +406,15 @@ static NSString *kPOST_DICTIONARY_DATE_KEY = @"post-date";
 + (DCAPIPost *) postWithDictionary: (NSDictionary *) postDictionary URL: (NSURL *) URL {
 	NSString *postDateString = [postDictionary objectForKey: kPOST_DICTIONARY_DATE_KEY];
 	NSDate *postDate = [NSCalendarDate dateWithString: postDateString calendarFormat: kDEFAULT_DATE_TIME_FORMAT];
-	DCAPIPost *post = [[DCAPIPost alloc] initWithURL: URL description: (NSString *) [postDictionary objectForKey: kPOST_DICTIONARY_DESCRIPTION_KEY] extended: (NSString *) [postDictionary objectForKey: kPOST_DICTIONARY_EXTENDED_KEY] date: postDate tags: (NSArray *) [postDictionary objectForKey: kPOST_DICTIONARY_TAGS_KEY] urlHash: nil];
+	
+	BOOL newIsPrivate = NO;
+	NSNumber *isPrivateNumber;
+	
+	if ((isPrivateNumber = [postDictionary objectForKey: kPOST_DICTIONARY_IS_PRIVATE_KEY]) != nil) {
+		newIsPrivate = [isPrivateNumber boolValue];
+	}
+	
+	DCAPIPost *post = [[DCAPIPost alloc] initWithURL: URL description: (NSString *) [postDictionary objectForKey: kPOST_DICTIONARY_DESCRIPTION_KEY] extended: (NSString *) [postDictionary objectForKey: kPOST_DICTIONARY_EXTENDED_KEY] date: postDate tags: (NSArray *) [postDictionary objectForKey: kPOST_DICTIONARY_TAGS_KEY] urlHash: nil isPrivate: newIsPrivate];
 	
 	return [post autorelease];
 }
@@ -433,6 +451,8 @@ static NSString *kPOST_DICTIONARY_DATE_KEY = @"post-date";
 	if (!theDate) {
 		theDate = [NSDate date];
 	}
+	
+	[postDictionary setObject: [NSNumber numberWithBool: [self isPrivate]] forKey: kPOST_DICTIONARY_IS_PRIVATE_KEY];
 
 	NSString *dateString = [theDate descriptionWithCalendarFormat: kDEFAULT_DATE_TIME_FORMAT timeZone: [NSTimeZone timeZoneWithName: kDEFAULT_TIME_ZONE_NAME] locale: nil];	
 	[postDictionary setObject: dateString forKey: kPOST_DICTIONARY_DATE_KEY];

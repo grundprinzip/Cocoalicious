@@ -26,6 +26,7 @@ static NSString *kPOST_DESCRIPTION_PARAM = @"description";
 static NSString *kPOST_TAGS_PARAM = @"tags";
 static NSString *kPOST_DATE_PARAM = @"dt";
 static NSString *kPOST_EXTENDED_PARAM = @"extended";
+static NSString *kPOST_SHARED_PARAM = @"shared";
 static NSString *kRENAME_TAG_OLD_PARAM = @"old";
 static NSString *kRENAME_TAG_NEW_PARAM = @"new";
 static double kREQUEST_TIMEOUT_INTERVAL = 30.0;
@@ -294,6 +295,12 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
 	if (postDate) {
 		NSString *dateString = [postDate descriptionWithCalendarFormat: kPOSTING_DATE_TIME_FORMAT timeZone: [NSTimeZone timeZoneWithAbbreviation: kDEFAULT_TIME_ZONE_NAME] locale: nil];
 		[addPostURIString appendFormat: @"&%@=%@", kPOST_DATE_PARAM, [dateString stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding legalURLCharactersToBeEscaped: kLEGAL_CHARACTERS_TO_BE_ESCAPED]];
+	}
+	
+	BOOL isPrivate = [newPost isPrivate];
+	
+	if (isPrivate) {
+		[addPostURIString appendFormat: @"&%@=%@", kPOST_SHARED_PARAM, @"no"];
 	}
 
     NSURL *apiURL = [NSURL URLWithString: addPostURIString];

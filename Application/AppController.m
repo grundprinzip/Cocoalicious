@@ -63,6 +63,7 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 - (void) awakeFromNib {
 	[postTagsField setFieldEditor: YES];
 	[statusView addSubview: statusTextView];
+	[mainWindow setFrameUsingName: [mainWindow frameAutosaveName]];
 	[self sizeBezelSubviews];
 	[self setupToolbar];
 	[self setupWebPreview];
@@ -78,16 +79,16 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 	
 	[NSApp setServicesProvider: self];
 	
-	NSError *historyLoadError;
+	/*NSError *historyLoadError;
 	WebHistory *sharedHistory = [[WebHistory alloc] init];
-	[sharedHistory loadFromURL: [NSURL fileURLWithPath: [kSAFARI_HISTORY_PATH stringByExpandingTildeInPath]] error: &historyLoadError];
+	[sharedHistory loadFromURL: [NSURL fileURLWithPath: [kSAFARI_HISTORY_PATH stringByExpandingTildeInPath]] error: &historyLoadError];*/
 		
-	if (historyLoadError) {
+	/*if (historyLoadError) {
 		NSLog(@"%@", historyLoadError);
 	}
 	else {
 		[WebHistory setOptionalSharedHistory: [sharedHistory autorelease]];
-	}
+	}*/
 				
 	NSString *safariScriptPath = [[NSBundle mainBundle] pathForResource: kDCSafariScriptLibrary ofType: kDCScriptType];
 	NSURL *safariScriptURL = [NSURL fileURLWithPath: safariScriptPath];
@@ -1385,6 +1386,7 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 	[currentPostProperties removeObjectForKey: @"extended"];
 	[currentPostProperties removeObjectForKey: @"tags"];
 	[currentPostProperties removeObjectForKey: @"date"];
+	[currentPostProperties removeObjectForKey: @"private"];
 	
 	[[NSApp mainWindow] makeFirstResponder: [[NSApp mainWindow] initialFirstResponder]];
 }
@@ -1502,6 +1504,7 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 	NSString *postDescription = [currentPostProperties objectForKey: @"description"];
 	NSString *postExtended = [currentPostProperties objectForKey: @"extended"];
 	NSString *postTags = [currentPostProperties objectForKey: @"tags"];
+	BOOL privatePost = [(NSNumber *) [currentPostProperties objectForKey: @"private"] boolValue];
 
 	NSDate *postDate = [currentPostProperties objectForKey: @"date"];
 
@@ -1509,7 +1512,7 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 		postDate = [NSCalendarDate date];
 	}
 	
-	DCAPIPost *newPost = [[DCAPIPost alloc] initWithURL: postURL description: postDescription extended: postExtended date: postDate tags: nil urlHash: nil];
+	DCAPIPost *newPost = [[DCAPIPost alloc] initWithURL: postURL description: postDescription extended: postExtended date: postDate tags: nil urlHash: nil isPrivate: privatePost];
 	[newPost setTagsFromString: postTags];
 	
 	[NSThread detachNewThreadSelector: @selector(performAsyncAddOfPost:) toTarget: self withObject: newPost];
@@ -1574,14 +1577,11 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 	NSString *scriptResult = [result stringValue];
 	
 	/* Check for errors in running the handler */
-    if (errorInfo) {
+    if (errorInfo || [scriptResult isEqualToString: kScriptError]) {
         [self handleScriptError: errorInfo];
-    }
-    /* Check the handler's return value */
-    else if ([scriptResult isEqualToString: kScriptError]) {
-        NSRunAlertPanel(NSLocalizedString(@"Script Failure", @"Title on script failure window."), [NSString stringWithFormat: @"%@ %d", NSLocalizedString(@"The script failed:", @"Message on script failure window."), scriptResult], NSLocalizedString(@"OK", @""), nil, nil);
-    }
-	
+		return;
+	}
+		
 	NSString *URLString = [[scriptResult componentsSeparatedByString: @"***"] objectAtIndex: 1];
 	
 	if (URLString) {
@@ -1600,13 +1600,10 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 	result = [safariScript callHandler: kDCSafariGetCurrentSelection withArguments: arguments errorInfo: &errorInfo];
 	scriptResult = [result stringValue];
 
-    if (errorInfo) {
+    if (errorInfo || [scriptResult isEqualToString: kScriptError]) {
         [self handleScriptError: errorInfo];
+		return;
     }
-    /* Check the handler's return value */
-    else if ([scriptResult isEqualToString: kScriptError]) {
-		#warning Put error here
-	}
 	
 	if (scriptResult && ![scriptResult isEqualToString: [NSString string]]) {
 		[currentPostProperties setObject: scriptResult forKey: @"extended"];
@@ -1652,6 +1649,8 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 		if (postDate) {
 			[currentPostProperties setObject: postDate forKey: @"date"];
 		}
+		
+		[currentPostProperties setObject: [NSNumber numberWithBool: [selectedPost isPrivate]] forKey: @"private"];
 		
 		[self showPostingInterface: self];
 	}

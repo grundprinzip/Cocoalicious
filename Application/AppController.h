@@ -62,6 +62,7 @@
 	IBOutlet NSTextField *postURLField;
 	IBOutlet NSTextField *postExtendedField;
 	IBOutlet NSTextView *postTagsField;
+	IBOutlet NSButton *postPrivateField;
 	
     IBOutlet NSWindow *mainWindow;
     

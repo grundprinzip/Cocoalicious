@@ -30,7 +30,7 @@
             CLASS = AppController; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                addDeletePostButton = NSSegmentedControl; 
+                addDeletePostButton = NSButton; 
                 indexingProgressBar = NSProgressIndicator; 
                 indexingProgressView = NSView; 
                 indexingStatusText = NSTextField; 
@@ -44,6 +44,7 @@
                 postExtendedField = NSTextField; 
                 postList = SFHFTableView; 
                 postListBezel = SFHFBezelView; 
+                postPrivateButton = id; 
                 postTagsField = NSTextView; 
                 postURLField = NSTextField; 
                 postingInterface = NSWindow; 

@@ -19,9 +19,10 @@
 	NSString *urlHash;
 	NSNumber *rating;
 	NSNumber *visitCount;
+	BOOL isPrivate;
 }
 
-- initWithURL: (NSURL *) newURL description: (NSString *) newDescription extended: (NSString *) newExtended date: (NSDate *) newDate tags: (NSArray *) newTags urlHash: (NSString *) newHash;
+- initWithURL: (NSURL *) newURL description: (NSString *) newDescription extended: (NSString *) newExtended date: (NSDate *) newDate tags: (NSArray *) newTags urlHash: (NSString *) newHash isPrivate: (BOOL) newIsPrivate;
 - (void) setDescription: (NSString *) description;
 - (NSString *) description;
 - (void) setDate: (NSDate *) newDate;
@@ -51,6 +52,8 @@
 - (void) setVisitCount: (NSNumber *) newVisitCount;
 - (NSNumber *) visitCount;
 - (void) incrementVisitCount;
+- (BOOL) isPrivate;
+- (void) setPrivate: (BOOL) newIsPrivate;
 
 - (id) initWithCoder:(NSCoder *) coder;
 - (void) encodeWithCoder:(NSCoder *) coder;
