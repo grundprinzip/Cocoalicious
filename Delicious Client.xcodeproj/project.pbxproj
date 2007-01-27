@@ -103,8 +103,6 @@
 		6BA936C40655EEC400AE7890 /* NSString+SFHFUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BA936C20655EEC400AE7890 /* NSString+SFHFUtils.h */; };
 		6BA936C50655EEC400AE7890 /* NSString+SFHFUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA936C30655EEC400AE7890 /* NSString+SFHFUtils.m */; };
 		6BA939AE065692DC00AE7890 /* metal_column_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BA939AD065692DC00AE7890 /* metal_column_header.png */; };
-		6BB05D0209C614450033A1C1 /* OAGradientTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BB05D0009C614450033A1C1 /* OAGradientTableView.h */; };
-		6BB05D0309C614450033A1C1 /* OAGradientTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB05D0109C614450033A1C1 /* OAGradientTableView.m */; };
 		6BB0A8E9074FF64B008FDDCC /* refresh_icon.tif in Resources */ = {isa = PBXBuildFile; fileRef = 6BB0A8E8074FF64B008FDDCC /* refresh_icon.tif */; };
 		6BCE225D08D2A4E10083FA32 /* version.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B47BF62086345DF00636CB2 /* version.plist */; };
 		6BCE226708D2A5330083FA32 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D1107310486CEB800E47090 /* Info.plist */; };
@@ -130,35 +128,6 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXBuildStyle section */
-		4A9504CCFFE6A4B311CA0CBA /* Development */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUGGING_SYMBOLS = YES;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				OPTIMIZATION_CFLAGS = "-O0";
-				ZERO_LINK = YES;
-			};
-			name = Development;
-		};
-		4A9504CDFFE6A4B311CA0CBA /* Deployment */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPYING_PRESERVES_HFS_DATA = NO;
-				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-/* End PBXBuildStyle section */
 
 /* Begin PBXContainerItemProxy section */
 		6B491CBA08D35EA700B6E3C4 /* PBXContainerItemProxy */ = {
@@ -302,8 +271,6 @@
 		6BA936C30655EEC400AE7890 /* NSString+SFHFUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+SFHFUtils.m"; path = "Utilities/NSString+SFHFUtils.m"; sourceTree = "<group>"; };
 		6BA939AD065692DC00AE7890 /* metal_column_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = metal_column_header.png; path = Art/metal_column_header.png; sourceTree = "<group>"; };
 		6BAB081C06D2FF6A0058BAC1 /* Cocoalicious.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cocoalicious.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6BB05D0009C614450033A1C1 /* OAGradientTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAGradientTableView.h; sourceTree = "<group>"; };
-		6BB05D0109C614450033A1C1 /* OAGradientTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAGradientTableView.m; sourceTree = "<group>"; };
 		6BB0A8E8074FF64B008FDDCC /* refresh_icon.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = refresh_icon.tif; path = Art/refresh_icon.tif; sourceTree = "<group>"; };
 		6BD8187D075AFB740088A2CF /* AppController-AppleScriptExtensions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = "AppController-AppleScriptExtensions.h"; path = "Scripting/AppController-AppleScriptExtensions.h"; sourceTree = "<group>"; };
 		6BD8187E075AFB740088A2CF /* AppController-AppleScriptExtensions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = "AppController-AppleScriptExtensions.m"; path = "Scripting/AppController-AppleScriptExtensions.m"; sourceTree = "<group>"; };
@@ -581,8 +548,6 @@
 				6B0896D60838FD090057A654 /* SFHFRatingCell.m */,
 				6B6AA441084A7B0F00FDB683 /* SFHFCircularCounterCell.h */,
 				6B6AA442084A7B0F00FDB683 /* SFHFCircularCounterCell.m */,
-				6BB05D0009C614450033A1C1 /* OAGradientTableView.h */,
-				6BB05D0109C614450033A1C1 /* OAGradientTableView.m */,
 			);
 			name = "Custom UI";
 			sourceTree = "<group>";
@@ -649,7 +614,6 @@
 				6BE1ED1708C82BCD003EDABC /* SFHFFaviconCache.h in Headers */,
 				6B557A0208D34E74004D4A2A /* NSArray+IndexSetAdditions.h in Headers */,
 				6B1A966009285ED1000BFD8D /* DCAPICache.h in Headers */,
-				6BB05D0209C614450033A1C1 /* OAGradientTableView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,58 +630,11 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "Scripting/Automator/Convert Posts To URLs/Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Automator";
-				LIBRARY_STYLE = STATIC;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				OTHER_REZFLAGS = "";
-				PREBINDING = NO;
-				PRODUCT_NAME = "Convert Posts to URLs";
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = caction;
-			};
 			dependencies = (
 			);
 			name = "Convert Posts to URLs";
 			productName = "Convert Posts to URLs";
 			productReference = 6B47BEFA08633D0800636CB2 /* Convert Posts to URLs.caction */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>Convert Posts to URLs</string>
-	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.Convert_Posts_to_URLs</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
-</dict>
-</plist>
-";
 			productType = "com.apple.product-type.bundle";
 		};
 		6B47BF5A086345A400636CB2 /* Cocoalicious Definition */ = {
@@ -731,58 +648,11 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = Scripting/Automator/Definition/Info.plist;
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Automator";
-				LIBRARY_STYLE = BUNDLE;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				OTHER_REZFLAGS = "";
-				PREBINDING = NO;
-				PRODUCT_NAME = Cocoalicious;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = definition;
-			};
 			dependencies = (
 			);
 			name = "Cocoalicious Definition";
 			productName = "Cocoalicious Definition";
 			productReference = 6B47BF5B086345A400636CB2 /* Cocoalicious.definition */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>Cocoalicious Definition</string>
-	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.Cocoalicious_Definition</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
-</dict>
-</plist>
-";
 			productType = "com.apple.product-type.bundle";
 		};
 		6B491C9208D35E1700B6E3C4 /* Convert Tags to Strings */ = {
@@ -795,58 +665,11 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
-				INFOPLIST_FILE = "Convert Tags to Strings-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				LIBRARY_STYLE = BUNDLE;
-				OPTIMIZATION_CFLAGS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Carbon,
-				);
-				OTHER_REZFLAGS = "";
-				PREBINDING = NO;
-				PRODUCT_NAME = "Convert Tags to Strings";
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-			};
 			dependencies = (
 			);
 			name = "Convert Tags to Strings";
 			productName = "Convert Tags to Strings";
 			productReference = 6B491C9308D35E1700B6E3C4 /* Convert Tags to Strings.caction */;
-			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
-<plist version=\"1.0\">
-<dict>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
-	<key>CFBundleExecutable</key>
-	<string>Convert Tags to Strings</string>
-	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.Convert_Tags_to_Strings</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
-	<key>CSResourcesFileMapped</key>
-	<string>yes</string>
-</dict>
-</plist>
-";
 			productType = "com.apple.product-type.bundle";
 		};
 		8D1107260486CEB800E47090 /* Cocoal.icio.us */ = {
@@ -863,30 +686,6 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
-				GCC_ENABLE_TRIGRAPHS = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Delicious Client_Prefix.pch";
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
-				GCC_WARN_FOUR_CHARACTER_CONSTANTS = NO;
-				GCC_WARN_UNKNOWN_PRAGMAS = NO;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = Cocoalicious;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
 			dependencies = (
 				6B557A4508D35531004D4A2A /* PBXTargetDependency */,
 				6B557A4708D35536004D4A2A /* PBXTargetDependency */,
@@ -904,12 +703,6 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 6BBFD3C508AD6B1D005A088A /* Build configuration list for PBXProject "Delicious Client" */;
-			buildSettings = {
-			};
-			buildStyles = (
-				4A9504CCFFE6A4B311CA0CBA /* Development */,
-				4A9504CDFFE6A4B311CA0CBA /* Deployment */,
-			);
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Cocoal.icio.us */;
 			projectDirPath = "";
@@ -1030,7 +823,6 @@
 				6BE1ED1808C82BD0003EDABC /* SFHFFaviconCache.m in Sources */,
 				6B557A0308D34E74004D4A2A /* NSArray+IndexSetAdditions.m in Sources */,
 				6B1A966109285ED1000BFD8D /* DCAPICache.m in Sources */,
-				6BB05D0309C614450033A1C1 /* OAGradientTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

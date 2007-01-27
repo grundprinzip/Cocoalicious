@@ -7,7 +7,6 @@
 //
 
 #import "DCAPICache.h"
-#import "SFHFNetworkUtils.h"
 
 
 @implementation DCAPICache
