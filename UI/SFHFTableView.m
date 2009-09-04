@@ -82,16 +82,16 @@
 - (void) copy: (id) sender {
 	NSIndexSet *rows = [self selectedRowIndexes];
 
-	NSMutableArray *rowsToCopy = [NSMutableArray array];
+	NSMutableIndexSet *rowsToCopy = [NSMutableIndexSet indexSet];
 
     unsigned int currentIndex = [rows firstIndex];
     
 	while (currentIndex != NSNotFound) {
-		[rowsToCopy addObject: [NSNumber numberWithUnsignedInt: currentIndex]];
+		[rowsToCopy addIndex: currentIndex];
         currentIndex = [rows indexGreaterThanIndex: currentIndex];
 	}
 
-	[[self delegate] tableView: self writeRows: rowsToCopy toPasteboard: [NSPasteboard generalPasteboard]];
+	[[self delegate] tableView: self writeRowsWithIndexes: rowsToCopy toPasteboard: [NSPasteboard generalPasteboard]];
 }
 
 - (void) initializeColumnsUsingHeaderCellClass: (Class) cellClass formatterClass: (Class) formatterClass textAlignment: (NSTextAlignment) textAlignment {
@@ -145,7 +145,8 @@
     int row;
     
     row = [self rowAtPoint:point];
-    return [[self dataSource] tableView:self tooltipForItem:[[self dataSource] tableView:self itemAtRow:row]];
+	return @"";
+    //return [[self dataSource] tableView:self tooltipForItem:[[self dataSource] tableView:self itemAtRow:row]];
 }
 
 - (void)resetCursorRects; {

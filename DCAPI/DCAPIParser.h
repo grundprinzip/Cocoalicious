@@ -14,7 +14,7 @@
 #import "NSString+SFHFUtils.h"
 
 
-@interface DCAPIParser : NSObject {
+@interface DCAPIParser : NSObject<NSXMLParserDelegate> {
     NSXMLParser *parser;
     NSData *XMLData;
     NSMutableArray *posts;

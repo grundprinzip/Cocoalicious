@@ -171,7 +171,7 @@ static NSString *kUPDATE_TIME_ATTRIBUTE = @"time";
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
-    NSLog(@"PARSE ERROR: %@", parseError);
+    NSLog(@"PARSE ERROR: %@", [parseError localizedDescription]);
 }
 
 - (void) dealloc {

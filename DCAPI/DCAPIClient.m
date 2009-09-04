@@ -371,10 +371,13 @@ static NSString *kLEGAL_CHARACTERS_TO_BE_ESCAPED = @"@?&/;+";
 	}
 
 	[self setLastAPISubmissionTime: now];
-	NSData *returnData = [NSURLConnection sendSynchronousRequest: req returningResponse: response error: error];
+
+	NSError** e;
+	NSData *returnData = [NSURLConnection sendSynchronousRequest: req returningResponse: response error: e];
 		
-	if (*error) { 
-		NSLog(@"%@", *error);
+	// Changes to check if the result is nil, not the empty error object
+	if (returnData == nil) { 		
+		NSLog(@"%@", [*e localizedDescription]);
 	}
 	
 	return returnData;

@@ -956,7 +956,7 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
 	}
 }
 
-- (BOOL) tableView: (NSTableView *) tableView writeRows: (NSArray *) rows toPasteboard: (NSPasteboard *) pboard {	
+- (BOOL) tableView: (NSTableView *) tableView writeRowsWithIndexes: (NSIndexSet *) rows toPasteboard: (NSPasteboard *) pboard {	
 	if ([tableView respondsToSelector: @selector(lastClickWasInDisabledColumn)] && [(SFHFTableView *) tableView lastClickWasInDisabledColumn]) {
 		return NO;
 	}
@@ -969,8 +969,8 @@ static NSString *ERR_LOGIN_NO_CREDENTIALS_SPECIFIED = @"Username or password not
  														 kWebURLNamePboardType,
  														 NSStringPboardType, nil] owner: self];
 		
-		NSNumber *currentPostIndex = [rows objectAtIndex: 0];
-		DCAPIPost *currentPost = [[self filteredPosts] objectAtIndex: [currentPostIndex unsignedIntValue]];
+		NSUInteger currentPostIndex = [rows firstIndex];
+		DCAPIPost *currentPost = [[self filteredPosts] objectAtIndex: currentPostIndex];
 		[pboard setData: [NSKeyedArchiver archivedDataWithRootObject: currentPost] forType: kDCAPIPostPboardType];
 		
 		NSURL *currentURL = [currentPost URL];
